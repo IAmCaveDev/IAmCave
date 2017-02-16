@@ -3,10 +3,11 @@
 
 #include <vector>
 
-#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 #include "caveman.h"
 #include "action.h"
+#include "gamestate.h"
 
 class Game {
 private:
@@ -14,6 +15,7 @@ private:
 
     std::vector<Caveman> tribe;
     std::vector<Action*> actions;
+    std::vector<Action*> queuedActions;
 
     GameState management;
     GameState roundEnd;
