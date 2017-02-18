@@ -8,13 +8,14 @@
 
 class Button : public sf::RectangleShape {
 private:
-	bool clickable;
-	std::function<void()> callback;
-	sf::Texture buttontex;
+    bool clickable;
+    std::function<void()> callback;
+    sf::Texture buttontex;
 
 public:
-	Button(const sf::Vector2f& size, std::string texturePath, const sf::Vector2f& newposition, std::function<void()> newcallback);
-	void clicked(sf::Vector2i& mousePosition);
+    Button(const sf::Vector2f& size, std::string texturePath,
+           const sf::Vector2f& newposition, std::function<void()> newcallback);
+    void clicked(sf::Vector2i& mousePosition);
 
 };
 

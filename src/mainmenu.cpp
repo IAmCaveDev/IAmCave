@@ -2,39 +2,45 @@
 #include "button.h"
 
 void mainMenu(sf::RenderWindow& win) {
-	Button menuButtons[3] = {
-		Button({200,50},std::string("assets/fuck.png"),{200,100}, []() {}),
-		Button({200,50},std::string("assets/fuck.png"),{200,200}, []() {}),
-		Button({200,50},std::string("assets/fuck.png"),{200,300}, []() {})
-	};
+    std::function<void()> start = [](){};
+    std::function<void()> options = [](){};
+    std::function<void()> quit = [&](){
+        win.close();
+    };
 
-	while (win.isOpen()) {
+    Button menuButtons[3] = {
+        Button({200,50},std::string("assets/fuck.png"),{200,100}, []() {}),
+        Button({200,50},std::string("assets/fuck.png"),{200,200}, []() {}),
+        Button({200,50},std::string("assets/fuck.png"),{200,300}, []() {})
+    };
 
-		sf::Event event;
+    while (win.isOpen()) {
 
-		while (win.pollEvent(event)) {
+        sf::Event event;
 
-			switch (event.type) {
+        while (win.pollEvent(event)) {
 
-			case sf::Event::Closed:
-				win.close();
-				break;
+            switch (event.type) {
 
-			case sf::Event::MouseButtonPressed:
-				if (event.mouseButton.button == sf::Mouse::Left) {
-					for (int i = 0; i < 3; i++) {
-						menuButtons[i].clicked(sf::Mouse::getPosition());
-					}
-				}
-			}
-		}
+            case sf::Event::Closed:
+                win.close();
+                break;
 
-		win.clear(sf::Color::Black);
+            case sf::Event::MouseButtonPressed:
+                if (event.mouseButton.button == sf::Mouse::Left) {
+                    for (int i = 0; i < 3; i++) {
+                        menuButtons[i].clicked(sf::Mouse::getPosition());
+                    }
+                }
+            }
+        }
 
-		for (int i = 0; i < 3; ++i) {
-			win.draw(menuButtons[i]);
-		}
+        win.clear(sf::Color::Black);
 
-		win.display();
-	}
+        for (int i = 0; i < 3; ++i) {
+            win.draw(menuButtons[i]);
+        }
+
+        win.display();
+    }
 }
