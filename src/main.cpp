@@ -1,10 +1,10 @@
-#include "game.h"
+#include "mainmenu.h"
 
 int main(int argc, char *argv[]){
     sf::RenderWindow window(sf::VideoMode(800, 600), "IAmCave");
 	sf::Event event;
 
-	Game mygame;
+	mainMenu(window);
 
 
 

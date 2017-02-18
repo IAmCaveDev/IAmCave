@@ -10,11 +10,11 @@ class Button : public sf::RectangleShape {
 private:
 	bool clickable;
 	std::function<void()> callback;
-	sf::Texture texture;
+	sf::Texture buttontex;
 
 public:
 	Button(const sf::Vector2f& size, std::string texturePath, const sf::Vector2f& newposition, std::function<void()> newcallback);
-	bool isClicked(sf::Vector2i& mousePosition);
+	void clicked(sf::Vector2i& mousePosition);
 
 };
 
