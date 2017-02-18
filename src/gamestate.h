@@ -8,7 +8,8 @@
 class GameState {
 private:
     Game& game;
-    std::vector<sf::Drawable> drawables;
+    std::vector<sf::Drawable*> drawables;
+    std::vector<Button> buttons;
 
 public:
     GameState() = delete;
