@@ -254,3 +254,7 @@ paket-files/
 *.vcxproj
 *.vcxproj.filters
 *.dll
+
+# Makefiles
+Makefile
+makefile

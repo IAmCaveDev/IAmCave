@@ -4,10 +4,13 @@
 
 void mainMenu(sf::RenderWindow& win) {
     std::function<void()> start = [](){
-        
+
     };
 
-    std::function<void()> options = [](){};
+    std::function<void()> options = [](){
+
+    };
+
     std::function<void()> quit = [&](){
         win.close();
     };
@@ -24,16 +27,14 @@ void mainMenu(sf::RenderWindow& win) {
 
         while (win.pollEvent(event)) {
 
-            switch (event.type) {
-
-            case sf::Event::Closed:
+            if(event.type == sf::Event::Closed){
                 win.close();
                 break;
-
-            case sf::Event::MouseButtonPressed:
+            }else if(event.type == sf::Event::MouseButtonPressed){
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     for (int i = 0; i < 3; i++) {
-                        menuButtons[i].clicked(sf::Mouse::getPosition(win));
+                        sf::Vector2i pos = sf::Mouse::getPosition(win);
+                        menuButtons[i].clicked(pos);
                     }
                 }
             }
