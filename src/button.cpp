@@ -8,17 +8,33 @@ Button::Button(const sf::Vector2f& size, std::string texturePath,
     setPosition(newposition);
     callback = newcallback;
     clickable = true;
+    setOutlineColor(sf::Color::Red);
 }
 
-void Button::clicked(const sf::Vector2i& mousePosition){
-    if (clickable == false) return;
+void Button::highlighted(const sf::Vector2i& mousePosition){
+    if(!clickable) return;
     sf::Vector2i myPosition = sf::Vector2i(getPosition());
-    if ((mousePosition.x >= myPosition.x) &&
-        (mousePosition.x <= myPosition.x + getSize().x) &&
-        (mousePosition.y >= myPosition.y) &&
-        (mousePosition.y <= myPosition.y + getSize().y)){
+    if((mousePosition.x >= myPosition.x) &&
+       (mousePosition.x <= myPosition.x + getSize().x) &&
+       (mousePosition.y >= myPosition.y) &&
+       (mousePosition.y <= myPosition.y + getSize().y)){
+        setOutlineThickness(10);
+        return;
+    }
+    return;
+}
+
+void Button::executed(const sf::Vector2i& mousePosition){
+    if(!clickable || !isHighlighted) return;
+    sf::Vector2i myPosition = sf::Vector2i(getPosition());
+    if((mousePosition.x >= myPosition.x) &&
+       (mousePosition.x <= myPosition.x + getSize().x) &&
+       (mousePosition.y >= myPosition.y) &&
+       (mousePosition.y <= myPosition.y + getSize().y)){
         callback();
         return;
+    }else if(isHighlighted){
+        setOutlineThickness(0);
     }
     return;
 }

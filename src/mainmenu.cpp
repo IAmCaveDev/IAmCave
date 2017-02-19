@@ -24,3 +24,13 @@ MainMenu::MainMenu(sf::RenderWindow& windowRef, Game& gameRef) :
     };
 
 }
+
+void MainMenu::update(){
+    for(auto const& it : buttons){
+        window.draw(it);
+    }
+}
+
+const std::vector<Button>& MainMenu::getButtons() const {
+    return buttons;
+}

@@ -18,9 +18,9 @@ public:
     MainMenu() = delete;
     MainMenu(sf::RenderWindow& windowRef, Game& gameRef);
 
-    const std::vector<Button>& getButtons() const;
-
     void update();
+
+    const std::vector<Button>& getButtons() const;
 };
 
 #endif
