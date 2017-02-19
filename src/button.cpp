@@ -10,7 +10,7 @@ Button::Button(const sf::Vector2f& size, std::string texturePath,
     clickable = true;
 }
 
-void Button::clicked(sf::Vector2i& mousePosition){
+void Button::clicked(const sf::Vector2i& mousePosition){
     if (clickable == false) return;
     sf::Vector2i myPosition = sf::Vector2i(getPosition());
     if ((mousePosition.x >= myPosition.x) &&

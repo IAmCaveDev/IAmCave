@@ -12,10 +12,14 @@ private:
     std::function<void()> callback;
     sf::Texture buttontex;
 
+    bool isHighlighted;
+
 public:
     Button(const sf::Vector2f& size, std::string texturePath,
            const sf::Vector2f& newposition, std::function<void()> newcallback);
-    void clicked(sf::Vector2i& mousePosition);
+
+    void highlighted(const sf::Vector2i& mousePosition);
+    void clicked(const sf::Vector2i& mousePosition);
 
 };
 

@@ -17,6 +17,8 @@ private:
 public:
     GameState() = delete;
     explicit GameState(Game& gameRef);
+
+    const std::vector<Button>& getButtons() const;
 };
 
 #endif
