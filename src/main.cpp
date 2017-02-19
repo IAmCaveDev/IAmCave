@@ -5,7 +5,7 @@ int main(int argc, char *argv[]){
     sf::RenderWindow window(sf::VideoMode(800, 600), "IAmCave");
 
     Game game(window);
-    MainMenu mainMenu(window, game);
+    game.setCurrentGameState(EGamestates::mainMenu);
 
     while(window.isOpen()){
         sf::Event event;
@@ -16,12 +16,7 @@ int main(int argc, char *argv[]){
             }else if(event.type == sf::Event::MouseButtonPressed){
                 if(event.mouseButton.button == sf::Mouse::Left){
                     std::vector<Button*> buttons;
-                    if(game.isActive()){
-                        buttons = game.getCurrentGameState().getButtons();
-                    }else{
-                        buttons = mainMenu.getButtons();
-                    }
-
+                    buttons = game.getCurrentGameState().getButtons();
                     for(auto& it : buttons){
                         sf::Vector2i pos = sf::Mouse::getPosition(window);
                         it->highlighted(pos);
@@ -30,12 +25,7 @@ int main(int argc, char *argv[]){
             }else if(event.type == sf::Event::MouseButtonReleased){
                 if(event.mouseButton.button == sf::Mouse::Left){
                     std::vector<Button*> buttons;
-                    if(game.isActive()){
-                        buttons = game.getCurrentGameState().getButtons();
-                    }else{
-                        buttons = mainMenu.getButtons();
-                    }
-
+                    buttons = game.getCurrentGameState().getButtons();
                     for(auto& it : buttons){
                         sf::Vector2i pos = sf::Mouse::getPosition(window);
                         it->executed(pos);
@@ -46,11 +36,7 @@ int main(int argc, char *argv[]){
 
         window.clear(sf::Color::Black);
 
-        if(game.isActive()){
-            game.update();
-        }else{
-            mainMenu.update();
-        }
+        game.update();
 
         window.display();
     }

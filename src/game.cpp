@@ -2,21 +2,40 @@
 
 Game::Game(sf::RenderWindow& windowRef) : window(windowRef),
                                           management(*this),
-                                          roundEnd(*this){
+                                          roundEnd(*this),
+                                          mainMenu(*this){
+
 }
 
 void Game::update(){
+    for (auto const& it : currentGameState->getButtons()) {
+        window.draw(*it);
+    }
 
+    for (auto const& it : currentGameState->getDrawables()) {
+        window.draw(*it);
+    }
 }
 
 GameState& Game::getCurrentGameState() const {
     return *currentGameState;
 }
 
-bool Game::isActive() const {
-    return active;
+void Game::setCurrentGameState(EGamestates newstate) {
+    switch (newstate) {
+        case EGamestates::mainMenu:
+            currentGameState = &mainMenu;
+            break;
+        case EGamestates::management:
+            currentGameState = &management;
+            break;
+        case EGamestates::roundEnd:
+            currentGameState = &roundEnd;
+            break;
+    }
 }
 
-void Game::setActive(bool newActive){
-    active = newActive;
+sf::RenderWindow& Game::getWindow() {
+    return window;
 }
+

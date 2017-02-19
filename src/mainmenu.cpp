@@ -2,11 +2,10 @@
 #include "button.h"
 #include "game.h"
 
-MainMenu::MainMenu(sf::RenderWindow& windowRef, Game& gameRef) :
-                                                        window(windowRef),
-                                                        game(gameRef){
+MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
+    
     std::function<void()> start = [&](){
-       game.setActive(true);
+       game.setCurrentGameState(EGamestates::management);
     };
 
     std::function<void()> options = [](){
@@ -14,7 +13,7 @@ MainMenu::MainMenu(sf::RenderWindow& windowRef, Game& gameRef) :
     };
 
     std::function<void()> quit = [&](){
-        window.close();
+        game.getWindow().close();
     };
 
     buttons = {
@@ -23,20 +22,4 @@ MainMenu::MainMenu(sf::RenderWindow& windowRef, Game& gameRef) :
         new Button({200,50},std::string("assets/fuck.png"),{200,300}, quit)
     };
 
-}
-
-MainMenu::~MainMenu(){
-    for(auto& it : buttons){
-        delete it;
-    }
-}
-
-void MainMenu::update(){
-    for(auto const& it : buttons){
-        window.draw(*it);
-    }
-}
-
-std::vector<Button*>& MainMenu::getButtons(){
-    return buttons;
 }

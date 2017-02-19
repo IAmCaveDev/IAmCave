@@ -8,6 +8,9 @@
 #include "caveman.h"
 #include "action.h"
 #include "gamestate.h"
+#include "mainmenu.h"
+
+enum EGamestates{mainMenu,management,roundEnd};
 
 class Game {
 private:
@@ -20,8 +23,7 @@ private:
     GameState* currentGameState;
     GameState management;
     GameState roundEnd;
-
-    bool active = false;
+    MainMenu mainMenu;
 
 public:
     Game() = delete;
@@ -36,9 +38,9 @@ public:
     void stopResearch();
 
     GameState& getCurrentGameState() const;
+    void setCurrentGameState(EGamestates newstate);
 
-    bool isActive() const;
-    void setActive(bool newActive);
+    sf::RenderWindow& getWindow();
 
     friend GameState;
 };

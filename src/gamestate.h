@@ -9,7 +9,7 @@
 class Game;
 
 class GameState {
-private:
+protected:
     Game& game;
     std::vector<sf::Drawable*> drawables;
     std::vector<Button*> buttons;
@@ -17,8 +17,10 @@ private:
 public:
     GameState() = delete;
     explicit GameState(Game& gameRef);
+    ~GameState();
 
     std::vector<Button*>& getButtons();
+    std::vector<sf::Drawable*>& getDrawables();
 };
 
 #endif

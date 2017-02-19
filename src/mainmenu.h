@@ -3,25 +3,14 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "game.h"
-#include "button.h"
+#include "gamestate.h"
 
-class MainMenu {
+class MainMenu : GameState{
 private:
-    sf::RenderWindow& window;
-    Game& game;
-
-    std::vector<sf::Drawable*> drawables;
-    std::vector<Button*> buttons;
 
 public:
     MainMenu() = delete;
-    MainMenu(sf::RenderWindow& windowRef, Game& gameRef);
-    ~MainMenu();
-
-    void update();
-
-    std::vector<Button*>& getButtons();
+    explicit MainMenu(Game& gameRef);
 };
 
 #endif
