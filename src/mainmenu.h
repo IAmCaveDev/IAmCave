@@ -5,7 +5,7 @@
 
 #include "gamestate.h"
 
-class MainMenu : GameState{
+class MainMenu : public GameState {
 private:
 
 public:
