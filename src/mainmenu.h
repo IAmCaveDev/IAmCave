@@ -12,15 +12,16 @@ private:
     Game& game;
 
     std::vector<sf::Drawable*> drawables;
-    std::vector<Button> buttons;
+    std::vector<Button*> buttons;
 
 public:
     MainMenu() = delete;
     MainMenu(sf::RenderWindow& windowRef, Game& gameRef);
+    ~MainMenu();
 
     void update();
 
-    const std::vector<Button>& getButtons() const;
+    std::vector<Button*>& getButtons();
 };
 
 #endif

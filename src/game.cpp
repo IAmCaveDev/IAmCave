@@ -9,7 +9,7 @@ void Game::update(){
 
 }
 
-const GameState& Game::getCurrentGameState() const {
+GameState& Game::getCurrentGameState() const {
     return *currentGameState;
 }
 

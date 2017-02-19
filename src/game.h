@@ -21,7 +21,7 @@ private:
     GameState management;
     GameState roundEnd;
 
-    bool active;
+    bool active = false;
 
 public:
     Game() = delete;
@@ -35,7 +35,7 @@ public:
     void addAction(Action* action);
     void stopResearch();
 
-    const GameState& getCurrentGameState() const;
+    GameState& getCurrentGameState() const;
 
     bool isActive() const;
     void setActive(bool newActive);

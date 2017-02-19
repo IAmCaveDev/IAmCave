@@ -18,19 +18,25 @@ MainMenu::MainMenu(sf::RenderWindow& windowRef, Game& gameRef) :
     };
 
     buttons = {
-        Button({200,50},std::string("assets/fuck.png"),{200,100}, start),
-        Button({200,50},std::string("assets/fuck.png"),{200,200}, options),
-        Button({200,50},std::string("assets/fuck.png"),{200,300}, quit)
+        new Button({200,50},std::string("assets/fuck.png"),{200,100}, start),
+        new Button({200,50},std::string("assets/fuck.png"),{200,200}, options),
+        new Button({200,50},std::string("assets/fuck.png"),{200,300}, quit)
     };
 
 }
 
-void MainMenu::update(){
-    for(auto const& it : buttons){
-        window.draw(it);
+MainMenu::~MainMenu(){
+    for(auto& it : buttons){
+        delete it;
     }
 }
 
-const std::vector<Button>& MainMenu::getButtons() const {
+void MainMenu::update(){
+    for(auto const& it : buttons){
+        window.draw(*it);
+    }
+}
+
+std::vector<Button*>& MainMenu::getButtons(){
     return buttons;
 }

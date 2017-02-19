@@ -8,6 +8,7 @@ Button::Button(const sf::Vector2f& size, std::string texturePath,
     setPosition(newposition);
     callback = newcallback;
     clickable = true;
+    isHighlighted = false;
     setOutlineColor(sf::Color::Red);
 }
 
@@ -19,7 +20,7 @@ void Button::highlighted(const sf::Vector2i& mousePosition){
        (mousePosition.y >= myPosition.y) &&
        (mousePosition.y <= myPosition.y + getSize().y)){
         setOutlineThickness(10);
-        return;
+        isHighlighted = true;
     }
     return;
 }
@@ -32,9 +33,9 @@ void Button::executed(const sf::Vector2i& mousePosition){
        (mousePosition.y >= myPosition.y) &&
        (mousePosition.y <= myPosition.y + getSize().y)){
         callback();
-        return;
     }else if(isHighlighted){
         setOutlineThickness(0);
+        isHighlighted = false;
     }
     return;
 }

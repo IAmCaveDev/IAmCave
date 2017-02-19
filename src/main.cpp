@@ -15,7 +15,7 @@ int main(int argc, char *argv[]){
                 break;
             }else if(event.type == sf::Event::MouseButtonPressed){
                 if(event.mouseButton.button == sf::Mouse::Left){
-                    std::vector<Button> buttons;
+                    std::vector<Button*> buttons;
                     if(game.isActive()){
                         buttons = game.getCurrentGameState().getButtons();
                     }else{
@@ -24,12 +24,12 @@ int main(int argc, char *argv[]){
 
                     for(auto& it : buttons){
                         sf::Vector2i pos = sf::Mouse::getPosition(window);
-                        it.highlighted(pos);
+                        it->highlighted(pos);
                     }
                 }
             }else if(event.type == sf::Event::MouseButtonReleased){
                 if(event.mouseButton.button == sf::Mouse::Left){
-                    std::vector<Button> buttons;
+                    std::vector<Button*> buttons;
                     if(game.isActive()){
                         buttons = game.getCurrentGameState().getButtons();
                     }else{
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]){
 
                     for(auto& it : buttons){
                         sf::Vector2i pos = sf::Mouse::getPosition(window);
-                        it.executed(pos);
+                        it->executed(pos);
                     }
                 }
             }

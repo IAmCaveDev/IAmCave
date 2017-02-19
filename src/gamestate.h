@@ -12,13 +12,13 @@ class GameState {
 private:
     Game& game;
     std::vector<sf::Drawable*> drawables;
-    std::vector<Button> buttons;
+    std::vector<Button*> buttons;
 
 public:
     GameState() = delete;
     explicit GameState(Game& gameRef);
 
-    const std::vector<Button>& getButtons() const;
+    std::vector<Button*>& getButtons();
 };
 
 #endif
