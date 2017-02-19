@@ -1,9 +1,11 @@
 #ifndef ACTION_H
 #define ACTION_H
 
+#include <vector>
 #include <string>
 
-#include "caveman.h"
+// cyclic dependency otherwise
+class Caveman;
 
 class Action {
 private:

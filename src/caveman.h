@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "action.h"
+
 class Caveman {
 private:
     const short id;

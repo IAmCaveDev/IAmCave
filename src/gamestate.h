@@ -3,7 +3,10 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "game.h"
+#include "button.h"
+
+// cyclic dependency otherwise
+class Game;
 
 class GameState {
 private:
