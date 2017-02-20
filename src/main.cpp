@@ -1,8 +1,11 @@
-#include "mainmenu.h"
 #include "game.h"
+#include "transformedvector.h"
 
 int main(int argc, char *argv[]){
     sf::RenderWindow window(sf::VideoMode(800, 600), "IAmCave");
+
+    sf::Vector2u size = window.getSize();
+    TransformedVector<>::updateWinSize(size.x, size.y);
 
     Game game(window);
     game.setCurrentGameState(EGamestates::mainMenu);
@@ -31,6 +34,9 @@ int main(int argc, char *argv[]){
                         it->executed(pos);
                     }
                 }
+            }else if(event.type == sf::Event::Resized){
+                sf::Vector2u size = window.getSize();
+                TransformedVector<>::updateWinSize(size.x, size.y);
             }
         }
 

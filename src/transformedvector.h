@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 
-template<typename T>
+template<typename T = int>
 class TransformedVector {
 private:
     static int winX;
@@ -55,6 +55,9 @@ public:
 
     operator sf::Vector2i(){
         return sf::Vector2i(x, y);
+    };
+    operator sf::Vector2f(){
+        return sf::Vector2f(x, y);
     };
 
 

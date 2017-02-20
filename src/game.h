@@ -9,6 +9,7 @@
 #include "action.h"
 #include "gamestate.h"
 #include "mainmenu.h"
+#include "management.h"
 
 enum EGamestates{
     mainMenu,
@@ -25,7 +26,7 @@ private:
     std::vector<Action*> queuedActions;
 
     GameState* currentGameState;
-    GameState management;
+    Management management;
     GameState roundEnd;
     MainMenu mainMenu;
 

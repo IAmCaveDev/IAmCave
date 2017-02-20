@@ -3,9 +3,7 @@
 Game::Game(sf::RenderWindow& windowRef) : window(windowRef),
                                           management(*this),
                                           roundEnd(*this),
-                                          mainMenu(*this){
-
-}
+                                          mainMenu(*this){}
 
 void Game::update(){
     for (auto const& it : currentGameState->getRectangles()) {
