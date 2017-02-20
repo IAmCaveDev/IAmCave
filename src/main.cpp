@@ -4,6 +4,8 @@
 int main(int argc, char *argv[]){
     sf::RenderWindow window(sf::VideoMode(800, 600), "IAmCave");
 
+    sf::View view(window.getDefaultView());
+
     sf::Vector2u size = window.getSize();
     TransformedVector<>::updateWinSize(size.x, size.y);
 
@@ -40,6 +42,9 @@ int main(int argc, char *argv[]){
             }else if(event.type == sf::Event::Resized){
                 sf::Vector2u size = window.getSize();
                 TransformedVector<>::updateWinSize(size.x, size.y);
+
+                view = sf::View(sf::FloatRect(0,0, size.x, size.y));
+                window.setView(view);
             }
         }
 
