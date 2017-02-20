@@ -31,6 +31,7 @@ void Game::setCurrentGameState(EGamestates newstate) {
             currentGameState = &roundEnd;
             break;
     }
+    currentGameState->onResize();
 }
 
 sf::RenderWindow& Game::getWindow() {

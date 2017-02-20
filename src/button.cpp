@@ -1,10 +1,10 @@
 #include "button.h"
 
-Button::Button(const sf::Vector2f& size, const sf::Vector2f& position,
-               std::string texturePath,
-               std::function<void()> newCallback,
+Button::Button(const TransformedVector<>& size,
+               const TransformedVector<>& newPosition,
+               std::string texturePath, std::function<void()> newCallback,
                std::function<void()> newAltCallback)
-               : Rectangle(size, position, texturePath){
+               : Rectangle(size, newPosition, texturePath){
     callback = newCallback;
     altCallback = newAltCallback;
     clickable = true;
@@ -14,11 +14,11 @@ Button::Button(const sf::Vector2f& size, const sf::Vector2f& position,
 
 void Button::highlighted(const sf::Vector2i& mousePosition){
     if(!clickable) return;
-    sf::Vector2i myPosition = sf::Vector2i(getPosition());
+    sf::Vector2i myPosition = sf::Vector2i(getTransformedPosition());
     if((mousePosition.x >= myPosition.x) &&
-       (mousePosition.x <= myPosition.x + getSize().x) &&
+       (mousePosition.x <= myPosition.x + getTransformedSize().getX()) &&
        (mousePosition.y >= myPosition.y) &&
-       (mousePosition.y <= myPosition.y + getSize().y)){
+       (mousePosition.y <= myPosition.y + getTransformedSize().getY())){
         setOutlineColor(sf::Color::Red);
         isHighlighted = true;
     }
@@ -27,11 +27,11 @@ void Button::highlighted(const sf::Vector2i& mousePosition){
 
 void Button::executed(const sf::Vector2i& mousePosition, bool useAlt){
     if(!clickable || !isHighlighted) return;
-    sf::Vector2i myPosition = sf::Vector2i(getPosition());
+    sf::Vector2i myPosition = sf::Vector2i(getTransformedPosition());
     if((mousePosition.x >= myPosition.x) &&
-       (mousePosition.x <= myPosition.x + getSize().x) &&
+       (mousePosition.x <= myPosition.x + getTransformedSize().getX()) &&
        (mousePosition.y >= myPosition.y) &&
-       (mousePosition.y <= myPosition.y + getSize().y)){
+       (mousePosition.y <= myPosition.y + getTransformedSize().getY())){
         if(useAlt && altCallback != nullptr){
             altCallback();
         }else{

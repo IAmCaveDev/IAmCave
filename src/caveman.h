@@ -13,7 +13,7 @@ private:
     const short id;
     std::string name;
 
-    const bool male;
+    bool male;
     unsigned short age;
 
     bool idle;
@@ -21,10 +21,8 @@ private:
     short fitness;
     short intelligence;
 
-    Button button;
-
 public:
-    Caveman();
+    explicit Caveman(int maxAge = 50, int minAge = 0);
 
     short getId();
     std::string getName();

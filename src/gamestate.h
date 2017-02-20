@@ -20,6 +20,8 @@ public:
     explicit GameState(Game& gameRef);
     ~GameState();
 
+    void onResize();
+
     std::vector<Button*>& getButtons();
     std::vector<Rectangle*>& getRectangles();
 };

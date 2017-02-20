@@ -2,7 +2,6 @@
 #define TRANSFORMEDVECTOR_H
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 
 template<typename T = int>
 class TransformedVector {
@@ -21,64 +20,54 @@ public:
     };
 
     TransformedVector(T c){
-        if(c >= 0){
-            x = c * winX / Xn;
-            y = c * winY / Yn;
-        }else{
-            x = (winX + c) * winX / Xn;
-            y = (winY + c) * winY / Yn;
-        }
+        x = c;
+        y = c;
     };
 
     TransformedVector(T newX, T newY){
-        if(newX >= 0){
-            x = newX * winX / Xn;
-        }else{
-            x = (winX + newX) * winX / Xn;
-        }
-        if(newY >= 0){
-            y = newY * winY / Yn;
-        }else{
-            y = (winY + newY) * winY / Yn;
-        }
+        x = newX;
+        y = newY;
     };
 
     TransformedVector(const sf::Vector2i& other){
-        if(other.x >= 0){
-            x = other.x * winX / Xn;
-        }else{
-            x = (winX + other.x) * winX / Xn;
-        }
-        if(other.y >= 0){
-            y = other.y * winY / Yn;
-        }else{
-            y = (winY + other.y) * winY / Yn;
-        }
+        x = other.x;
+        y = other.y;
     };
 
     TransformedVector(const sf::Vector2f& other){
-        if(other.x >= 0){
-            x = other.x * winX / Xn;
-        }else{
-            x = (winX + other.x) * winX / Xn;
-        }
-        if(other.y >= 0){
-            y = other.y * winY / Yn;
-        }else{
-            y = (winY + other.y) * winY / Yn;
-        }
+        x = other.x;
+        y = other.y;
     };
 
     operator sf::Vector2i() const{
-        return sf::Vector2i(x, y);
+        return sf::Vector2i(getX(), getY());
     };
     operator sf::Vector2f() const {
-        return sf::Vector2f(x, y);
+        return sf::Vector2f(getX(), getY());
     };
+
+    T getX() const {
+        T outX;
+        if(x >= 0){
+            outX = x * winX / Xn;
+        }else{
+            outX = winX + x * winX / Xn;
+        }
+        return outX;
+    };
+
+    T getY() const {
+        T outY;
+        if(y >= 0){
+            outY = y * winY / Yn;
+        }else{
+            outY = winY + y * winY / Yn;
+        }
+        return outY;
+    }
 
 
     static void updateWinSize(int newWinX, int newWinY){
-        std::cout << newWinX << ", " << newWinY << "\n";
         winX = newWinX;
         winY = newWinY;
     };

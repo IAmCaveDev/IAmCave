@@ -6,6 +6,7 @@
 #include <functional>
 #include <string>
 
+#include "transformedvector.h"
 #include "rectangle.h"
 
 class Button : public Rectangle {
@@ -18,7 +19,8 @@ private:
     sf::Texture buttontex;
 
 public:
-    Button(const sf::Vector2f& size, const sf::Vector2f& newposition,
+    Button(const TransformedVector<>& size,
+           const TransformedVector<>& newPosition,
            std::string texturePath, std::function<void()> newCallback,
            std::function<void()> newAltCallback = nullptr);
 
