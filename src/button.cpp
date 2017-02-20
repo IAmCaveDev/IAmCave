@@ -9,6 +9,7 @@ Button::Button(const TransformedVector<>& size,
     altCallback = newAltCallback;
     clickable = true;
     isHighlighted = false;
+    visible = true;
     setOutlineThickness(4);
 }
 
@@ -42,4 +43,20 @@ void Button::executed(const sf::Vector2i& mousePosition, bool useAlt){
         isHighlighted = false;
     }
     return;
+}
+
+void Button::setVisibility(bool newvis) {
+    visible = newvis;
+}
+
+bool Button::getVisibility() {
+    return visible;
+}
+
+void Button::setClickability(bool newclick) {
+    clickable = newclick;
+}
+
+bool Button::getClickability() {
+    return clickable;
 }

@@ -10,11 +10,13 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
         new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png")
     };
 
-    std::function<void()> start = [&]() {
-        game.setCurrentGameState(EGamestates::management);
+    std::function<void()> go = [&]() {
+        //every action -1 time and execute all actions with time=0
+        game.setCurrentGameState(EGamestates::roundEnd);
     };
 
-    std::function<void()> options = []() {
+    std::function<void()> hunt = [&]() {
+        //display 2 additional buttons; select one; select cavemen; create new Hunting action
 
     };
 
@@ -23,12 +25,18 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     };
 
     buttons = {
-        new Button({200, 50}, {-400, -150}, "assets/go.png", start),
-        new Button({200, 50}, {200, 100}, "assets/hunt.png", options),
+        new Button({200, 50}, {-400, -150}, "assets/go.png", go),
+        new Button({200, 50}, {200, 100}, "assets/hunt.png", hunt),
+        new Button({50, 50}, {200, 400}, "assets/easyhunt.png", quit),
+        new Button({50, 50}, {200, 400}, "assets/hardhunt.png", quit),
         new Button({200, 50}, {200, 200}, "assets/think.png", quit),
         new Button({200, 50}, {200, 300}, "assets/fuck.png", quit),
-        new Button({200, 50}, {200, 400}, "assets/improve.png", quit)
+        new Button({200, 50}, {200, 400}, "assets/improve.png", quit),
+        new Button({200, 50}, {-400, -100}, "assets/abort.png", abort)
     };
 
+    buttons[2]->setVisibility(false);
+    buttons[3]->setVisibility(false);
+    buttons[7]->setVisibility(false);
 
 }

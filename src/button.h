@@ -13,6 +13,7 @@ class Button : public Rectangle {
 private:
     bool clickable;
     bool isHighlighted;
+    bool visible;
 
     std::function<void()> callback;
     std::function<void()> altCallback;
@@ -26,7 +27,12 @@ public:
 
     void highlighted(const sf::Vector2i& mousePosition);
     void executed(const sf::Vector2i& mousePosition, bool useAlt = false);
+    
+    void setVisibility(bool newvis);
+    bool getVisibility();
 
+    void setClickability(bool newclick);
+    bool getClickability();
 };
 
 #endif
