@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "button.h"
+#include "rectangle.h"
 
 // cyclic dependency otherwise
 class Game;
@@ -11,7 +12,7 @@ class Game;
 class GameState {
 protected:
     Game& game;
-    std::vector<sf::Drawable*> drawables;
+    std::vector<Rectangle*> rectangles;
     std::vector<Button*> buttons;
 
 public:
@@ -20,7 +21,7 @@ public:
     ~GameState();
 
     std::vector<Button*>& getButtons();
-    std::vector<sf::Drawable*>& getDrawables();
+    std::vector<Rectangle*>& getRectangles();
 };
 
 #endif

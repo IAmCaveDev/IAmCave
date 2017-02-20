@@ -4,7 +4,8 @@
 
 MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
 
-    drawables = {
+    rectangles = {
+        new Rectangle({800, 600}, {0, 0}, "assets/background.png")
     };
 
     std::function<void()> start = [&](){
@@ -20,9 +21,9 @@ MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
     };
 
     buttons = {
-        new Button({200,50},{200,100},std::string("assets/fuck.png"), start),
-        new Button({200,50},{200,200},std::string("assets/fuck.png"), options),
-        new Button({200,50},{200,300},std::string("assets/fuck.png"), quit)
+        new Button({200, 50}, {200, 100}, "assets/fuck.png", start),
+        new Button({200, 50}, {200, 200}, "assets/fuck.png", options),
+        new Button({200, 50}, {200, 300}, "assets/fuck.png", quit)
     };
 
 }
