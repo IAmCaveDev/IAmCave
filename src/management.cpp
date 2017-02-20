@@ -23,9 +23,12 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     };
 
     buttons = {
-        new Button({200, 50}, TransformedVector<>(-250, -100), "assets/fuck.png", start),
-        new Button({200, 50}, {200, 200}, "assets/fuck.png", options),
-        new Button({200, 50}, {200, 300}, "assets/fuck.png", quit)
+        new Button({200, 50}, TransformedVector<>(-250, -100), "assets/go.png", start),
+        new Button({200, 50}, {200, 100}, "assets/hunt.png", options),
+        new Button({200, 50}, {200, 200}, "assets/think.png", quit),
+        new Button({200, 50}, {200, 300}, "assets/fuck.png", quit),
+        new Button({200, 50}, {200, 400}, "assets/improve.png", quit)
     };
+
 
 }

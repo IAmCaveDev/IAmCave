@@ -21,9 +21,9 @@ MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
     };
 
     buttons = {
-        new Button({200, 50}, {200, 100}, "assets/fuck.png", start, quit),
-        new Button({200, 50}, {200, 200}, "assets/fuck.png", options),
-        new Button({200, 50}, {200, 300}, "assets/fuck.png", quit)
+        new Button({200, 50}, {200, 100}, "assets/play.png", start),
+        new Button({200, 50}, {200, 200}, "assets/options.png", options),
+        new Button({200, 50}, {200, 300}, "assets/exit.png", quit)
     };
 
 }
