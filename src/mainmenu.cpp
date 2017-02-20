@@ -3,7 +3,10 @@
 #include "game.h"
 
 MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
-    
+
+    drawables = {
+    };
+
     std::function<void()> start = [&](){
        game.setCurrentGameState(EGamestates::management);
     };
@@ -17,9 +20,9 @@ MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
     };
 
     buttons = {
-        new Button({200,50},std::string("assets/fuck.png"),{200,100}, start),
-        new Button({200,50},std::string("assets/fuck.png"),{200,200}, options),
-        new Button({200,50},std::string("assets/fuck.png"),{200,300}, quit)
+        new Button({200,50},{200,100},std::string("assets/fuck.png"), start),
+        new Button({200,50},{200,200},std::string("assets/fuck.png"), options),
+        new Button({200,50},{200,300},std::string("assets/fuck.png"), quit)
     };
 
 }

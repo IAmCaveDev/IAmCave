@@ -17,9 +17,6 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     };
 
     buttons = {
-        new Button({ 200,50 },std::string("assets/fuck.png"),{ 200,100 }, start),
-        new Button({ 200,50 },std::string("assets/fuck.png"),{ 200,200 }, options),
-        new Button({ 200,50 },std::string("assets/fuck.png"),{ 200,300 }, quit)
     };
 
 }

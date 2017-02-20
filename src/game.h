@@ -10,7 +10,11 @@
 #include "gamestate.h"
 #include "mainmenu.h"
 
-enum EGamestates{mainMenu,management,roundEnd};
+enum EGamestates{
+    mainMenu,
+    management,
+    roundEnd
+};
 
 class Game {
 private:

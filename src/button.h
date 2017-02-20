@@ -6,7 +6,9 @@
 #include <functional>
 #include <string>
 
-class Button : public sf::RectangleShape {
+#include "rectangle.h"
+
+class Button : public Rectangle {
 private:
     bool clickable;
     bool isHighlighted;
@@ -15,8 +17,8 @@ private:
     sf::Texture buttontex;
 
 public:
-    Button(const sf::Vector2f& size, std::string texturePath,
-           const sf::Vector2f& newposition, std::function<void()> newcallback);
+    Button(const sf::Vector2f& size, const sf::Vector2f& newposition,
+           std::string texturePath, std::function<void()> newcallback);
 
     void highlighted(const sf::Vector2i& mousePosition);
     void executed(const sf::Vector2i& mousePosition);
