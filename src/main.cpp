@@ -17,7 +17,8 @@ int main(int argc, char *argv[]){
                 window.close();
                 break;
             }else if(event.type == sf::Event::MouseButtonPressed){
-                if(event.mouseButton.button == sf::Mouse::Left){
+                if(event.mouseButton.button == sf::Mouse::Left ||
+                   event.mouseButton.button == sf::Mouse::Right){
                     std::vector<Button*> buttons;
                     buttons = game.getCurrentGameState().getButtons();
                     for(auto& it : buttons){
@@ -26,12 +27,14 @@ int main(int argc, char *argv[]){
                     }
                 }
             }else if(event.type == sf::Event::MouseButtonReleased){
-                if(event.mouseButton.button == sf::Mouse::Left){
-                    std::vector<Button*> buttons;
-                    buttons = game.getCurrentGameState().getButtons();
-                    for(auto& it : buttons){
-                        sf::Vector2i pos = sf::Mouse::getPosition(window);
+                std::vector<Button*> buttons;
+                buttons = game.getCurrentGameState().getButtons();
+                for(auto& it : buttons){
+                    sf::Vector2i pos = sf::Mouse::getPosition(window);
+                    if(event.mouseButton.button == sf::Mouse::Left){
                         it->executed(pos);
+                    }else if(event.mouseButton.button == sf::Mouse::Right){
+                        it->executed(pos, true);
                     }
                 }
             }else if(event.type == sf::Event::Resized){
