@@ -4,13 +4,15 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
+#include "transformedvector.h"
+
 class Rectangle : public sf::RectangleShape {
 private:
     sf::Texture tex;
 
 public:
-    Rectangle(const sf::Vector2f& size, const sf::Vector2f& position,
-              std::string texturePath);
+    Rectangle(const TransformedVector<>& size,
+              const TransformedVector<>& position, std::string texturePath);
 };
 
 #endif

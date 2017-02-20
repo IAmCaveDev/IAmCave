@@ -7,7 +7,7 @@
 Management::Management(Game& gameRef) : GameState(gameRef) {
 
     rectangles = {
-        new Rectangle({800, 600}, {0, 0}, "assets/cave.png")
+        new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png")
     };
 
     std::function<void()> start = [&]() {

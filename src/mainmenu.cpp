@@ -5,7 +5,7 @@
 MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
 
     rectangles = {
-        new Rectangle({800, 600}, {0, 0}, "assets/background.png")
+        new Rectangle({1920, 1080}, {0, 0}, "assets/background.png")
     };
 
     std::function<void()> start = [&](){

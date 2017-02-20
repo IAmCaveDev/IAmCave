@@ -2,7 +2,7 @@
 #include "transformedvector.h"
 
 int main(int argc, char *argv[]){
-    sf::RenderWindow window(sf::VideoMode(800, 600), "IAmCave");
+    sf::RenderWindow window(sf::VideoMode(1280, 720), "IAmCave");
 
     sf::View view(window.getDefaultView());
 
