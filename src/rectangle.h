@@ -17,6 +17,8 @@ public:
     Rectangle(const TransformedVector<>& size,
               const TransformedVector<>& position, std::string texturePath);
 
+    void display(sf::RenderWindow& win) const;
+
     TransformedVector<> getTransformedSize();
     void setTransformedSize(TransformedVector<> newPosition);
 

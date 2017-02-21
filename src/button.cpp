@@ -3,8 +3,11 @@
 Button::Button(const TransformedVector<>& size,
                const TransformedVector<>& newPosition,
                std::string texturePath, std::function<void()> newCallback,
-               std::function<void()> newAltCallback)
-               : Rectangle(size, newPosition, texturePath){
+               std::function<void()> newAltCallback,
+               std::string newText, int newTextSize,
+               sf::Color newTextColor, sf::Text::Style newTextStyle)
+               : Textbox(size, newPosition, texturePath, newText, newTextSize,
+                         newTextColor, newTextStyle){
     callback = newCallback;
     altCallback = newAltCallback;
     clickable = true;

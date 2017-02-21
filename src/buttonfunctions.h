@@ -1,7 +1,7 @@
 #ifndef BUTTONFUNCTIONS_H
 #define BUTTONFUNCTIONS_H
 
-#include <vector>
+#include "game.h"
 #include "management.h"
 
 namespace ButtonFunctions {
@@ -9,7 +9,6 @@ namespace ButtonFunctions {
         namespace Hunting {
             void hunt(Management& stateRef);
             void easyHunt();
-            void hardHunt();
         }
         namespace Sex {
             void sex();
@@ -20,6 +19,11 @@ namespace ButtonFunctions {
         namespace Improve {
 
         }
+    }
+    namespace MainMenu {
+        void start(Game& game);
+        void options();
+        void quit(Game& game);
     }
 }
 

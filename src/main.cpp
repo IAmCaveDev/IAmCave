@@ -1,5 +1,8 @@
 #include "game.h"
 #include "transformedvector.h"
+#include "textbox.h"
+
+#include <iostream>
 
 int main(int argc, char *argv[]){
     sf::RenderWindow window(sf::VideoMode(1280, 720), "IAmCave");
@@ -8,6 +11,13 @@ int main(int argc, char *argv[]){
 
     sf::Vector2u size = window.getSize();
     TransformedVector<>::updateWinSize(size.x, size.y);
+
+    try {
+        Textbox::setFont("assets/arial.ttf");
+    }
+    catch(std::runtime_error err){
+        window.close();
+    }
 
     Game game(window);
     game.setCurrentGameState(EGamestates::mainMenu);

@@ -4,6 +4,8 @@
 #include "game.h"
 #include "transformedvector.h"
 
+#include "buttonfunctions.h"
+
 Management::Management(Game& gameRef) : GameState(gameRef) {
 
     rectangles = {
@@ -26,17 +28,14 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
 
     buttons = {
         new Button({200, 50}, {-400, -150}, "assets/go.png", go),
-        new Button({200, 50}, {200, 100}, "assets/hunt.png", hunt),
+        // new Button({200, 50}, {200, 100}, "assets/hunt.png",
+                   // std::bind(&ButtonFunctions::Managing::Hunting::hunt, *this)),
         new Button({50, 50}, {200, 400}, "assets/easyhunt.png", quit),
         new Button({50, 50}, {200, 400}, "assets/hardhunt.png", quit),
         new Button({200, 50}, {200, 200}, "assets/think.png", quit),
         new Button({200, 50}, {200, 300}, "assets/fuck.png", quit),
         new Button({200, 50}, {200, 400}, "assets/improve.png", quit),
-        new Button({200, 50}, {-400, -100}, "assets/abort.png", abort)
+        new Button({200, 50}, {-400, -50}, "assets/abort.png", nullptr)
     };
-
-    buttons[2]->setVisibility(false);
-    buttons[3]->setVisibility(false);
-    buttons[7]->setVisibility(false);
 
 }

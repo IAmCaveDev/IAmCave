@@ -7,11 +7,11 @@ Game::Game(sf::RenderWindow& windowRef) : window(windowRef),
 
 void Game::update(){
     for (auto const& it : currentGameState->getRectangles()) {
-        window.draw(*it);
+        it->display(window);
     }
 
     for (auto const& it : currentGameState->getButtons()) {
-        window.draw(*it);
+        it->display(window);
     }
 }
 

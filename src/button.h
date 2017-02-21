@@ -7,9 +7,9 @@
 #include <string>
 
 #include "transformedvector.h"
-#include "rectangle.h"
+#include "textbox.h"
 
-class Button : public Rectangle {
+class Button : public Textbox {
 private:
     bool clickable;
     bool isHighlighted;
@@ -23,11 +23,14 @@ public:
     Button(const TransformedVector<>& size,
            const TransformedVector<>& newPosition,
            std::string texturePath, std::function<void()> newCallback,
-           std::function<void()> newAltCallback = nullptr);
+           std::function<void()> newAltCallback = nullptr,
+           std::string newText = "", int newTextSize = 14,
+           sf::Color newTextColor = sf::Color::White,
+           sf::Text::Style newTextStyle = sf::Text::Style::Regular);
 
     void highlighted(const sf::Vector2i& mousePosition);
     void executed(const sf::Vector2i& mousePosition, bool useAlt = false);
-    
+
     void setVisibility(bool newvis);
     bool getVisibility();
 

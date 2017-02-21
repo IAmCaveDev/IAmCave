@@ -11,6 +11,10 @@ Rectangle::Rectangle(const TransformedVector<>& size,
     transformedPosition = position;
 }
 
+void Rectangle::display(sf::RenderWindow& win) const {
+    win.draw(*this);
+}
+
 TransformedVector<> Rectangle::getTransformedSize(){
     return transformedSize;
 }
