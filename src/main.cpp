@@ -17,6 +17,7 @@ int main(int argc, char *argv[]){
     }
     catch(std::runtime_error err){
         window.close();
+        return 1;
     }
 
     Game game(window);
