@@ -22,8 +22,7 @@ namespace ButtonFunctions {
 
     namespace MainMenu {
         void start(Game& game){
-        // void start(Game& game){
-            // game.setCurrentGameState(EGamestates::management);
+            game.setCurrentGameState(EGamestates::management);
         }
         void options(){
 

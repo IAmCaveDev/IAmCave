@@ -28,8 +28,8 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
 
     buttons = {
         new Button({200, 50}, {-400, -150}, "assets/go.png", go),
-        // new Button({200, 50}, {200, 100}, "assets/hunt.png",
-                   // std::bind(&ButtonFunctions::Managing::Hunting::hunt, *this)),
+        new Button({200, 50}, {200, 100}, "assets/hunt.png",
+                   std::bind(&ButtonFunctions::Managing::Hunting::hunt, std::ref(*this))),
         new Button({50, 50}, {200, 400}, "assets/easyhunt.png", quit),
         new Button({50, 50}, {200, 400}, "assets/hardhunt.png", quit),
         new Button({200, 50}, {200, 200}, "assets/think.png", quit),
