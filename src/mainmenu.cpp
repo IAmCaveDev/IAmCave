@@ -14,9 +14,9 @@ MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
                    std::bind(&ButtonFunctions::MainMenu::start, std::ref(game)),
                    nullptr,
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod\
-        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At\
-        vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,\
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.", 14, sf::Color::Black),
+tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At\
+vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,\
+no sea takimata sanctus est Lorem ipsum dolor sit amet.", 14, sf::Color::Black),
         new Button({200, 50}, {200, 100}, "assets/play.png",
                    std::bind(&ButtonFunctions::MainMenu::start, std::ref(game))),
         new Button({200, 50}, {200, 200}, "assets/options.png",

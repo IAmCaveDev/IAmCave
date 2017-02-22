@@ -5,12 +5,13 @@
 
 #include "rectangle.h"
 
-std::string wrap(std::string string, int width);
 
 class Textbox : public Rectangle {
 private:
     static sf::Font font;
     sf::Text text;
+
+    void wrap();
 
 public:
     Textbox(const TransformedVector<>& size,
