@@ -24,6 +24,8 @@ public:
 
     std::vector<Button*>& getButtons();
     std::vector<Rectangle*>& getRectangles();
+
+    virtual void display(sf::RenderWindow& win) = 0;
 };
 
 #endif

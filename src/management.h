@@ -11,6 +11,8 @@ private:
 public:
     Management() = delete;
     explicit Management(Game& gameRef);
+
+    void display(sf::RenderWindow& win);
 };
 
 #endif

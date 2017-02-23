@@ -36,3 +36,25 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     };
 
 }
+
+void Management::display(sf::RenderWindow& win) {
+    for (auto const& it : rectangles) {
+        it->display(win);
+    }
+
+    int xPos = 500;
+    int yPos = 800;
+    for (auto const& it : game.getTribe()) {
+        it->getButton().setPosition(TransformedVector<> (xPos, yPos));
+        it->display(win);
+        xPos = xPos + 100;
+        if (xPos == 1000) {
+            xPos = 400;
+            yPos = yPos + 200;
+        }
+    }
+
+    for (auto const& it : buttons) {
+        it->display(win);
+    }
+}

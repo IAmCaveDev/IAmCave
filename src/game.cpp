@@ -2,21 +2,19 @@
 
 Game::Game(sf::RenderWindow& windowRef) : window(windowRef),
                                           management(*this),
-                                          roundEnd(*this),
+                                          //roundEnd(*this),
                                           mainMenu(*this){}
 
-void Game::update(){
-    for (auto const& it : currentGameState->getRectangles()) {
-        it->display(window);
-    }
-
-    for (auto const& it : currentGameState->getButtons()) {
-        it->display(window);
-    }
+void Game::display(){
+    currentGameState->display(window);
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
     tribe.push_back(new Caveman(maxAge, minAge));
+}
+
+std::vector<Caveman*>& Game::getTribe() {
+    return tribe;
 }
 
 GameState& Game::getCurrentGameState() const {
@@ -31,9 +29,9 @@ void Game::setCurrentGameState(EGamestates newstate) {
         case EGamestates::management:
             currentGameState = &management;
             break;
-        case EGamestates::roundEnd:
+       /* case EGamestates::roundEnd:
             currentGameState = &roundEnd;
-            break;
+            break;*/
     }
     currentGameState->onResize();
 }

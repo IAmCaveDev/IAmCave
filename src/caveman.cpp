@@ -37,8 +37,8 @@ std::vector<std::string> femaleTextures = {
 
 std::vector<std::string> maleTextures = {
     "assets/caveman.png",
-    "assets/caveman2.png",
-    "assets/caveman3.png"
+    "assets/caveman1.png",
+    "assets/caveman2.png"
 };
 
 Caveman::Caveman(int maxAge, int minAge) : id(counter){
@@ -76,17 +76,16 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     fitness = stats(rng);
     intelligence = stats(rng);
 
-    std::string texture;
-    std::uniform_int_distribution<int> maleT(0, femaleTextures.size() - 1);
-    std::uniform_int_distribution<int> femaleT(0, maleTextures.size() - 1);
+    std::uniform_int_distribution<int> maleT(0, maleTextures.size() - 1);
+    std::uniform_int_distribution<int> femaleT(0, femaleTextures.size() - 1);
 
     if (male) {
-        texture = maleTextures[maleT(rng)];
+        texPath = maleTextures[maleT(rng)];
     }else{
-        texture = femaleTextures[femaleT(rng)];
+        texPath = femaleTextures[femaleT(rng)];
     }
 
-    button = new Button({ 200, 50 }, { 200, 100 }, texture,
+    button = new Button({ 50, 100 }, { 400, 600 }, texPath,
         nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
 
     counter += 1;
@@ -94,4 +93,12 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
 
 Caveman::~Caveman() {
     delete button;
+}
+
+Button& Caveman::getButton() {
+    return *button;
+}
+
+void Caveman::display(sf::RenderWindow& win) const {
+    win.draw(*button);
 }

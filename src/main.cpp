@@ -97,7 +97,7 @@ int main(int argc, char *argv[]){
 
         window.clear(sf::Color::Black);
 
-        game.update();
+        game.display();
 
         window.display();
     }

@@ -22,6 +22,7 @@ private:
     short fitness;
     short intelligence;
 
+    std::string texPath;
     Button* button;
 
 public:
@@ -30,6 +31,9 @@ public:
 
     short getId();
     std::string getName();
+    Button& getButton();
+
+    void display(sf::RenderWindow& win) const;
 
     friend Action;
 };

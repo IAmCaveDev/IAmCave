@@ -28,17 +28,18 @@ private:
 
     GameState* currentGameState;
     Management management;
-    GameState roundEnd;
+    //GameState roundEnd;
     MainMenu mainMenu;
 
 public:
     Game() = delete;
     explicit Game(sf::RenderWindow& windowRef);
 
-    void update();
+    void display();
 
     void addCaveman(int maxAge = 50, int minAge = 0);
     void removeCaveman(short id);
+    std::vector<Caveman*>& getTribe();
 
     void addAction(Action* action);
     void stopResearch();

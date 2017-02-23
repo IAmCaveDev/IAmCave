@@ -26,3 +26,12 @@ no sea takimata sanctus est Lorem ipsum dolor sit amet."),
     };
 
 }
+
+void MainMenu::display(sf::RenderWindow& win) {
+    for (auto const& it : rectangles) {
+        it->display(win);
+    }
+    for (auto const& it : buttons) {
+        it->display(win);
+    }
+}

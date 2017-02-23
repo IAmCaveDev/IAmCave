@@ -11,6 +11,8 @@ private:
 public:
     MainMenu() = delete;
     explicit MainMenu(Game& gameRef);
+
+    void display(sf::RenderWindow& win);
 };
 
 #endif
