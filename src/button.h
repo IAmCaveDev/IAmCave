@@ -31,6 +31,9 @@ public:
     void highlighted(const sf::Vector2i& mousePosition);
     void executed(const sf::Vector2i& mousePosition, bool useAlt = false);
 
+    void setCallback(std::function<void()> newCallback);
+    void setAltCallback(std::function<void()> newAltCallback);
+
     void setVisibility(bool newvis);
     bool getVisibility();
 

@@ -48,6 +48,14 @@ void Button::executed(const sf::Vector2i& mousePosition, bool useAlt){
     return;
 }
 
+void Button::setCallback(std::function<void()> newCallback){
+    callback = newCallback;
+}
+
+void Button::setAltCallback(std::function<void()> newAltCallback){
+    altCallback = newAltCallback;
+}
+
 void Button::setVisibility(bool newvis) {
     visible = newvis;
 }
