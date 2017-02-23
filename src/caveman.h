@@ -23,15 +23,27 @@ private:
     short intelligence;
 
     std::string texPath;
+
     Button* button;
+
+    bool infoboxVisible = false;
+    Textbox* infobox;
 
 public:
     explicit Caveman(int maxAge, int minAge);
     ~Caveman();
 
+    void setInfoboxVisible(bool visible);
+
     short getId();
     std::string getName();
+    bool isMale();
+    unsigned short getAge();
+    short getFitness();
+    short getIntelligence();
+
     Button& getButton();
+    Textbox& getInfobox();
 
     void display(sf::RenderWindow& win) const;
 

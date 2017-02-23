@@ -42,12 +42,18 @@ int main(int argc, char *argv[]){
                     std::vector<Button*> buttons;
                     buttons = game.getCurrentGameState().getButtons();
 
+                    sf::Vector2i pos = sf::Mouse::getPosition(window);
+                    pos = sf::Vector2i(window.mapPixelToCoords(pos));
+
                     for(auto& it : buttons){
-                        sf::Vector2i pos = sf::Mouse::getPosition(window);
-
-                        pos = sf::Vector2i(window.mapPixelToCoords(pos));
-
                         it->highlighted({pos.x, pos.y});
+                    }
+
+                    std::vector<Caveman*> cavemen;
+                    cavemen = game.getTribe();
+
+                    for(auto& it : cavemen){
+                        it->getButton().highlighted({pos.x, pos.y});
                     }
                 }
 
@@ -57,15 +63,25 @@ int main(int argc, char *argv[]){
                     std::vector<Button*> buttons;
                     buttons = game.getCurrentGameState().getButtons();
 
+                    sf::Vector2i pos = sf::Mouse::getPosition(window);
+                    pos = sf::Vector2i(window.mapPixelToCoords(pos));
+
                     for(auto& it : buttons){
-                        sf::Vector2i pos = sf::Mouse::getPosition(window);
-
-                        pos = sf::Vector2i(window.mapPixelToCoords(pos));
-
                         if(event.mouseButton.button == sf::Mouse::Left){
                             it->executed({pos.x, pos.y});
                         }else if(event.mouseButton.button == sf::Mouse::Right){
                             it->executed({pos.x, pos.y}, true);
+                        }
+                    }
+
+                    std::vector<Caveman*> cavemen;
+                    cavemen = game.getTribe();
+
+                    for(auto& it : cavemen){
+                        if(event.mouseButton.button == sf::Mouse::Left){
+                            it->getButton().executed({pos.x, pos.y});
+                        }else if(event.mouseButton.button == sf::Mouse::Right){
+                            it->getButton().executed({pos.x, pos.y}, true);
                         }
                     }
                 }

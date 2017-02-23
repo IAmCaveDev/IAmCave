@@ -1,5 +1,8 @@
 #include "buttonfunctions.h"
 
+#include <string>
+#include <sstream>
+
 namespace ButtonFunctions {
     namespace Managing {
         namespace Hunting {
@@ -39,7 +42,24 @@ namespace ButtonFunctions {
 
     namespace Tribe {
         void displayInfo(Caveman& caveman) {
+            std::ostringstream oss;
+            oss << caveman.getName()
+                << "\nID: " << caveman.getId()
+                << "\nSex: " << (caveman.isMale() ? "Male" : "Female")
+                << "\nAge: " << caveman.getAge()
+                << "\nFitness: " << caveman.getFitness()
+                << "\nIntelligence: " << caveman.getIntelligence();
 
+            caveman.getInfobox().setText(oss.str());
+
+            caveman.setInfoboxVisible(true);
+            caveman.getButton().setAltCallback(std::bind(&hideInfo,
+                                                         std::ref(caveman)));
+        }
+        void hideInfo(Caveman& caveman){
+            caveman.setInfoboxVisible(false);
+            caveman.getButton().setAltCallback(std::bind(&displayInfo,
+                                                         std::ref(caveman)));
         }
     }
 }

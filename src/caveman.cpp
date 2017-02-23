@@ -85,8 +85,10 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
         texPath = femaleTextures[femaleT(rng)];
     }
 
-    button = new Button({ 50, 100 }, { 400, 600 }, texPath,
+    button = new Button({0, 0}, {0, 0}, texPath,
         nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
+
+    infobox = new Textbox({100, 200 }, { 450, 400 }, "assets/go.png", "");
 
     counter += 1;
 }
@@ -95,10 +97,41 @@ Caveman::~Caveman() {
     delete button;
 }
 
+
+void Caveman::setInfoboxVisible(bool visible){
+    infoboxVisible = visible;
+}
+
+
+short Caveman::getId(){
+    return id;
+}
+std::string Caveman::getName(){
+    return name;
+}
+bool Caveman::isMale(){
+    return male;
+}
+unsigned short Caveman::getAge(){
+    return age;
+}
+short Caveman::getFitness(){
+    return fitness;
+}
+short Caveman::getIntelligence(){
+    return intelligence;
+}
+
 Button& Caveman::getButton() {
     return *button;
 }
+Textbox& Caveman::getInfobox() {
+    return *infobox;
+}
 
 void Caveman::display(sf::RenderWindow& win) const {
+    if(infoboxVisible){
+        win.draw(*infobox);
+    }
     win.draw(*button);
 }

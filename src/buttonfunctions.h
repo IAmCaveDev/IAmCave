@@ -28,6 +28,7 @@ namespace ButtonFunctions {
     }
     namespace Tribe {
         void displayInfo(Caveman& caveman);
+        void hideInfo(Caveman& caveman);
     }
 }
 
