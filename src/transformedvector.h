@@ -64,8 +64,15 @@ public:
             outY = winY + y * winY / Yn;
         }
         return outY;
-    }
+    };
 
+    T getRealX() const {
+        return x;
+    };
+
+    T getRealY() const {
+        return y;
+    };
 
     static void updateWinSize(int newWinX, int newWinY){
         winX = newWinX;

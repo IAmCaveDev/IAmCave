@@ -29,47 +29,48 @@ int main(int argc, char *argv[]){
             if(event.type == sf::Event::Closed){
                 window.close();
                 break;
+
             }else if(event.type == sf::Event::MouseButtonPressed){
                 if(event.mouseButton.button == sf::Mouse::Left ||
                    event.mouseButton.button == sf::Mouse::Right){
                     std::vector<Button*> buttons;
                     buttons = game.getCurrentGameState().getButtons();
+
                     for(auto& it : buttons){
                         sf::Vector2i pos = sf::Mouse::getPosition(window);
 
-                        sf::Vector2f posf;
-                        posf = window.mapPixelToCoords(pos);
+                        pos = sf::Vector2i(window.mapPixelToCoords(pos));
 
-                        it->highlighted({static_cast<int>(posf.x),
-                                         static_cast<int>(posf.y)});
+                        it->highlighted({pos.x, pos.y});
                     }
                 }
+
             }else if(event.type == sf::Event::MouseButtonReleased){
                 if(event.mouseButton.button == sf::Mouse::Left ||
                    event.mouseButton.button == sf::Mouse::Right){
                     std::vector<Button*> buttons;
                     buttons = game.getCurrentGameState().getButtons();
+
                     for(auto& it : buttons){
                         sf::Vector2i pos = sf::Mouse::getPosition(window);
-                        sf::Vector2f posf;
-                        posf = window.mapPixelToCoords(pos);
+
+                        pos = sf::Vector2i(window.mapPixelToCoords(pos));
 
                         if(event.mouseButton.button == sf::Mouse::Left){
-                            it->executed({static_cast<int>(posf.x),
-                                          static_cast<int>(posf.y)});
+                            it->executed({pos.x, pos.y});
                         }else if(event.mouseButton.button == sf::Mouse::Right){
-                            it->executed({static_cast<int>(posf.x),
-                                          static_cast<int>(posf.y)}, true);
+                            it->executed({pos.x, pos.y}, true);
                         }
                     }
                 }
+
             }else if(event.type == sf::Event::Resized){
                 sf::Vector2u size = window.getSize();
+
                 TransformedVector<>::updateWinSize(size.x, size.y);
 
+                // Force 16:9 aspect ratio
                 view = sf::View(sf::FloatRect(0, 0, size.x, size.y));
-
-                // float ratio = (float)size.y/(float)size.x;
 
                 if(size.x/16 == size.y/9){
                     view = sf::View(sf::FloatRect(0, 0, size.x, size.y));

@@ -24,8 +24,8 @@ public:
            const TransformedVector<>& newPosition,
            std::string texturePath, std::function<void()> newCallback,
            std::function<void()> newAltCallback = nullptr,
-           std::string newText = "", int newTextSize = 14,
-           sf::Color newTextColor = sf::Color::White,
+           std::string newText = "", int padding = 5, int newTextSize = 20,
+           sf::Color newTextColor = sf::Color::Black,
            sf::Text::Style newTextStyle = sf::Text::Style::Regular);
 
     void highlighted(const sf::Vector2i& mousePosition);

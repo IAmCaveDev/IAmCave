@@ -8,10 +8,11 @@
 
 class Rectangle : public sf::RectangleShape {
 private:
-    sf::Texture tex;
-
     TransformedVector<> transformedSize;
     TransformedVector<> transformedPosition;
+
+protected:
+    sf::Texture tex;
 
 public:
     Rectangle(const TransformedVector<>& size,

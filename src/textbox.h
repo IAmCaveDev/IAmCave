@@ -10,14 +10,15 @@ class Textbox : public Rectangle {
 private:
     static sf::Font font;
     sf::Text text;
+    sf::RenderTexture renderTex;
 
     void wrap();
 
 public:
     Textbox(const TransformedVector<>& size,
             const TransformedVector<>& position, std::string texturePath,
-            std::string newText, int newTextSize = 14,
-            sf::Color newTextColor = sf::Color::White,
+            std::string newText = "", int padding = 5, int newTextSize = 20,
+            sf::Color newTextColor = sf::Color::Black,
             sf::Text::Style newTextStyle = sf::Text::Style::Regular);
 
     void setText(std::string newText);
