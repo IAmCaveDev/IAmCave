@@ -45,7 +45,7 @@ void Management::display(sf::RenderWindow& win) {
     int xPos = 500;
     int yPos = 800;
     for (auto const& it : game.getTribe()) {
-        it->getButton().setPosition(TransformedVector<> (xPos, yPos));
+        // it->getButton().setPosition(TransformedVector<> (xPos, yPos));
         it->display(win);
         xPos = xPos + 100;
         if (xPos == 1000) {

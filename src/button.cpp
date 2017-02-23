@@ -16,7 +16,7 @@ Button::Button(const TransformedVector<>& size,
     setOutlineThickness(4);
 }
 
-void Button::highlighted(const sf::Vector2i& mousePosition){
+void Button::highlighted(const sf::Vector2i& mousePosition, bool useAlt){
     if(!clickable) return;
     sf::Vector2i myPosition = sf::Vector2i(getTransformedPosition());
     if((mousePosition.x >= myPosition.x) &&
@@ -24,7 +24,10 @@ void Button::highlighted(const sf::Vector2i& mousePosition){
        (mousePosition.y >= myPosition.y) &&
        (mousePosition.y <= myPosition.y + getTransformedSize().getY())){
         setOutlineColor(sf::Color::Red);
-        isHighlighted = true;
+        if((useAlt && altCallback != nullptr) ||
+           (!useAlt && callback != nullptr)){
+            isHighlighted = true;
+        }
     }
     return;
 }
@@ -38,7 +41,7 @@ void Button::executed(const sf::Vector2i& mousePosition, bool useAlt){
        (mousePosition.y <= myPosition.y + getTransformedSize().getY())){
         if(useAlt && altCallback != nullptr){
             altCallback();
-        }else{
+        }else if(callback != nullptr){
             callback();
         }
     }else if(isHighlighted){

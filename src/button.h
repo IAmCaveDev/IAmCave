@@ -28,7 +28,7 @@ public:
            sf::Color newTextColor = sf::Color::Black,
            sf::Text::Style newTextStyle = sf::Text::Style::Regular);
 
-    void highlighted(const sf::Vector2i& mousePosition);
+    void highlighted(const sf::Vector2i& mousePosition, bool useAlt = false);
     void executed(const sf::Vector2i& mousePosition, bool useAlt = false);
 
     void setCallback(std::function<void()> newCallback);

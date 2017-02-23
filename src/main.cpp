@@ -46,14 +46,22 @@ int main(int argc, char *argv[]){
                     pos = sf::Vector2i(window.mapPixelToCoords(pos));
 
                     for(auto& it : buttons){
-                        it->highlighted({pos.x, pos.y});
+                        if(event.mouseButton.button == sf::Mouse::Left){
+                            it->highlighted({pos.x, pos.y});
+                        }else if(event.mouseButton.button == sf::Mouse::Right){
+                            it->highlighted({pos.x, pos.y}, true);
+                        }
                     }
 
                     std::vector<Caveman*> cavemen;
                     cavemen = game.getTribe();
 
                     for(auto& it : cavemen){
-                        it->getButton().highlighted({pos.x, pos.y});
+                        if(event.mouseButton.button == sf::Mouse::Left){
+                            it->getButton().highlighted({pos.x, pos.y});
+                        }else if(event.mouseButton.button == sf::Mouse::Right){
+                            it->getButton().highlighted({pos.x, pos.y}, true);
+                        }
                     }
                 }
 
