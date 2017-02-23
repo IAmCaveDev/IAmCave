@@ -29,6 +29,18 @@ std::vector<std::string> maleNames = {
     "Bruce"
 };
 
+std::vector<std::string> femaleTextures = {
+    "assets/cavewoman.png",
+    "assets/cavewoman2.png",
+    "assets/cavewoman3.png"
+};
+
+std::vector<std::string> maleTextures = {
+    "assets/caveman.png",
+    "assets/caveman2.png",
+    "assets/caveman3.png"
+};
+
 Caveman::Caveman(int maxAge, int minAge) : id(counter){
     idle = true;
 
@@ -64,5 +76,22 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     fitness = stats(rng);
     intelligence = stats(rng);
 
+    std::string texture;
+    std::uniform_int_distribution<int> maleT(0, femaleTextures.size() - 1);
+    std::uniform_int_distribution<int> femaleT(0, maleTextures.size() - 1);
+
+    if (male) {
+        texture = maleTextures[maleT(rng)];
+    }else{
+        texture = femaleTextures[femaleT(rng)];
+    }
+
+    button = new Button({ 200, 50 }, { 200, 100 }, texture,
+        nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
+
     counter += 1;
+}
+
+Caveman::~Caveman() {
+    delete button;
 }

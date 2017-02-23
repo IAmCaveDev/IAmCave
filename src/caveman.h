@@ -5,6 +5,7 @@
 
 #include "action.h"
 #include "button.h"
+#include "buttonfunctions.h"
 
 class Caveman {
 private:
@@ -21,8 +22,11 @@ private:
     short fitness;
     short intelligence;
 
+    Button* button;
+
 public:
-    explicit Caveman(int maxAge = 50, int minAge = 0);
+    explicit Caveman(int maxAge, int minAge);
+    ~Caveman();
 
     short getId();
     std::string getName();

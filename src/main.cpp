@@ -23,6 +23,12 @@ int main(int argc, char *argv[]){
     Game game(window);
     game.setCurrentGameState(EGamestates::mainMenu);
 
+    game.addCaveman(5,5);
+    game.addCaveman(5,5);
+    game.addCaveman(5,5);
+    game.addCaveman(5,5);
+    game.addCaveman(5,5);
+
     while(window.isOpen()){
         sf::Event event;
         while(window.pollEvent(event)){

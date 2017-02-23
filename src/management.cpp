@@ -3,7 +3,6 @@
 #include "button.h"
 #include "game.h"
 #include "transformedvector.h"
-
 #include "buttonfunctions.h"
 
 Management::Management(Game& gameRef) : GameState(gameRef) {
@@ -30,8 +29,6 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
         new Button({200, 50}, {-400, -150}, "assets/go.png", go),
         new Button({200, 50}, {200, 100}, "assets/hunt.png",
                    std::bind(&ButtonFunctions::Managing::Hunting::hunt, std::ref(*this))),
-        new Button({50, 50}, {200, 400}, "assets/easyhunt.png", quit),
-        new Button({50, 50}, {200, 400}, "assets/hardhunt.png", quit),
         new Button({200, 50}, {200, 200}, "assets/think.png", quit),
         new Button({200, 50}, {200, 300}, "assets/fuck.png", quit),
         new Button({200, 50}, {200, 400}, "assets/improve.png", quit),

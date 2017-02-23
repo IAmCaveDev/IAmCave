@@ -15,6 +15,10 @@ void Game::update(){
     }
 }
 
+void Game::addCaveman(int maxAge, int minAge) {
+    tribe.push_back(new Caveman(maxAge, minAge));
+}
+
 GameState& Game::getCurrentGameState() const {
     return *currentGameState;
 }

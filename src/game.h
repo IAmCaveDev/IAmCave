@@ -10,6 +10,7 @@
 #include "gamestate.h"
 #include "mainmenu.h"
 #include "management.h"
+#include "caveman.h"
 
 enum EGamestates{
     mainMenu,
@@ -21,7 +22,7 @@ class Game {
 private:
     sf::RenderWindow& window;
 
-    std::vector<Caveman> tribe;
+    std::vector<Caveman*> tribe;
     std::vector<Action*> actions;
     std::vector<Action*> queuedActions;
 
@@ -36,7 +37,7 @@ public:
 
     void update();
 
-    void addCaveman();
+    void addCaveman(int maxAge = 50, int minAge = 0);
     void removeCaveman(short id);
 
     void addAction(Action* action);

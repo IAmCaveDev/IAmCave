@@ -8,7 +8,8 @@ namespace ButtonFunctions {
     namespace Managing {
         namespace Hunting {
             void hunt(Management& stateRef);
-            void easyHunt();
+            void easyHunt(Management& stateRef);
+            void hardHunt(Management& stateRef);
         }
         namespace Sex {
             void sex();
@@ -24,6 +25,9 @@ namespace ButtonFunctions {
         void start(Game& game);
         void options();
         void quit(Game& game);
+    }
+    namespace Tribe {
+        void displayInfo(Caveman& caveman);
     }
 }
 
