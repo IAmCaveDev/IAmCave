@@ -88,7 +88,7 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     button = new Button({100, 200}, {0, 0}, texPath,
         nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
 
-    infobox = new Textbox({200, 200}, {450, 400}, "assets/go.png", "TEST");
+    infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "TEST");
 
     counter += 1;
 }
