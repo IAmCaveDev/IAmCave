@@ -37,6 +37,19 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
 
 }
 
+void Management::setCurrentAction(Action* newaction) {
+    currentAction = newaction;
+}
+
+Action& Management::getCurrentAction() {
+    return *currentAction;
+}
+
+void Management::pushCurrentAction() {
+    game.addActiontoQueue(currentAction);
+    currentAction = nullptr;
+}
+
 void Management::display(sf::RenderWindow& win) {
     for (auto const& it : rectangles) {
         it->display(win);

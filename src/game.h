@@ -41,7 +41,7 @@ public:
     void removeCaveman(short id);
     std::vector<Caveman*>& getTribe();
 
-    void addAction(Action* action);
+    void addActiontoQueue(Action* newaction);
     void stopResearch();
 
     GameState& getCurrentGameState() const;

@@ -8,13 +8,15 @@
 class Caveman;
 
 class Action {
-private:
+protected:
     std::vector<const Caveman*> actors;
     short duration;
 
 public:
-    Action();
+    Action() = delete;
+    explicit Action(short time);
 
+    virtual void addActor(Caveman* actor) = 0;
 };
 
 #endif

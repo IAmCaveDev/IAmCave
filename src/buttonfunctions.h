@@ -3,6 +3,7 @@
 
 #include "game.h"
 #include "management.h"
+#include "hunt.h"
 
 namespace ButtonFunctions {
     namespace Managing {
@@ -19,6 +20,10 @@ namespace ButtonFunctions {
         }
         namespace Improve {
 
+        }
+        namespace General {
+            void abort(Management& stateRef);
+            void confirm(Management& stateRef);
         }
     }
     namespace MainMenu {

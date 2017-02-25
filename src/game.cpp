@@ -34,6 +34,10 @@ std::vector<Caveman*>& Game::getTribe() {
     return tribe;
 }
 
+void Game::addActiontoQueue(Action* newaction) {
+    queuedActions.push_back(newaction);
+}
+
 GameState& Game::getCurrentGameState() const {
     return *currentGameState;
 }
