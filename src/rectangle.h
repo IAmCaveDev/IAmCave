@@ -21,7 +21,7 @@ public:
     void display(sf::RenderWindow& win) const;
 
     TransformedVector<> getTransformedSize();
-    void setTransformedSize(TransformedVector<> newPosition);
+    void setTransformedSize(TransformedVector<> newSize);
 
     TransformedVector<> getTransformedPosition();
     void setTransformedPosition(TransformedVector<> newPosition);

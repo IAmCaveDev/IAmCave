@@ -45,6 +45,8 @@ public:
     Button& getButton();
     Textbox& getInfobox();
 
+    void setPosition(TransformedVector<> newPosition);
+
     void display(sf::RenderWindow& win) const;
 
     friend Action;

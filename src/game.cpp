@@ -3,7 +3,24 @@
 Game::Game(sf::RenderWindow& windowRef) : window(windowRef),
                                           management(*this),
                                           //roundEnd(*this),
-                                          mainMenu(*this){}
+                                          mainMenu(*this){
+    setCurrentGameState(EGamestates::mainMenu);
+
+    for(int i = 0; i < 5; ++i){
+        addCaveman(5,5);
+    }
+
+    int xPos = 500;
+    int yPos = 500;
+    for(auto& it : tribe){
+        it->setPosition(TransformedVector<>(xPos, yPos));
+        xPos = xPos + 150;
+        if (xPos >= 1080) {
+            xPos = 500;
+            yPos = yPos + 250;
+        }
+    }
+}
 
 void Game::display(){
     currentGameState->display(window);

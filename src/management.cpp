@@ -42,19 +42,11 @@ void Management::display(sf::RenderWindow& win) {
         it->display(win);
     }
 
-    int xPos = 500;
-    int yPos = 800;
-    for (auto const& it : game.getTribe()) {
-        // it->getButton().setPosition(TransformedVector<> (xPos, yPos));
+    for (auto const& it : buttons) {
         it->display(win);
-        xPos = xPos + 100;
-        if (xPos == 1000) {
-            xPos = 400;
-            yPos = yPos + 200;
-        }
     }
 
-    for (auto const& it : buttons) {
+    for (auto const& it : game.getTribe()) {
         it->display(win);
     }
 }

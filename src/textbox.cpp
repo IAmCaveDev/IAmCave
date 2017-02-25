@@ -62,6 +62,16 @@ void Textbox::wrap(){
 void Textbox::setText(std::string newText){
     text.setString(newText);
     wrap();
+
+    // renderTex.clear(sf::Color::White);
+
+    sf::Sprite texSprite(tex);
+
+    renderTex.draw(texSprite);
+    renderTex.draw(text);
+    renderTex.display();
+
+    setTexture(&renderTex.getTexture());
 }
 
 void Textbox::display(sf::RenderWindow& win) const {

@@ -88,7 +88,7 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     button = new Button({100, 200}, {0, 0}, texPath,
         nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
 
-    infobox = new Textbox({100, 200 }, { 450, 400 }, "assets/go.png", "");
+    infobox = new Textbox({200, 200}, {450, 400}, "assets/go.png", "TEST");
 
     counter += 1;
 }
@@ -129,9 +129,16 @@ Textbox& Caveman::getInfobox() {
     return *infobox;
 }
 
+void Caveman::setPosition(TransformedVector<> newPosition){
+    button->setTransformedPosition(newPosition);
+    infobox->setTransformedPosition(
+        {newPosition.getRealX() - infobox->getTransformedSize().getRealX(),
+         newPosition.getRealY() - infobox->getTransformedSize().getRealY()});
+}
+
 void Caveman::display(sf::RenderWindow& win) const {
+    win.draw(*button);
     if(infoboxVisible){
         win.draw(*infobox);
     }
-    win.draw(*button);
 }

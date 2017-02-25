@@ -18,13 +18,15 @@ void Rectangle::display(sf::RenderWindow& win) const {
 TransformedVector<> Rectangle::getTransformedSize(){
     return transformedSize;
 }
-void Rectangle::setTransformedSize(TransformedVector<> newPosition){
-
+void Rectangle::setTransformedSize(TransformedVector<> newSize){
+    transformedSize = newSize;
+    setSize(newSize);
 }
 
 TransformedVector<> Rectangle::getTransformedPosition(){
     return transformedPosition;
 }
 void Rectangle::setTransformedPosition(TransformedVector<> newPosition){
-
+    transformedPosition = newPosition;
+    setPosition(newPosition);
 }
