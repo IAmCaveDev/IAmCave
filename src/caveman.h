@@ -47,6 +47,8 @@ public:
 
     void setPosition(TransformedVector<> newPosition);
 
+    void onResize();
+
     void display(sf::RenderWindow& win) const;
 
     friend Action;

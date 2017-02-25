@@ -136,6 +136,13 @@ void Caveman::setPosition(TransformedVector<> newPosition){
          newPosition.getRealY() - infobox->getTransformedSize().getRealY()});
 }
 
+void Caveman::onResize(){
+    button->setPosition(button->getTransformedPosition());
+    button->setSize(button->getTransformedSize());
+    infobox->setPosition(infobox->getTransformedPosition());
+    infobox->setSize(infobox->getTransformedSize());
+}
+
 void Caveman::display(sf::RenderWindow& win) const {
     win.draw(*button);
     if(infoboxVisible){

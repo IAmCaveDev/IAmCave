@@ -1,5 +1,7 @@
 #include "gamestate.h"
 
+#include "game.h"
+
 GameState::GameState(Game& gameRef) : game(gameRef){}
 
 GameState::~GameState() {
@@ -12,6 +14,9 @@ GameState::~GameState() {
 }
 
 void GameState::onResize(){
+    for(auto& it : game.getTribe()){
+        it->onResize();
+    }
     for(auto& it : buttons){
         it->setPosition(it->getTransformedPosition());
         it->setSize(it->getTransformedSize());
