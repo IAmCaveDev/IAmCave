@@ -1,19 +1,33 @@
 #include "button.h"
 
+#include <iostream>
+
 Button::Button(const TransformedVector<>& size,
                const TransformedVector<>& newPosition,
-               std::string texturePath, std::function<void()> newCallback,
+               std::string texPath, std::function<void()> newCallback,
                std::function<void()> newAltCallback,
                std::string newText, int padding, int newTextSize,
                sf::Color newTextColor, sf::Text::Style newTextStyle)
-               : Textbox(size, newPosition, texturePath, newText, padding,
+               : Textbox(size, newPosition, texPath, newText, padding,
                          newTextSize, newTextColor, newTextStyle){
+    size_t dotPos = texPath.find(".");
+    std::string hiTexPath = texPath.substr(0, dotPos) + "-h"
+                            + texPath.substr(dotPos);
+    std::string diTexPath = texPath.substr(0, dotPos) + "-d"
+                            + texPath.substr(dotPos);
+
+    if(!highlightedTex.loadFromFile(hiTexPath)){
+        highlightedTex = tex;
+    }
+    if(!disabledTex.loadFromFile(diTexPath)){
+        disabledTex = tex;
+    }
+
     callback = newCallback;
     altCallback = newAltCallback;
     clickable = true;
     isHighlighted = false;
     visible = true;
-    setOutlineThickness(4);
 }
 
 void Button::highlighted(const sf::Vector2i& mousePosition, bool useAlt){
@@ -25,7 +39,7 @@ void Button::highlighted(const sf::Vector2i& mousePosition, bool useAlt){
        (mousePosition.y <= myPosition.y + getTransformedSize().getY())){
         if((useAlt && altCallback != nullptr) ||
            (!useAlt && callback != nullptr)){
-            setOutlineColor(sf::Color::Red);
+            setTexture(&highlightedTex);
             isHighlighted = true;
         }
     }
@@ -46,7 +60,7 @@ void Button::executed(const sf::Vector2i& mousePosition, bool useAlt){
         }
     }
     if(isHighlighted){
-        setOutlineColor(sf::Color::White);
+        setTexture(&tex);
         isHighlighted = false;
     }
     return;
@@ -70,6 +84,11 @@ bool Button::getVisibility() {
 
 void Button::setClickability(bool newclick) {
     clickable = newclick;
+    if(clickable){
+        setTexture(&tex);
+    }else{
+        setTexture(&disabledTex);
+    }
 }
 
 bool Button::getClickability() {

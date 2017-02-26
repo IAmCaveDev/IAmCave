@@ -17,12 +17,14 @@ private:
 
     std::function<void()> callback;
     std::function<void()> altCallback;
-    sf::Texture buttontex;
+
+    sf::Texture highlightedTex;
+    sf::Texture disabledTex;
 
 public:
     Button(const TransformedVector<>& size,
            const TransformedVector<>& newPosition,
-           std::string texturePath, std::function<void()> newCallback,
+           std::string texPath, std::function<void()> newCallback,
            std::function<void()> newAltCallback = nullptr,
            std::string newText = "", int padding = 5, int newTextSize = 20,
            sf::Color newTextColor = sf::Color::Black,
