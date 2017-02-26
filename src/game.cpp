@@ -2,7 +2,7 @@
 
 Game::Game(sf::RenderWindow& windowRef) : window(windowRef),
                                           management(*this),
-                                          //roundEnd(*this),
+                                          roundEnd(*this),
                                           mainMenu(*this){
     setCurrentGameState(EGamestates::mainMenu);
 
@@ -38,7 +38,7 @@ void Game::addActiontoQueue(Action* newaction) {
     queuedActions.push_back(newaction);
 }
 
-GameState& Game::getCurrentGameState() const {
+GameState& Game::getCurrentGameState(){
     return *currentGameState;
 }
 
@@ -50,11 +50,16 @@ void Game::setCurrentGameState(EGamestates newstate) {
         case EGamestates::management:
             currentGameState = &management;
             break;
-       /* case EGamestates::roundEnd:
+       case EGamestates::roundEnd:
+            roundEnd.step();
             currentGameState = &roundEnd;
-            break;*/
+            break;
     }
     currentGameState->onResize();
+}
+
+Resources& Game::getResources(){
+    return resources;
 }
 
 sf::RenderWindow& Game::getWindow() {

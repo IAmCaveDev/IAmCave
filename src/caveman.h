@@ -1,6 +1,8 @@
 #ifndef CAVEMAN_H
 #define CAVEMAN_H
 
+#define MIN_ADULT_AGE 3
+
 #include <string>
 
 #include "action.h"
@@ -17,7 +19,7 @@ private:
     bool male;
     unsigned short age;
 
-    bool idle;
+    EActions currentAction;
 
     short fitness;
     short intelligence;
@@ -46,6 +48,8 @@ public:
     Textbox& getInfobox();
 
     void setPosition(TransformedVector<> newPosition);
+
+    EActions getCurrentAction();
 
     void onResize();
 

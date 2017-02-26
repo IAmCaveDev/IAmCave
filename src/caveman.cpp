@@ -42,8 +42,6 @@ std::vector<std::string> maleTextures = {
 };
 
 Caveman::Caveman(int maxAge, int minAge) : id(counter){
-    idle = true;
-
     std::random_device rd;
     std::mt19937 rng(rd());
     std::uniform_int_distribution<int> unid(minAge, maxAge);
@@ -61,13 +59,13 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
         male = (unbd(rng) != 0);
     }
 
-    std::uniform_int_distribution<int> maleD(0, maleNames.size() - 1);
-    std::uniform_int_distribution<int> femaleD(0, femaleNames.size() - 1);
+    std::uniform_int_distribution<int> maleN(0, maleNames.size() - 1);
+    std::uniform_int_distribution<int> femaleN(0, femaleNames.size() - 1);
 
     if(male){
-        name = maleNames[maleD(rng)];
+        name = maleNames[maleN(rng)];
     }else{
-        name = femaleNames[femaleD(rng)];
+        name = femaleNames[femaleN(rng)];
     }
 
 
@@ -88,7 +86,7 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     button = new Button({100, 200}, {0, 0}, texPath,
         nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
 
-    infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "TEST");
+    infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "");
 
     counter += 1;
 }
@@ -134,6 +132,10 @@ void Caveman::setPosition(TransformedVector<> newPosition){
     infobox->setTransformedPosition(
         {newPosition.getRealX() - infobox->getTransformedSize().getRealX(),
          newPosition.getRealY() - infobox->getTransformedSize().getRealY()});
+}
+
+EActions Caveman::getCurrentAction(){
+    return currentAction;
 }
 
 void Caveman::onResize(){

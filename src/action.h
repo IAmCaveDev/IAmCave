@@ -7,6 +7,11 @@
 // cyclic dependency otherwise
 class Caveman;
 
+enum EActions {
+    Idle,
+    Hunting
+};
+
 class Action {
 protected:
     std::vector<const Caveman*> actors;

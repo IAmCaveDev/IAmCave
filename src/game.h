@@ -10,12 +10,19 @@
 #include "gamestate.h"
 #include "mainmenu.h"
 #include "management.h"
+#include "roundend.h"
 #include "caveman.h"
 
 enum EGamestates{
     mainMenu,
     management,
     roundEnd
+};
+
+struct Resources {
+    float food;
+    int buildingMaterial;
+    int cavemanCapacity;
 };
 
 class Game {
@@ -28,8 +35,10 @@ private:
 
     GameState* currentGameState;
     Management management;
-    //GameState roundEnd;
+    RoundEnd roundEnd;
     MainMenu mainMenu;
+
+    Resources resources;
 
 public:
     Game() = delete;
@@ -44,8 +53,10 @@ public:
     void addActiontoQueue(Action* newaction);
     void stopResearch();
 
-    GameState& getCurrentGameState() const;
+    GameState& getCurrentGameState();
     void setCurrentGameState(EGamestates newstate);
+
+    Resources& getResources();
 
     sf::RenderWindow& getWindow();
 
