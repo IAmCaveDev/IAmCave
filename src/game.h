@@ -20,9 +20,9 @@ enum EGamestates{
 };
 
 struct Resources {
-    float food;
-    int buildingMaterial;
-    int cavemanCapacity;
+    float food = 0;
+    int buildingMaterial = 0;
+    int cavemanCapacity = 0;
 };
 
 class Game {

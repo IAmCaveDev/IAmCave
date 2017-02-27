@@ -1,6 +1,12 @@
 #include "button.h"
 
-#include <iostream>
+Button::Button(const TransformedVector<>& size,
+               const TransformedVector<>& newPosition,
+               std::string texPath, std::function<void()> newCallback,
+               std::function<void()> newAltCallback)
+               : Textbox(size, newPosition, texPath){
+    init(texPath, newCallback, newAltCallback);
+}
 
 Button::Button(const TransformedVector<>& size,
                const TransformedVector<>& newPosition,
@@ -10,6 +16,11 @@ Button::Button(const TransformedVector<>& size,
                sf::Color newTextColor, sf::Text::Style newTextStyle)
                : Textbox(size, newPosition, texPath, newText, padding,
                          newTextSize, newTextColor, newTextStyle){
+    init(texPath, newCallback, newAltCallback);
+}
+
+void Button::init(std::string texPath, std::function<void()> newCallback,
+                  std::function<void()> newAltCallback){
     size_t dotPos = texPath.find(".");
     std::string hiTexPath = texPath.substr(0, dotPos) + "-h"
                             + texPath.substr(dotPos);

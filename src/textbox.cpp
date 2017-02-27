@@ -1,9 +1,12 @@
 #include "textbox.h"
-#include <iostream>
 
 #include <stdexcept>
 
 sf::Font Textbox::font;
+
+Textbox::Textbox(const TransformedVector<>& size,
+                 const TransformedVector<>& position, std::string texturePath)
+                : Rectangle(size, position, texturePath){}
 
 Textbox::Textbox(const TransformedVector<>& size,
                  const TransformedVector<>& position, std::string texturePath,
@@ -11,24 +14,22 @@ Textbox::Textbox(const TransformedVector<>& size,
                  sf::Color newTextColor,
                  sf::Text::Style newTextStyle) : Rectangle(size, position,
                                                            texturePath){
-    if(newText.compare("") != 0){
-        text = sf::Text(newText, font);
-        text.setCharacterSize(newTextSize);
-        text.setFillColor(newTextColor);
-        text.setStyle(newTextStyle);
-        text.setPosition(padding, padding);
-        wrap();
+    text = sf::Text(newText, font);
+    text.setCharacterSize(newTextSize);
+    text.setFillColor(newTextColor);
+    text.setStyle(newTextStyle);
+    text.setPosition(padding, padding);
+    wrap();
 
-        renderTex.create(size.getRealX(), size.getRealY());
+    renderTex.create(size.getRealX(), size.getRealY());
 
-        sf::Sprite texSprite(tex);
+    sf::Sprite texSprite(tex);
 
-        renderTex.draw(texSprite);
-        renderTex.draw(text);
-        renderTex.display();
+    renderTex.draw(texSprite);
+    renderTex.draw(text);
+    renderTex.display();
 
-        setTexture(&renderTex.getTexture());
-    }
+    setTexture(&renderTex.getTexture());
 }
 
 void Textbox::wrap(){
