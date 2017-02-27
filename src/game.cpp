@@ -20,6 +20,11 @@ Game::Game(sf::RenderWindow& windowRef) : window(windowRef),
             yPos = yPos + 250;
         }
     }
+
+    // starting resources
+    resources.food = 200;
+    resources.buildingMaterial = 50;
+    resources.cavemanCapacity = 10;
 }
 
 void Game::display(){

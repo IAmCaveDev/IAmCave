@@ -11,11 +11,11 @@ MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
 
     buttons = {
         new Button({200, 50}, {200, 100}, "assets/play.png",
-                   std::bind(&ButtonFunctions::MainMenu::start, std::ref(game))),
+                std::bind(&Game::setCurrentGameState, std::ref(gameRef), EGamestates::management)),
         new Button({200, 50}, {200, 200}, "assets/options.png",
                    ButtonFunctions::MainMenu::options),
         new Button({200, 50}, {200, 300}, "assets/exit.png",
-                   std::bind(&ButtonFunctions::MainMenu::quit, std::ref(game)))
+                std::bind(&sf::RenderWindow::close, std::ref(gameRef.getWindow())))
     };
 
 }
