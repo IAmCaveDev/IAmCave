@@ -32,6 +32,7 @@ namespace ButtonFunctions {
         void quit(Game& game);
     }
     namespace Tribe {
+        void addAsActor(Management& stateRef, Caveman& caveman);
         void displayInfo(Caveman& caveman);
         void hideInfo(Caveman& caveman);
     }

@@ -13,9 +13,10 @@ public:
     Management() = delete;
     explicit Management(Game& gameRef);
 
-    void setCurrentAction(Action* newaction);
+    void setCurrentAction(EActions newaction, short duration);
     Action& getCurrentAction();
     void pushCurrentAction();
+    void deleteCurrentAction();
 
     void display(sf::RenderWindow& win);
 };

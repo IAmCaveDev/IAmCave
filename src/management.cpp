@@ -19,13 +19,19 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
         new Button({200, 50}, {200, 200}, "assets/think.png", nullptr),
         new Button({200, 50}, {200, 300}, "assets/fuck.png", nullptr),
         new Button({200, 50}, {200, 400}, "assets/improve.png", nullptr),
-        new Button({200, 50}, {-400, -50}, "assets/abort.png", nullptr)
     };
 
 }
 
-void Management::setCurrentAction(Action* newaction) {
-    currentAction = newaction;
+void Management::setCurrentAction(EActions newaction, short duration) {
+    switch (newaction) {
+        case EActions::EasyHunt:
+            currentAction = new Hunt(true, duration);
+        case EActions::HardHunt:
+            currentAction = new Hunt(false, duration);
+        //add more Action here
+    }
+
 }
 
 Action& Management::getCurrentAction() {
@@ -34,7 +40,12 @@ Action& Management::getCurrentAction() {
 
 void Management::pushCurrentAction() {
     game.addActiontoQueue(currentAction);
-    currentAction = nullptr;
+    deleteCurrentAction();
+    //set currentAction in all caveman who are participating from idle to EActions::Actiontype
+}
+
+void Management::deleteCurrentAction() {
+    delete currentAction;
 }
 
 void Management::display(sf::RenderWindow& win) {

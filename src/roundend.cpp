@@ -35,7 +35,7 @@ void RoundEnd::step(){
     std::normal_distribution<float> normal(0, 0.33);
 
     for(auto& it : game.getTribe()){
-        if(it->getCurrentAction() != EActions::Hunting){
+        if(it->getCurrentAction() != (EActions::EasyHunt || EActions::HardHunt)){
             float foodConsumption = 1;
 
             if(it->getAge() > MIN_ADULT_AGE){

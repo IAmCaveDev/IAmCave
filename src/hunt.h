@@ -12,6 +12,7 @@ public:
     Hunt(bool easy, short duration);
 
     void addActor(Caveman* actor);
+    void resolve();
 };
 
 #endif

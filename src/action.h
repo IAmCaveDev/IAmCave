@@ -9,19 +9,25 @@ class Caveman;
 
 enum EActions {
     Idle,
-    Hunting
+    EasyHunt,
+    HardHunt,
+    Sex,
+    Think,
+    Improve
 };
 
 class Action {
 protected:
     std::vector<const Caveman*> actors;
-    short duration;
+    short totalDuration;
+    short currentDuration;
 
 public:
     Action() = delete;
     explicit Action(short time);
 
     virtual void addActor(Caveman* actor) = 0;
+    virtual void resolve() = 0;
 };
 
 #endif
