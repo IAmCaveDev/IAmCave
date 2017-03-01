@@ -1,5 +1,6 @@
 #include "management.h"
 #include "rectangle.h"
+#include "verticalbuttonlist.h"
 #include "button.h"
 #include "game.h"
 #include "transformedvector.h"
@@ -8,8 +9,14 @@
 Management::Management(Game& gameRef) : GameState(gameRef) {
 
     rectangles = {
-        new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png")
+        new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
     };
+
+    actionDisplay = new VerticalButtonList({50, 1080}, {-50, 0}, "");
+
+    actionDisplay->addButton(new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 0);
+    actionDisplay->addButton(new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 0);
+    actionDisplay->addButton(new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 0);
 
     buttons = {
         new Button({200, 50}, {-400, -150}, "assets/go.png",
@@ -56,6 +63,8 @@ void Management::display(sf::RenderWindow& win) {
     for (auto const& it : buttons) {
         it->display(win);
     }
+
+    actionDisplay->display(win);
 
     for (auto const& it : game.getTribe()) {
         it->display(win);

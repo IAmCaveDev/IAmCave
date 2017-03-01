@@ -5,10 +5,14 @@
 
 #include "gamestate.h"
 #include "action.h"
+#include "verticalbuttonlist.h"
 
 class Management : public GameState {
 private:
     Action* currentAction;
+
+    VerticalButtonList* actionDisplay;
+
 public:
     Management() = delete;
     explicit Management(Game& gameRef);
