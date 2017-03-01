@@ -12,8 +12,7 @@ class RoundEnd : public GameState {
 private:
     std::mt19937 rng;
 
-    Textbox* beforeColumn;
-    Textbox* afterColumn;
+    Textbox* infoColumn;
 
 public:
     RoundEnd() = delete;

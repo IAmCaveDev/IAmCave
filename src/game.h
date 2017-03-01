@@ -29,6 +29,8 @@ class Game {
 private:
     sf::RenderWindow& window;
 
+    unsigned int roundNumber;
+
     std::vector<Caveman*> tribe;
     std::vector<Action*> actions;
     std::vector<Action*> queuedActions;
@@ -57,6 +59,9 @@ public:
     void setCurrentGameState(EGamestates newstate);
 
     Resources& getResources();
+
+    unsigned int getRoundNumber();
+    void increaseRoundNumber(unsigned int n = 1);
 
     sf::RenderWindow& getWindow();
 

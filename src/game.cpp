@@ -67,6 +67,13 @@ Resources& Game::getResources(){
     return resources;
 }
 
+unsigned int Game::getRoundNumber(){
+    return roundNumber;
+}
+void Game::increaseRoundNumber(unsigned int n){
+    roundNumber += n;
+}
+
 sf::RenderWindow& Game::getWindow() {
     return window;
 }

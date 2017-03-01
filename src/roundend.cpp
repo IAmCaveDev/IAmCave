@@ -8,13 +8,11 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     std::random_device rd;
     rng = std::mt19937(rd());
 
-    beforeColumn = new Textbox({300, 1080}, {0, 0}, "assets/endround-column.png", "", 5, 30);
-    afterColumn = new Textbox({300, 1080}, {300, 0}, "assets/endround-column.png", "", 5, 30);
+    infoColumn = new Textbox({450, 1080}, {0, 0}, "assets/endround-column.png", "", 5, 30);
 
     rectangles = {
         new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
-        beforeColumn,
-        afterColumn
+        infoColumn,
     };
 
     buttons = {
@@ -24,12 +22,9 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
 }
 
 void RoundEnd::step(){
-    std::ostringstream infoBefore;
-    infoBefore << "Before\n"
-               << "Food: " << game.getResources().food << "\n"
-               << "Building Material: " << game.getResources().buildingMaterial
-               << "\n"
-               << "Cave Capacity: " << game.getResources().cavemanCapacity;
+    game.increaseRoundNumber();
+
+    Resources resourcesBefore = game.getResources();
 
     // food
     std::normal_distribution<float> normal(0, 0.33);
@@ -59,15 +54,19 @@ void RoundEnd::step(){
         game.getResources().food = 0;
     }
 
-    std::ostringstream infoAfter;
-    infoAfter << "After\n"
-              << "Food: " << game.getResources().food << "\n"
-              << "Building Material: " << game.getResources().buildingMaterial
-              << "\n"
-              << "Cave Capacity: " << game.getResources().cavemanCapacity;
+    std::ostringstream info;
+    info << "Round " << game.getRoundNumber() << "\n"
+         << "Food: " << resourcesBefore.food << " " << std::showpos
+         << game.getResources().food - resourcesBefore.food
+         << std::noshowpos << "\n"
+         << "Building Material: " << resourcesBefore.buildingMaterial << " "
+         << std::showpos << game.getResources().buildingMaterial
+         - resourcesBefore.buildingMaterial << std::noshowpos << "\n"
+         << "Cave Capacity: " << resourcesBefore.cavemanCapacity << " "
+         << std::showpos << game.getResources().cavemanCapacity
+         - resourcesBefore.cavemanCapacity;
 
-    beforeColumn->setText(infoBefore.str());
-    afterColumn->setText(infoAfter.str());
+    infoColumn->setText(info.str());
 }
 
 void RoundEnd::display(sf::RenderWindow& win) {
