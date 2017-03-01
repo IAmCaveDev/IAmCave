@@ -43,6 +43,12 @@ void Game::addActiontoQueue(Action* newaction) {
     queuedActions.push_back(newaction);
 }
 
+void Game::addToResources(Resources amount) {
+    resources.food += amount.food;
+    resources.buildingMaterial += amount.buildingMaterial;
+    resources.cavemanCapacity += amount.cavemanCapacity;
+}
+
 GameState& Game::getCurrentGameState(){
     return *currentGameState;
 }

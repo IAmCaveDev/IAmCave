@@ -20,9 +20,9 @@ enum EGamestates{
 };
 
 struct Resources {
-    float food = 0;
-    int buildingMaterial = 0;
-    int cavemanCapacity = 0;
+    float food;
+    int buildingMaterial;
+    int cavemanCapacity;
 };
 
 class Game {
@@ -53,6 +53,7 @@ public:
     std::vector<Caveman*>& getTribe();
 
     void addActiontoQueue(Action* newaction);
+    void addToResources(Resources amount);
     void stopResearch();
 
     GameState& getCurrentGameState();

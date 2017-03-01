@@ -22,6 +22,8 @@ public:
     void pushCurrentAction();
     void deleteCurrentAction();
 
+    std::vector<Caveman*> getIdlingTribe();
+
     void display(sf::RenderWindow& win);
 };
 

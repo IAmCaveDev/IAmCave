@@ -42,6 +42,7 @@ public:
     bool isMale();
     unsigned short getAge();
     short getFitness();
+    void setFitness(short newFit);
     short getIntelligence();
 
     Button& getButton();
@@ -50,6 +51,7 @@ public:
     void setPosition(TransformedVector<> newPosition);
 
     EActions getCurrentAction();
+    void setCurrentAction(EActions newOccupation);
 
     void onResize();
 

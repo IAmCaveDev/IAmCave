@@ -35,9 +35,9 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
 void Management::setCurrentAction(EActions newaction, short duration) {
     switch (newaction) {
         case EActions::EasyHunt:
-            currentAction = new Hunt(true, duration);
+            currentAction = new Hunt(true, duration, game);
         case EActions::HardHunt:
-            currentAction = new Hunt(false, duration);
+            currentAction = new Hunt(false, duration, game);
         //add more Action here
     }
 
@@ -55,6 +55,16 @@ void Management::pushCurrentAction() {
 
 void Management::deleteCurrentAction() {
     delete currentAction;
+}
+
+std::vector<Caveman*> Management::getIdlingTribe() {
+    std::vector<Caveman*> idlingTribe;
+    for (auto& it : game.getTribe()) {
+        if (it->getCurrentAction() == EActions::Idle) {
+            idlingTribe.push_back(it);
+        }
+    }
+    return idlingTribe;
 }
 
 void Management::display(sf::RenderWindow& win) {

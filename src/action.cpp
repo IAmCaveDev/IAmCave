@@ -1,6 +1,6 @@
 #include "action.h"
 
-Action::Action(short time) : totalDuration(time) {
+Action::Action(short time, Game& gameRef) : totalDuration(time), game(gameRef) {
     currentDuration = 0;
 }
 

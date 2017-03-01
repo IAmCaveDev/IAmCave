@@ -6,6 +6,7 @@
 
 // cyclic dependency otherwise
 class Caveman;
+class Game;
 
 enum EActions {
     Idle,
@@ -18,13 +19,14 @@ enum EActions {
 
 class Action {
 protected:
-    std::vector<const Caveman*> actors;
+    std::vector<Caveman*> actors;
     short totalDuration;
     short currentDuration;
+    Game& game;
 
 public:
     Action() = delete;
-    explicit Action(short time);
+    explicit Action(short time, Game& gameRef);
 
     virtual void addActor(Caveman* actor) = 0;
     virtual void resolve() = 0;

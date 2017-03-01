@@ -116,6 +116,9 @@ unsigned short Caveman::getAge(){
 short Caveman::getFitness(){
     return fitness;
 }
+void Caveman::setFitness(short newFit) {
+    fitness = newFit;
+}
 short Caveman::getIntelligence(){
     return intelligence;
 }
@@ -136,6 +139,10 @@ void Caveman::setPosition(TransformedVector<> newPosition){
 
 EActions Caveman::getCurrentAction(){
     return currentAction;
+}
+
+void Caveman::setCurrentAction(EActions newOccupation) {
+    currentAction = newOccupation;
 }
 
 void Caveman::onResize(){
