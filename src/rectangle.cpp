@@ -3,8 +3,10 @@
 Rectangle::Rectangle(const TransformedVector<>& size,
                      const TransformedVector<>& position,
                      std::string texturePath) : sf::RectangleShape(size){
-    tex.loadFromFile(texturePath);
-    setTexture(&tex);
+    if(texturePath.compare("")){
+        tex.loadFromFile(texturePath);
+        setTexture(&tex);
+    }
     setPosition(position);
 
     transformedSize = size;

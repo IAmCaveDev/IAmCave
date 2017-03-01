@@ -14,9 +14,11 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
 
     actionDisplay = new VerticalButtonList({50, 1080}, {-50, 0}, "");
 
-    actionDisplay->addButton(new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 0);
-    actionDisplay->addButton(new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 0);
-    actionDisplay->addButton(new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 0);
+    actionDisplay->addButton(0, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 1);
+    actionDisplay->addButton(1, new Button({200, 50}, {200, 300}, "assets/sex-icon.png", nullptr), 0);
+    actionDisplay->addButton(2, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 2);
+    actionDisplay->addButton(3, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 2);
+    actionDisplay->removeButton(3);
 
     buttons = {
         new Button({200, 50}, {-400, -150}, "assets/go.png",

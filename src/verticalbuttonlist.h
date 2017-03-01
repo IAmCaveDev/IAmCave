@@ -9,9 +9,17 @@
 
 class VerticalButtonList : public Rectangle {
 private:
-    std::vector<std::pair<Button*, int>> buttons;
+    // (ID, Button*, sortingOrder)
+    struct Info {
+        int id;
+        Button* button;
+        int priority;
+    };
+    std::vector<Info> buttons;
 
     bool reverse;
+
+    void sort();
 
 public:
     VerticalButtonList(const TransformedVector<>& size,
@@ -22,7 +30,9 @@ public:
 
     // priority is used to determine the position of the button in the list
     // 0 is positioned on top (if reverse false)
-    void addButton(Button* button, unsigned int priority);
+    void addButton(int id, Button* button, int priority);
+
+    void removeButton(int id);
 
     void decreasePriorityOfAll(int n = 1);
 
