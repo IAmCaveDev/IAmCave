@@ -307,5 +307,5 @@ improvements.
 
 
 #### Footnotes
-<a name="f1">1</a>: http://semver.org/
+<a name="f1">1</a>: http://semver.org/ <br>
 <a name="f2">2</a>: http://stackoverflow.com/questions/13091804/whats-better-to-use-in-c11-zero-or-null
