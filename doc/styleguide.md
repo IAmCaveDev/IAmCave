@@ -34,7 +34,38 @@ Semantic versioning<sup>[1](#f1)</sup> should be used.
 > 3. PATCH version when you make backwards-compatible bug fixes.
 
 
+## Folders/Files
+
+Plain text files should have no file extension.
+
+Files should use lower camel case or be completely lower case.
+
+Files used by the
+program (everything in the assets directory) may not contain dots in their
+filenames except for their file extension.
+
+
 ## C++
+
+Using the C++11 standard.
+
+### Libraries
+
+Use the C++ Standard Library where possible<sup>[2](#f2)</sup> (especially
+containers).
+If there is a C++ library that provides the same functionality as a C library,
+use the C++ library (e.g. `<random>` instead of `<cstdlib>`).
+
+### Fundamental Types
+
+Use the type with the least precision possible.
+
+Use `unsigned` modifier if the variable can explicitly only be positive.
+
+Size modifiers do not need to be followed by `int`.
+
+Use `unsigned int` instead of just `unsigned`.
+
 
 ### Naming
 
@@ -119,13 +150,13 @@ Commas should always be followed by a space but not preceded by one.
 
 #### Parentheses
 
-Parentheses are not followed or preceded by a space unless it's an operator:
+    Parentheses are followed and preceded by a space un:
 
 ```c++
-void someFunction(float n, bool b){
-    if(b){
+void someFunction(float n, bool b) {
+    if (b) {
         n = 7;
-    }else if(n > (0 + 1)){
+    }else if (n > (0 + 1)) {
         n = (n + 3) / 2
     }
 }
@@ -173,7 +204,7 @@ StructType name = {4, 3, 2};
 #### Function Declarations and Definitions
 
 ```c++
-Type Class::function(Type firstParameter, Type secondParameter){
+Type Class::function(Type firstParameter, Type secondParameter) {
     ...
 }
 ```
@@ -183,7 +214,7 @@ and aligned with the first parameter in the line above:
 
 ```c++
 Type Class::function(Type firstParameter, Type secondParameter,
-                     Type secondParameter){
+                     Type secondParameter) {
     ...
 }
 ```
@@ -192,8 +223,8 @@ If no parameters fit on one line the parameter list starts on the next one
 indented by eight spaces:
 
 ```c++
-VeryLongReturnTypeName VeryLongClassName::VeryLongFunctionName(
-        Type firstParameter, Type secondParameter){
+VeryLongReturnTypeName VeryLongClassName::veryLongFunctionName(
+        Type firstParameter, Type secondParameter) {
     ...
 }
 ```
@@ -273,7 +304,7 @@ almost never on the same line.
 
 `0` and `0.0` should be used for numbers.
 `nullptr` should be used for pointers. `NULL` should not be used
-<sup>[2](#f2)</sup>.
+<sup>[3](#f3)</sup>.
 
 ### auto
 
@@ -283,7 +314,7 @@ iterating over STL containers:
 
 ```c++
 std::vector vec;
-for(auto& it : vec){
+for (auto& it : vec) {
     ...
 }
 ```
@@ -313,4 +344,5 @@ changes and discuss improvements.
 
 #### Footnotes
 <a name="f1">1</a>: http://semver.org/ <br>
-<a name="f2">2</a>: http://stackoverflow.com/questions/13091804/whats-better-to-use-in-c11-zero-or-null
+<a name="f2">2</a>: http://en.cppreference.com/w/cpp/header <br>
+<a name="f3">3</a>: http://stackoverflow.com/questions/13091804/whats-better-to-use-in-c11-zero-or-null
