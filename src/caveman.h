@@ -9,55 +9,90 @@
 #include "button.h"
 #include "buttonfunctions.h"
 
+//Working class for the player units
 class Caveman {
 private:
-    static short counter;
 
-    const short id;
-    std::string name;
+	// UNIT STATS
+	short fitness;				//Hunting ability
+    short intelligence;			//Research ability
+	bool male;					//Gender variable; 1 for male, 0 for female
+	const short id;				//Unique Unit ID
+	unsigned short age;			//Current Age
+	short preg_counter = -1;	//Pregnancy counter
+	bool isPregnant = false;	//Pregnancy active or not
+	std::string name;			//Unit name string
+	
 
-    bool male;
-    unsigned short age;
+	EActions currentAction;	//Action which is currently being assigned, caveman won't be able to do anything else while this is set
+	static short counter;	//Amount of turns the current action is going to take
 
-    EActions currentAction;
+    std::string texPath;	//PLACEHOLDER
+    Button* button;			//PLACEHOLDER
 
-    short fitness;
-    short intelligence;
+    bool infoboxVisible = false;	//PLACEHOLDER
+    Textbox* infobox;				//PLACEHOLDER
 
-    std::string texPath;
-
-    Button* button;
-
-    bool infoboxVisible = false;
-    Textbox* infobox;
 
 public:
+
+	//Constructor
     explicit Caveman(int maxAge, int minAge);
+
+	//Destructor
     ~Caveman();
 
-    void setInfoboxVisible(bool visible);
 
-    short getId();
+//Getters
+public:
+
+	short getId();
+
     std::string getName();
-    bool isMale();
-    unsigned short getAge();
-    short getFitness();
-    void setFitness(short newFit);
-    short getIntelligence();
 
-    Button& getButton();
-    Textbox& getInfobox();
+	short getFitness();
 
-    void setPosition(TransformedVector<> newPosition);
+	unsigned short getAge();
 
-    EActions getCurrentAction();
-    void setCurrentAction(EActions newOccupation);
+	short getIntelligence();
+
+	Button& getButton();
+
+	Textbox& getInfobox();
+
+	EActions getCurrentAction();
+
+	bool isMale();
+
+	bool isPregnant();
+
+
+//Setters
+public:
+
+	void setFitness(short newFit);
+
+	void setInfoboxVisible(bool visible);
+
+	void setPosition(TransformedVector<> newPosition);
+
+	void setCurrentAction(EActions newOccupation);
+
+	void setPregnancy(bool newPregnant);
+
+//Working Functions
+public:
 
     void onResize();
 
     void display(sf::RenderWindow& win) const;
 
-    friend Action;
+
+//External Class Access
+public:
+
+	friend Action;
+
 };
 
 #endif

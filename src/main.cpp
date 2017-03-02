@@ -3,6 +3,8 @@
 #include "textbox.h"
 
 int main(int argc, char *argv[]){
+
+	//Setting up the application window
     sf::RenderWindow window(sf::VideoMode(1280, 720), "IAmCave");
     window.setFramerateLimit(30);
     sf::View view(window.getDefaultView());
@@ -10,6 +12,7 @@ int main(int argc, char *argv[]){
     sf::Vector2u size = window.getSize();
     TransformedVector<>::updateWinSize(size.x, size.y);
 
+	//Font Selection
     try {
         Textbox::setFont("assets/arial.ttf");
     }
@@ -20,9 +23,13 @@ int main(int argc, char *argv[]){
 
     Game game(window);
 
+	//Main application loop
     while(window.isOpen()){
+
         sf::Event event;
+
         while(window.pollEvent(event)){
+
             if(event.type == sf::Event::Closed){
                 window.close();
                 break;

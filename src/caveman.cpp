@@ -41,6 +41,8 @@ std::vector<std::string> maleTextures = {
     "assets/caveman2.png"
 };
 
+
+//Constructor
 Caveman::Caveman(int maxAge, int minAge) : id(counter){
     std::random_device rd;
     std::mt19937 rng(rd());
@@ -91,43 +93,61 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     counter += 1;
 }
 
+
+//Destructor
 Caveman::~Caveman() {
     delete button;
 }
 
 
-void Caveman::setInfoboxVisible(bool visible){
-    infoboxVisible = visible;
-}
-
+//Getter
 
 short Caveman::getId(){
-    return id;
+	return id;
 }
 std::string Caveman::getName(){
-    return name;
+	return name;
 }
-bool Caveman::isMale(){
-    return male;
-}
-unsigned short Caveman::getAge(){
-    return age;
-}
+
 short Caveman::getFitness(){
-    return fitness;
+	return fitness;
 }
-void Caveman::setFitness(short newFit) {
-    fitness = newFit;
+
+unsigned short Caveman::getAge(){
+	return age;
 }
+
 short Caveman::getIntelligence(){
-    return intelligence;
+	return intelligence;
 }
 
 Button& Caveman::getButton() {
-    return *button;
+	return *button;
 }
 Textbox& Caveman::getInfobox() {
-    return *infobox;
+	return *infobox;
+}
+
+EActions Caveman::getCurrentAction(){
+	return currentAction;
+}
+
+bool Caveman::isMale(){
+	return male;
+}
+
+bool Caveman::isPregnant() {
+	return isPregnant;
+}
+
+//Setter
+
+void Caveman::setFitness(short newFit) {
+	fitness = newFit;
+}
+
+void Caveman::setInfoboxVisible(bool visible){
+    infoboxVisible = visible;
 }
 
 void Caveman::setPosition(TransformedVector<> newPosition){
@@ -137,14 +157,26 @@ void Caveman::setPosition(TransformedVector<> newPosition){
          newPosition.getRealY() - infobox->getTransformedSize().getRealY()});
 }
 
-EActions Caveman::getCurrentAction(){
-    return currentAction;
-}
-
 void Caveman::setCurrentAction(EActions newOccupation) {
     currentAction = newOccupation;
 }
 
+void Caveman::setPregnancy(bool newPregnant) {
+
+	//Return if unit is already pregnant
+	if (isPregnant)
+		return;
+
+	this->isPregnant = newPregnant;
+
+	//Dynamic pregnancy times
+	preg_counter = std::rand() % 2 + 8;
+}
+
+
+//Working Functions
+
+//Recalculate size and position of unit after window resize
 void Caveman::onResize(){
     button->setPosition(button->getTransformedPosition());
     button->setSize(button->getTransformedSize());
@@ -152,6 +184,7 @@ void Caveman::onResize(){
     infobox->setSize(infobox->getTransformedSize());
 }
 
+//PLACEHOLDER
 void Caveman::display(sf::RenderWindow& win) const {
     win.draw(*button);
     if(infoboxVisible){

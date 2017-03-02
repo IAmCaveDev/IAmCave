@@ -1,24 +1,22 @@
-#ifndef HUNT_H
-#define HUNT_H
+#ifndef SEX_H
+#define SEX_H
 
 #include <vector>
 #include <string>
 #include "action.h"
 #include "game.h"
 
-class Hunt : public Action {
+class Sex : public Action {
 
 private:
 
-	bool easy;	//Difficulty of the hunt
 
-
-	//Constructor
+//Constructor
 public:
-	Hunt(bool easy, short duration, Game& gameRef);
+	Sex(short duration, Game& gameRef);
 
 
-	//Working Functions
+//Working Functions
 public:
 
 	//Add Unit(Caveman) to this action
@@ -27,6 +25,5 @@ public:
 	//Calculate results for this action
 	void resolve();
 };
-
 
 #endif

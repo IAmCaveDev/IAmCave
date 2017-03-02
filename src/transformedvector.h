@@ -5,15 +5,31 @@
 
 template<typename T = int>
 class TransformedVector {
+
 private:
+
+	//Native resolution
     static const int Xn = 1920;
     static const int Yn = 1080;
+
     static int winX;
     static int winY;
+
     T x;
     T y;
+	
 
 public:
+
+	template<typename T>
+	int TransformedVector<T>::winX;
+	template<typename T>
+	int TransformedVector<T>::winY;
+
+
+//Constructor
+public:
+
     TransformedVector(){
         x = 0;
         y = 0;
@@ -38,6 +54,9 @@ public:
         x = other.x;
         y = other.y;
     };
+
+
+public:
 
     operator sf::Vector2i() const{
         return sf::Vector2i(getX(), getY());
@@ -79,10 +98,5 @@ public:
         winY = newWinY;
     };
 };
-
-template<typename T>
-int TransformedVector<T>::winX;
-template<typename T>
-int TransformedVector<T>::winY;
 
 #endif
