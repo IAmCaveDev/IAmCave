@@ -150,7 +150,7 @@ Commas should always be followed by a space but not preceded by one.
 
 #### Parentheses
 
-    Parentheses are followed and preceded by a space un:
+Parentheses are followed and preceded by a space:
 
 ```c++
 void someFunction(float n, bool b) {
