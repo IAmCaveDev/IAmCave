@@ -174,6 +174,53 @@ VeryLongReturnTypeName VeryLongClassName::VeryLongFunctionName(
 }
 ```
 
+In a class declaration access specifiers are specified in this order:
+
+1. private
+2. protected
+3. public
+
+Access specifiers should be at the same level of indentation as `class Name`.
+
+Members are specified in this order within an access specifier's section:
+
+1. enums/structs/typedefs/using
+2. variables
+3. constructors
+4. destructor
+4. operators
+5. functions
+6. getter/setter
+
+They can be further split by separating sections with a blank line:
+
+```c++
+class A {
+private:
+    int num;
+    int secondNum;
+
+public:
+    A();
+    ~A();
+
+    getNum();
+    setNum(int n);
+
+    getSecondNum();
+    setSecondNum(int n);
+
+}
+```
+
+### Template Declarations
+
+Template declarations should have their own line:
+
+```c++
+template<typename T>
+void name(T n);
+```
 
 ### Comments
 
