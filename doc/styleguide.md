@@ -2,15 +2,37 @@
 
 ### Table of Contents
 
-1. [Naming](#naming)
-2. [Include Order](#include-order)
-3. [Headers](#headers)
-4. [Formatting](#formatting)
-5. [Comments](#comments)
-6. [Other Stuff](#other-stuff)
-7. [Contributing](#contributing)
-8. [Footnotes](#footnotes)
+1. [Git](#git)
+    1. [Commits](#commits)
+    2. [Version numbers](#version-numbers)
+2. [C++](#c)
+    1. [Naming](#naming)
+    2. [Include Order](#include-order)
+    3. [Headers](#headers)
+    4. [Formatting](#formatting)
+    5. [Comments](#comments)
+    6. [Other Stuff](#other-stuff)
+    7. [Contributing](#contributing)
+    8. [Footnotes](#footnotes)
 
+## Git
+
+### Commits
+
+The summary of a commit message should be written in imperative mode and if
+possible not longer than 50 characters. Optionally the summary is followed by a
+blank line and a longer commit message.
+
+### Version numbers
+
+Semantic versioning<sup>[1](#f1)</sup> should be used.
+
+> 1. MAJOR version when you make incompatible API changes,
+> 2. MINOR version when you add functionality in a backwards-compatible manner, and
+> 3. PATCH version when you make backwards-compatible bug fixes.
+
+
+## C++
 
 ### Naming
 
@@ -249,7 +271,7 @@ almost never on the same line.
 
 `0` and `0.0` should be used for numbers.
 `nullptr` should be used for pointers. `NULL` should not be used
-<sup>[1](#f1)</sup>.
+<sup>[2](#f2)</sup>.
 
 ### auto
 
@@ -285,5 +307,5 @@ improvements.
 
 
 #### Footnotes
-
-<a name="f1">1</a>: http://stackoverflow.com/questions/13091804/whats-better-to-use-in-c11-zero-or-null
+<a name="f1">1</a>: http://semver.org/
+<a name="f2">2</a>: http://stackoverflow.com/questions/13091804/whats-better-to-use-in-c11-zero-or-null
