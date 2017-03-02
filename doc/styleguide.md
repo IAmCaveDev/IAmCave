@@ -1,6 +1,6 @@
 # Style Guide
 
-### Table of Contents
+## Table of Contents
 
 1. [Git](#git)
     1. [Commits](#commits)
@@ -12,8 +12,10 @@
     4. [Formatting](#formatting)
     5. [Comments](#comments)
     6. [Other Stuff](#other-stuff)
-    7. [Contributing](#contributing)
-    8. [Footnotes](#footnotes)
+3. [Contributing](#contributing)
+4. [Footnotes](#footnotes)
+
+---
 
 ## Git
 
@@ -295,15 +297,18 @@ best to capture explicitly (e.g. `[foo](){}`) and explicitly provide a return
 type (e.g. `[foo]() -> int {}`).
 
 
+---
+
+
 ## Contributing
 
 If something in this guide is not mentioned check [Google's C++ Style
-Guide](https://google.github.io/styleguide/cppguide.html) on the topic for
-inspiration, make a pull request with the suggested changes and discuss
-improvements.
+Guide](https://google.github.io/styleguide/cppguide.html) or other reputable
+guides on the topic for inspiration, make a pull request with the suggested
+changes and discuss improvements.
 
 
---------------
+---
 
 
 #### Footnotes
