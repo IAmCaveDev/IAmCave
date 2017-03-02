@@ -35,9 +35,9 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
 void Management::setCurrentAction(EActions newaction, short duration) {
     switch (newaction) {
         case EActions::EasyHunt:
-            currentAction = new Hunt(true, duration, game);
+            currentAction = new Hunt(newaction, duration, game);
         case EActions::HardHunt:
-            currentAction = new Hunt(false, duration, game);
+            currentAction = new Hunt(newaction, duration, game);
         //add more Action here
     }
 
@@ -48,7 +48,7 @@ Action& Management::getCurrentAction() {
 }
 
 void Management::pushCurrentAction() {
-    game.addActiontoQueue(currentAction);
+    game.addAction(currentAction);
     deleteCurrentAction();
     //set currentAction in all caveman who are participating from idle to EActions::Actiontype
 }
@@ -65,6 +65,10 @@ std::vector<Caveman*> Management::getIdlingTribe() {
         }
     }
     return idlingTribe;
+}
+
+VerticalButtonList& Management::getActionDisplay() {
+    return *actionDisplay;
 }
 
 void Management::display(sf::RenderWindow& win) {

@@ -1,7 +1,7 @@
 #include "hunt.h"
 
-Hunt::Hunt(bool diff, short time, Game& gameRef) : Action(time, gameRef){
-    easy = diff;
+Hunt::Hunt(EActions newtype, short time, Game& gameRef) : Action(time, gameRef){
+    type = newtype;
 }
 
 void Hunt::addActor(Caveman* newactor) {
@@ -9,7 +9,7 @@ void Hunt::addActor(Caveman* newactor) {
 }
 
 void Hunt::resolve() {
-    currentDuration = currentDuration + 1;
+    currentDuration += 1;
     if (currentDuration == totalDuration) {
         float newFood = 0;
         if (easy) {
@@ -30,5 +30,6 @@ void Hunt::resolve() {
         for (auto& it : actors) {
             it->setCurrentAction(EActions::Idle);
         }
+        game.removeAction(id);
     }
 }

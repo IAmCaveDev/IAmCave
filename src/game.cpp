@@ -39,8 +39,28 @@ std::vector<Caveman*>& Game::getTribe() {
     return tribe;
 }
 
-void Game::addActiontoQueue(Action* newaction) {
-    queuedActions.push_back(newaction);
+void Game::addAction(Action* newaction) {
+    actions.push_back(newaction);
+    switch (newaction->getType()) {
+        case (EActions::EasyHunt):
+            management.getActionDisplay().addButton(newaction->getID(), new Button({ 200, 50 }, { 200, 300 }, "assets/hunt-icon.png", nullptr), 0);
+        //TODO: more cases with different icons
+    }
+}
+
+void Game::removeAction(int id) {
+    management.getActionDisplay().removeButton(id);
+    //TODO:write function properly
+    for (int i = 0; i < actions.size(); ++i) {
+        if (actions.at(i)->getID() == id) {
+            delete actions.at(i);
+            actions.erase(actions.begin() + i);
+        }
+    }
+}
+
+std::vector<Action*> Game::getActions() {
+    return actions;
 }
 
 void Game::addToResources(Resources amount) {

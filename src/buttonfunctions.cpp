@@ -22,7 +22,7 @@ namespace ButtonFunctions {
                 buttons.push_back(new Button({ 200, 50 }, { 800, 100 }, "assets/abort.png", std::bind(&ButtonFunctions::Managing::General::abort, std::ref(stateRef))));
                 buttons.push_back(new Button({ 200, 50 }, { 800, 200 }, "assets/confirm.png", std::bind(&ButtonFunctions::Managing::General::confirm, std::ref(stateRef))));
                 for (auto& it : stateRef.getIdlingTribe()) {
-                    it->getButton().setCallback(std::bind(&ButtonFunctions::Tribe::addAsActor, std::ref(stateRef), std::ref(it)));
+                    it->getButton().setCallback(std::bind(&ButtonFunctions::Tribe::addAsActor, std::ref(stateRef), std::ref(*it)));
                 }
             }
             void hardHunt(Management& stateRef) {
@@ -72,7 +72,7 @@ namespace ButtonFunctions {
 
     namespace Tribe {
         void addAsActor(Management& stateRef, Caveman& caveman) {
-            stateRef.getCurrentAction().addActor(&caveman);
+           stateRef.getCurrentAction().addActor(&caveman);
         }
         void displayInfo(Caveman& caveman) {
             std::ostringstream oss;

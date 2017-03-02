@@ -23,6 +23,7 @@ public:
     void deleteCurrentAction();
 
     std::vector<Caveman*> getIdlingTribe();
+    VerticalButtonList& getActionDisplay();
 
     void display(sf::RenderWindow& win);
 };

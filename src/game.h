@@ -33,7 +33,6 @@ private:
 
     std::vector<Caveman*> tribe;
     std::vector<Action*> actions;
-    std::vector<Action*> queuedActions;
 
     GameState* currentGameState;
     Management management;
@@ -52,7 +51,9 @@ public:
     void removeCaveman(short id);
     std::vector<Caveman*>& getTribe();
 
-    void addActiontoQueue(Action* newaction);
+    void addAction(Action* newaction);
+    void removeAction(int id);
+    std::vector<Action*> getActions();
     void addToResources(Resources amount);
     void stopResearch();
 
