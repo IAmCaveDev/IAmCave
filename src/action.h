@@ -17,20 +17,17 @@ enum EActions {
     Improve
 };
 
-//Test Description
+
 class Action {
 
 protected:
 
 	Game& game;
 
-	//List of cavemen assigned to this action
     std::vector<Caveman*> actors;
 
-	//Amount of turns for which this action is locked
     short totalDuration;	
 
-	//Turns taken already
     short currentDuration;	
 
 

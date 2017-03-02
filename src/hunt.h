@@ -21,7 +21,7 @@ public:
 	//Working Functions
 public:
 
-	//Add Unit(Caveman) to this action
+	//Add Unit(Caveman) to the actors vector
 	void addActor(Caveman* actor);
 
 	//Calculate results for this action

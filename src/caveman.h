@@ -9,7 +9,7 @@
 #include "button.h"
 #include "buttonfunctions.h"
 
-//Working class for the player units
+
 class Caveman {
 private:
 
@@ -24,14 +24,14 @@ private:
 	std::string name;			//Unit name string
 	
 
-	EActions currentAction;	//Action which is currently being assigned, caveman won't be able to do anything else while this is set
+	EActions currentAction;
 	static short counter;	//Amount of turns the current action is going to take
 
-    std::string texPath;	//PLACEHOLDER
-    Button* button;			//PLACEHOLDER
+    std::string texPath;	
+    Button* button;			
 
-    bool infoboxVisible = false;	//PLACEHOLDER
-    Textbox* infobox;				//PLACEHOLDER
+    bool infoboxVisible = false;	
+    Textbox* infobox;				
 
 
 public:
@@ -88,7 +88,6 @@ public:
     void display(sf::RenderWindow& win) const;
 
 
-//External Class Access
 public:
 
 	friend Action;

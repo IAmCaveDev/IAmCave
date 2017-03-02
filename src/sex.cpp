@@ -28,7 +28,7 @@ void Sex::resolve() {
 		it->setCurrentAction(EActions::Idle);
 	}
 
-	//If only one gender present enter the Easter-Egg-Roulette
+	//If only one gender present, enter the Easter-Egg-Roulette
 	if (!actors_involvedMale || !actors_involvedFemale) {
 
 		//If max luck

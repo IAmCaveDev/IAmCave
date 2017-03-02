@@ -184,7 +184,7 @@ void Caveman::onResize(){
     infobox->setSize(infobox->getTransformedSize());
 }
 
-//PLACEHOLDER
+
 void Caveman::display(sf::RenderWindow& win) const {
     win.draw(*button);
     if(infoboxVisible){
