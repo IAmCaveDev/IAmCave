@@ -25,7 +25,7 @@ private:
 	
 
 	EActions currentAction;
-	static short counter;	//Amount of turns the current action is going to take
+	static short counter;
 
     std::string texPath;	
     Button* button;			

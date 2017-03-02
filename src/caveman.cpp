@@ -163,7 +163,6 @@ void Caveman::setCurrentAction(EActions newOccupation) {
 
 void Caveman::setPregnancy(bool newPregnant) {
 
-	//Return if unit is already pregnant
 	if (isPregnant)
 		return;
 

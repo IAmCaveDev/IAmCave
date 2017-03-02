@@ -8,7 +8,6 @@ class TransformedVector {
 
 private:
 
-	//Native resolution
     static const int Xn = 1920;
     static const int Yn = 1080;
 
