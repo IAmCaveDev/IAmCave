@@ -5,15 +5,18 @@
 1. [Git](#git)
     1. [Commits](#commits)
     2. [Version numbers](#version-numbers)
-2. [C++](#c)
-    1. [Naming](#naming)
-    2. [Include Order](#include-order)
-    3. [Headers](#headers)
-    4. [Formatting](#formatting)
-    5. [Comments](#comments)
-    6. [Other Stuff](#other-stuff)
-3. [Contributing](#contributing)
-4. [Footnotes](#footnotes)
+2. [Folders/Files](#foldersfiles)
+3. [C++](#c)
+    1. [Libraries](#libraries)
+    2. [Fundamental Types](#fundamental-types)
+    3. [Naming](#naming)
+    4. [Include Order](#include-order)
+    5. [Headers](#headers)
+    6. [Formatting](#formatting)
+    7. [Comments](#comments)
+    8. [Other Stuff](#other-stuff)
+4. [Contributing](#contributing)
+5. [Footnotes](#footnotes)
 
 ---
 
@@ -36,7 +39,7 @@ Semantic versioning<sup>[1](#f1)</sup> should be used.
 
 ## Folders/Files
 
-Plain text files should have no file extension.
+Plain text files should have a `.txt` extension.
 
 Files should use lower camel case or be completely lower case.
 
