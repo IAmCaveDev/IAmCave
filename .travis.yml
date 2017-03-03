@@ -15,6 +15,7 @@ before_script:
     - wget www.sfml-dev.org/files/SFML-2.4.2-linux-gcc-64-bit.tar.gz -O /tmp/sfml.tar.gz
     - tar -xvf /tmp/sfml.tar.gz
     - sudo cp -r SFML-2.4.2/* /usr/
+    - sudo ln -sf /lib/x86_64-linux-gnu/libudev.so.0 /lib/x86_64-linux-gnu/libudev.so.1
 
 script: make
 
