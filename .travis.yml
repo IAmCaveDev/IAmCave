@@ -12,7 +12,7 @@ before_script:
     - tar -xvf /tmp/sfml.tar.gz
     - sudo cp -r SFML-2.4.2/* /usr/
 
-script: g++ src/*.cpp -Wall -lsfml-graphics -lsfml-window -lsfml-system
+script: g++ src/*.cpp -std=c++11 -Wall -lsfml-graphics -lsfml-window -lsfml-system
 
 addons:
     apt:
