@@ -9,7 +9,7 @@ notifications:
 
 
 install:
-    - if ["$CXX" = "g++"]; then export CXX="g++-6" CC="gcc-6"; fi
+    - if [ "$CXX" = "g++" ]; then export CXX="g++-6" CC="gcc-6"; fi
 
 before_script:
     - wget www.sfml-dev.org/files/SFML-2.4.2-linux-gcc-64-bit.tar.gz -O /tmp/sfml.tar.gz
