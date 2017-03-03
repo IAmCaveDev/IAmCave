@@ -16,7 +16,9 @@ before_script:
     - tar -xvf /tmp/sfml.tar.gz
     - sudo cp -r SFML-2.4.2/* /usr/
 
-script: make
+script:
+    - make
+
 
 addons:
     apt:
