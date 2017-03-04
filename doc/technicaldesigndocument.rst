@@ -441,15 +441,15 @@ Höhlenmenschen
 
 Männer
 ~~~~~~
-.. image:: img/caveman1.png
+.. image:: img/caveman1.PNG
    :align: center
    :alt: Kleidung 1, Gesicht 1, Kopf 1
 
-.. image:: img/caveman2.png
+.. image:: img/caveman2.PNG
    :align: center
    :alt: Kleidung 2, Gesicht 2, Kopf 2
 
-.. image:: img/caveman3.png
+.. image:: img/caveman3.PNG
    :align: center
    :alt: Kleidung 3, Gesicht 3, Kopf 3
 
