@@ -3,7 +3,7 @@
 Game Design Document
 ====================
 
-.. image:: iamcavelogo.png
+.. image:: img/iamcavelogo.png
     :align: center
     :alt: IAmCave logo
 
@@ -288,3 +288,9 @@ Bodens auswählen und das Szenario der Höhlenmenschen zu diesem Zeitpunkt endet
 
 Anhang
 ------
+
+.. figure:: img/techtree.png
+    :align: center
+    :alt: Techtree
+
+    Techtree
