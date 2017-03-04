@@ -4,7 +4,7 @@
 Technical Design Document
 =========================
 
-.. image:: iamcavelogo.png
+.. image:: img/iamcavelogo.png
    :align: center
    :alt: IAmCave logo
 
