@@ -42,7 +42,7 @@ Steinzeit ist, der gern komplexes Management betreibt und der sich selbst gern
 übertrifft und seine Vorgehensweise in Spielen zu perfektionieren lernen will.
 Aufgrund mitunter schwerer Entscheidungen, die nachhaltige Einflüsse auf das
 (Über-)Leben der Gruppe haben, erlebt der Spieler das Spiel hautnah mit und wird
-in dessen Bann gezogen.Kurz: wer sich gern mit großen Herausforderungen, aber
+in dessen Bann gezogen. Kurz: wer sich gern mit großen Herausforderungen, aber
 auch Belohnungen konfrontiert sieht, ist hier genau richtig!
 
 Stil des Spiels
@@ -74,13 +74,15 @@ Gameplay/Mechanics
 Gameplay und Ziele
 ^^^^^^^^^^^^^^^^^^
 
-Musik und Soundeffekte sollen, ebenso wie die Grafik, minimalistisch gehalten
-sein. Es werden Sounds verwendet, die vom Spieler in Verbindung mit dem Leben in
-einer Höhle gebracht werden. Der Verzicht auf komplexe musikalische Untermalung
-verstärkt die Immersion weiterhin. Auch hier soll der Fokus auf Humor gelegt
-werden (etwaiges Grunzen der Höhlenbewohner etc.), damit das Spielgefühl nicht
-zu steif wirkt und das humoristische Potenzial des Settings ausgeschöpft wird.
-Die Effekte werden größtenteils aus frei verfügbaren Soundbibliotheken bezogen.
+Das Spiel ist rundenbasiert, wobei eine Runde im Spiel mehrere Wochen (Ingame-
+Zeit) darstellt. Zwischen zwei Runden wählt der Spieler Aktionen aus die während
+der nächsten Zeiteinheit ausgeführt werden. Ist der Spieler mit seiner Auswahl
+zufrieden betätigt er den ‘Go’-Button, der die nächste Runde startet und
+sämtliche ausgewählte Aktionen ausführt. Welche und wieviele Aktionen während
+einer Runde ausgewählt werden können, ist dabei abhängig von den zur Verfügung
+stehenden Ressourcen. Wenn es dem Spieler innerhalb einer vorher festgelegten
+Anzahl Runden gelingt, die neolithische Revolution zu erreichen, hat er das
+Spiel erfolgreich abgeschlossen.
 
 Mechanics
 ^^^^^^^^^
@@ -97,7 +99,7 @@ Ressourcen
 +-----------------+------------------+---------------------+---------------------------------+
 | Höhle ausbauen  | \-               | Materialien, Runden | höhere Kapazität von Bewohnern  |
 +-----------------+------------------+---------------------+---------------------------------+
-| Denken/Forschen | \-               | Runden              | neue Boni, Abschluss des Spiels |
+| Denken/Forschen | \-               | alle, je nach Tech  | neue Boni, Abschluss des Spiels |
 +-----------------+------------------+---------------------+---------------------------------+
 | Fortpflanzen    | Höhlenbewohner   | Runden              | Vergrößerung des Stammes        |
 +-----------------+------------------+---------------------+---------------------------------+
@@ -129,30 +131,34 @@ Jagen
     Verwendet mindestens einen männlichen(!) Höhlenbewohner und **erzeugt
     Nahrung**.  Die Überlebenschance und Größe der Ausbeute skaliert mit der
     Anzahl der jagenden Höhlenmenschen und deren Fitness-Skills. Jagen dauert
-    eine Zeiteinheit und es kann genau eine Jagen-Aktion pro Runde ausgeführt
-    werden. Erfolgreiches Jagen erhöht den Fitness-Skill.
+    mindestens eine Zeiteinheit, die Gesamtzeit der Aktion kann der Spieler
+    festlegen. Erfolgreiches Jagen erhöht den Fitness-Skill. Es können beliebig
+    viel Jagen Aktionen zur gleichen Zeit aktiv sein. Es ist möglicher die
+    zwischen einer leichten und einer schwierigen Jagdroute zu wählen. Die
+    Unterschiede bestehen in der Nahrungsausbeute und einer veränderten Chance,
+    dass Höhlenmenschen beim Jagen sterben.
 
 Sammeln
     Verwendet mindestens einen weiblichen(!) Höhlenbewohner und **erzeugt
     Materialien**. Die Größe der Ausbeute skaliert mit der Anzahl der sammelnden
-    Höhlenmenschen und deren Fitness-Skills. Sammeln dauert eine Zeiteinheit und
-    es kann genau eine Sammeln-Aktion pro Runde ausgeführt werden. Erfolgreiches
-    Sammeln erhöht den Fitness-Skill.
+    Höhlenmenschen und deren Fitness-Skills. Jagen dauert mindestens eine
+    Zeiteinheit, die Gesamtzeit der Aktion kann der Spieler festlegen.
+    Erfolgreiches Sammeln erhöht den Fitness-Skill.
 
 Höhle ausbauen
    Verwendet mindestens einen Höhlenbewohner und **verbraucht Materialien**. Das
    Ausbauen der Höhle ermöglicht eine höhere Einwohnerkapazität und ist somit
    essenziell, um den Stamm zu vergrößern. Die notwendige Anzahl der Runden
-   ändert sich mit der Anzahl der bauenden Höhlenmenschen und des zu bauenden
-   Einrichtungtyps. Es kann genau eine Höhle-ausbauen-Aktion pro Runde
-   ausgeführt werden bzw. gleichzeitig aktiv sein.
+   ändert sich mit der Anzahl der bauenden Höhlenmenschen. Es kann stets nur
+   genau eine Höhle-ausbauen-Aktion aktiv sein.
 
 Denken/Forschen
    Verwendet genau einen Höhlenbewohner und **verbraucht Essen und
    Materialien**. Um das Ziel des Spiels (Ackerbau) zu erreichen, ist es
-   notwendig, zu forschen. Je nach aktuellem Forschungszweig und
-   Intelligenz/Anzahl der forschenden Höhlenmenschen variieren die verbrauchten
-   Ressourcen sowie die notwendige Zeit. Es kann nur eine gleichzeitige
+   notwendig, zu forschen. Für sämtliche Forschungen wird eine Mindest-
+   Intelligenz des forschenden Bewohners benötigt. Je nach aktuellem
+   Forschungszweig und Intelligenz des forschenden Höhlenmenschen variieren die
+   verbrauchten Ressourcen sowie die notwendige Zeit. Es kann nur eine
    Denken-Aktion gleichzeitig ausgeführt werden. (Techtree siehe Anhang 1).
    Erfolgreiches Forschen erhöht die Intelligenz der Bewohner.
 
@@ -160,14 +166,14 @@ Fortpflanzen
     Benötigt genau einen weiblichen und einen männlichen Höhlenbewohner. Erzeugt
     einen bis zwei neue Höhlenbewohner mit zufälligem Geschlecht. Der männliche
     Höhlenbewohner ist eine Runde beschäftigt, der Weibliche über mehrere Runden
-    (Schwangerschaft). Es können mehrere Fortpflanzen-Aktionen pro Runde
-    ausgeführt werden. Mit beschäftigten/bereits schwangeren weiblichen
+    (Schwangerschaft). Es können mehrere Fortpflanzen-Aktionen gleichzeitig
+    ausgeführt werden. Mit beschäftigten/bereits schwangeren, weiblichen
     Bewohnern kann sich nicht fortgepflanzt werden.
 
 Ereignisse
 ~~~~~~~~~~
 
-Nach einigen Runden besteht die Chance, ein zufälliges Ereignis auszulösen. Im
+Nach jeder Runde besteht die Chance, ein zufälliges Ereignis auszulösen. Im
 folgenden seien zwei Beispiele angeführt:
 
 Ein Mitglied eines anderen Stammes erscheint in der Höhle und bietet dem Spieler
@@ -233,7 +239,7 @@ Story
 Hintergrundgeschichte
 ^^^^^^^^^^^^^^^^^^^^^
 
-Die Geschichte von ‘I am Cave’ wird von realen historischen Begebenheiten
+Die Geschichte von ‘I am Cave’ wird von realen, historischen Begebenheiten
 getragen, welche sich durch das gesamte Spiel ziehen und dem Spieler die Urzeit
 sowie die zu dieser Zeit aktuellen Probleme und Herausforderungen näherbringen.
 
@@ -282,5 +288,3 @@ Bodens auswählen und das Szenario der Höhlenmenschen zu diesem Zeitpunkt endet
 
 Anhang
 ------
-
-
