@@ -9,33 +9,9 @@ Game Design Document
 
 --------------------
 
-1. `Game Overview`_
+.. sectnum::
 
-   1. `Konzept und Genre`_
-   2. `Plattform`_
-   3. `Zielgruppe`_
-   4. `Stil des Spiels`_
-   5. `Musik und Sounds`_
-
-2. `Gameplay/Mechanics`_
-
-   1. `Gameplay und Ziele`_
-   2. `Mechanics`_
-
-      1. `Ressourcen`_
-      2. `Spieleraktionen`_
-      3. `Ereignisse`_
-      4. `Interface und Steuerung`_
-      5. `Konflikte und Hindernisse`_
-
-   3. `Optionen und Speichermöglichkeiten`_
-
-3. `Story`_
-
-   1. `Hintergrundgeschichte`_
-   2. `Spielbegleitende Geschichte`_
-
-4. `Anhang`_
+.. contents:: Table of Contents
 
 --------------------
 
