@@ -1,0 +1,39 @@
+language: cpp
+compiler: gcc
+os: linux
+dist: trusty
+sudo: required
+
+notifications:
+    email: false
+
+
+install:
+    - if [ "$CXX" = "g++" ]; then export CXX="g++-6" CC="gcc-6"; fi
+
+before_script:
+    - wget www.sfml-dev.org/files/SFML-2.4.2-linux-gcc-64-bit.tar.gz -O /tmp/sfml.tar.gz
+    - tar -xvf /tmp/sfml.tar.gz
+    - sudo cp -r SFML-2.4.2/* /usr/
+
+script:
+    - make
+
+
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - gcc-6
+            - g++-6
+            - libpthread-stubs0-dev
+            - libgl1-mesa-dev
+            - libx11-dev
+            - libxrandr-dev
+            - libudev-dev
+            - libfreetype6-dev
+            - libglew1.5-dev
+            - libjpeg8-dev
+            - libopenal-dev
+            - libsndfile1-dev
