@@ -2,8 +2,8 @@
 
 VerticalButtonList::VerticalButtonList(const TransformedVector<>& size,
                                        const TransformedVector<>& newPosition,
-                                       std::string texPath, bool newReverse)
-                                       : Rectangle(size, newPosition, texPath){
+                                       std::string texturePath, bool newReverse)
+                                       : Rectangle(size, newPosition, texturePath){
     reverse = newReverse;
 }
 

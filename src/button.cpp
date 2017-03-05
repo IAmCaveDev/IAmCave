@@ -2,35 +2,35 @@
 
 Button::Button(const TransformedVector<>& size,
                const TransformedVector<>& newPosition,
-               std::string texPath, std::function<void()> newCallback,
+               std::string texturePath, std::function<void()> newCallback,
                std::function<void()> newAltCallback)
-               : Textbox(size, newPosition, texPath){
-    init(texPath, newCallback, newAltCallback);
+               : Textbox(size, newPosition, texturePath){
+    init(texturePath, newCallback, newAltCallback);
 }
 
 Button::Button(const TransformedVector<>& size,
                const TransformedVector<>& newPosition,
-               std::string texPath, std::function<void()> newCallback,
+               std::string texturePath, std::function<void()> newCallback,
                std::function<void()> newAltCallback,
                std::string newText, int padding, int newTextSize,
                sf::Color newTextColor, sf::Text::Style newTextStyle)
-               : Textbox(size, newPosition, texPath, newText, padding,
+               : Textbox(size, newPosition, texturePath, newText, padding,
                          newTextSize, newTextColor, newTextStyle){
-    init(texPath, newCallback, newAltCallback);
+    init(texturePath, newCallback, newAltCallback);
 }
 
-void Button::init(std::string texPath, std::function<void()> newCallback,
+void Button::init(std::string texturePath, std::function<void()> newCallback,
                   std::function<void()> newAltCallback){
-    size_t dotPos = texPath.find(".");
-    std::string hiTexPath = texPath.substr(0, dotPos) + "-h"
-                            + texPath.substr(dotPos);
-    std::string diTexPath = texPath.substr(0, dotPos) + "-d"
-                            + texPath.substr(dotPos);
+    size_t dotPos = texturePath.find(".");
+    std::string hitexturePath = texturePath.substr(0, dotPos) + "-h"
+                            + texturePath.substr(dotPos);
+    std::string ditexturePath = texturePath.substr(0, dotPos) + "-d"
+                            + texturePath.substr(dotPos);
 
-    if(!highlightedTex.loadFromFile(hiTexPath)){
+    if(!highlightedTex.loadFromFile(hitexturePath)){
         highlightedTex = tex;
     }
-    if(!disabledTex.loadFromFile(diTexPath)){
+    if(!disabledTex.loadFromFile(ditexturePath)){
         disabledTex = tex;
     }
 

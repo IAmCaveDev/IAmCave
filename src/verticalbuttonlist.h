@@ -24,7 +24,7 @@ private:
 public:
     VerticalButtonList(const TransformedVector<>& size,
                        const TransformedVector<>& newPosition,
-                       std::string texPath, bool newReverse = false);
+                       std::string texturePath, bool newReverse = false);
 
     ~VerticalButtonList();
 

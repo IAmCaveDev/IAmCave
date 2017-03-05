@@ -5,45 +5,8 @@
 
 short Caveman::counter = 0;
 
-std::vector<std::string> femaleNames = {
-    "Hillary",
-    "Liz",
-    "Gina",
-    "Chelsea",
-    "Luna",
-    "Giny",
-    "Selina",
-    "Lillian",
-    "Harleen"
-};
-
-std::vector<std::string> maleNames = {
-    "Donald",
-    "Bernie",
-    "Harambe",
-    "Gabe",
-    "Matthew",
-    "Harry",
-    "Ron",
-    "Oswald",
-    "Bruce"
-};
-
-std::vector<std::string> femaleTextures = {
-    "assets/cavewoman.png",
-    "assets/cavewoman2.png",
-    "assets/cavewoman3.png"
-};
-
-std::vector<std::string> maleTextures = {
-    "assets/caveman.png",
-    "assets/caveman1.png",
-    "assets/caveman2.png"
-};
-
-
 //Constructor
-Caveman::Caveman(int maxAge, int minAge) : id(counter){
+Female::Female() : id(counter) {
     std::random_device rd;
     std::mt19937 rng(rd());
     std::uniform_int_distribution<int> unid(minAge, maxAge);
@@ -80,12 +43,12 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     std::uniform_int_distribution<int> femaleT(0, femaleTextures.size() - 1);
 
     if (male) {
-        texPath = maleTextures[maleT(rng)];
+        texturePath = maleTextures[maleT(rng)];
     }else{
-        texPath = femaleTextures[femaleT(rng)];
+        texturePath = femaleTextures[femaleT(rng)];
     }
 
-    button = new Button({100, 200}, {0, 0}, texPath,
+    button = new Button({100, 200}, {0, 0}, texturePath,
         nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
 
     infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "TEST");

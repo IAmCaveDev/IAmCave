@@ -13,85 +13,107 @@
 class Caveman {
 private:
 
-	// UNIT STATS
-	short fitness;				//Hunting ability
-    short intelligence;			//Research ability
-	bool male;					//Gender variable; 1 for male, 0 for female
-	const short id;				//Unique Unit ID
-	unsigned short age;			//Current Age
-	short preg_counter = -1;	//Pregnancy counter
-	bool isPregnant = false;	//Pregnancy active or not
-	std::string name;			//Unit name string
-	
-
+    /** VARIABLES */
+    short fitness;
+    short intelligence;
+	virtual const bool male;
+	const short id;
+	unsigned short age;
+	short preg_counter = -1;
+	bool isPregnant = false;
+	std::string name;
 	EActions currentAction;
 	static short counter;
-
-    std::string texPath;	
+    std::string texturePath;
     Button* button;			
-
     bool infoboxVisible = false;	
     Textbox* infobox;				
 
+    /** CONSTRUCTOR */
+    explicit Caveman() = 0;
 
-public:
-
-	//Constructor
-    explicit Caveman(int maxAge, int minAge);
-
-	//Destructor
+	/** DESTRUCTOR */
     ~Caveman();
 
-
-//Getters
-public:
-
-	short getId();
-
-    std::string getName();
-
-	short getFitness();
-
-	unsigned short getAge();
-
-	short getIntelligence();
-
-	Button& getButton();
-
-	Textbox& getInfobox();
-
-	EActions getCurrentAction();
-
-	bool isMale();
-
-	bool isPregnant();
-
-
-//Setters
-public:
-
-	void setFitness(short newFit);
-
-	void setInfoboxVisible(bool visible);
-
-	void setPosition(TransformedVector<> newPosition);
-
-	void setCurrentAction(EActions newOccupation);
-
-	void setPregnancy(bool newPregnant);
-
-//Working Functions
-public:
-
+    /** FUNCTIONS */
     void onResize();
-
     void display(sf::RenderWindow& win) const;
 
+    /** GETTERS */
+    short getId();
+    std::string getName();
+    short getFitness();
+    unsigned short getAge();
+    short getIntelligence();
+    Button& getButton();
+    Textbox& getInfobox();
+    EActions getCurrentAction();
+    bool isMale();
+    bool isPregnant();
 
-public:
+    /** SETTERS */
+    void setFitness(short newFit);
+    void setInfoboxVisible(bool visible);
+    void setPosition(TransformedVector<> newPosition);
+    void setCurrentAction(EActions newOccupation);
+    void setPregnancy(bool newPregnant);
 
 	friend Action;
 
+};
+
+
+class Female : public Caveman {
+private:
+    bool male = false;
+
+    std::vector<std::string> textures = {
+        "assets/cavewoman.png",
+        "assets/cavewoman2.png",
+        "assets/cavewoman3.png"
+    };
+    std::vector<std::string> names = {
+        "Hillary",
+        "Liz",
+        "Gina",
+        "Chelsea",
+        "Luna",
+        "Giny",
+        "Selina",
+        "Lillian",
+        "Harleen"
+    };
+
+public:
+    /** CONSTRUCTOR */
+    Female();
+};
+
+
+class Male : Caveman {
+private:
+    bool male = true;
+
+    std::vector<std::string> textures = {
+        "assets/caveman.png",
+        "assets/caveman1.png",
+        "assets/caveman2.png"
+    };
+    std::vector<std::string> names = {
+        "Donald",
+        "Bernie",
+        "Harambe",
+        "Gabe",
+        "Matthew",
+        "Harry",
+        "Ron",
+        "Oswald",
+        "Bruce"
+    };
+
+public:
+    /** CONSTRUCTOR */
+    Male();
 };
 
 #endif
