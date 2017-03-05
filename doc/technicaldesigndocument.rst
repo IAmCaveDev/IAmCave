@@ -517,6 +517,29 @@ Höhle
 
 Ressourcen
 ~~~~~~~~~~~
+.. image:: img/meat-l.png
+   :align: center
+   :alt: Meat large
+
+.. image:: img/meat-m.png
+   :align: center
+   :alt: Meat medium
+
+.. image:: img/meat-s.png
+   :align: center
+   :alt: Meat small
+
+.. image:: img/stones-l.png
+   :align: center
+   :alt: Stones large
+
+.. image:: img/stones-m.png
+   :align: center
+   :alt: Stones medium
+
+.. image:: img/stones-s.png
+   :align: center
+   :alt: Stones small
 
 Feuer
 ~~~~~
