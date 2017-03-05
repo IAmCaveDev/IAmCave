@@ -260,9 +260,9 @@ Ein :cpp:`nullptr` kann übergeben werden um keinen Callback zu verwenden.
 VerticalButtonList
 ^^^^^^^^^^^^^^^^^^
 
-Hat mehrere Buttons die nach einer bestimmten priority Variable sortiert sind.
-VerticalButtonList wird benutzt um die Liste an laufenden Aktionen im Management
-State darzustellen.
+Erbt von Rectangle; Hat mehrere Buttons die nach einer bestimmten priority
+Variable sortiert sind.  VerticalButtonList wird benutzt um die Liste an
+laufenden Aktionen im Management State darzustellen.
 
 .. figure:: img/gui-layer.png
     :align: center
