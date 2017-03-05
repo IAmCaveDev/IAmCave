@@ -310,13 +310,31 @@ auf. Ruft update() Funktion des SaveContainers auf.
     :alt: Control Layer
 
     Darstellung der Control Schicht
+	
+CavemanFactory
+^^^^^^^^^^^^^^
+
+Factory Klasse zur Erstellung von den unterschiedlichen Caveman Typen. 
+createCaveman() Funktion ruft entsprechende Konstruktor auf.
 
 Caveman
 ^^^^^^^
 
-Enthält alle Werte eines Höhlenbewohners (ID, Name, Fitness, Intelligenz,
+Abstrakte Klasse; Enthält alle Werte eines Höhlenbewohners (ID, Name, Fitness, Intelligenz,
 Geschlecht, Status) sowie einen Button um ihm Aktionen zuzuteilen und seine
 Infobox aufzurufen.
+
+Male
+^^^^
+
+Erbt von Caveman; enthält alle spezialisierten Werte eines männlichen Höhlenbewohners.
+
+Female
+^^^^^^
+
+Erbt von Caveman; enthält alle spezialisierten Werte eines weiblichen Höhlenbewohners sowie
+setPregnancy().
+
 
 ActionFactory
 ^^^^^^^^^^^^^
