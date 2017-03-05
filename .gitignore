@@ -254,6 +254,3 @@ paket-files/
 *.vcxproj
 *.vcxproj.filters
 *.dll
-
-# Makefiles
-[Mm]akefile
