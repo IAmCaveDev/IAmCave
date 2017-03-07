@@ -7,7 +7,8 @@
 #include "transformedvector.h"
 #include "buttonfunctions.h"
 
-Management::Management(std::vector<Caveman*>& newTribe) : GameState(newTribe) {
+Management::Management(Game& gameRef) : GameState(gameRef) {
+    type = EGamestates::management;
 
     rectangles = {
         new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
@@ -28,8 +29,9 @@ Management::Management(std::vector<Caveman*>& newTribe) : GameState(newTribe) {
      * Any other way to set the current gamestate of game?
      */
     buttons = {
-        new Button({200, 50}, {-400, -150}, "assets/go.png",
-                std::bind(&Game::setCurrentGameState, std::ref(gameRef), EGamestates::roundEnd)),
+        new Button({200, 50}, {-400, -150}, "assets/go.png", [&](){
+                    nextState = EGamestates::roundEnd;
+                }),
         new Button({200, 50}, {200, 100}, "assets/hunt.png",
                 std::bind(&ButtonFunctions::Managing::Hunting::hunt, std::ref(*this))),
         new Button({200, 50}, {200, 200}, "assets/think.png", nullptr),
@@ -67,7 +69,7 @@ void Management::deleteCurrentAction() {
 
 std::vector<Caveman*> Management::getIdlingTribe() {
     std::vector<Caveman*> idlingTribe;
-    for (auto& it : tribe) {
+    for (auto& it : game.getTribe()) {
         if (it->getCurrentAction() == EActions::Idle) {
             idlingTribe.push_back(it);
         }
@@ -90,7 +92,7 @@ void Management::display(sf::RenderWindow& win) {
 
     actionDisplay->display(win);
 
-    for (auto const& it : tribe) {
+    for (auto const& it : game.getTribe()) {
         it->display(win);
     }
 }

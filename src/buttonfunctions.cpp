@@ -59,14 +59,8 @@ namespace ButtonFunctions {
     }
 
     namespace MainMenu {
-        void start(Game& game){
-            game.setCurrentGameState(EGamestates::management);
-        }
         void options(){
 
-        }
-        void quit(Game& game){
-            game.getWindow().close();
         }
     }
 

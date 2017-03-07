@@ -3,17 +3,9 @@
 
 #include <vector>
 
-#include <SFML/Graphics.hpp>
-
 #include "caveman.h"
 #include "action.h"
 #include "caveman.h"
-
-enum EGamestates{
-    mainMenu,
-    management,
-    roundEnd
-};
 
 struct Resources {
     float food;
@@ -23,8 +15,6 @@ struct Resources {
 
 class Game {
 private:
-    sf::RenderWindow& window;
-
     unsigned int roundNumber = 0;
 
     std::vector<Caveman*> tribe;
@@ -33,10 +23,7 @@ private:
     Resources resources;
 
 public:
-    Game() = delete;
-    explicit Game(sf::RenderWindow& windowRef);
-
-    void display();
+    Game();
 
     void addCaveman(int maxAge = 50, int minAge = 0);
     void removeCaveman(short id);
@@ -52,8 +39,6 @@ public:
 
     unsigned int getRoundNumber();
     void increaseRoundNumber(unsigned int n = 1);
-
-    sf::RenderWindow& getWindow();
 };
 
 #endif

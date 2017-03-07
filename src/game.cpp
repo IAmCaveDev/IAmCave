@@ -1,11 +1,6 @@
 #include "game.h"
 
-Game::Game(sf::RenderWindow& windowRef) : window(windowRef),
-                                          management(*this),
-                                          roundEnd(*this),
-                                          mainMenu(*this){
-    setCurrentGameState(EGamestates::mainMenu);
-
+Game::Game(){
     for(int i = 0; i < 5; ++i){
         addCaveman(5,5);
     }
@@ -27,10 +22,6 @@ Game::Game(sf::RenderWindow& windowRef) : window(windowRef),
     resources.cavemanCapacity = 10;
 }
 
-void Game::display(){
-    currentGameState->display(window);
-}
-
 void Game::addCaveman(int maxAge, int minAge) {
     tribe.push_back(new Caveman(maxAge, minAge));
 }
@@ -42,14 +33,14 @@ std::vector<Caveman*>& Game::getTribe() {
 void Game::addAction(Action* newaction) {
     actions.push_back(newaction);
     switch (newaction->getType()) {
-        case (EActions::EasyHunt):
-            management.getActionDisplay().addButton(newaction->getID(), new Button({ 200, 50 }, { 200, 300 }, "assets/hunt-icon.png", nullptr), 0);
+        case (EActions::EasyHunt): ;
+            // management.getActionDisplay().addButton(newaction->getID(), new Button({ 200, 50 }, { 200, 300 }, "assets/hunt-icon.png", nullptr), 0);
         //TODO: more cases with different icons
     }
 }
 
 void Game::removeAction(int id) {
-    management.getActionDisplay().removeButton(id);
+    // management.getActionDisplay().removeButton(id);
     //TODO:write function properly
     for (int i = 0; i < actions.size(); ++i) {
         if (actions.at(i)->getID() == id) {
@@ -69,27 +60,6 @@ void Game::addToResources(Resources amount) {
     resources.cavemanCapacity += amount.cavemanCapacity;
 }
 
-GameState& Game::getCurrentGameState(){
-    return *currentGameState;
-}
-
-void Game::setCurrentGameState(EGamestates newstate) {
-    switch (newstate) {
-        case EGamestates::mainMenu:
-            currentGameState = mainMenu;
-            break;
-        case EGamestates::management:
-            currentGameState = management;
-            break;
-       case EGamestates::roundEnd:
-            roundNumber += 1;
-            roundEnd->step(roundNumber);
-            currentGameState = roundEnd;
-            break;
-    }
-    currentGameState->onResize();
-}
-
 Resources& Game::getResources(){
     return resources;
 }
@@ -99,9 +69,5 @@ unsigned int Game::getRoundNumber(){
 }
 void Game::increaseRoundNumber(unsigned int n){
     roundNumber += n;
-}
-
-sf::RenderWindow& Game::getWindow() {
-    return window;
 }
 

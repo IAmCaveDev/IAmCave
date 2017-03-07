@@ -7,6 +7,12 @@
 #include "rectangle.h"
 #include "game.h"
 
+enum EGamestates {
+    mainMenu,
+    management,
+    roundEnd,
+    quit
+};
 
 class GameState {
 protected:
@@ -15,6 +21,7 @@ protected:
     std::vector<Rectangle*> rectangles;
     std::vector<Button*> buttons;
 
+    EGamestates type;
     EGamestates nextState;
 
 public:
@@ -28,6 +35,8 @@ public:
     std::vector<Rectangle*>& getRectangles();
 
     virtual void display(sf::RenderWindow& win) = 0;
+
+    EGamestates getType();
 
     EGamestates getNextState();
     void setNextState(EGamestates newNextState);

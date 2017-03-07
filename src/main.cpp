@@ -1,4 +1,4 @@
-#include "game.h"
+#include "gamemanager.h"
 #include "transformedvector.h"
 #include "textbox.h"
 
@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
         return 1;
     }
 
-    Game game(window);
+    GameManager gameManager("", window);
 
     while(window.isOpen()){
         sf::Event event;
@@ -31,7 +31,7 @@ int main(int argc, char *argv[]){
                 if(event.mouseButton.button == sf::Mouse::Left ||
                    event.mouseButton.button == sf::Mouse::Right){
                     std::vector<Button*> buttons;
-                    buttons = game.getCurrentGameState().getButtons();
+                    buttons = gameManager.getCurrentGameState().getButtons();
 
                     sf::Vector2i pos = sf::Mouse::getPosition(window);
                     pos = sf::Vector2i(window.mapPixelToCoords(pos));
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
                     }
 
                     std::vector<Caveman*> cavemen;
-                    cavemen = game.getTribe();
+                    cavemen = gameManager.getGame().getTribe();
 
                     for(auto& it : cavemen){
                         if(event.mouseButton.button == sf::Mouse::Left){
@@ -60,7 +60,7 @@ int main(int argc, char *argv[]){
                 if(event.mouseButton.button == sf::Mouse::Left ||
                    event.mouseButton.button == sf::Mouse::Right){
                     std::vector<Button*> buttons;
-                    buttons = game.getCurrentGameState().getButtons();
+                    buttons = gameManager.getCurrentGameState().getButtons();
 
                     sf::Vector2i pos = sf::Mouse::getPosition(window);
                     pos = sf::Vector2i(window.mapPixelToCoords(pos));
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]){
                     }
 
                     std::vector<Caveman*> cavemen;
-                    cavemen = game.getTribe();
+                    cavemen = gameManager.getGame().getTribe();
 
                     for(auto& it : cavemen){
                         if(event.mouseButton.button == sf::Mouse::Left){
@@ -106,15 +106,17 @@ int main(int argc, char *argv[]){
                 }
                 window.setView(view);
 
-                game.getCurrentGameState().onResize();
+                gameManager.getCurrentGameState().onResize();
             }
         }
 
         window.clear(sf::Color::Black);
 
-        game.display();
+        gameManager.display();
 
         window.display();
+
+        gameManager.update();
     }
 
     return 0;

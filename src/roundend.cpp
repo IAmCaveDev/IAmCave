@@ -5,6 +5,8 @@
 
 
 RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
+    type = EGamestates::roundEnd;
+
     std::random_device rd;
     rng = std::mt19937(rd());
 
@@ -16,8 +18,7 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     };
 
     buttons = {
-        new Button({200, 50}, {-400, -150}, "assets/go.png",
-                std::bind(&Game::setCurrentGameState, std::ref(gameRef), EGamestates::management))
+        new Button({200, 50}, {-400, -150}, "assets/go.png", 
     };
 }
 

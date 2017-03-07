@@ -35,6 +35,10 @@ std::vector<Rectangle*>& GameState::getRectangles() {
     return rectangles;
 }
 
+EGamestates GameState::getType(){
+    return type;
+}
+
 EGamestates GameState::getNextState(){
     return nextState;
 }
