@@ -2,7 +2,7 @@
 
 int Action::counter = 0;
 
-Action::Action(short time, Game& gameRef) : totalDuration(time), game(gameRef), id(counter) {
+Action::Action(short time) : totalDuration(time), id(counter) {
     currentDuration = 0;
     counter += 1;
 }

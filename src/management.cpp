@@ -15,6 +15,8 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
         new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
     };
 
+    actionFactory = ActionFactory();
+
     actionDisplay = new VerticalButtonList({50, 1080}, {-50, 0}, "");
 
     actionDisplay->addButton(0, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 1);
@@ -45,9 +47,9 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
 void Management::setCurrentAction(EActions newaction, short duration) {
     switch (newaction) {
         case EActions::EasyHunt:
-            currentAction = new Hunt(newaction, duration, game);
+            currentAction = std::move(actionFactory.createEasyHuntingAction(duration));
         case EActions::HardHunt:
-            currentAction = new Hunt(newaction, duration, game);
+            currentAction = std::move(actionFactory.createHardHuntingAction(duration));
         // add more Actions here
     }
 

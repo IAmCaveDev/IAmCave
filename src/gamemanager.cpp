@@ -22,16 +22,16 @@ void GameManager::update() {
 
     if(nextState != currentState){
         if (nextState == EGamestates::mainMenu) {
-            currentGameState->setNextState(EGamestates::mainMenu);
+            currentGameState->setNextState(currentState);
             currentGameState = &mainMenu;
         } else if (nextState == EGamestates::management) {
-            currentGameState->setNextState(EGamestates::management);
+            currentGameState->setNextState(currentState);
             currentGameState = &management;
         } else if (nextState == EGamestates::roundEnd) {
-            currentGameState->setNextState(EGamestates::roundEnd);
+            currentGameState->setNextState(currentState);
             currentGameState = &roundEnd;
         } else if (nextState == EGamestates::quit) {
-
+            window.close();
         }
         currentGameState->onResize();
     }
