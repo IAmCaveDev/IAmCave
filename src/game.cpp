@@ -76,15 +76,15 @@ GameState& Game::getCurrentGameState(){
 void Game::setCurrentGameState(EGamestates newstate) {
     switch (newstate) {
         case EGamestates::mainMenu:
-            currentGameState = &mainMenu;
+            currentGameState = mainMenu;
             break;
         case EGamestates::management:
-            currentGameState = &management;
+            currentGameState = management;
             break;
        case EGamestates::roundEnd:
             roundNumber += 1;
-            roundEnd.step(roundNumber);
-            currentGameState = &roundEnd;
+            roundEnd->step(roundNumber);
+            currentGameState = roundEnd;
             break;
     }
     currentGameState->onResize();

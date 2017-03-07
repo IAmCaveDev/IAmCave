@@ -3,7 +3,7 @@
 #include "game.h"
 #include "buttonfunctions.h"
 
-MainMenu::MainMenu(sf::RenderWindow& win) {
+MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
 
     rectangles = {
         new Rectangle({1920, 1080}, {0, 0}, "assets/background.png")
@@ -15,7 +15,7 @@ MainMenu::MainMenu(sf::RenderWindow& win) {
         new Button({200, 50}, {200, 200}, "assets/options.png",
                    ButtonFunctions::MainMenu::options),
         new Button({200, 50}, {200, 300}, "assets/exit.png",
-                std::bind(&sf::RenderWindow::close, std::ref(win)))
+                std::bind(&sf::RenderWindow::close, std::ref(gameRef.getWindow())))
     };
 
 }

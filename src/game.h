@@ -7,10 +7,6 @@
 
 #include "caveman.h"
 #include "action.h"
-#include "gamestate.h"
-#include "mainmenu.h"
-#include "management.h"
-#include "roundend.h"
 #include "caveman.h"
 
 enum EGamestates{
@@ -34,11 +30,6 @@ private:
     std::vector<Caveman*> tribe;
     std::vector<Action*> actions;
 
-    GameState* currentGameState;
-    Management management;
-    RoundEnd roundEnd;
-    MainMenu mainMenu;
-
     Resources resources;
 
 public:
@@ -57,17 +48,12 @@ public:
     void addToResources(Resources amount);
     void stopResearch();
 
-    GameState& getCurrentGameState();
-    void setCurrentGameState(EGamestates newstate);
-
     Resources& getResources();
 
     unsigned int getRoundNumber();
     void increaseRoundNumber(unsigned int n = 1);
 
     sf::RenderWindow& getWindow();
-
-    friend GameState;
 };
 
 #endif

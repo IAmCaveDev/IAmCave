@@ -4,8 +4,7 @@
 #include <sstream>
 
 
-RoundEnd::RoundEnd(std::vector<Caveman*>& newTribe, Resources& newResources)
-                   : GameState(newTribe), resources(newResources) {
+RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     std::random_device rd;
     rng = std::mt19937(rd());
 
@@ -22,8 +21,8 @@ RoundEnd::RoundEnd(std::vector<Caveman*>& newTribe, Resources& newResources)
     };
 }
 
-void RoundEnd::step(unsigned int roundNumber){
-    Resources resourcesBefore = resources;
+void RoundEnd::step(){
+    Resources resourcesBefore = game.getResources();
 
     //resolve Actions
     //for (auto& it : game.getActions()) {
@@ -33,7 +32,7 @@ void RoundEnd::step(unsigned int roundNumber){
     // food
     std::normal_distribution<float> normal(0, 0.33);
 
-    for(auto& it : tribe){
+    for(auto& it : game.getTribe()){
         if((it->getCurrentAction() != EActions::EasyHunt) && (it->getCurrentAction() != EActions::HardHunt)){
             float foodConsumption = 1;
 
@@ -50,24 +49,24 @@ void RoundEnd::step(unsigned int roundNumber){
 
             foodConsumption += normal(rng);
 
-            resources.food -= foodConsumption;
+            game.getResources().food -= foodConsumption;
         }
 
     }
-    if(resources.food < 0){
-        resources.food = 0;
+    if(game.getResources().food < 0){
+        game.getResources().food = 0;
     }
 
     std::ostringstream info;
-    info << "Round " << roundNumber << "\n"
+    info << "Round " << game.getRoundNumber() << "\n"
          << "Food: " << resourcesBefore.food << " " << std::showpos
-         << resources.food - resourcesBefore.food
+         << game.getResources().food - resourcesBefore.food
          << std::noshowpos << "\n"
          << "Building Material: " << resourcesBefore.buildingMaterial << " "
-         << std::showpos << resources.buildingMaterial
+         << std::showpos << game.getResources().buildingMaterial
          - resourcesBefore.buildingMaterial << std::noshowpos << "\n"
          << "Cave Capacity: " << resourcesBefore.cavemanCapacity << " "
-         << std::showpos << resources.cavemanCapacity
+         << std::showpos << game.getResources().cavemanCapacity
          - resourcesBefore.cavemanCapacity;
 
     infoColumn->setText(info.str());

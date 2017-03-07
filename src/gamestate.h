@@ -5,18 +5,21 @@
 
 #include "button.h"
 #include "rectangle.h"
-#include "caveman.h"
+#include "game.h"
+
 
 class GameState {
 protected:
+    Game& game;
+
     std::vector<Rectangle*> rectangles;
     std::vector<Button*> buttons;
 
-    std::vector<Caveman*>& tribe;
+    EGamestates nextState;
 
 public:
-    GameState();
-    explicit GameState(std::vector<Caveman*>& newTribe);
+    GameState() = delete;
+    explicit GameState(Game& gameRef);
     ~GameState();
 
     void onResize();
@@ -25,6 +28,9 @@ public:
     std::vector<Rectangle*>& getRectangles();
 
     virtual void display(sf::RenderWindow& win) = 0;
+
+    EGamestates getNextState();
+    void setNextState(EGamestates newNextState);
 };
 
 #endif
