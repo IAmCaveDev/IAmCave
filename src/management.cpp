@@ -9,6 +9,7 @@
 
 Management::Management(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::management;
+    nextState = type;
 
     rectangles = {
         new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),

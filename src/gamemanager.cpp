@@ -5,7 +5,7 @@ GameManager::GameManager(std::string savePath, sf::RenderWindow& win)
                            mainMenu(game),
                            management(game),
                            roundEnd(game) {
-    if (savePath.compare("")) {
+    if (savePath.empty()) {
         currentGameState = &mainMenu;
     } else {
         currentGameState = &management;

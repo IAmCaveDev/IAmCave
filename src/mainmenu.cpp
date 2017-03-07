@@ -5,6 +5,7 @@
 
 MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::mainMenu;
+    nextState = type;
 
     rectangles = {
         new Rectangle({1920, 1080}, {0, 0}, "assets/background.png")

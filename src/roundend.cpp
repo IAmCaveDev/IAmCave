@@ -6,6 +6,7 @@
 
 RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::roundEnd;
+    nextState = type;
 
     std::random_device rd;
     rng = std::mt19937(rd());
