@@ -36,7 +36,7 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
         new Button({200, 50}, {200, 100}, "assets/hunt.png",
                 std::bind(&ButtonFunctions::Managing::Hunting::hunt, std::ref(*this))),
         new Button({200, 50}, {200, 200}, "assets/think.png", nullptr),
-        new Button({200, 50}, {200, 300}, "assets/fuck.png", nullptr),
+        new Button({200, 50}, {200, 300}, "assets/makelove.png", nullptr),
         new Button({200, 50}, {200, 400}, "assets/improve.png", nullptr),
     };
 
