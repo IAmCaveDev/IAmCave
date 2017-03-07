@@ -29,7 +29,7 @@ class Game {
 private:
     sf::RenderWindow& window;
 
-    unsigned int roundNumber;
+    unsigned int roundNumber = 0;
 
     std::vector<Caveman*> tribe;
     std::vector<Action*> actions;

@@ -10,7 +10,7 @@ private:
 
 public:
     MainMenu() = delete;
-    explicit MainMenu(Game& gameRef);
+    explicit MainMenu(sf::RenderWindow& win);
 
     void display(sf::RenderWindow& win);
 };

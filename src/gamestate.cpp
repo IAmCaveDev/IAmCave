@@ -2,7 +2,7 @@
 
 #include "game.h"
 
-GameState::GameState(Game& gameRef) : game(gameRef){}
+GameState::GameState(std::vector<Caveman*>& newTribe) : tribe(newTribe){}
 
 GameState::~GameState() {
     for (auto& it : buttons) {
@@ -14,7 +14,7 @@ GameState::~GameState() {
 }
 
 void GameState::onResize(){
-    for(auto& it : game.getTribe()){
+    for(auto& it : tribe){
         it->onResize();
     }
     for(auto& it : buttons){

@@ -14,11 +14,13 @@ private:
 
     Textbox* infoColumn;
 
+    Resources& resources;
+
 public:
     RoundEnd() = delete;
-    explicit RoundEnd(Game& gameRef);
+    explicit RoundEnd(std::vector<Caveman*>& newTribe, Resources& newResources);
 
-    void step();
+    void step(unsigned int roundNumber);
 
     void display(sf::RenderWindow& win);
 };

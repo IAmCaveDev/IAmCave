@@ -82,7 +82,8 @@ void Game::setCurrentGameState(EGamestates newstate) {
             currentGameState = &management;
             break;
        case EGamestates::roundEnd:
-            roundEnd.step();
+            roundNumber += 1;
+            roundEnd.step(roundNumber);
             currentGameState = &roundEnd;
             break;
     }

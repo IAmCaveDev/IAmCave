@@ -5,19 +5,18 @@
 
 #include "button.h"
 #include "rectangle.h"
-
-// cyclic dependency otherwise
-class Game;
+#include "caveman.h"
 
 class GameState {
 protected:
-    Game& game;
     std::vector<Rectangle*> rectangles;
     std::vector<Button*> buttons;
 
+    std::vector<Caveman*>& tribe;
+
 public:
-    GameState() = delete;
-    explicit GameState(Game& gameRef);
+    GameState();
+    explicit GameState(std::vector<Caveman*>& newTribe);
     ~GameState();
 
     void onResize();

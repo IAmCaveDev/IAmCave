@@ -1,4 +1,5 @@
 #include "management.h"
+
 #include "rectangle.h"
 #include "verticalbuttonlist.h"
 #include "button.h"
@@ -6,7 +7,7 @@
 #include "transformedvector.h"
 #include "buttonfunctions.h"
 
-Management::Management(Game& gameRef) : GameState(gameRef) {
+Management::Management(std::vector<Caveman*>& newTribe) : GameState(newTribe) {
 
     rectangles = {
         new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
@@ -20,6 +21,12 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     actionDisplay->addButton(3, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 2);
     actionDisplay->removeButton(3);
 
+
+    /*
+     * The go button for example needs to modify the game object which means a
+     * reference to the game needs to be passed to the constructor of Management.
+     * Any other way to set the current gamestate of game?
+     */
     buttons = {
         new Button({200, 50}, {-400, -150}, "assets/go.png",
                 std::bind(&Game::setCurrentGameState, std::ref(gameRef), EGamestates::roundEnd)),
@@ -38,7 +45,7 @@ void Management::setCurrentAction(EActions newaction, short duration) {
             currentAction = new Hunt(newaction, duration, game);
         case EActions::HardHunt:
             currentAction = new Hunt(newaction, duration, game);
-        //add more Action here
+        // add more Actions here
     }
 
 }
@@ -50,7 +57,8 @@ Action& Management::getCurrentAction() {
 void Management::pushCurrentAction() {
     game.addAction(currentAction);
     deleteCurrentAction();
-    //set currentAction in all caveman who are participating from idle to EActions::Actiontype
+    // set currentAction in all caveman who are participating from idle to
+    // EActions::Actiontype
 }
 
 void Management::deleteCurrentAction() {
@@ -59,7 +67,7 @@ void Management::deleteCurrentAction() {
 
 std::vector<Caveman*> Management::getIdlingTribe() {
     std::vector<Caveman*> idlingTribe;
-    for (auto& it : game.getTribe()) {
+    for (auto& it : tribe) {
         if (it->getCurrentAction() == EActions::Idle) {
             idlingTribe.push_back(it);
         }
@@ -82,7 +90,7 @@ void Management::display(sf::RenderWindow& win) {
 
     actionDisplay->display(win);
 
-    for (auto const& it : game.getTribe()) {
+    for (auto const& it : tribe) {
         it->display(win);
     }
 }

@@ -15,7 +15,7 @@ private:
 
 public:
     Management() = delete;
-    explicit Management(Game& gameRef);
+    explicit Management(std::vector<Caveman*>& newTribe);
 
     void setCurrentAction(EActions newaction, short duration);
     Action& getCurrentAction();
