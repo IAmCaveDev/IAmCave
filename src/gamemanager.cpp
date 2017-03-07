@@ -4,7 +4,13 @@ GameManager::GameManager(std::string savePath, sf::RenderWindow& win)
                          : window(win),
                            mainMenu(game),
                            management(game),
-                           roundEnd(game) {}
+                           roundEnd(game) {
+    if (savePath.compare("")) {
+        currentGameState = &mainMenu;
+    } else {
+        currentGameState = &management;
+    }
+}
 
 void GameManager::display(){
     currentGameState->display(window);

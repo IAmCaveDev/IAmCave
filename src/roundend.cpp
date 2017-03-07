@@ -18,7 +18,7 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     };
 
     buttons = {
-        new Button({200, 50}, {-400, -150}, "assets/go.png", 
+        new Button({200, 50}, {-400, -150}, "assets/go.png", nullptr)
     };
 }
 

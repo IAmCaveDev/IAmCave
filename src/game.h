@@ -5,7 +5,6 @@
 
 #include "caveman.h"
 #include "action.h"
-#include "caveman.h"
 
 struct Resources {
     float food;

@@ -7,7 +7,6 @@
 
 #include "action.h"
 #include "button.h"
-#include "buttonfunctions.h"
 
 class Caveman {
 private:
