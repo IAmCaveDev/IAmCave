@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <vector>
+#include <memory>
 
 #include "caveman.h"
 #include "action.h"
@@ -25,7 +26,7 @@ private:
     unsigned int roundNumber = 0;
 
     std::vector<Caveman*> tribe;
-    std::vector<Action*> actions;
+    std::vector<std::unique_ptr<Action>> actions;
 
     Resources resources;
 
@@ -51,9 +52,9 @@ public:
      */
     void removeCaveman(short id);
 
-    void addAction(Action* newaction);
+    void addAction(std::unique_ptr<Action> newAction);
     void removeAction(int id);
-    std::vector<Action*> getActions();
+    std::vector<std::unique_ptr<Action>>& getActions();
     void addToResources(Resources amount);
     void stopResearch();
 

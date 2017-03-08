@@ -60,14 +60,14 @@ Action& Management::getCurrentAction() {
 }
 
 void Management::pushCurrentAction() {
-    game.addAction(currentAction);
+    game.addAction(std::move(currentAction));
     deleteCurrentAction();
-    // set currentAction in all caveman who are participating from idle to
-    // EActions::Actiontype
+    // TODO: set currentAction in all caveman who are participating from idle
+    // to EActions::Actiontype
 }
 
 void Management::deleteCurrentAction() {
-    delete currentAction;
+    currentAction = nullptr;
 }
 
 std::vector<Caveman*> Management::getIdlingTribe() {

@@ -30,27 +30,22 @@ std::vector<Caveman*>& Game::getTribe() {
     return tribe;
 }
 
-void Game::addAction(Action* newaction) {
-    actions.push_back(newaction);
-    switch (newaction->getType()) {
+void Game::addAction(std::unique_ptr<Action> newAction) {
+    actions.push_back(std::move(newAction));
+    switch (newAction->getType()) {
         case (EActions::EasyHunt): ;
-            // management.getActionDisplay().addButton(newaction->getID(), new Button({ 200, 50 }, { 200, 300 }, "assets/hunt-icon.png", nullptr), 0);
-        //TODO: more cases with different icons
+        //TODO: handle actionqueue
     }
 }
 
 void Game::removeAction(int id) {
-    // management.getActionDisplay().removeButton(id);
     //TODO:write function properly
-    for (int i = 0; i < actions.size(); ++i) {
-        if (actions.at(i)->getID() == id) {
-            delete actions.at(i);
-            actions.erase(actions.begin() + i);
-        }
-    }
+    //remove icon from actionDisplay
+    //delete action from actions vector
+    //delete unique_ptr action object
 }
 
-std::vector<Action*> Game::getActions() {
+std::vector<std::unique_ptr<Action>>& Game::getActions() {
     return actions;
 }
 
