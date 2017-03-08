@@ -82,7 +82,10 @@ sämtliche ausgewählte Aktionen ausführt. Welche und wieviele Aktionen währen
 einer Runde ausgewählt werden können, ist dabei abhängig von den zur Verfügung
 stehenden Ressourcen. Wenn es dem Spieler innerhalb einer vorher festgelegten
 Anzahl Runden gelingt, die neolithische Revolution zu erreichen, hat er das
-Spiel erfolgreich abgeschlossen.
+Spiel erfolgreich abgeschlossen. Dieser Zeitrahmen ist durch die permanente 
+Anwesenheit der Höhlenbewohner in einem gleichbleibenden Jagdgrund und die dadurch 
+entstehende Ressourcenknappheit zu begründen.
+
 
 Mechanics
 ^^^^^^^^^
