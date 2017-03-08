@@ -30,6 +30,7 @@ void GameManager::update() {
         } else if (nextState == EGamestates::roundEnd) {
             currentGameState->setNextState(currentState);
             currentGameState = &roundEnd;
+            roundEnd.step();
         } else if (nextState == EGamestates::quit) {
             window.close();
         }

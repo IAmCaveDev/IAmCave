@@ -31,11 +31,11 @@ std::vector<Caveman*>& Game::getTribe() {
 }
 
 void Game::addAction(std::unique_ptr<Action> newAction) {
-    actions.push_back(std::move(newAction));
     switch (newAction->getType()) {
-        case (EActions::EasyHunt): ;
-        //TODO: handle actionqueue
+        case (EActions::EasyHunt) : ;
+            //TODO: handle actionqueue
     }
+    actions.push_back(std::move(newAction));
 }
 
 void Game::removeAction(int id) {

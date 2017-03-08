@@ -48,8 +48,10 @@ void Management::setCurrentAction(EActions newaction, short duration) {
     switch (newaction) {
         case EActions::EasyHunt:
             currentAction = std::move(actionFactory.createEasyHuntingAction(duration));
+            break;
         case EActions::HardHunt:
             currentAction = std::move(actionFactory.createHardHuntingAction(duration));
+            break;
         // add more Actions here
     }
 
@@ -61,7 +63,7 @@ Action& Management::getCurrentAction() {
 
 void Management::pushCurrentAction() {
     game.addAction(std::move(currentAction));
-    deleteCurrentAction();
+    //deleteCurrentAction();
     // TODO: set currentAction in all caveman who are participating from idle
     // to EActions::Actiontype
 }
