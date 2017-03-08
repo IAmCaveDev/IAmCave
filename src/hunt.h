@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include "action.h"
-#include "game.h"
 
 class Hunt : public Action {
 
@@ -15,8 +14,12 @@ private:
 
 	//Constructor
 public:
+<<<<<<< HEAD
 	Hunt(bool easy, short duration, Game& gameRef);
 
+=======
+    Hunt(EActions newtype, short duration);
+>>>>>>> refs/remotes/origin/master
 
 	//Working Functions
 public:

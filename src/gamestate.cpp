@@ -2,7 +2,7 @@
 
 #include "game.h"
 
-GameState::GameState(Game& gameRef) : game(gameRef){}
+GameState::GameState(Game& gameRef) : game(gameRef) {}
 
 GameState::~GameState() {
     for (auto& it : buttons) {
@@ -33,4 +33,15 @@ std::vector<Button*>& GameState::getButtons(){
 
 std::vector<Rectangle*>& GameState::getRectangles() {
     return rectangles;
+}
+
+EGamestates GameState::getType(){
+    return type;
+}
+
+EGamestates GameState::getNextState(){
+    return nextState;
+}
+void GameState::setNextState(EGamestates newNextState){
+    nextState = newNextState;
 }

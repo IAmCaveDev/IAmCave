@@ -5,13 +5,23 @@
 
 #include "gamestate.h"
 
+/**
+ * The main menu of the game.
+ */
 class MainMenu : public GameState {
 private:
 
 public:
     MainMenu() = delete;
+    /**
+     * Constructs a main menu with several menu options.
+     */
     explicit MainMenu(Game& gameRef);
 
+    /**
+     * Displays the menu background and Buttons.
+     * @param win The window to draw on.
+     */
     void display(sf::RenderWindow& win);
 };
 
