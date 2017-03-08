@@ -1,4 +1,5 @@
 #include "management.h"
+
 #include "rectangle.h"
 #include "verticalbuttonlist.h"
 #include "button.h"
@@ -7,10 +8,14 @@
 #include "buttonfunctions.h"
 
 Management::Management(Game& gameRef) : GameState(gameRef) {
+    type = EGamestates::management;
+    nextState = type;
 
     rectangles = {
         new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
     };
+
+    actionFactory = ActionFactory();
 
     actionDisplay = new VerticalButtonList({50, 1080}, {-50, 0}, "");
 
@@ -21,12 +26,13 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     actionDisplay->removeButton(3);
 
     buttons = {
-        new Button({200, 50}, {-400, -150}, "assets/go.png",
-                std::bind(&Game::setCurrentGameState, std::ref(gameRef), EGamestates::roundEnd)),
+        new Button({200, 50}, {-400, -150}, "assets/go.png", [&](){
+                    nextState = EGamestates::roundEnd;
+                }),
         new Button({200, 50}, {200, 100}, "assets/hunt.png",
                 std::bind(&ButtonFunctions::Managing::Hunting::hunt, std::ref(*this))),
         new Button({200, 50}, {200, 200}, "assets/think.png", nullptr),
-        new Button({200, 50}, {200, 300}, "assets/fuck.png", nullptr),
+        new Button({200, 50}, {200, 300}, "assets/makelove.png", nullptr),
         new Button({200, 50}, {200, 400}, "assets/improve.png", nullptr),
     };
 
@@ -35,10 +41,12 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
 void Management::setCurrentAction(EActions newaction, short duration) {
     switch (newaction) {
         case EActions::EasyHunt:
-            currentAction = new Hunt(true, duration, game);
+            currentAction = std::move(actionFactory.createEasyHuntingAction(duration));
+            break;
         case EActions::HardHunt:
-            currentAction = new Hunt(false, duration, game);
-        //add more Action here
+            currentAction = std::move(actionFactory.createHardHuntingAction(duration));
+            break;
+        // add more Actions here
     }
 
 }
@@ -48,13 +56,14 @@ Action& Management::getCurrentAction() {
 }
 
 void Management::pushCurrentAction() {
-    game.addActiontoQueue(currentAction);
-    deleteCurrentAction();
-    //set currentAction in all caveman who are participating from idle to EActions::Actiontype
+    game.addAction(std::move(currentAction));
+    //deleteCurrentAction();
+    // TODO: set currentAction in all caveman who are participating from idle
+    // to EActions::Actiontype
 }
 
 void Management::deleteCurrentAction() {
-    delete currentAction;
+    currentAction = nullptr;
 }
 
 std::vector<Caveman*> Management::getIdlingTribe() {
@@ -65,6 +74,10 @@ std::vector<Caveman*> Management::getIdlingTribe() {
         }
     }
     return idlingTribe;
+}
+
+VerticalButtonList& Management::getActionDisplay() {
+    return *actionDisplay;
 }
 
 void Management::display(sf::RenderWindow& win) {

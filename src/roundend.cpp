@@ -5,6 +5,9 @@
 
 
 RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
+    type = EGamestates::roundEnd;
+    nextState = type;
+
     std::random_device rd;
     rng = std::mt19937(rd());
 
@@ -16,21 +19,24 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     };
 
     buttons = {
-        new Button({200, 50}, {-400, -150}, "assets/go.png",
-                std::bind(&Game::setCurrentGameState, std::ref(gameRef), EGamestates::management))
+        new Button({200, 50}, {-400, -150}, "assets/go.png", [&]() {
+        nextState = EGamestates::management; })
     };
 }
 
 void RoundEnd::step(){
-    game.increaseRoundNumber();
-
     Resources resourcesBefore = game.getResources();
+
+    //resolve Actions
+    //for (auto& it : game.getActions()) {
+    //   it->resolve();
+    //}
 
     // food
     std::normal_distribution<float> normal(0, 0.33);
 
     for(auto& it : game.getTribe()){
-        if(it->getCurrentAction() != (EActions::EasyHunt || EActions::HardHunt)){
+        if((it->getCurrentAction() != EActions::EasyHunt) && (it->getCurrentAction() != EActions::HardHunt)){
             float foodConsumption = 1;
 
             if(it->getAge() > MIN_ADULT_AGE){

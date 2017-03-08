@@ -59,20 +59,14 @@ namespace ButtonFunctions {
     }
 
     namespace MainMenu {
-        void start(Game& game){
-            game.setCurrentGameState(EGamestates::management);
-        }
         void options(){
 
-        }
-        void quit(Game& game){
-            game.getWindow().close();
         }
     }
 
     namespace Tribe {
         void addAsActor(Management& stateRef, Caveman& caveman) {
-            stateRef.getCurrentAction().addActor(&caveman);
+           stateRef.getCurrentAction().addActor(&caveman);
         }
         void displayInfo(Caveman& caveman) {
             std::ostringstream oss;
