@@ -25,12 +25,6 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     actionDisplay->addButton(3, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 2);
     actionDisplay->removeButton(3);
 
-
-    /*
-     * The go button for example needs to modify the game object which means a
-     * reference to the game needs to be passed to the constructor of Management.
-     * Any other way to set the current gamestate of game?
-     */
     buttons = {
         new Button({200, 50}, {-400, -150}, "assets/go.png", [&](){
                     nextState = EGamestates::roundEnd;
