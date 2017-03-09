@@ -11,7 +11,6 @@ std::vector<std::string> names = {
     "Lillian",
     "Harleen"
 };
-
 std::vector<std::string> textures = {
     "assets/cavewoman.png",
     "assets/cavewoman2.png",
@@ -32,15 +31,24 @@ Female::Female(int maxAge, int minAge) : Caveman(){
     texturePath = textures[T(rng)];
     fitness = stats(rng);
     intelligence = stats(rng);
-
     button = new Button({ 100, 200 }, { 0, 0 }, texturePath,
         nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
-
     infobox = new Textbox({ 200, 200 }, { 450, 400 }, "assets/info.png", "TEST");
-
+    pregnant = false;
     counter += 1;
 }
 
+bool Female::isPregnant() {
+    return pregnant;
+}
+
 void Female::setPregnancy(bool newPregnant) {
-    //TODO
+
+    if (pregnant)
+        return;
+
+    pregnant = newPregnant;
+
+    /** Dynamic pregnancy times */
+    preg_counter = std::rand() % 2 + 8;
 }

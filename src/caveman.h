@@ -21,8 +21,6 @@ protected:
     short intelligence;
     bool male;
     unsigned short age;
-    short preg_counter = -1;
-    bool isPregnant = false;
     std::string name;
     EActions currentAction;
     static short counter;
@@ -32,11 +30,10 @@ protected:
     Textbox* infobox;
 
 public:
+    friend Action;
+
     explicit Caveman();
     ~Caveman();
-
-    void onResize();
-    void display(sf::RenderWindow& win) const;
 
     short getId();
     std::string getName();
@@ -47,7 +44,6 @@ public:
     Textbox& getInfobox();
     EActions getCurrentAction();
     bool isMale();
-    bool isPregnant();
 
     void setFitness(short newFit);
     void setInfoboxVisible(bool visible);
@@ -55,7 +51,8 @@ public:
     void setCurrentAction(EActions newOccupation);
     void setPregnancy(bool newPregnant);
 
-	friend Action;
+    void onResize();
+    void display(sf::RenderWindow& win) const;
 
 };
 

@@ -9,9 +9,9 @@ std::vector<std::string> names = {
     "Harry",
     "Ron",
     "Oswald",
-    "Bruce"
+    "Bruce",
+    "Wilhelm"
 };
-
 std::vector<std::string> textures = {
     "assets/caveman.png",
     "assets/caveman1.png",
