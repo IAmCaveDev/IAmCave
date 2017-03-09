@@ -4,41 +4,40 @@
 #define MIN_ADULT_AGE 3
 
 #include <string>
+#include <random>
+#include <vector>
 
+#include "buttonfunctions.h"
 #include "action.h"
 #include "button.h"
 
 
 class Caveman {
 private:
+    const short id;
 
-    /** VARIABLES */
+protected:
     short fitness;
     short intelligence;
-	virtual const bool male;
-	const short id;
-	unsigned short age;
-	short preg_counter = -1;
-	bool isPregnant = false;
-	std::string name;
-	EActions currentAction;
-	static short counter;
+    bool male;
+    unsigned short age;
+    short preg_counter = -1;
+    bool isPregnant = false;
+    std::string name;
+    EActions currentAction;
+    static short counter;
     std::string texturePath;
-    Button* button;			
-    bool infoboxVisible = false;	
-    Textbox* infobox;				
+    Button* button;
+    bool infoboxVisible = false;
+    Textbox* infobox;
 
-    /** CONSTRUCTOR */
-    explicit Caveman() = 0;
-
-	/** DESTRUCTOR */
+public:
+    explicit Caveman();
     ~Caveman();
 
-    /** FUNCTIONS */
     void onResize();
     void display(sf::RenderWindow& win) const;
 
-    /** GETTERS */
     short getId();
     std::string getName();
     short getFitness();
@@ -50,7 +49,6 @@ private:
     bool isMale();
     bool isPregnant();
 
-    /** SETTERS */
     void setFitness(short newFit);
     void setInfoboxVisible(bool visible);
     void setPosition(TransformedVector<> newPosition);
@@ -59,60 +57,6 @@ private:
 
 	friend Action;
 
-};
-
-
-class Female : public Caveman {
-private:
-    bool male = false;
-
-    std::vector<std::string> textures = {
-        "assets/cavewoman.png",
-        "assets/cavewoman2.png",
-        "assets/cavewoman3.png"
-    };
-    std::vector<std::string> names = {
-        "Hillary",
-        "Liz",
-        "Gina",
-        "Chelsea",
-        "Luna",
-        "Giny",
-        "Selina",
-        "Lillian",
-        "Harleen"
-    };
-
-public:
-    /** CONSTRUCTOR */
-    Female();
-};
-
-
-class Male : Caveman {
-private:
-    bool male = true;
-
-    std::vector<std::string> textures = {
-        "assets/caveman.png",
-        "assets/caveman1.png",
-        "assets/caveman2.png"
-    };
-    std::vector<std::string> names = {
-        "Donald",
-        "Bernie",
-        "Harambe",
-        "Gabe",
-        "Matthew",
-        "Harry",
-        "Ron",
-        "Oswald",
-        "Bruce"
-    };
-
-public:
-    /** CONSTRUCTOR */
-    Male();
 };
 
 #endif

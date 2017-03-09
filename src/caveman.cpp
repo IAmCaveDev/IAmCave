@@ -1,71 +1,14 @@
 #include "caveman.h"
 
-#include <random>
-#include <vector>
-
-#include "buttonfunctions.h"
-
 short Caveman::counter = 0;
 
-//Constructor
-Female::Female() : id(counter) {
-    std::random_device rd;
-    std::mt19937 rng(rd());
-    std::uniform_int_distribution<int> unid(minAge, maxAge);
+Caveman::Caveman() : id(counter) {
 
-    age = unid(rng);
-
-
-    std::uniform_int_distribution<int> unbd(0, 1);
-
-    if(counter < 3){
-        male = true;
-    }else if(counter < 5){
-        male = false;
-    }else{
-        male = (unbd(rng) != 0);
-    }
-
-    std::uniform_int_distribution<int> maleN(0, maleNames.size() - 1);
-    std::uniform_int_distribution<int> femaleN(0, femaleNames.size() - 1);
-
-    if(male){
-        name = maleNames[maleN(rng)];
-    }else{
-        name = femaleNames[femaleN(rng)];
-    }
-
-
-    std::uniform_int_distribution<int> stats(1, 5);
-
-    fitness = stats(rng);
-    intelligence = stats(rng);
-
-    std::uniform_int_distribution<int> maleT(0, maleTextures.size() - 1);
-    std::uniform_int_distribution<int> femaleT(0, femaleTextures.size() - 1);
-
-    if (male) {
-        texturePath = maleTextures[maleT(rng)];
-    }else{
-        texturePath = femaleTextures[femaleT(rng)];
-    }
-
-    button = new Button({100, 200}, {0, 0}, texturePath,
-        nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
-
-    infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "TEST");
-
-    counter += 1;
 }
 
-
-//Destructor
 Caveman::~Caveman() {
     delete button;
 }
-
-
-//Getter
 
 short Caveman::getId(){
 	return id;
