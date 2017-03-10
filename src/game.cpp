@@ -23,10 +23,13 @@ Game::Game(){
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
-    tribe.push_back(new Caveman(maxAge, minAge));
+    CavemanFactory factory;
+    std::unique_ptr<Caveman> man = factory.createMale(maxAge, minAge);
+    
+    tribe.push_back(man);
 }
 
-std::vector<Caveman*>& Game::getTribe() {
+std::vector<std::unique_ptr<Caveman>>& Game::getTribe() {
     return tribe;
 }
 

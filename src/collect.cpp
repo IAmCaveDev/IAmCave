@@ -15,7 +15,7 @@ short Collect::resolve() {
         short luck = (short)std::rand() % 10;
 
         for (auto& it : actors) {
-            totalFitness += it->getFitness;
+            totalFitness += it->getFitness();
             if (!it->isMale()) {
                 /** TODO 
                 *   Add boni for female workers
