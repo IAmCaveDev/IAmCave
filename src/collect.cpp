@@ -1,7 +1,7 @@
 #include "collect.h"
 
 Collect::Collect(EActions newtype, short time) : Action(time){
-    type = EActions::EasyHunt;
+    type = EActions::Collect;
 }
 
 void Collect::addActor(Caveman* newactor) {
