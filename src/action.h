@@ -11,10 +11,10 @@ enum EActions {
     Idle,
     EasyHunt,
     HardHunt,
-    Collect,
-    Sex,
-    Think,
-    Improve
+    CollectAction,
+    SexAction,
+    ThinkAction,
+    ImproveAction
 };
 
 class Action {

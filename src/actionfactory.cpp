@@ -9,17 +9,18 @@ std::unique_ptr<Action> ActionFactory::createHardHuntingAction(short duration) {
 }
 
 std::unique_ptr<Action> createSexAction(short duration) {
-    return std::unique_ptr<Sex>(new Sex(EActions::Sex, duration));
+
+    return std::unique_ptr<Sex>(new Sex(EActions::SexAction, duration));
 }
 
 std::unique_ptr<Action> createImproveAction(short duration) {
-    return std::unique_ptr<Improve>(new Improve(EActions::Improve, duration));
+    return std::unique_ptr<Improve>(new Improve(EActions::ImproveAction, duration));
 }
 
 std::unique_ptr<Action> createThinkAction(short duration) {
-    return std::unique_ptr<Thinks>(new Think(EActions::Think, duration));
+    return std::unique_ptr<Think>(new Think(EActions::ThinkAction, duration));
 }
 
 std::unique_ptr<Action> createCollectAction(short duration) {
-    return std::unique_ptr<Collect>(new Collect(EActions::Collect, duration));
+    return std::unique_ptr<Collect>(new Collect(EActions::CollectAction, duration));
 }

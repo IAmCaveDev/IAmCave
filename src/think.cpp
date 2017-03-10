@@ -1,7 +1,7 @@
 #include "think.h"
 
 Think::Think(EActions newtype, short time) : Action(time){
-    type = EActions::Think;
+    type = EActions::ThinkAction;
 }
 
 void Think::addActor(Caveman* newactor) {

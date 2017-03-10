@@ -1,5 +1,5 @@
-#ifndef SEX_H
-#define SEX_H
+#ifndef THINK_H
+#define THINK_H
 
 #include <vector>
 #include <string>

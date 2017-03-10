@@ -1,7 +1,7 @@
 #include "sex.h"
 
 Sex::Sex(EActions newtype, short time) : Action(time){
-    type = EActions::Sex;
+    type = EActions::SexAction;
 }
 
 void Sex::addActor(Caveman* newactor) {
@@ -15,8 +15,8 @@ void Sex::resolve() {
 	short luck = (short)std::rand() % 10;
 	short successfulPregnancies;
 
-	for (auto& it : actors) {
-		totalFitness += it->getFitness();
+	for (Caveman* it : actors) {
+        totalFitness += it->getFitness();
 		if (it->isMale())
 			actors_involvedMale++;
 		else
