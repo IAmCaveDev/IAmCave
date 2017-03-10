@@ -8,8 +8,9 @@ void Think::addActor(Caveman* newactor) {
     actors.push_back(newactor);
 }
 
-void Think::resolve() {
+short Think::resolve() {
     /** TODO
     *   Implement tech tree and make use of it
     */
+    return actors.size() * totalDuration;
 }

@@ -5,6 +5,7 @@
 #include <string>
 
 #include "action.h"
+#include "game.h"
 
 class Hunt : public Action {
 private:
@@ -13,7 +14,7 @@ public:
     Hunt(EActions newtype, short duration);
 
     void addActor(Caveman* actor);
-    void resolve();
+    short resolve();
 };
 
 #endif

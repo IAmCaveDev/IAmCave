@@ -5,7 +5,7 @@
 #include <string>
 
 #include "action.h"
-#include "game.h"
+#include "game.h"   /** TODO Avoid this */
 
 class Collect : public Action {
 private:
@@ -14,7 +14,7 @@ public:
     Collect(EActions newtype, short duration);
 
     void addActor(Caveman* actor);
-    void resolve();
+    short resolve();
 };
 
 #endif

@@ -1,18 +1,19 @@
 #include "improve.h"
 
 Improve::Improve(EActions newtype, short time) : Action(time){
-    type = EActions::Improve;
+    type = EActions::ImproveAction;
 }
 
 void Improve::addActor(Caveman* newactor) {
     actors.push_back(newactor);
 }
 
-void Improve::resolve() {
+short Improve::resolve() {
     currentDuration += 1;
 
     if (currentDuration == totalDuration) {
 
+        return actors.size() * totalDuration;
         // Build process
         // Set cavemen to idle
         // Delete action

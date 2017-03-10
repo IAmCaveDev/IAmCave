@@ -35,7 +35,7 @@ public:
     const int getID();
     EActions getType();
     virtual void addActor(Caveman* actor) = 0;
-    virtual void resolve() = 0;
+    virtual short resolve() = 0;
 };
 
 #endif

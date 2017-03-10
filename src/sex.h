@@ -5,6 +5,7 @@
 #include <string>
 
 #include "action.h"
+#include "game.h"   /** TODO Avoid this */
 
 class Sex : public Action {
 private:
@@ -13,7 +14,7 @@ public:
     Sex(EActions newtype, short time);
 
 	void addActor(Caveman* actor);
-	void resolve();
+	short resolve();
 };
 
 #endif

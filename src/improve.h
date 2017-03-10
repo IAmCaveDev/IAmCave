@@ -13,7 +13,7 @@ public:
     Improve(EActions newtype, short duration);
 
     void addActor(Caveman* actor);
-    void resolve();
+    short resolve();
 };
 
 #endif
