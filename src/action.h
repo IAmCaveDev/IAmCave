@@ -11,6 +11,7 @@ enum EActions {
     Idle,
     EasyHunt,
     HardHunt,
+    Collect,
     Sex,
     Think,
     Improve
