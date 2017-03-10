@@ -16,7 +16,7 @@ void Sex::resolve() {
 	short successfulPregnancies;
 
 	for (auto& it : actors) {
-		totalFitness += it->getFitness;
+		totalFitness += it->getFitness();
 		if (it->isMale())
 			actors_involvedMale++;
 		else
