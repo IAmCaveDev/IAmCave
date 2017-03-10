@@ -1,7 +1,10 @@
 #include "hunt.h"
 
 Hunt::Hunt(EActions newtype, short time) : Action(time){
-    type = EActions::EasyHunt;
+    if (newtype == EasyHunt)
+        type = EActions::EasyHunt;
+    else
+        type = EActions::HardHunt;
 }
 
 void Hunt::addActor(Caveman* newactor) {
