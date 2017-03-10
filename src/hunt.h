@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+
 #include "action.h"
 
 class Hunt : public Action {
