@@ -9,8 +9,6 @@ void Think::addActor(Caveman* newactor) {
 }
 
 short Think::resolve() {
-    /** TODO
-    *   Implement tech tree and make use of it
-    */
+    // TODO Implement tech tree and make use of it
     return actors.size() * totalDuration;
 }

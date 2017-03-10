@@ -14,8 +14,6 @@ short Improve::resolve() {
     if (currentDuration == totalDuration) {
 
         return actors.size() * totalDuration;
-        // Build process
-        // Set cavemen to idle
-        // Delete action
+        // TODO Set cavemen to idle
     }
 }

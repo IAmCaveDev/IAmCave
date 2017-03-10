@@ -49,6 +49,6 @@ void Female::setPregnancy(bool newPregnant) {
 
     pregnant = newPregnant;
 
-    /** Dynamic pregnancy times */
+    // Dynamic pregnancy times
     preg_counter = std::rand() % 2 + 8;
 }

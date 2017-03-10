@@ -25,7 +25,7 @@ short Sex::resolve() {
 	}
 
     totalFitness /= actors_involvedMale + actors_involvedFemale;
-    /** Temprorary pregnancy formula */
+    // Temprorary pregnancy formula
 	successfulPregnancies = (short)((totalFitness + luck) / (actors_involvedMale + actors_involvedFemale)) - 1;
 	for (auto& it : actors) {
 		if (!successfulPregnancies)

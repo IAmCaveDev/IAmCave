@@ -17,18 +17,13 @@ short Collect::resolve() {
         for (auto& it : actors) {
             totalFitness += it->getFitness();
             if (!it->isMale()) {
-                /** TODO 
-                *   Add boni for female workers
-                */
+                // TODO Add boni for female workers
             }
             it->setCurrentAction(EActions::Idle);
         }
-        /** TODO
-        *   Add gathering modifier
-        */
+        // TODO Add gathering modifier
         return totalFitness + luck * totalDuration;
     }
 
     return 0;
-        //add resources
 }

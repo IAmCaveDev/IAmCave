@@ -17,13 +17,15 @@ short Hunt::resolve() {
             for (auto& it : actors) {
                 totalFitness += it->getFitness;
                 if (it->isMale()) {
-                    /** TODO
+                    /** 
+                    *   TODO
                     *   Add boni for male workers
                     */
                 }
                 it->setCurrentAction(EActions::Idle);
             }
-            /** TODO
+            /** 
+            *   TODO
             *   Add gathering modifier
             */
             return totalFitness + luck * totalDuration * (easy * 2);
