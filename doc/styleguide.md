@@ -320,8 +320,19 @@ Comments using `/*` and `*/` should be prettified:
  */
 ```
 
+`/*` and `*/` should not be used for one line comments.
+
 Comments should be on the line above the code they are trying to comment and
 almost never on the same line.
+
+Docstrings should use the following:
+
+```c++
+/**
+ * This is a summary. This is a longer description.
+ * @param p This is a parameter.
+ */
+```
 
 
 ## Other Stuff
