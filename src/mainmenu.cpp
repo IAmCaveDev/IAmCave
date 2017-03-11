@@ -4,18 +4,22 @@
 #include "buttonfunctions.h"
 
 MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
+    type = EGamestates::mainMenu;
+    nextState = type;
 
     rectangles = {
         new Rectangle({1920, 1080}, {0, 0}, "assets/background.png")
     };
 
     buttons = {
-        new Button({200, 50}, {200, 100}, "assets/play.png",
-                std::bind(&Game::setCurrentGameState, std::ref(gameRef), EGamestates::management)),
+        new Button({200, 50}, {200, 100}, "assets/play.png", [&](){
+                    nextState = EGamestates::management;
+                }),
         new Button({200, 50}, {200, 200}, "assets/options.png",
                    ButtonFunctions::MainMenu::options),
-        new Button({200, 50}, {200, 300}, "assets/exit.png",
-                std::bind(&sf::RenderWindow::close, std::ref(gameRef.getWindow())))
+        new Button({200, 50}, {200, 300}, "assets/exit.png", [&](){
+                    nextState = EGamestates::quit;
+                })
     };
 
 }

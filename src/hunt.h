@@ -4,13 +4,12 @@
 #include <vector>
 #include <string>
 #include "action.h"
-#include "game.h"
 
 class Hunt : public Action {
 private:
     bool easy;
 public:
-    Hunt(bool easy, short duration, Game& gameRef);
+    Hunt(EActions newtype, short duration);
 
     void addActor(Caveman* actor);
     void resolve();

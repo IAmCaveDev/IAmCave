@@ -3,6 +3,8 @@
 #include <random>
 #include <vector>
 
+#include "buttonfunctions.h"
+
 short Caveman::counter = 0;
 
 std::vector<std::string> femaleNames = {

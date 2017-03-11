@@ -69,5 +69,11 @@ coordinates and a bool to it. The bool determines whether the first or second
 callback is used. `executed` calls the callback, `highlighted` just sets the
 button texture to the highlighted variant.
 
+
+--------------
+
+
+#### Footnotes
+
 <a name="f1">1</a>: http://en.cppreference.com/w/cpp/utility/functional/bind<br>
 <a name="f2">2</a>: http://en.cppreference.com/w/cpp/utility/functional/ref
