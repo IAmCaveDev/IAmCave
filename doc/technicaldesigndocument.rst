@@ -459,23 +459,45 @@ Höhlenmenschen
 
 Männer
 ~~~~~~
-.. image:: img/caveman1.PNG
+.. image:: img/man-1.PNG
    :align: center
-   :alt: Kleidung 1, Gesicht 1, Kopf 1
+   :alt: caveman
 
-.. image:: img/caveman2.PNG
+.. image:: img/man-1-h.PNG
    :align: center
-   :alt: Kleidung 2, Gesicht 2, Kopf 2
+   :alt: caveman highlighted
 
-.. image:: img/caveman3.PNG
+.. image:: img/man-1-d.PNG
    :align: center
-   :alt: Kleidung 3, Gesicht 3, Kopf 3
+   :alt: caveman disabled
 
 Frauen
 ~~~~~~
+.. image:: img/woman-1.PNG
+   :align: center
+   :alt: cavewoman
+
+.. image:: img/woman-1-h.PNG
+   :align: center
+   :alt: cavewoman highlighted
+
+.. image:: img/woman-1-d.PNG
+   :align: center
+   :alt: cavewoman disabled
 
 Kinder
 ~~~~~~
+.. image:: img/child-1.PNG
+   :align: center
+   :alt: child
+
+.. image:: img/child-1-h.PNG
+   :align: center
+   :alt: child highlighted
+
+.. image:: img/child-1-d.PNG
+   :align: center
+   :alt: child disabled
 
 Interaktionselemente
 ^^^^^^^^^^^^^^^^^^^^^
@@ -532,6 +554,9 @@ Höhlengrafiken
 
 Höhle
 ~~~~~~
+.. image:: img/cave.png
+   :align: center
+   :alt: cave
 
 Ressourcen
 ~~~~~~~~~~~
