@@ -459,43 +459,43 @@ Höhlenmenschen
 
 Männer
 ~~~~~~
-.. image:: img/man-1.PNG
+.. image:: img/man-1.png
    :align: center
    :alt: caveman
 
-.. image:: img/man-1-h.PNG
+.. image:: img/man-1-h.png
    :align: center
    :alt: caveman highlighted
 
-.. image:: img/man-1-d.PNG
+.. image:: img/man-1-d.png
    :align: center
    :alt: caveman disabled
 
 Frauen
 ~~~~~~
-.. image:: img/woman-1.PNG
+.. image:: img/woman-1.png
    :align: center
    :alt: cavewoman
 
-.. image:: img/woman-1-h.PNG
+.. image:: img/woman-1-h.png
    :align: center
    :alt: cavewoman highlighted
 
-.. image:: img/woman-1-d.PNG
+.. image:: img/woman-1-d.png
    :align: center
    :alt: cavewoman disabled
 
 Kinder
 ~~~~~~
-.. image:: img/child-1.PNG
+.. image:: img/child-1.png
    :align: center
    :alt: child
 
-.. image:: img/child-1-h.PNG
+.. image:: img/child-1-h.png
    :align: center
    :alt: child highlighted
 
-.. image:: img/child-1-d.PNG
+.. image:: img/child-1-d.png
    :align: center
    :alt: child disabled
 
