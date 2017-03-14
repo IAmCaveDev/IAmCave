@@ -13,7 +13,7 @@ namespace ButtonFunctions {
             void hardHunt(Management& stateRef);
         }
         namespace Sex {
-            void sex();
+            void sex(Management& stateRef);
         }
         namespace Research {
 
@@ -24,6 +24,8 @@ namespace ButtonFunctions {
         namespace General {
             void abort(Management& stateRef);
             void confirm(Management& stateRef);
+            void actionStart(Management& stateRef);
+            void actionEnd(Management& stateRef);
         }
     }
     namespace MainMenu {

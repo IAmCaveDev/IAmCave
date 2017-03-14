@@ -20,13 +20,14 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     actionDisplay = new VerticalButtonList({50, 1080}, {-50, 0}, "");
 
     actionDisplay->addButton(0, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 1);
-    actionDisplay->addButton(1, new Button({200, 50}, {200, 300}, "assets/sex-icon.png", nullptr), 0);
+    actionDisplay->addButton(1, new Button({200, 50}, {200, 300}, "assets/makelove-icon.png", nullptr), 0);
     actionDisplay->addButton(2, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 2);
     actionDisplay->addButton(3, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 2);
     actionDisplay->removeButton(3);
 
     buttons = {
         new Button({200, 50}, {-400, -150}, "assets/go.png", [&](){
+                    actionDisplay->decreasePriorityOfAll();
                     nextState = EGamestates::roundEnd;
                 }),
         new Button({200, 50}, {200, 100}, "assets/hunt.png",
@@ -46,7 +47,7 @@ void Management::setCurrentAction(EActions newaction, short duration) {
         case EActions::HardHunt:
             currentAction = std::move(actionFactory.createHardHuntingAction(duration));
             break;
-        // add more Actions here
+        //TODO: add more Actions here
     }
 
 }
@@ -56,14 +57,40 @@ Action& Management::getCurrentAction() {
 }
 
 void Management::pushCurrentAction() {
+    EActions currentType = currentAction->getType();   
+    
+    switch (currentType) {
+        case EActions::EasyHunt:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 }, 
+                                    "assets/hunt-icon.png", nullptr), currentAction->getDuration());
+            break;
+        case EActions::HardHunt:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 }, 
+                                    "assets/hunt-icon.png", nullptr), currentAction->getDuration());
+            break;
+        case EActions::Sex:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 }, 
+                                    "assets/makelove-icon.png", nullptr), currentAction->getDuration());
+            break;
+        case EActions::Improve:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 }, 
+                                    "assets/improve-icon.png", nullptr), currentAction->getDuration());
+            break;
+        case EActions::Think:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 }, 
+                                    "assets/think-icon.png", nullptr), currentAction->getDuration());
+            break;
+    }
+
+    for (auto& it : currentAction->getActors()) {
+        it->setCurrentAction(currentType);
+    }
+
     game.addAction(std::move(currentAction));
-    //deleteCurrentAction();
-    // TODO: set currentAction in all caveman who are participating from idle
-    // to EActions::Actiontype
 }
 
 void Management::deleteCurrentAction() {
-    currentAction = nullptr;
+    currentAction.reset();
 }
 
 std::vector<Caveman*> Management::getIdlingTribe() {
@@ -91,7 +118,7 @@ void Management::display(sf::RenderWindow& win) {
 
     actionDisplay->display(win);
 
-    for (auto const& it : game.getTribe()) {
+    for (auto const& it : getIdlingTribe()) {
         it->display(win);
     }
 }

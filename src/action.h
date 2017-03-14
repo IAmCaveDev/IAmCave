@@ -33,6 +33,8 @@ public:
 
     const int getID();
     EActions getType();
+    short getDuration();
+    std::vector<Caveman*>& getActors();
     virtual void addActor(Caveman* actor) = 0;
     virtual void resolve() = 0;
 };
