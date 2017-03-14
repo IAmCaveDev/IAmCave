@@ -34,9 +34,9 @@ namespace ButtonFunctions {
         void quit(Game& game);
     }
     namespace Tribe {
-        void addAsActor(Management& stateRef, Caveman& caveman);
-        void displayInfo(Caveman& caveman);
-        void hideInfo(Caveman& caveman);
+        void addAsActor(Management& stateRef, std::shared_ptr<Caveman> caveman);
+        void displayInfo(std::shared_ptr<Caveman> caveman);
+        void hideInfo(std::shared_ptr<Caveman> caveman);
     }
 }
 

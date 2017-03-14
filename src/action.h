@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 
 // cyclic dependency otherwise
 class Caveman;
@@ -21,7 +22,7 @@ private:
     static int counter;
 
 protected:
-    std::vector<Caveman*> actors;
+    std::vector<std::shared_ptr<Caveman>> actors;
     short totalDuration;
     short currentDuration;
     EActions type;
@@ -34,8 +35,8 @@ public:
     const int getID();
     EActions getType();
     short getDuration();
-    std::vector<Caveman*>& getActors();
-    virtual void addActor(Caveman* actor) = 0;
+    std::vector<std::shared_ptr<Caveman>>& getActors();
+    virtual void addActor(std::shared_ptr<Caveman> actor) = 0;
     virtual void resolve() = 0;
 };
 

@@ -85,8 +85,9 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
         texPath = femaleTextures[femaleT(rng)];
     }
 
-    button = new Button({100, 200}, {0, 0}, texPath,
-        nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
+    button = new Button({100, 200}, {0, 0}, texPath, nullptr,
+                        std::bind(&ButtonFunctions::Tribe::displayInfo,
+                        std::shared_ptr<Caveman>(this)));
 
     infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "TEST");
 

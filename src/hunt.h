@@ -7,11 +7,12 @@
 
 class Hunt : public Action {
 private:
-    bool easy;
+    bool isEasy;
+
 public:
     Hunt(EActions newtype, short duration);
 
-    void addActor(Caveman* actor);
+    void addActor(std::shared_ptr<Caveman> actor);
     void resolve();
 };
 

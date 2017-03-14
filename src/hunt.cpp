@@ -4,7 +4,7 @@ Hunt::Hunt(EActions newtype, short time) : Action(time){
     type = EActions::EasyHunt;
 }
 
-void Hunt::addActor(Caveman* newactor) {
+void Hunt::addActor(std::shared_ptr<Caveman> newactor) {
     actors.push_back(newactor);
 }
 

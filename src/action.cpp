@@ -19,6 +19,6 @@ short Action::getDuration() {
     return totalDuration;
 }
 
-std::vector<Caveman*>& Action::getActors() {
+std::vector<std::shared_ptr<Caveman>>& Action::getActors() {
     return actors;
 }
