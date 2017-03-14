@@ -4,7 +4,7 @@
 #include <sstream>
 
 void RoundEnd::resolveActions() {
-    std::vector<int> toDelete;
+    std::vector<int> toDelete = {};
     for (auto& it : game.getActions()) {
         ActionPackage result = it->resolve();
         if (!result.isFinal) {

@@ -40,18 +40,18 @@ std::vector<std::shared_ptr<Caveman>>& Game::getTribe() {
 }
 
 void Game::addAction(std::unique_ptr<Action> newAction) {
-    switch (newAction->getType()) {
-        case (EActions::EasyHunt) : ;
-            // TODO: handle actionqueue
-    }
     actions.push_back(std::move(newAction));
 }
 
 void Game::removeAction(int id) {
     // TODO:write function properly
-    // remove icon from actionDisplay
-    // delete action from actions vector
-    // delete unique_ptr action object
+    for (int i = 0; i < actions.size(); ++i) {
+        if (actions.at(i)->getID() == id) {
+            actions.at(i).reset();
+            actions.erase(actions.begin()+i);
+            return;
+        }
+    }
 }
 
 std::vector<std::unique_ptr<Action>>& Game::getActions() {
