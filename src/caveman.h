@@ -26,7 +26,7 @@ private:
 
 protected:
     std::string name;
-    
+
     std::string texPath;
     Button* button;
 

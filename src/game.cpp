@@ -1,8 +1,16 @@
 #include "game.h"
 
+#include "cavemanfactory.h"
+
 Game::Game(){
-    for(int i = 0; i < 5; ++i){
-        addCaveman(5,5);
+    CavemanFactory cavemanFactory;
+
+    // Starting population
+    for(int i = 0; i < 3; ++i){
+        tribe.push_back(cavemanFactory.createMale(5, 5));
+    }
+    for(int i = 0; i < 2; ++i){
+        tribe.push_back(cavemanFactory.createFemale(5, 5));
     }
 
     int xPos = 500;
@@ -23,7 +31,8 @@ Game::Game(){
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
-    tribe.push_back(std::unique_ptr<Caveman>(new Caveman(maxAge, minAge)));
+    CavemanFactory cavemanFactory;
+    tribe.push_back(cavemanFactory.createRandom(maxAge, minAge));
 }
 
 std::vector<std::shared_ptr<Caveman>>& Game::getTribe() {
