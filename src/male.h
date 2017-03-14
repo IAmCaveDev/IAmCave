@@ -4,10 +4,9 @@
 #include "caveman.h"
 
 class Male : public Caveman {
-private:
-
 public: 
-
+    Male(int maxAge, int minAge);
+    bool isMale();
 
 };
 
