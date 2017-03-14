@@ -5,17 +5,8 @@
 #include <string>
 #include <memory>
 
-// cyclic dependency otherwise
-class Caveman;
-
-enum EActions {
-    Idle,
-    EasyHunt,
-    HardHunt,
-    Sex,
-    Think,
-    Improve
-};
+#include "enum.h"
+#include "caveman.h"
 
 class Action {
 private:

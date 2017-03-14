@@ -5,7 +5,7 @@
 
 #include <string>
 
-#include "action.h"
+#include "enum.h"
 #include "button.h"
 
 class Caveman {
@@ -56,7 +56,6 @@ public:
 
     void display(sf::RenderWindow& win) const;
 
-    friend Action;
 };
 
 #endif
