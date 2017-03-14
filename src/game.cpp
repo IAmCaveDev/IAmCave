@@ -23,26 +23,26 @@ Game::Game(){
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
-    tribe.push_back(new Caveman(maxAge, minAge));
+    tribe.push_back(std::unique_ptr<Caveman>(new Caveman(maxAge, minAge)));
 }
 
-std::vector<Caveman*>& Game::getTribe() {
+std::vector<std::shared_ptr<Caveman>>& Game::getTribe() {
     return tribe;
 }
 
 void Game::addAction(std::unique_ptr<Action> newAction) {
     switch (newAction->getType()) {
         case (EActions::EasyHunt) : ;
-            //TODO: handle actionqueue
+            // TODO: handle actionqueue
     }
     actions.push_back(std::move(newAction));
 }
 
 void Game::removeAction(int id) {
-    //TODO:write function properly
-    //remove icon from actionDisplay
-    //delete action from actions vector
-    //delete unique_ptr action object
+    // TODO:write function properly
+    // remove icon from actionDisplay
+    // delete action from actions vector
+    // delete unique_ptr action object
 }
 
 std::vector<std::unique_ptr<Action>>& Game::getActions() {

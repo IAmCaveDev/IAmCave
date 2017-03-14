@@ -47,7 +47,7 @@ void Management::setCurrentAction(EActions newaction, short duration) {
         case EActions::HardHunt:
             currentAction = std::move(actionFactory.createHardHuntingAction(duration));
             break;
-        //TODO: add more Actions here
+        // TODO: add more Actions here
     }
 
 }
@@ -93,8 +93,8 @@ void Management::deleteCurrentAction() {
     currentAction.reset();
 }
 
-std::vector<Caveman*> Management::getIdlingTribe() {
-    std::vector<Caveman*> idlingTribe;
+std::vector<std::shared_ptr<Caveman>> Management::getIdlingTribe() {
+    std::vector<std::shared_ptr<Caveman>> idlingTribe;
     for (auto& it : game.getTribe()) {
         if (it->getCurrentAction() == EActions::Idle) {
             idlingTribe.push_back(it);

@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
                         }
                     }
 
-                    std::vector<Caveman*> cavemen;
+                    std::vector<std::shared_ptr<Caveman>> cavemen;
                     cavemen = gameManager.getGame().getTribe();
 
                     for(auto& it : cavemen){
@@ -73,7 +73,7 @@ int main(int argc, char *argv[]){
                         }
                     }
 
-                    std::vector<Caveman*> cavemen;
+                    std::vector<std::shared_ptr<Caveman>> cavemen;
                     cavemen = gameManager.getGame().getTribe();
 
                     for(auto& it : cavemen){

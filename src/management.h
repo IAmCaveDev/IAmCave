@@ -32,7 +32,7 @@ public:
     /**
      * Gets all cavemen that are not doing anything.
      */
-    std::vector<Caveman*> getIdlingTribe();
+    std::vector<std::shared_ptr<Caveman>> getIdlingTribe();
     /**
      * Gets the VerticalButtonList used to display the actions in progress.
      */
