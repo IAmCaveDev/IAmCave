@@ -31,10 +31,6 @@ Female::Female(int maxAge, int minAge) : Caveman(maxAge, minAge) {
     std::uniform_int_distribution<int> femaleT(0, femaleTextures.size() - 1);
     texPath = femaleTextures[femaleT(rng)];
 
-    button = new Button({ 100, 200 }, { 0, 0 }, texPath, nullptr,
-        std::bind(&ButtonFunctions::Tribe::displayInfo,
-            std::shared_ptr<Caveman>(this)));
-
 }
 
 bool Female::isMale() {

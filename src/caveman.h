@@ -4,11 +4,12 @@
 #define MIN_ADULT_AGE 3
 
 #include <string>
+#include <memory>
 
 #include "enum.h"
 #include "button.h"
 
-class Caveman {
+class Caveman : public std::enable_shared_from_this<Caveman> {
 private:
     static short counter;
 
@@ -46,6 +47,8 @@ public:
 
     Button& getButton();
     Textbox& getInfobox();
+
+    void initButton();
 
     void setPosition(TransformedVector<> newPosition);
 

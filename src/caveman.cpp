@@ -3,6 +3,8 @@
 #include <random>
 #include <vector>
 
+#include "buttonfunctions.h"
+
 short Caveman::counter = 0;
 
 Caveman::Caveman(int maxAge, int minAge) : id(counter){
@@ -56,6 +58,12 @@ Button& Caveman::getButton() {
 }
 Textbox& Caveman::getInfobox() {
     return *infobox;
+}
+
+void Caveman::initButton() {
+    button = new Button({ 100, 200 }, { 0, 0 }, texPath, nullptr,
+        std::bind(&ButtonFunctions::Tribe::displayInfo,
+            shared_from_this()));
 }
 
 void Caveman::setPosition(TransformedVector<> newPosition){

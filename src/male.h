@@ -4,10 +4,13 @@
 #include "caveman.h"
 
 class Male : public Caveman {
-public:
+private:
     Male(int maxAge, int minAge);
+
+public:
     bool isMale();
 
+    friend class CavemanFactory;
 };
 
 #endif
