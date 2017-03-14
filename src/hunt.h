@@ -10,10 +10,10 @@ private:
     bool isEasy;
 
 public:
-    Hunt(EActions newtype, short duration);
+    Hunt(bool newIsEasy, short duration);
 
     void addActor(std::shared_ptr<Caveman> actor);
-    void resolve();
+    ActionPackage resolve();
 };
 
 #endif

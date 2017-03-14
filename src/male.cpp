@@ -2,6 +2,7 @@
 #include "buttonfunctions.h"
 
 #include <random>
+#include <vector>
 
 std::vector<std::string> maleNames = {
     "Donald",

@@ -28,11 +28,9 @@ Caveman::~Caveman() {
     delete button;
 }
 
-
 void Caveman::setInfoboxVisible(bool visible){
     infoboxVisible = visible;
 }
-
 
 short Caveman::getId(){
     return id;
