@@ -2,10 +2,12 @@
 #define GAME_H
 
 #include <vector>
+#include <set>
 #include <memory>
 
 #include "caveman.h"
 #include "action.h"
+#include "techtree.h"
 
 /**
  * Resource data.
@@ -27,6 +29,7 @@ private:
 
     std::vector<std::shared_ptr<Caveman>> tribe;
     std::vector<std::unique_ptr<Action>> actions;
+    Techtree techtree;
 
     Resources resources;
 

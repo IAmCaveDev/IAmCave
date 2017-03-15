@@ -11,6 +11,18 @@ enum EActions {
     Improve
 };
 
-
+enum ETechs {
+    Handaxe,
+    Axe,
+    Pottery,
+    Plaiting,
+    Spear,
+    Hierarchy,
+    Pickaxe,
+    Archery,
+    Basket,
+    WoodenFence,
+    Revolution
+};
 
 #endif

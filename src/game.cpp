@@ -44,7 +44,6 @@ void Game::addAction(std::unique_ptr<Action> newAction) {
 }
 
 void Game::removeAction(int id) {
-    // TODO:write function properly
     for (int i = 0; i < actions.size(); ++i) {
         if (actions.at(i)->getID() == id) {
             actions.at(i).reset();
