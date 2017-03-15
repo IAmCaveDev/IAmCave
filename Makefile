@@ -1,6 +1,6 @@
 CXX ?= g++
 
-CXXFLAGS += -Wall -lsfml-graphics -lsfml-window -lsfml-system
+CXXFLAGS += -Wall -Iinclude/ -lsfml-graphics -lsfml-window -lsfml-system
 
 .PHONY: all doc
 

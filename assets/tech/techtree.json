@@ -1,19 +1,19 @@
 {
-    "name": "Handaxe",
+    "name": "handaxe",
     "children": [
-        { "name": "Axe", "children": [
-            { "name": "Plaiting", "children": [
-                { "name": "Basket", "children": [] },
-                { "name": "Revolution", "children": [] }
+        { "name": "axe", "children": [
+            { "name": "plaiting", "children": [
+                { "name": "basket", "children": [] },
+                { "name": "revolution", "children": [] }
             ]},
-            { "name": "Spear", "children": [
-                { "name": "Archery", "children": [] }
+            { "name": "spear", "children": [
+                { "name": "archery", "children": [] }
             ]},
-            { "name": "Pickaxe", "children": [] }
+            { "name": "pickaxe", "children": [] }
         ]},
-        { "name": "Hierachy", "children": [] },
-        { "name": "Pottery", "children": [
-            { "name": "Revolution", "children": [] }
+        { "name": "hierachy", "children": [] },
+        { "name": "pottery", "children": [
+            { "name": "revolution", "children": [] }
         ]}
     ]
 }

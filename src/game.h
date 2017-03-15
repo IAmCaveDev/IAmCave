@@ -2,7 +2,6 @@
 #define GAME_H
 
 #include <vector>
-#include <set>
 #include <memory>
 
 #include "caveman.h"

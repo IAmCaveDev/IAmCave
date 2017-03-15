@@ -1,16 +1,19 @@
 #ifndef TECH_H
 #define TECH_H
 
-#include "enum.h"
+#include <memory>
+#include <vector>
 
 class Tech {
 private:
-    ETechs type;
-    Tech& parent;
-    bool isResearched;
+    typedef std::vector<const std::unique_ptr<Tech>&> ParentsVector;
+
+    ParentsVector parents;
 
 public:
-    Tech(ETechs type);
+    Tech(std::string path, ParentsVector newParents);
+
+    ParentsVector& getParents();
 };
 
 #endif
