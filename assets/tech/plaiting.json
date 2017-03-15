@@ -1,0 +1,13 @@
+{
+    "name": "Plaiting",
+    "iconPath": "assets/plaitingtech.png",
+
+    "requiredIntelligence": 15,
+
+    "statBoosts": [
+        { "huntBonus": 2 },
+        { "gatheringBonus": 5 },
+        { "fitnessGain": 0 },
+        { "intelligenceGain": 3 }
+    ]
+}
