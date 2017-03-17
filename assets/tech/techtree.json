@@ -4,7 +4,7 @@
         { "name": "axe", "children": [
             { "name": "plaiting", "children": [
                 { "name": "basket", "children": [] },
-                { "name: "woodenfence, "children":[
+                { "name": "woodenfence", "children":[
                   { "name": "revolution", "children": [] }
                 ]}
             ]},
