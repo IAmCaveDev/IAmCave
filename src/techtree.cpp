@@ -1,5 +1,6 @@
 #include "techtree.h"
 
+#include <stdexcept>
 #include <fstream>
 
 void Techtree::parse(std::shared_ptr<Tech> parent, json data) {
@@ -11,18 +12,22 @@ void Techtree::parse(std::shared_ptr<Tech> parent, json data) {
         newParent.first->get()->getParents().push_back(parent);
     }
 
-    for(auto& it : data["children"]){
+    for (auto& it : data["children"]) {
         parse(*newParent.first, it);
     }
 }
 
 Techtree::Techtree(std::string path) {
     std::ifstream in(path);
-    json data;
-    in >> data;
+    if (in.good()) {
+        json data;
+        in >> data;
 
-    std::string techPath = data["name"].dump().append(".json");
-    auto root = tree.emplace(new Tech(techPath, {nullptr}));
+        std::string techPath = data["name"].dump().append(".json");
+        auto root = tree.emplace(new Tech(techPath, {nullptr}));
 
-    parse(*root.first, data);
+        parse(*root.first, data);
+    } else {
+        throw std::runtime_error("Could not open file at " + path);
+    }
 }
