@@ -1,15 +1,14 @@
 {
     "name": "Handaxe",
+    "description": "the first tool ever, wow you are so smart",
     "iconPath": "assets/handaxetech.png",
 
     "requiredIntelligence": 4,
 
-    "statBoosts": [
-        { "huntBonus": 5 },
-        { "gatheringBonus": 2 },
-        { "fitnessGain": 0.2 },
-        { "intelligenceGain": 2 }
-    ],
-
-    "description": "the first tool ever, wow you are so smart"
+    "statBoosts": {
+        "huntBonus": 5,
+        "gatheringBonus": 2,
+        "fitnessGain": 0.2,
+        "intelligenceGain": 2
+    }
 }

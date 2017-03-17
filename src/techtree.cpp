@@ -4,7 +4,8 @@
 #include <fstream>
 
 void Techtree::parse(std::shared_ptr<Tech> parent, json data) {
-    std::string techPath = data["name"].dump().append(".json");
+    std::string techPath = "assets/tech/" + data["name"].get<std::string>() +
+                           ".json";
     auto newParent = tree.emplace(new Tech(techPath, {parent}));
 
     // if already exists in tree
@@ -23,7 +24,8 @@ Techtree::Techtree(std::string path) {
         json data;
         in >> data;
 
-        std::string techPath = data["name"].dump().append(".json");
+        std::string techPath = "assets/tech/" +
+                               data["name"].get<std::string>() + ".json";
         auto root = tree.emplace(new Tech(techPath, {nullptr}));
 
         parse(*root.first, data);

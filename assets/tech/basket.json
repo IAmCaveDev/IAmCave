@@ -1,15 +1,14 @@
 {
     "name": "Basket",
+    "description": "baskets men use to transport a fresh kill",
     "iconPath": "assets/baskettech.png",
 
     "requiredIntelligence": 30,
 
-    "statBoosts": [
-        { "huntBonus": 20 },
-        { "gatheringBonus": 0 },
-        { "fitnessGain": 0.5 },
-        { "intelligenceGain": 5 }
-    ],
-
-    "description": "baskets men use to transport a fresh kill"
+    "statBoosts": {
+        "huntBonus": 20,
+        "gatheringBonus": 0,
+        "fitnessGain": 0.5,
+        "intelligenceGain": 5
+    }
 }

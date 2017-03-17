@@ -1,15 +1,14 @@
 {
     "name": "Axe",
+    "description": "its like a handaxe, just less handy, used to kill",
     "iconPath": "assets/axetech.png",
 
     "requiredIntelligence": 10,
 
-    "statBoosts": [
-        { "huntBonus": 10 },
-        { "gatheringBonus": 10 },
-        { "fitnessGain": 0.3 },
-        { "intelligenceGain": 3 }
-    ],
-
-    "description": "its like a handaxe, just less handy, used to kill"
+    "statBoosts": {
+        "huntBonus": 10,
+        "gatheringBonus": 10,
+        "fitnessGain": 0.3,
+        "intelligenceGain": 3
+    }
 }

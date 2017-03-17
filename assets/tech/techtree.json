@@ -13,7 +13,7 @@
             ]},
             { "name": "pickaxe", "children": [] }
         ]},
-        { "name": "hierachy", "children": [] },
+        { "name": "hierarchy", "children": [] },
         { "name": "pottery", "children": [
             { "name": "revolution", "children": [] }
         ]}

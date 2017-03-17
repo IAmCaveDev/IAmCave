@@ -1,15 +1,14 @@
 {
     "name": "Archery",
+    "description": "running after rabbits with spears gets very tiring",
     "iconPath": "assets/archerytech.png",
 
     "requiredIntelligence": 35,
 
-    "statBoosts": [
-        { "huntBonus": 30 },
-        { "gatheringBonus": 0 },
-        { "fitnessGain": 0.8 },
-        { "intelligenceGain": 5 }
-    ],
-
-    "description": "running after rabbits with spears gets very tiring"
+    "statBoosts": {
+        "huntBonus": 30,
+        "gatheringBonus": 0,
+        "fitnessGain": 0.8,
+        "intelligenceGain": 5
+    }
 }
