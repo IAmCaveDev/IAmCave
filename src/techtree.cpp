@@ -2,13 +2,13 @@
 
 #include <fstream>
 
-void Techtree::parse(const std::unique_ptr<Tech>& parent, json data) {
+void Techtree::parse(std::shared_ptr<Tech> parent, json data) {
     std::string techPath = data["name"].dump().append(".json");
     auto newParent = tree.emplace(new Tech(techPath, {parent}));
 
     // if already exists in tree
     if (!newParent.second) {
-        *(newParent.first)->getParents().push_back(parent);
+        newParent.first->get()->getParents().push_back(parent);
     }
 
     for(auto& it : data["children"]){

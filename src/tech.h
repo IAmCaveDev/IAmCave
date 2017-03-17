@@ -6,7 +6,7 @@
 
 class Tech {
 private:
-    typedef std::vector<const std::unique_ptr<Tech>&> ParentsVector;
+    typedef std::vector<std::shared_ptr<Tech>> ParentsVector;
 
     ParentsVector parents;
 

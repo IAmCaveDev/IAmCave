@@ -12,9 +12,9 @@ using json = nlohmann::json;
 
 class Techtree {
 private:
-    std::set<std::unique_ptr<Tech>> tree;
+    std::set<std::shared_ptr<Tech>> tree;
 
-    void parse(const std::unique_ptr<Tech>& parent, json data);
+    void parse(std::shared_ptr<Tech> parent, json data);
 
 public:
     Techtree(std::string path);
