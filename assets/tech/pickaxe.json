@@ -1,0 +1,16 @@
+{
+    "name": "Pickaxe",
+    "iconPath": "assets/pickaxetech.png",
+
+    "requiredIntelligence": 35,
+
+    "statBoosts": [
+        { "huntBonus": 0 },
+        { "gatheringBonus": 0 },
+        { "buildingBonus": 2},
+        { "fitnessGain": 0.5 },
+        { "intelligenceGain": 5 }
+    ],
+
+    "description": "its like an axe, only more picky, good for improving cave"
+}

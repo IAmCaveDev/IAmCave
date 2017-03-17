@@ -1,0 +1,16 @@
+{
+    "name": "Hierarchy",
+    "iconPath": "assets/hierarchytech.png",
+
+    "requiredIntelligence": 40,
+
+    "statBoosts": [
+        { "huntBonus": 20 },
+        { "gatheringBonus": 20 },
+        { "fitnessGain": 0.5 },
+        { "intelligenceGain": 10 },
+        { "birthGain": 0.7 }
+    ],
+
+    "description": "everything gets better when there is only one leader"
+}

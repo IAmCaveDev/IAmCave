@@ -9,5 +9,7 @@
         { "gatheringBonus": 5 },
         { "fitnessGain": 0 },
         { "intelligenceGain": 3 }
-    ]
+    ],
+
+    "description": "put several sticks together to make something new"
 }

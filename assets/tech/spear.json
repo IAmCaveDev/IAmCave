@@ -1,0 +1,15 @@
+{
+    "name": "Spear",
+    "iconPath": "assets/speartech.png",
+
+    "requiredIntelligence": 20,
+
+    "statBoosts": [
+        { "huntBonus": 10 },
+        { "gatheringBonus": 0 },
+        { "fitnessGain": 0.5 },
+        { "intelligenceGain": 5 }
+    ],
+
+    "description": "pointy spears to kill round animals"
+}

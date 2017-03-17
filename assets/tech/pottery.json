@@ -1,0 +1,15 @@
+{
+    "name": "Pottery",
+    "iconPath": "assets/potterytech.png",
+
+    "requiredIntelligence": 25,
+
+    "statBoosts": [
+        { "huntBonus": 0 },
+        { "gatheringBonus": 20 },
+        { "fitnessGain": 0.5 },
+        { "intelligenceGain": 7 }
+    ],
+
+    "description": "pots for women to put materials and water in"
+}

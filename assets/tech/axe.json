@@ -9,5 +9,7 @@
         { "gatheringBonus": 10 },
         { "fitnessGain": 0.3 },
         { "intelligenceGain": 3 }
-    ]
+    ],
+
+    "description": "its like a handaxe, just less handy, used to kill"
 }

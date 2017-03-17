@@ -1,0 +1,15 @@
+{
+    "name": "Revolution",
+    "iconPath": "assets/revolutiontech.png",
+
+    "requiredIntelligence": 60,
+
+    "statBoosts": [
+        { "huntBonus": 100 },
+        { "gatheringBonus": 100 },
+        { "fitnessGain": 1 },
+        { "intelligenceGain": 1 }
+    ],
+
+    "description": "you win the game, was it really that hard?"
+}

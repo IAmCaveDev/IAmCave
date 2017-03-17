@@ -9,5 +9,7 @@
         { "gatheringBonus": 2 },
         { "fitnessGain": 0.2 },
         { "intelligenceGain": 2 }
-    ]
+    ],
+
+    "description": "the first tool ever, wow you are so smart"
 }

@@ -1,0 +1,15 @@
+{
+    "name": "WoodenFence",
+    "iconPath": "assets/woodenfencetech.png",
+
+    "requiredIntelligence": 50,
+
+    "statBoosts": [
+        { "huntBonus": 0 },
+        { "gatheringBonus": 0 },
+        { "fitnessGain": 0 },
+        { "intelligenceGain": 10 }
+    ],
+
+    "description": "prevents animals from eating your stuff"
+}
