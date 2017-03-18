@@ -17,11 +17,13 @@ private:
     TransformedVector<> size;
     TransformedVector<> pos;
 
+    std::vector<short> sizePerLevel;
+
     int techSize = 100;
     int padding = 200;
 
-    void parse(std::shared_ptr<Tech> parent, json data,
-               TransformedVector<> pos);
+    void positionTree(json data, short level);
+    void parse(std::shared_ptr<Tech> parent, json data, short level);
 
 public:
     Techtree(std::string path, TransformedVector<> newSize,
