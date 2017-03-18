@@ -1,7 +1,7 @@
 #ifndef TECHTREE_H
 #define TECHTREE_H
 
-#include <set>
+#include <map>
 #include <memory>
 #include <string>
 
@@ -12,7 +12,7 @@ using json = nlohmann::json;
 
 class Techtree {
 private:
-    std::set<std::shared_ptr<Tech>> tree;
+    std::map<std::string, std::shared_ptr<Tech>> tree;
 
     TransformedVector<> size;
     TransformedVector<> pos;

@@ -4,19 +4,21 @@
 #include <fstream>
 
 void Techtree::positionTree(json data, short level) {
+    std::string name = data["name"].get<std::string>();
 
+    auto p = tree[name];
+
+    p->getButton().setTransformedPosition(0);
 }
 
 void Techtree::parse(std::shared_ptr<Tech> parent, json data, short level) {
-    std::string techPath = "assets/tech/" + data["name"].get<std::string>() +
-                           ".json";
-    auto newParent = tree.emplace(new Tech(techPath, {parent}));
-
-    //newParent.first->get()->getButton().setTransformedPosition(lastPos);
+    std::string name = data["name"].get<std::string>();
+    std::string techPath = "assets/tech/" + name + ".json";
+    auto newParent = tree.emplace(name, new Tech(techPath, {parent}));
 
     // if already exists in tree
     if (!newParent.second) {
-        newParent.first->get()->getParents().push_back(parent);
+        newParent.first->second->getParents().push_back(parent);
     }
     else {
         sizePerLevel[level] += 1;
@@ -24,7 +26,7 @@ void Techtree::parse(std::shared_ptr<Tech> parent, json data, short level) {
 
     for (auto& it : data["children"]) {
 
-        parse(*newParent.first, it, level+1);
+        parse(newParent.first->second, it, level+1);
     }
 }
 
