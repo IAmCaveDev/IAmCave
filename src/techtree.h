@@ -22,7 +22,7 @@ private:
     int techSize = 100;
     int padding = 200;
 
-    void positionTree(json data, short level);
+    void positionTree(json data, short level, TransformedVector<> lastPos);
     void parse(std::shared_ptr<Tech> parent, json data, short level);
 
 public:
