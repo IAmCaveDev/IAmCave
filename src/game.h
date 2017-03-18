@@ -66,6 +66,11 @@ public:
     std::vector<std::shared_ptr<Caveman>>& getTribe();
 
     /**
+     * Returns a reference to the techtree.
+     */
+    Techtree& getTechtree();
+
+    /**
      * Returns a reference to the tribe.
      */
     Resources& getResources();

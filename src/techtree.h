@@ -14,10 +14,20 @@ class Techtree {
 private:
     std::set<std::shared_ptr<Tech>> tree;
 
-    void parse(std::shared_ptr<Tech> parent, json data);
+    TransformedVector<> size;
+    TransformedVector<> pos;
+
+    int techSize = 100;
+    int padding = 200;
+
+    void parse(std::shared_ptr<Tech> parent, json data,
+               TransformedVector<> pos);
 
 public:
-    Techtree(std::string path);
+    Techtree(std::string path, TransformedVector<> newSize,
+             TransformedVector<> newPos);
+
+    void display(sf::RenderWindow& win);
 };
 
 #endif

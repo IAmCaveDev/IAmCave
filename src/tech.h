@@ -4,6 +4,8 @@
 #include <memory>
 #include <vector>
 
+#include "button.h"
+
 class Tech {
 private:
     typedef std::vector<std::shared_ptr<Tech>> ParentsVector;
@@ -19,16 +21,17 @@ private:
     std::string name;
     std::string description;
     std::string iconPath;
-
     int requiredIntelligence;
-
     StatBoosts statBoosts;
 
+    Button button;
 
 public:
     Tech(std::string path, ParentsVector newParents);
 
     ParentsVector& getParents();
+
+    Button& getButton();
 };
 
 #endif

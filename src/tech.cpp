@@ -6,7 +6,7 @@
 using json = nlohmann::json;
 
 Tech::Tech(std::string path, ParentsVector newParents)
-          : parents(newParents) {
+          : parents(newParents), button(100, 0, "assets/techplaceholder.png", nullptr) {
     std::ifstream in(path);
     if (in.good()) {
         json data;
@@ -30,6 +30,10 @@ Tech::Tech(std::string path, ParentsVector newParents)
     }
 }
 
-Tech::ParentsVector& Tech::getParents(){
+Tech::ParentsVector& Tech::getParents() {
     return parents;
+}
+
+Button& Tech::getButton() {
+    return button;
 }

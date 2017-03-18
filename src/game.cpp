@@ -2,7 +2,7 @@
 
 #include "cavemanfactory.h"
 
-Game::Game() : techtree("assets/tech/techtree.json") {
+Game::Game() : techtree("assets/tech/techtree.json", {1920, 1080}, 0) {
     CavemanFactory cavemanFactory;
 
     // Starting population
@@ -61,6 +61,10 @@ void Game::addToResources(Resources amount) {
     resources.food += amount.food;
     resources.buildingMaterial += amount.buildingMaterial;
     resources.cavemanCapacity += amount.cavemanCapacity;
+}
+
+Techtree& Game::getTechtree(){
+    return techtree;
 }
 
 Resources& Game::getResources(){

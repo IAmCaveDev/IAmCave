@@ -57,27 +57,27 @@ Action& Management::getCurrentAction() {
 }
 
 void Management::pushCurrentAction() {
-    EActions currentType = currentAction->getType();   
-    
+    EActions currentType = currentAction->getType();
+
     switch (currentType) {
         case EActions::EasyHunt:
-            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 }, 
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/hunt-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::HardHunt:
-            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 }, 
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/hunt-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::Sex:
-            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 }, 
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/makelove-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::Improve:
-            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 }, 
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/improve-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::Think:
-            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 }, 
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/think-icon.png", nullptr), currentAction->getDuration());
             break;
     }
@@ -121,4 +121,6 @@ void Management::display(sf::RenderWindow& win) {
     for (auto const& it : getIdlingTribe()) {
         it->display(win);
     }
+
+    game.getTechtree().display(win);
 }
