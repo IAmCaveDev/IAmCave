@@ -30,6 +30,8 @@ public:
              TransformedVector<> newPos);
 
     void display(sf::RenderWindow& win);
+
+    void onResize();
 };
 
 #endif

@@ -75,8 +75,16 @@ Techtree::Techtree(std::string path, TransformedVector<> newSize,
 }
 
 void Techtree::display(sf::RenderWindow& win) {
-    for(auto& it : tree){
+    for (auto& it : tree) {
         it.second->getButton().display(win);
         // TODO: Draw arrows
+    }
+}
+
+void Techtree::onResize() {
+    for (auto& it : tree) {
+        auto& button = it.second->getButton();
+        button.setPosition(button.getTransformedPosition());
+        button.setSize(button.getTransformedSize());
     }
 }
