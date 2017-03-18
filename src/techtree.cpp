@@ -3,7 +3,8 @@
 #include <stdexcept>
 #include <fstream>
 
-void Techtree::positionTree(json data, short level, TransformedVector<> lastPos) {
+void Techtree::positionTree(json data, short level,
+                            TransformedVector<> lastPos) {
     std::string name = data["name"].get<std::string>();
 
     auto p = tree[name];
@@ -12,12 +13,21 @@ void Techtree::positionTree(json data, short level, TransformedVector<> lastPos)
 
     short i = 0;
     for (auto& it : data["children"]) {
-        int posY = pos.getRealY() + size.getRealY() - size.getRealY() / (sizePerLevel[level] - 1)*i;
-        if (i > 0 && i < (sizePerLevel[level] - 1)) {
-            posY -= techSize / 2;
-        } else if(i == (sizePerLevel[level]-1)) {
-            posY -= techSize;
+        int posY;
+
+        if (sizePerLevel[level] == 1) {
+            posY = pos.getRealY() + size.getRealY()/2 - techSize/2;
+        } else {
+            posY = pos.getRealY() + size.getRealY() - size.getRealY()
+                       / (sizePerLevel[level] - 1)*i;
+
+            if (i > 0 && i < (sizePerLevel[level] - 1)) {
+                posY -= techSize / 2;
+            } else if(i == (sizePerLevel[level]-1)) {
+                posY -= techSize;
+            }
         }
+
         positionTree(it, level + 1, {lastPos.getRealX()+techSize+padding,posY});
         i += 1;
     }
@@ -32,7 +42,14 @@ void Techtree::parse(std::shared_ptr<Tech> parent, json data, short level) {
     if (!newParent.second) {
         newParent.first->second->getParents().push_back(parent);
     } else {
-        sizePerLevel[level] += 1;
+        try {
+            sizePerLevel.at(level);
+
+            sizePerLevel[level] += 1;
+        }
+        catch(const std::out_of_range& oor) {
+            sizePerLevel.push_back(1);
+        }
     }
 
     for (auto& it : data["children"]) {
