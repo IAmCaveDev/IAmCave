@@ -19,11 +19,11 @@ void Techtree::positionTree(json data, short level,
             posY = pos.getRealY() + size.getRealY()/2 - techSize/2;
         } else {
             posY = pos.getRealY() + size.getRealY() - size.getRealY()
-                       / (sizePerLevel[level] - 1)*i;
+                       / (sizePerLevel[level] - 1) * i;
 
             if (i > 0 && i < (sizePerLevel[level] - 1)) {
                 posY -= techSize / 2;
-            } else if(i == (sizePerLevel[level]-1)) {
+            } else if(i == 0) {
                 posY -= techSize;
             }
         }
@@ -68,7 +68,7 @@ Techtree::Techtree(std::string path, TransformedVector<> newSize,
         in >> data;
 
         parse(nullptr, data, 0);
-        positionTree(data, 0, {pos.getRealX(),pos.getRealY()+size.getRealY()/2-techSize/2});
+        positionTree(data, 1, {pos.getRealX(),pos.getRealY()+size.getRealY()/2-techSize/2});
     } else {
         throw std::runtime_error("Could not open file at " + path);
     }
