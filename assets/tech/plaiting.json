@@ -1,0 +1,14 @@
+{
+    "name": "Plaiting",
+    "description": "put several sticks together to make something new",
+    "iconPath": "assets/plaitingtech.png",
+
+    "requiredIntelligence": 15,
+
+    "statBoosts": {
+        "huntBonus": 2,
+        "gatheringBonus": 5,
+        "fitnessGain": 0,
+        "intelligenceGain": 3
+    }
+}

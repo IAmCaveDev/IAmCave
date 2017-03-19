@@ -21,17 +21,19 @@ Button::Button(const TransformedVector<>& size,
 
 void Button::init(std::string texPath, std::function<void()> newCallback,
                   std::function<void()> newAltCallback){
-    size_t dotPos = texPath.find(".");
-    std::string hiTexPath = texPath.substr(0, dotPos) + "-h"
-                            + texPath.substr(dotPos);
-    std::string diTexPath = texPath.substr(0, dotPos) + "-d"
-                            + texPath.substr(dotPos);
+    if(!texPath.empty()){
+        size_t dotPos = texPath.find(".");
+        std::string hiTexPath = texPath.substr(0, dotPos) + "-h"
+                                + texPath.substr(dotPos);
+        std::string diTexPath = texPath.substr(0, dotPos) + "-d"
+                                + texPath.substr(dotPos);
 
-    if(!highlightedTex.loadFromFile(hiTexPath)){
-        highlightedTex = tex;
-    }
-    if(!disabledTex.loadFromFile(diTexPath)){
-        disabledTex = tex;
+        if(!highlightedTex.loadFromFile(hiTexPath)){
+            highlightedTex = tex;
+        }
+        if(!disabledTex.loadFromFile(diTexPath)){
+            disabledTex = tex;
+        }
     }
 
     callback = newCallback;

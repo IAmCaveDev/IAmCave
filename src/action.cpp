@@ -15,3 +15,10 @@ EActions Action::getType() {
     return type;
 }
 
+short Action::getDuration() {
+    return totalDuration;
+}
+
+std::vector<std::shared_ptr<Caveman>>& Action::getActors() {
+    return actors;
+}

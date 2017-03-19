@@ -1,18 +1,31 @@
 #include "hunt.h"
 
-Hunt::Hunt(EActions newtype, short time) : Action(time){
-    type = EActions::EasyHunt;
+Hunt::Hunt(bool newIsEasy, short time) : Action(time) {
+    isEasy = newIsEasy;
+    if (isEasy) {
+        type = EActions::EasyHunt;
+    }
+    else {
+        type = EActions::HardHunt;
+    }
 }
 
-void Hunt::addActor(Caveman* newactor) {
+void Hunt::addActor(std::shared_ptr<Caveman> newactor) {
     actors.push_back(newactor);
 }
 
-void Hunt::resolve() {
+ActionPackage Hunt::resolve() {
     currentDuration += 1;
+
     if (currentDuration == totalDuration) {
-        //add resources
-        //set cavemen to idle
-        //delete action
+        short totalFitness = 0;
+
+        for (auto& it : actors) {
+            totalFitness += it->getFitness();
+        }
+
+        float food = totalFitness * totalDuration;
+
+        return{ true, food, 0, 0, false };
     }
 }

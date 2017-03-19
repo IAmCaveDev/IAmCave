@@ -7,42 +7,6 @@
 
 short Caveman::counter = 0;
 
-std::vector<std::string> femaleNames = {
-    "Hillary",
-    "Liz",
-    "Gina",
-    "Chelsea",
-    "Luna",
-    "Giny",
-    "Selina",
-    "Lillian",
-    "Harleen"
-};
-
-std::vector<std::string> maleNames = {
-    "Donald",
-    "Bernie",
-    "Harambe",
-    "Gabe",
-    "Matthew",
-    "Harry",
-    "Ron",
-    "Oswald",
-    "Bruce"
-};
-
-std::vector<std::string> femaleTextures = {
-    "assets/cavewoman.png",
-    "assets/cavewoman2.png",
-    "assets/cavewoman3.png"
-};
-
-std::vector<std::string> maleTextures = {
-    "assets/caveman.png",
-    "assets/caveman1.png",
-    "assets/caveman2.png"
-};
-
 Caveman::Caveman(int maxAge, int minAge) : id(counter){
     std::random_device rd;
     std::mt19937 rng(rd());
@@ -50,43 +14,10 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
 
     age = unid(rng);
 
-
-    std::uniform_int_distribution<int> unbd(0, 1);
-
-    if(counter < 3){
-        male = true;
-    }else if(counter < 5){
-        male = false;
-    }else{
-        male = (unbd(rng) != 0);
-    }
-
-    std::uniform_int_distribution<int> maleN(0, maleNames.size() - 1);
-    std::uniform_int_distribution<int> femaleN(0, femaleNames.size() - 1);
-
-    if(male){
-        name = maleNames[maleN(rng)];
-    }else{
-        name = femaleNames[femaleN(rng)];
-    }
-
-
     std::uniform_int_distribution<int> stats(1, 5);
 
     fitness = stats(rng);
     intelligence = stats(rng);
-
-    std::uniform_int_distribution<int> maleT(0, maleTextures.size() - 1);
-    std::uniform_int_distribution<int> femaleT(0, femaleTextures.size() - 1);
-
-    if (male) {
-        texPath = maleTextures[maleT(rng)];
-    }else{
-        texPath = femaleTextures[femaleT(rng)];
-    }
-
-    button = new Button({100, 200}, {0, 0}, texPath,
-        nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
 
     infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "TEST");
 
@@ -97,20 +28,15 @@ Caveman::~Caveman() {
     delete button;
 }
 
-
 void Caveman::setInfoboxVisible(bool visible){
     infoboxVisible = visible;
 }
-
 
 short Caveman::getId(){
     return id;
 }
 std::string Caveman::getName(){
     return name;
-}
-bool Caveman::isMale(){
-    return male;
 }
 unsigned short Caveman::getAge(){
     return age;
@@ -130,6 +56,12 @@ Button& Caveman::getButton() {
 }
 Textbox& Caveman::getInfobox() {
     return *infobox;
+}
+
+void Caveman::initButton() {
+    button = new Button({ 100, 200 }, { 0, 0 }, texPath, nullptr,
+        std::bind(&ButtonFunctions::Tribe::displayInfo,
+            shared_from_this()));
 }
 
 void Caveman::setPosition(TransformedVector<> newPosition){
