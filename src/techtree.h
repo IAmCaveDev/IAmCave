@@ -18,6 +18,7 @@ private:
     TransformedVector<> pos;
 
     std::vector<short> sizePerLevel;
+    std::vector<short> iteratorPerLevel;
 
     int techSize = 100;
     int padding = 200;

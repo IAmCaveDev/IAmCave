@@ -16,6 +16,8 @@ private:
         float intelligenceGain;
     };
 
+    short level;
+
     ParentsVector parents;
 
     std::string name;
@@ -27,11 +29,14 @@ private:
     Button button;
 
 public:
-    Tech(std::string path, ParentsVector newParents);
+    Tech(std::string path, short newLevel, ParentsVector newParents);
 
     ParentsVector& getParents();
 
     Button& getButton();
+
+    short getLevel();
+    void setLevel(short newLevel);
 };
 
 #endif

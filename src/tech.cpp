@@ -5,8 +5,10 @@
 #include "json.hpp"
 using json = nlohmann::json;
 
-Tech::Tech(std::string path, ParentsVector newParents)
+Tech::Tech(std::string path, short newLevel, ParentsVector newParents)
           : parents(newParents), button(100, 0, "assets/techplaceholder.png", nullptr) {
+    level = newLevel;
+
     std::ifstream in(path);
     if (in.good()) {
         json data;
@@ -36,4 +38,12 @@ Tech::ParentsVector& Tech::getParents() {
 
 Button& Tech::getButton() {
     return button;
+}
+
+short Tech::getLevel() {
+    return level;
+}
+
+void Tech::setLevel(short newLevel) {
+    level = newLevel;
 }

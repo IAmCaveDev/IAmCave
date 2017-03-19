@@ -122,6 +122,4 @@ void Management::display(sf::RenderWindow& win) {
         it->display(win);
     }
 
-    game.getTechtree().display(win);
-
 }

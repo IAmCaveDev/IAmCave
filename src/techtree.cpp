@@ -9,9 +9,17 @@ void Techtree::positionTree(json data, short level,
 
     auto p = tree[name];
 
-    p->getButton().setTransformedPosition(lastPos);
+    if (level - 1 == p->getLevel()) {
+        p->getButton().setTransformedPosition(lastPos);
+    }
 
-    short i = 0;
+    for (auto& it : p->getParents()) {
+        std::shared_ptr<Tech> parent;
+        while (parent != nullptr) {
+            parent = it->getParents()[0];
+        }
+    }
+
     for (auto& it : data["children"]) {
         int posY;
 
@@ -19,28 +27,32 @@ void Techtree::positionTree(json data, short level,
             posY = pos.getRealY() + size.getRealY()/2 - techSize/2;
         } else {
             posY = pos.getRealY() + size.getRealY() - size.getRealY()
-                       / (sizePerLevel[level] - 1) * i;
+                       / (sizePerLevel[level] - 1) * iteratorPerLevel[level];
 
-            if (i > 0 && i < (sizePerLevel[level] - 1)) {
+            if (iteratorPerLevel[level] > 0 && iteratorPerLevel[level]< (sizePerLevel[level] - 1)) {
                 posY -= techSize / 2;
-            } else if(i == 0) {
+            } else if(iteratorPerLevel[level] == 0) {
                 posY -= techSize;
             }
         }
 
         positionTree(it, level + 1, {lastPos.getRealX()+techSize+padding,posY});
-        i += 1;
+
+        iteratorPerLevel[level] += 1;
     }
 }
 
 void Techtree::parse(std::shared_ptr<Tech> parent, json data, short level) {
     std::string name = data["name"].get<std::string>();
     std::string techPath = "assets/tech/" + name + ".json";
-    auto newParent = tree.emplace(name, new Tech(techPath, {parent}));
+    auto newParent = tree.emplace(name, new Tech(techPath, level, {parent}));
 
     // if already exists in tree
     if (!newParent.second) {
         newParent.first->second->getParents().push_back(parent);
+        if (level > newParent.first->second->getLevel()) {
+            newParent.first->second->setLevel(level);
+        }
     } else {
         try {
             sizePerLevel.at(level);
@@ -49,6 +61,7 @@ void Techtree::parse(std::shared_ptr<Tech> parent, json data, short level) {
         }
         catch(const std::out_of_range& oor) {
             sizePerLevel.push_back(1);
+            iteratorPerLevel.push_back(0);
         }
     }
 
