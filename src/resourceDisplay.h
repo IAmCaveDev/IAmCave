@@ -2,7 +2,7 @@
 #define RESOURCEDISPLAY_H
 
 #include "textbox.h"
-#include <SFML/graphics.hpp>
+#include <SFML/Graphics.hpp>
 #include "game.h"
 #include "gamestate.h"
 
