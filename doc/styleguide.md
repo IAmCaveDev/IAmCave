@@ -24,13 +24,13 @@
 
 ### Commits
 
-The summary of a commit message should be written in imperative mode and if
-possible not longer than 50 characters. Optionally the summary is followed by a
-blank line and a longer commit message.
+The summary of a commit message should be written in **imperative mood**,
+capitalised and if possible not longer than 50 characters<sup>[1](#f1)</sup>.
+Optionally the summary is followed by a blank line and a longer commit message.
 
 ### Version numbers
 
-Semantic versioning<sup>[1](#f1)</sup> should be used.
+Semantic versioning<sup>[2](#f2)</sup> should be used.
 
 > 1. MAJOR version when you make incompatible API changes,
 > 2. MINOR version when you add functionality in a backwards-compatible manner, and
@@ -153,15 +153,38 @@ Commas should always be followed by a space but not preceded by one.
 
 #### Parentheses
 
-Parentheses are followed and preceded by a space:
+Parentheses are followed and preceded by a space except when followed or
+preceded by another parenthesis or a function name:
 
 ```c++
 void someFunction(float n, bool b) {
     if (b) {
         n = 7;
-    }else if (n > (0 + 1)) {
+    } else if (n > (0 + 1)) {
         n = (n + 3) / 2
     }
+}
+```
+
+**Always** use `{` and `}` where possible. Writing
+
+```c++
+if (n == 4)
+    n = 2;
+else
+    n = 3;
+```
+
+is only going to introduce bugs. Short if statements should either be written in
+one line or if they contain an `else` or `else if` `{` and `}` should be used:
+
+```c++
+if (n == 4) return;
+
+if (n == 5) {
+    n = 3;
+} else {
+    n = 1;
 }
 ```
 
@@ -297,8 +320,19 @@ Comments using `/*` and `*/` should be prettified:
  */
 ```
 
+`/*` and `*/` should not be used for one line comments.
+
 Comments should be on the line above the code they are trying to comment and
 almost never on the same line.
+
+Docstrings should use the following:
+
+```c++
+/**
+ * This is a summary. This is a longer description.
+ * @param p This is a parameter.
+ */
+```
 
 
 ## Other Stuff
@@ -307,7 +341,7 @@ almost never on the same line.
 
 `0` and `0.0` should be used for numbers.
 `nullptr` should be used for pointers. `NULL` should not be used
-<sup>[3](#f3)</sup>.
+<sup>[4](#f4)</sup>.
 
 ### auto
 
@@ -346,6 +380,7 @@ changes and discuss improvements.
 
 
 #### Footnotes
-<a name="f1">1</a>: http://semver.org/ <br>
-<a name="f2">2</a>: http://en.cppreference.com/w/cpp/header <br>
-<a name="f3">3</a>: http://stackoverflow.com/questions/13091804/whats-better-to-use-in-c11-zero-or-null
+<a name="f1">1</a>: https://chris.beams.io/posts/git-commit/ <br>
+<a name="f2">2</a>: http://semver.org/ <br>
+<a name="f3">3</a>: http://en.cppreference.com/w/cpp/header <br>
+<a name="f4">4</a>: http://stackoverflow.com/questions/13091804/whats-better-to-use-in-c11-zero-or-null
