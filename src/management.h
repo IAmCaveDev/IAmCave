@@ -8,6 +8,7 @@
 #include "actionfactory.h"
 #include "action.h"
 #include "verticalbuttonlist.h"
+#include "resourceDisplay.h"
 
 /**
  * The management phase of the game.
@@ -20,10 +21,13 @@ private:
 
     VerticalButtonList* actionDisplay;
 
+	resourceDisplay resources;
+
 public:
     Management() = delete;
     explicit Management(Game& gameRef);
 
+	Game& gamereference = game;
     void setCurrentAction(EActions newaction, short duration);
     Action& getCurrentAction();
     void pushCurrentAction();

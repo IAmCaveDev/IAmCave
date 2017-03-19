@@ -81,17 +81,23 @@ VerticalButtonList& Management::getActionDisplay() {
 }
 
 void Management::display(sf::RenderWindow& win) {
-    for (auto const& it : rectangles) {
-        it->display(win);
-    }
+	for (auto const& it : rectangles) {
+		it->display(win);
+	}
 
-    for (auto const& it : buttons) {
-        it->display(win);
-    }
+	for (auto const& it : buttons) {
+		it->display(win);
+	}
 
-    actionDisplay->display(win);
+	actionDisplay->display(win);
 
-    for (auto const& it : game.getTribe()) {
-        it->display(win);
-    }
+	for (auto const& it : game.getTribe()) {
+		it->display(win);
+	}
+
+	
+	for (auto const& it : resources.getResources(gamereference)) {
+		it->display(win);
+	}
+
 }

@@ -11,7 +11,7 @@ int main(int argc, char *argv[]){
     TransformedVector<>::updateWinSize(size.x, size.y);
 
     try {
-        Textbox::setFont("assets/arial.ttf");
+        Textbox::setFont("assets/pixel.ttf");
     }
     catch(std::runtime_error err){
         window.close();
