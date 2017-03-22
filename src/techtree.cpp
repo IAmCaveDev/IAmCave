@@ -24,10 +24,13 @@ void Techtree::positionTree(json data, short level,
         int posY;
 
         if (sizePerLevel[level] == 1) {
-            posY = pos.getRealY() + size.getRealY()/2 - techSize/2;
+            posY = getTransformedPosition().getRealY()
+                   + getTransformedSize().getRealY()/2 - techSize/2;
         } else {
-            posY = pos.getRealY() + size.getRealY() - size.getRealY()
-                       / (sizePerLevel[level] - 1) * iteratorPerLevel[level];
+            posY = getTransformedPosition().getRealY()
+                   + getTransformedSize().getRealY()
+                   - getTransformedSize().getRealY() / (sizePerLevel[level] - 1)
+                   * iteratorPerLevel[level];
 
             if (iteratorPerLevel[level] > 0 && iteratorPerLevel[level]< (sizePerLevel[level] - 1)) {
                 posY -= techSize / 2;
@@ -70,10 +73,10 @@ void Techtree::parse(std::shared_ptr<Tech> parent, json data, short level) {
     }
 }
 
-Techtree::Techtree(std::string path, TransformedVector<> newSize,
-                   TransformedVector<> newPos) {
-    size = newSize;
-    pos = newPos;
+Techtree::Techtree(std::string backgroundPath, std::string path,
+                   TransformedVector<> newSize, TransformedVector<> newPos)
+                   : Rectangle(newSize, newPos, backgroundPath) {
+    visibility = false;
 
     std::ifstream in(path);
     if (in.good()) {
@@ -81,16 +84,26 @@ Techtree::Techtree(std::string path, TransformedVector<> newSize,
         in >> data;
 
         parse(nullptr, data, 0);
-        positionTree(data, 1, {pos.getRealX(),pos.getRealY()+size.getRealY()/2-techSize/2});
+        positionTree(data, 1, {getTransformedPosition().getRealX(),
+                               getTransformedPosition().getRealY()
+                               + getTransformedSize().getRealY() / 2
+                               - techSize / 2});
     } else {
         throw std::runtime_error("Could not open file at " + path);
     }
 }
 
+void Techtree::setVisibility(bool newVisibility) {
+    visibility = newVisibility;
+}
+
 void Techtree::display(sf::RenderWindow& win) {
-    for (auto& it : tree) {
-        it.second->getButton().display(win);
-        // TODO: Draw arrows
+    if (visibility) {
+        this->Rectangle::display(win);
+        for (auto& it : tree) {
+            it.second->getButton().display(win);
+            // TODO: Draw arrows
+        }
     }
 }
 

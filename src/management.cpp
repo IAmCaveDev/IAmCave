@@ -19,6 +19,7 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
 
     actionDisplay = new VerticalButtonList({50, 1080}, {-50, 0}, "");
 
+    // Testing
     actionDisplay->addButton(0, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 1);
     actionDisplay->addButton(1, new Button({200, 50}, {200, 300}, "assets/makelove-icon.png", nullptr), 0);
     actionDisplay->addButton(2, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 2);
@@ -32,7 +33,8 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
                 }),
         new Button({200, 50}, {200, 100}, "assets/hunt.png",
                 std::bind(&ButtonFunctions::Managing::Hunting::hunt, std::ref(*this))),
-        new Button({200, 50}, {200, 200}, "assets/think.png", nullptr),
+        new Button({200, 50}, {200, 200}, "assets/think.png",
+                std::bind(&ButtonFunctions::Managing::Research::think, std::ref(*this), std::ref(gameRef.getTechtree()))),
         new Button({200, 50}, {200, 300}, "assets/makelove.png", nullptr),
         new Button({200, 50}, {200, 400}, "assets/improve.png", nullptr),
     };
@@ -121,5 +123,7 @@ void Management::display(sf::RenderWindow& win) {
     for (auto const& it : getIdlingTribe()) {
         it->display(win);
     }
+
+    game.getTechtree().display(win);
 
 }

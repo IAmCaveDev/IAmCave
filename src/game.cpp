@@ -2,7 +2,7 @@
 
 #include "cavemanfactory.h"
 
-Game::Game() : techtree("assets/tech/techtree.json", {1920, 1080}, 0) {
+Game::Game() : techtree("assets/techtreebackground.png", "assets/tech/techtree.json", {1920, 1080}, 0) {
     CavemanFactory cavemanFactory;
 
     // Starting population

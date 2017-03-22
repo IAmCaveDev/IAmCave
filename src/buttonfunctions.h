@@ -16,7 +16,7 @@ namespace ButtonFunctions {
             void sex(Management& stateRef);
         }
         namespace Research {
-
+            void think(Management& stateRef, Techtree& techtreeRef);
         }
         namespace Improve {
 

@@ -35,6 +35,16 @@ namespace ButtonFunctions {
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
         }
+        namespace Research {
+            void think(Management& stateRef, Techtree& techtreeRef) {
+                techtreeRef.setVisibility(true);
+
+                std::vector<Button*>& buttons = stateRef.getButtons();
+                for (auto& it : buttons) {
+                    it->setClickability(false);
+                }
+            }
+        }
         namespace General {
             void abort(Management& stateRef) {
                 stateRef.deleteCurrentAction();
