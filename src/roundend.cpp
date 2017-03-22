@@ -3,6 +3,26 @@
 #include "game.h"
 #include <sstream>
 
+void RoundEnd::resolveActions() {
+    std::vector<int> toDelete = {};
+    for (auto& it : game.getActions()) {
+        ActionPackage result = it->resolve();
+        if (!result.isFinal) {
+            return;
+        }
+        else {
+            game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
+            if (result.newborn) {
+                game.addCaveman(0, 0);
+            }
+            toDelete.push_back(it->getID());
+        }
+
+    }
+    for (auto it : toDelete) {
+        game.removeAction(it);
+    }
+}
 
 RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::roundEnd;
@@ -28,11 +48,9 @@ void RoundEnd::step(){
     Resources resourcesBefore = game.getResources();
 
     //resolve Actions
-    //for (auto& it : game.getActions()) {
-    //   it->resolve();
-    //}
+    resolveActions();
 
-    // food
+    // idle food consumption
     std::normal_distribution<float> normal(0, 0.33);
 
     for(auto& it : game.getTribe()){

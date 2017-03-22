@@ -35,6 +35,19 @@ void VerticalButtonList::removeButton(int id){
     }
 }
 
+void VerticalButtonList::decreasePriorityOfAll(int n) {
+    std::vector<int> deletedElements;
+    for (auto& it : buttons) {
+        it.priority -= n;
+        if (it.priority <= 0) {
+            deletedElements.push_back(it.id);
+        }
+    }
+    for (auto& it : deletedElements) {
+        removeButton(it);
+    }
+}
+
 void VerticalButtonList::display(sf::RenderWindow& win){
     int i = 0;
     for(auto& it : buttons){
@@ -52,3 +65,4 @@ void VerticalButtonList::display(sf::RenderWindow& win){
         it.button->display(win);
     }
 }
+

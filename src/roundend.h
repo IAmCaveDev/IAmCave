@@ -18,6 +18,11 @@ private:
 
     Textbox* infoColumn;
 
+    /**
+    * Calls the resolve function of nextAction and adds to Gameresources
+    */
+    void resolveActions();
+
 public:
     RoundEnd() = delete;
     explicit RoundEnd(Game& gameRef);
