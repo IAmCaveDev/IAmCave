@@ -11,15 +11,34 @@
 class resourceDisplay
 {
 public:
-	resourceDisplay();
+	resourceDisplay() = delete;
+	explicit resourceDisplay(Game& gameRef);
 	~resourceDisplay();
+
+	std::vector<Textbox*> textBoxes;
+	std::vector<Textbox*> resourceDisplay::getResources();
+	std::vector<Rectangle*> resourceDisplay::getHeaps();
+
+	sf::Texture resourceDisplay::getFoodTexture();
+	sf::Texture resourceDisplay::getMaterialsTexture();
+
+	std::vector<Textbox*> resources;
+	std::vector<Rectangle*> heaps;
+
+
+
+	Game& gamereference;
+
+private:
 	Textbox* food;
 	Textbox* materials;
 	Textbox* space;
-	std::vector<Textbox*> textBoxes;
-	std::vector<Textbox*> resourceDisplay::getResources(Game& game);
-	std::vector<Textbox>* resources;
 
-private:
+	Rectangle* foodHeap;
+	Rectangle* materialsHeap;
+
+
+	sf::Texture* textureMeat;
+	sf::Texture* textureStones;
 };
 #endif;

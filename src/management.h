@@ -21,7 +21,7 @@ private:
 
     VerticalButtonList* actionDisplay;
 
-	resourceDisplay resources;
+	resourceDisplay* resources;
 
 public:
     Management() = delete;

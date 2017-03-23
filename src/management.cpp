@@ -11,8 +11,11 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::management;
     nextState = type;
 
-    rectangles = {
-        new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
+	resources = new resourceDisplay(gamereference);
+	rectangles = {
+		new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
+		new Rectangle({ 200, 400 },{ 1223, 160 }, "assets/heaps/meat-l.png"),
+		new Rectangle({ 400, 800 },{ 1400, 138 }, "assets/heaps/stones-l.png")
     };
 
     actionFactory = ActionFactory();
@@ -96,8 +99,15 @@ void Management::display(sf::RenderWindow& win) {
 	}
 
 	
-	for (auto const& it : resources.getResources(gamereference)) {
+	for (auto const& it : resources->getResources()) {
 		it->display(win);
 	}
+
+
+	sf::Texture textureMeat = resources->getFoodTexture();
+	rectangles[1]->setTexture(&textureMeat);
+
+	sf::Texture textureMaterials = resources->getMaterialsTexture();
+	rectangles[2]->setTexture(&textureMaterials);
 
 }
