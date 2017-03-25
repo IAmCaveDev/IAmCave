@@ -1,13 +1,13 @@
-#ifndef COLLECT_H
-#define COLLECT_H
+#ifndef SEX_H
+#define SEX_H
 
 #include <vector>
 #include <string>
 #include "action.h"
 
-class Collect : public Action {
+class Sex : public Action {
 public:
-	Collect(short duration);
+	Sex(short duration);
 
 	void addActor(std::shared_ptr<Caveman> actor);
 	ActionPackage resolve();

@@ -1,6 +1,6 @@
 #include "collect.h"
 
-Collect::Collect(bool newIsEasy, short time) : Action(time) {
+Collect::Collect(short time) : Action(time) {
 		type = EActions::Collect;
 }
 
