@@ -1,54 +1,80 @@
 #include "caveman.h"
 
+#include <random>
+#include <vector>
+
+#include "buttonfunctions.h"
+
 short Caveman::counter = 0;
 
-Caveman::Caveman() : id(counter) {
+Caveman::Caveman(int maxAge, int minAge) : id(counter){
+    std::random_device rd;
+    std::mt19937 rng(rd());
+    std::uniform_int_distribution<int> unid(minAge, maxAge);
 
+    age = unid(rng);
+
+    std::uniform_int_distribution<int> stats(1, 5);
+
+    fitness = stats(rng);
+    intelligence = stats(rng);
+
+    infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "TEST");
+
+    counter += 1;
 }
+
 Caveman::~Caveman() {
     delete button;
 }
 
-short Caveman::getId(){
-	return id;
-}
-std::string Caveman::getName(){
-	return name;
-}
-short Caveman::getFitness(){
-	return fitness;
-}
-unsigned short Caveman::getAge(){
-	return age;
-}
-short Caveman::getIntelligence(){
-	return intelligence;
-}
-Button& Caveman::getButton() {
-	return *button;
-}
-Textbox& Caveman::getInfobox() {
-	return *infobox;
-}
-EActions Caveman::getCurrentAction(){
-	return currentAction;
-}
-bool Caveman::isMale(){
-	return male;
-}
-
-void Caveman::setFitness(short newFit) {
-	fitness = newFit;
-}
 void Caveman::setInfoboxVisible(bool visible){
     infoboxVisible = visible;
 }
+
+short Caveman::getId(){
+    return id;
+}
+std::string Caveman::getName(){
+    return name;
+}
+unsigned short Caveman::getAge(){
+    return age;
+}
+short Caveman::getFitness(){
+    return fitness;
+}
+void Caveman::setFitness(short newFit) {
+    fitness = newFit;
+}
+short Caveman::getIntelligence(){
+    return intelligence;
+}
+
+Button& Caveman::getButton() {
+    return *button;
+}
+Textbox& Caveman::getInfobox() {
+    return *infobox;
+}
+
+void Caveman::initButton() {
+    button = new Button({ 100, 200 }, { 0, 0 }, texPath, nullptr,
+        std::bind(&ButtonFunctions::Tribe::displayInfo,
+            shared_from_this()));
+}
+
 void Caveman::setPosition(TransformedVector<> newPosition){
     button->setTransformedPosition(newPosition);
     infobox->setTransformedPosition(
         {newPosition.getRealX() - infobox->getTransformedSize().getRealX(),
          newPosition.getRealY() - infobox->getTransformedSize().getRealY()});
 }
+
+EActions Caveman::getCurrentAction(){
+    return currentAction;
+}
+
 void Caveman::setCurrentAction(EActions newOccupation) {
     currentAction = newOccupation;
 }

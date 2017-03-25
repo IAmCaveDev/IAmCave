@@ -4,54 +4,59 @@
 #define MIN_ADULT_AGE 3
 
 #include <string>
-#include <random>
-#include <vector>
+#include <memory>
 
-#include "buttonfunctions.h"
-#include "action.h"
+#include "enum.h"
 #include "button.h"
 
-
-class Caveman {
+class Caveman : public std::enable_shared_from_this<Caveman> {
 private:
+    static short counter;
+
     const short id;
 
-protected:
+    unsigned short age;
+
+    EActions currentAction;
+
     short fitness;
     short intelligence;
-    bool male;
-    unsigned short age;
-    std::string name;
-    EActions currentAction;
-    static short counter;
-    std::string texturePath;
-    Button* button;
+
     bool infoboxVisible = false;
     Textbox* infobox;
 
-public:
-    friend Action;
+protected:
+    std::string name;
 
-    explicit Caveman();
+    std::string texPath;
+    Button* button;
+
+public:
+    Caveman(int maxAge, int minAge);
     ~Caveman();
+
+    void setInfoboxVisible(bool visible);
 
     short getId();
     std::string getName();
-    short getFitness();
+    virtual bool isMale() = 0;
     unsigned short getAge();
+    short getFitness();
+    void setFitness(short newFit);
     short getIntelligence();
+
     Button& getButton();
     Textbox& getInfobox();
-    EActions getCurrentAction();
-    bool isMale();
 
-    void setFitness(short newFit);
-    void setInfoboxVisible(bool visible);
+    void initButton();
+
     void setPosition(TransformedVector<> newPosition);
+
+    EActions getCurrentAction();
     void setCurrentAction(EActions newOccupation);
-    void setPregnancy(bool newPregnant);
 
     void onResize();
+
     void display(sf::RenderWindow& win) const;
 
 };

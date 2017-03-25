@@ -1,18 +1,16 @@
 #ifndef MALE_H
 #define MALE_H
 
-#include <vector>
-#include <string>
-
 #include "caveman.h"
 
-class Male : protected Caveman {
+class Male : public Caveman {
 private:
-    bool male = 1;
+    Male(int maxAge, int minAge);
 
 public:
-    Male(int maxAge, int minAge);
-};
+    bool isMale();
 
+    friend class CavemanFactory;
+};
 
 #endif

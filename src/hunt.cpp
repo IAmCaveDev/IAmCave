@@ -1,34 +1,31 @@
 #include "hunt.h"
 
-Hunt::Hunt(EActions newtype, short time) : Action(time){
-    type = newtype;
+Hunt::Hunt(bool newIsEasy, short time) : Action(time) {
+    isEasy = newIsEasy;
+    if (isEasy) {
+        type = EActions::EasyHunt;
+    }
+    else {
+        type = EActions::HardHunt;
+    }
 }
 
-void Hunt::addActor(Caveman* newactor) {
+void Hunt::addActor(std::shared_ptr<Caveman> newactor) {
     actors.push_back(newactor);
 }
 
-short Hunt::resolve() {
+ActionPackage Hunt::resolve() {
     currentDuration += 1;
-    if (currentDuration == totalDuration) {
-            short totalFitness = 0;
-            short luck = (short)std::rand() % 10;
 
-            for (auto& it : actors) {
-                totalFitness += it->getFitness;
-                if (it->isMale()) {
-                    /** 
-                    *   TODO
-                    *   Add boni for male workers
-                    */
-                }
-                it->setCurrentAction(EActions::Idle);
-            }
-            /** 
-            *   TODO
-            *   Add gathering modifier
-            */
-            return totalFitness + luck * totalDuration * (easy * 2);
+    if (currentDuration == totalDuration) {
+        short totalFitness = 0;
+
+        for (auto& it : actors) {
+            totalFitness += it->getFitness();
         }
-        return 0;
+
+        float food = totalFitness * totalDuration;
+
+        return{ true, food, 0, 0, false };
+    }
 }

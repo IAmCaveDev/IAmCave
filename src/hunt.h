@@ -3,18 +3,17 @@
 
 #include <vector>
 #include <string>
-
 #include "action.h"
-#include "game.h"
 
 class Hunt : public Action {
 private:
-    bool easy;
-public:
-    Hunt(EActions newtype, short duration);
+    bool isEasy;
 
-    void addActor(Caveman* actor);
-    short resolve();
+public:
+    Hunt(bool newIsEasy, short duration);
+
+    void addActor(std::shared_ptr<Caveman> actor);
+    ActionPackage resolve();
 };
 
 #endif

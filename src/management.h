@@ -17,6 +17,7 @@ class Management : public GameState {
 private:
     ActionFactory actionFactory;
     std::unique_ptr<Action> currentAction;
+
     VerticalButtonList* actionDisplay;
 
 public:

@@ -40,7 +40,7 @@ private:
     sf::Texture highlightedTex;
     sf::Texture disabledTex;
 
-    void init(std::string texturePath, std::function<void()> newCallback,
+    void init(std::string texPath, std::function<void()> newCallback,
               std::function<void()> newAltCallback);
 
 public:
@@ -56,7 +56,7 @@ public:
      */
     Button(const TransformedVector<>& size,
            const TransformedVector<>& newPosition,
-           std::string texturePath, std::function<void()> newCallback,
+           std::string texPath, std::function<void()> newCallback,
            std::function<void()> newAltCallback = nullptr);
 
     /**
@@ -71,7 +71,7 @@ public:
      */
     Button(const TransformedVector<>& size,
            const TransformedVector<>& newPosition,
-           std::string texturePath, std::function<void()> newCallback,
+           std::string texPath, std::function<void()> newCallback,
            std::function<void()> newAltCallback, std::string newText,
            int padding = 5, int newTextSize = 20,
            sf::Color newTextColor = sf::Color::Black,

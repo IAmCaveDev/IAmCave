@@ -54,7 +54,7 @@ public:
      */
     VerticalButtonList(const TransformedVector<>& size,
                        const TransformedVector<>& newPosition,
-                       std::string texturePath, bool newReverse = false);
+                       std::string texPath, bool newReverse = false);
 
     /**
      * Deletes every Button remaining in it's list.

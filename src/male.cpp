@@ -1,6 +1,10 @@
 #include "male.h"
+#include "buttonfunctions.h"
 
-std::vector<std::string> names = {
+#include <random>
+#include <vector>
+
+std::vector<std::string> maleNames = {
     "Donald",
     "Bernie",
     "Harambe",
@@ -9,34 +13,26 @@ std::vector<std::string> names = {
     "Harry",
     "Ron",
     "Oswald",
-    "Bruce",
-    "Wilhelm"
+    "Bruce"
 };
-std::vector<std::string> textures = {
+
+std::vector<std::string> maleTextures = {
     "assets/caveman.png",
     "assets/caveman1.png",
     "assets/caveman2.png"
 };
 
-Male::Male(int maxAge, int minAge) : Caveman() {
+Male::Male(int maxAge, int minAge) : Caveman(maxAge, minAge) {
     std::random_device rd;
     std::mt19937 rng(rd());
-    std::uniform_int_distribution<int> unid(minAge, maxAge);
-    std::uniform_int_distribution<int> unbd(0, 1);
-    std::uniform_int_distribution<int> N(0, names.size() - 1);
-    std::uniform_int_distribution<int> stats(1, 5);
-    std::uniform_int_distribution<int> T(0, textures.size() - 1);
 
-    age = unid(rng);
-    name = names[N(rng)];
-    texturePath = textures[T(rng)];
-    fitness = stats(rng);
-    intelligence = stats(rng);
+    std::uniform_int_distribution<int> maleN(0, maleNames.size() - 1);
+    name = maleNames[maleN(rng)];
 
-    button = new Button({ 100, 200 }, { 0, 0 }, texturePath,
-        nullptr, std::bind(&ButtonFunctions::Tribe::displayInfo, std::ref(*this)));
+    std::uniform_int_distribution<int> maleT(0, maleTextures.size() - 1);
+    texPath = maleTextures[maleT(rng)];
+}
 
-    infobox = new Textbox({ 200, 200 }, { 450, 400 }, "assets/info.png", "TEST");
-
-    counter += 1;
+bool Male::isMale() {
+    return true;
 }

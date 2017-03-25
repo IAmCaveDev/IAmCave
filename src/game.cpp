@@ -1,8 +1,16 @@
 #include "game.h"
 
-Game::Game(){
-    for(int i = 0; i < 5; ++i){
-        addCaveman(5,5);
+#include "cavemanfactory.h"
+
+Game::Game() : techtree("assets/tech/techtree.json", {1920, 1080}, 0) {
+    CavemanFactory cavemanFactory;
+
+    // Starting population
+    for(int i = 0; i < 3; ++i){
+        tribe.push_back(cavemanFactory.createMale(5, 5));
+    }
+    for(int i = 0; i < 2; ++i){
+        tribe.push_back(cavemanFactory.createFemale(5, 5));
     }
 
     int xPos = 500;
@@ -23,29 +31,26 @@ Game::Game(){
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
-    CavemanFactory factory;
-    std::unique_ptr<Caveman> man = factory.createMale(maxAge, minAge);
-    
-    tribe.push_back(man);
+    CavemanFactory cavemanFactory;
+    tribe.push_back(cavemanFactory.createRandom(maxAge, minAge));
 }
 
-std::vector<std::unique_ptr<Caveman>>& Game::getTribe() {
+std::vector<std::shared_ptr<Caveman>>& Game::getTribe() {
     return tribe;
 }
 
 void Game::addAction(std::unique_ptr<Action> newAction) {
-    switch (newAction->getType()) {
-        case (EActions::EasyHunt) : ;
-            //TODO: handle actionqueue
-    }
     actions.push_back(std::move(newAction));
 }
 
 void Game::removeAction(int id) {
-    //TODO:write function properly
-    //remove icon from actionDisplay
-    //delete action from actions vector
-    //delete unique_ptr action object
+    for (int i = 0; i < actions.size(); ++i) {
+        if (actions.at(i)->getID() == id) {
+            actions.at(i).reset();
+            actions.erase(actions.begin()+i);
+            return;
+        }
+    }
 }
 
 std::vector<std::unique_ptr<Action>>& Game::getActions() {
@@ -56,6 +61,10 @@ void Game::addToResources(Resources amount) {
     resources.food += amount.food;
     resources.buildingMaterial += amount.buildingMaterial;
     resources.cavemanCapacity += amount.cavemanCapacity;
+}
+
+Techtree& Game::getTechtree(){
+    return techtree;
 }
 
 Resources& Game::getResources(){

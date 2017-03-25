@@ -4,8 +4,9 @@
 #include <vector>
 #include <memory>
 
-#include "cavemanfactory.h"
-#include "actionfactory.h"
+#include "caveman.h"
+#include "action.h"
+#include "techtree.h"
 
 /**
  * Resource data.
@@ -25,8 +26,9 @@ class Game {
 private:
     unsigned int roundNumber = 0;
 
-    std::vector<std::unique_ptr<Caveman>> tribe;
+    std::vector<std::shared_ptr<Caveman>> tribe;
     std::vector<std::unique_ptr<Action>> actions;
+    Techtree techtree;
 
     Resources resources;
 
@@ -61,7 +63,12 @@ public:
     /**
      * Returns a reference to the tribe.
      */
-    std::vector<std::unique_ptr<Caveman>>& getTribe();
+    std::vector<std::shared_ptr<Caveman>>& getTribe();
+
+    /**
+     * Returns a reference to the techtree.
+     */
+    Techtree& getTechtree();
 
     /**
      * Returns a reference to the tribe.
