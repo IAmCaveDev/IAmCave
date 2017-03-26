@@ -44,7 +44,7 @@ void Button::init(std::string texPath, std::function<void()> newCallback,
 }
 
 void Button::highlighted(const sf::Vector2i& mousePosition, bool useAlt){
-    if(!clickable) return;
+    if(!clickable || !visible) return;
     sf::Vector2i myPosition = sf::Vector2i(getTransformedPosition());
     if((mousePosition.x >= myPosition.x) &&
        (mousePosition.x <= myPosition.x + getTransformedSize().getX()) &&
@@ -60,7 +60,7 @@ void Button::highlighted(const sf::Vector2i& mousePosition, bool useAlt){
 }
 
 void Button::executed(const sf::Vector2i& mousePosition, bool useAlt){
-    if(!clickable || !isHighlighted) return;
+    if(!clickable || !isHighlighted || !visible) return;
     sf::Vector2i myPosition = sf::Vector2i(getTransformedPosition());
     if((mousePosition.x >= myPosition.x) &&
        (mousePosition.x <= myPosition.x + getTransformedSize().getX()) &&
