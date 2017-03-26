@@ -95,6 +95,9 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
 
 void Techtree::setVisibility(bool newVisibility) {
     visibility = newVisibility;
+    for (auto& it : tree) {
+        it.second->getButton().setVisibility(newVisibility);
+    }
 }
 
 void Techtree::display(sf::RenderWindow& win) {

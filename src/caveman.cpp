@@ -19,7 +19,7 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     fitness = stats(rng);
     intelligence = stats(rng);
 
-    infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "TEST");
+    infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "");
 
     counter += 1;
 }
