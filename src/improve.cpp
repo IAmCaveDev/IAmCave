@@ -19,5 +19,5 @@ ActionPackage Improve::resolve() {
 		return{ true, 0.f, 0, 1, false };
 	}
 
-	return{ false, 0.f, -10 * actors.size(), 0, false };
+	return{ false, 0.f, (int) (10 * actors.size()), 0, false };
 }

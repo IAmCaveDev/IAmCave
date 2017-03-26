@@ -11,7 +11,10 @@ void RoundEnd::resolveActions() {
             return;
         }
         else {
-            game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
+			if(it->getType()==Improve)
+				game.addToResources({ result.food,game.getResources().buildingMaterial - result.buildingMaterial,result.cavemanCapacity });
+			else
+				game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
             if (result.newborn) {
                 game.addCaveman(0, 0);
             }

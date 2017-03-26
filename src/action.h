@@ -20,7 +20,7 @@ struct ActionPackage {
     bool isFinal;
 
     float food;
-    unsigned int buildingMaterial;
+    int buildingMaterial;
     int cavemanCapacity;
     bool newborn;
     //Tech ID
