@@ -5,7 +5,7 @@ Collect::Collect(short time) : Action(time) {
 }
 
 void Collect::addActor(std::shared_ptr<Caveman> newactor) {
-	if(!newactor->isMale)
+	if(!newactor->isMale())
 		actors.push_back(newactor);
 }
 
@@ -17,6 +17,7 @@ ActionPackage Collect::resolve() {
 
 		for (auto& it : actors) {
 			totalFitness += it->getFitness();
+			it->setCurrentAction(Idle);
 		}
 		// TODO Add gathering modifier
 		float food = totalFitness * totalDuration;

@@ -22,6 +22,7 @@ ActionPackage Hunt::resolve() {
 
         for (auto& it : actors) {
             totalFitness += it->getFitness();
+			it->setCurrentAction(Idle);
         }
 
         float food = totalFitness * totalDuration;
