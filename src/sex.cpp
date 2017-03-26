@@ -1,6 +1,6 @@
 #include "sex.h"
 
-Sex::Sex() : Action(1) {
+Sex::Sex() : Action(9) {
 	type = EActions::Sex;
 }
 

@@ -20,8 +20,8 @@ ActionPackage Collect::resolve() {
 			it->setCurrentAction(Idle);
 		}
 		// TODO Add gathering modifier
-		float food = totalFitness * totalDuration;
+		int materials = totalFitness * totalDuration;
 
-		return{ true, food, 0, 0, false };
+		return{ true, 0.f, materials, 0, false };
 	}
 }
