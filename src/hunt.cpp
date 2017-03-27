@@ -29,4 +29,6 @@ ActionPackage Hunt::resolve() {
 
         return{ true, food, 0, 0, false };
     }
+
+	return{ false, 0.f, 0, 0, false };
 }

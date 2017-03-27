@@ -25,5 +25,5 @@ ActionPackage Collect::resolve() {
 		return{ true, 0.f, materials, 0, false };
 	}
 
-	return{ false, 0.f, 0, false };
+	return{ false, 0.f, 0, 0, false };
 }
