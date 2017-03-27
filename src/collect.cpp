@@ -1,7 +1,7 @@
 #include "collect.h"
 
 Collect::Collect(short time) : Action(time) {
-		type = EActions::Collect;
+		type = EActions::CollectAction;
 }
 
 void Collect::addActor(std::shared_ptr<Caveman> newactor) {

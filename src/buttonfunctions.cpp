@@ -31,7 +31,7 @@ namespace ButtonFunctions {
         }
         namespace Sex {
             void sex(Management& stateRef) {
-                stateRef.setCurrentAction(EActions::Sex, 1);
+                stateRef.setCurrentAction(EActions::SexAction, 1);
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
         }

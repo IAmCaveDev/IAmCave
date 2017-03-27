@@ -1,7 +1,7 @@
 #include "sex.h"
 
 Sex::Sex() : Action(9) {
-	type = EActions::Sex;
+	type = EActions::SexAction;
 }
 
 void Sex::addActor(std::shared_ptr<Caveman> newactor) {

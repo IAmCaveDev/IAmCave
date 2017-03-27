@@ -68,15 +68,15 @@ void Management::pushCurrentAction() {
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/hunt-icon.png", nullptr), currentAction->getDuration());
             break;
-        case EActions::Sex:
+        case EActions::SexAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/makelove-icon.png", nullptr), currentAction->getDuration());
             break;
-        case EActions::Improve:
+        case EActions::ImproveAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/improve-icon.png", nullptr), currentAction->getDuration());
             break;
-        case EActions::Think:
+        case EActions::ThinkAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/think-icon.png", nullptr), currentAction->getDuration());
             break;

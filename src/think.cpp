@@ -1,7 +1,7 @@
 #include "think.h"
 
 Think::Think(ETechs newtech, short time) : Action(time) {
-	type = EActions::Think;
+	type = EActions::ThinkAction;
 	tech = newtech;
 }
 
@@ -21,6 +21,6 @@ ActionPackage Think::resolve() {
 	return{ false, 0.f, 0, false };
 }
 
-ETechs Think::getTech() {
-	return tech;
-}
+//ETechs Think::getTech() {
+//	return tech;
+//}

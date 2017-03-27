@@ -1,7 +1,7 @@
 #include "improve.h"
 
 Improve::Improve(short time) : Action(time) {
-	type = EActions::Improve;
+	type = EActions::ImproveAction;
 }
 
 void Improve::addActor(std::shared_ptr<Caveman> newactor) {

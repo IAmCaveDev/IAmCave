@@ -16,7 +16,7 @@ public:
     void addActor(std::shared_ptr<Caveman> actor);
     ActionPackage resolve();
 	
-    ETechs getTech();
+    //ETechs getTech();
 };
 
 #endif
