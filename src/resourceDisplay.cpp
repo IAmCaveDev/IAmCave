@@ -15,8 +15,8 @@ resourceDisplay::resourceDisplay(Game& gameref) : gamereference (gameref)
 	materials = new Textbox({ 450, 150 }, { 600, 0 }, "assets/resource-column.png", "Stones: " + std::to_string(gameref.getResources().buildingMaterial), 5, 30);
 	space = new Textbox({ 450, 150 }, { 800, 0 }, "assets/resource-column.png", "Beds: " + std::to_string(gameref.getResources().cavemanCapacity), 5, 30);
 
-	foodHeap = new Rectangle({ 200, 400 }, { 1223, 165 }, "assets/heaps/meat-l.png");
-	materialsHeap = new Rectangle({ 200, 400 }, { 1400, 800 }, "assets/heaps/stones-l.png");
+	foodHeap = new Rectangle({ 200, 400 }, { 1223, 160 }, "assets/heaps/meat-l.png");
+	materialsHeap = new Rectangle({ 400, 800 }, { 1400, 138 }, "assets/heaps/stones-l.png");
 	//gamereference = new gameref();
 
 	textureMeat = new sf::Texture;
@@ -25,21 +25,14 @@ resourceDisplay::resourceDisplay(Game& gameref) : gamereference (gameref)
 
 
 
-std::vector<Textbox*> resourceDisplay::getResources()
+std::vector<Textbox*>& resourceDisplay::getResources()
 {
 
 
 	food->setText("Meat: " + std::to_string(int(gamereference.getResources().food)));
 	materials->setText("Stones: " + std::to_string(gamereference.getResources().buildingMaterial));
 	space->setText("Beds: " + std::to_string(gamereference.getResources().cavemanCapacity));
-	
 
-
-	/*
-	food = new Textbox({ 450, 150 }, { 400, 0 }, "assets/resource-column.png", "Meat: " + std::to_string(int(game.getResources().food)), 5, 30);
-	materials = new Textbox({ 450, 150 }, { 600, 0 }, "assets/resource-column.png", "Stones: " + std::to_string(game.getResources().buildingMaterial), 5, 30);
-	space = new Textbox({ 450, 150 }, { 800, 0 }, "assets/resource-column.png", "Beds: " +  std::to_string(game.getResources().cavemanCapacity), 5, 30);
-	*/
 	textBoxes.clear();
 	textBoxes.empty();
 	textBoxes.push_back(food);
@@ -52,7 +45,7 @@ std::vector<Textbox*> resourceDisplay::getResources()
 
 }
 
-std::vector<Rectangle*> resourceDisplay::getHeaps()
+std::vector<Rectangle*>& resourceDisplay::getHeaps()
 {
 
 	if (gamereference.getResources().food > 50)
@@ -68,11 +61,11 @@ std::vector<Rectangle*> resourceDisplay::getHeaps()
 		textureMeat->loadFromFile("assets/heaps/meat-s.png");
 	}
 
-	if (gamereference.getResources().food > 50)
+	if (gamereference.getResources().buildingMaterial > 50)
 	{
 		textureStones->loadFromFile("assets/heaps/stones-l.png");
 	}
-	else if (gamereference.getResources().food > 25)
+	else if (gamereference.getResources().buildingMaterial > 25)
 	{
 		textureStones->loadFromFile("assets/heaps/stones-m.png");
 	}
@@ -94,7 +87,7 @@ std::vector<Rectangle*> resourceDisplay::getHeaps()
 
 
 
-sf::Texture resourceDisplay::getFoodTexture()
+sf::Texture& resourceDisplay::getFoodTexture()
 {
 	if (gamereference.getResources().food > 50)
 	{
@@ -113,7 +106,7 @@ sf::Texture resourceDisplay::getFoodTexture()
 	return *textureMeat;
 }
 
-sf::Texture resourceDisplay::getMaterialsTexture()
+sf::Texture& resourceDisplay::getMaterialsTexture()
 {
 	if (gamereference.getResources().food > 50)
 	{

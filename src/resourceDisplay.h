@@ -16,11 +16,11 @@ public:
 	~resourceDisplay();
 
 	std::vector<Textbox*> textBoxes;
-	std::vector<Textbox*> resourceDisplay::getResources();
-	std::vector<Rectangle*> resourceDisplay::getHeaps();
+	std::vector<Textbox*>& resourceDisplay::getResources();
+	std::vector<Rectangle*>& resourceDisplay::getHeaps();
 
-	sf::Texture resourceDisplay::getFoodTexture();
-	sf::Texture resourceDisplay::getMaterialsTexture();
+	sf::Texture& resourceDisplay::getFoodTexture();
+	sf::Texture& resourceDisplay::getMaterialsTexture();
 
 	std::vector<Textbox*> resources;
 	std::vector<Rectangle*> heaps;

@@ -15,7 +15,10 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
 	rectangles = {
 		new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
 		new Rectangle({ 200, 400 },{ 1223, 160 }, "assets/heaps/meat-l.png"),
-		new Rectangle({ 400, 800 },{ 1400, 138 }, "assets/heaps/stones-l.png")
+		new Rectangle({ 400, 800 },{ 1400, 138 }, "assets/heaps/stones-m.png"),
+		new Textbox({ 450, 150 },{ 800, 0 }, "assets/resource-column.png", "Beds: " + std::to_string(gameRef.getResources().cavemanCapacity), 5, 30),
+		new Textbox({ 450, 150 },{ 400, 0 }, "assets/resource-column.png", "Meat: " + std::to_string(int(gameRef.getResources().food)), 5, 30),
+		new Textbox({ 450, 150 },{ 600, 0 }, "assets/resource-column.png", "Stones: " + std::to_string(gameRef.getResources().buildingMaterial), 5, 30)
     };
 
     actionFactory = ActionFactory();
@@ -98,16 +101,28 @@ void Management::display(sf::RenderWindow& win) {
 		it->display(win);
 	}
 
-	
+	/*
 	for (auto const& it : resources->getResources()) {
 		it->display(win);
 	}
+	*/
+	/*
+	for (auto const& it : resources->getHeaps()) {
+		it->display(win);
+	}
+	*/
 
+	rectangles[1] = resources->getHeaps()[0];
+	rectangles[2] = resources->getHeaps()[1];
+	rectangles[3] = resources->getResources()[0];
+	rectangles[4] = resources->getResources()[1];
+	rectangles[5] = resources->getResources()[2];
 
+	/*
 	sf::Texture textureMeat = resources->getFoodTexture();
 	rectangles[1]->setTexture(&textureMeat);
 
 	sf::Texture textureMaterials = resources->getMaterialsTexture();
 	rectangles[2]->setTexture(&textureMaterials);
-
+	*/
 }
