@@ -1,6 +1,6 @@
 #include "improve.h"
 
-Improve::Improve() : Action(10) {
+Improve::Improve(short time) : Action(time) {
 	type = EActions::Improve;
 }
 

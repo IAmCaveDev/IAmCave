@@ -8,10 +8,14 @@
 
 class Sex : public Action {
 public:
-	Sex();
+    /**
+    * Create sex action.
+    * Action duration is a fixed variable for this action type.
+    */
+    Sex();
 
-	void addActor(std::shared_ptr<Caveman> actor);
-	ActionPackage resolve();
+    void addActor(std::shared_ptr<Caveman> actor);
+    ActionPackage resolve();
 };
 
 #endif

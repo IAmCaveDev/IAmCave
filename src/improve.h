@@ -7,10 +7,10 @@
 
 class Improve : public Action {
 public:
-	Improve();
+    Improve(short time);
 
-	void addActor(std::shared_ptr<Caveman> actor);
-	ActionPackage resolve();
+    void addActor(std::shared_ptr<Caveman> actor);
+    ActionPackage resolve();
 };
 
 #endif

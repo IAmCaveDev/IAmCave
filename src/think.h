@@ -11,12 +11,12 @@ private:
 	ETechs tech;
 
 public:
-	Think(ETechs newtech, short time);
+    Think(ETechs newtech, short time);
 
-	void addActor(std::shared_ptr<Caveman> actor);
-	ActionPackage resolve();
+    void addActor(std::shared_ptr<Caveman> actor);
+    ActionPackage resolve();
 	
-	ETechs getTech();
+    ETechs getTech();
 };
 
 #endif

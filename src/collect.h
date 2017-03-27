@@ -7,10 +7,10 @@
 
 class Collect : public Action {
 public:
-	Collect(short duration);
+    Collect(short duration);
 
-	void addActor(std::shared_ptr<Caveman> actor);
-	ActionPackage resolve();
+    void addActor(std::shared_ptr<Caveman> actor);
+    ActionPackage resolve();
 };
 
 #endif

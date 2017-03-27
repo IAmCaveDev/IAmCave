@@ -27,7 +27,7 @@ ActionPackage Sex::resolve() {
 		else if(!(std::dynamic_pointer_cast<Female>)(it)->isPregnant())
 			(std::dynamic_pointer_cast<Female>)(it)->setPregnant(true);
 	}
-	if(currentDuration == 9)
+	if(currentDuration == totalDuration)
 		return{ true, 0, 0, 0, true };
 
 	return{ false, 0, 0, 0, false };
