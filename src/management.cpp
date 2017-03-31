@@ -37,6 +37,8 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
                 std::bind(&ButtonFunctions::Managing::Sex::sex, std::ref(*this))),
         new Button({200, 50}, {200, 400}, "assets/improve.png",
                 std::bind(&ButtonFunctions::Managing::Improve::improve, std::ref(*this))),
+        new Button({ 200, 50 },{ 200, 500 }, "assets/collect.png",
+                std::bind(&ButtonFunctions::Managing::Collecting::collect, std::ref(*this))),
     };
 
 }
@@ -55,7 +57,10 @@ void Management::setCurrentAction(EActions newaction, short duration) {
         case EActions::ImproveAction:
             currentAction = std::move(actionFactory.createImproveAction(duration));
             break;
-        // TODO: add more Actions here
+        case EActions::CollectAction:
+            currentAction = std::move(actionFactory.createCollectAction(duration));
+            break;
+        // TODO Add think action here
     }
 
 }
@@ -87,6 +92,10 @@ void Management::pushCurrentAction() {
         case EActions::ThinkAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/think-icon.png", nullptr), currentAction->getDuration());
+            break;
+        case EActions::CollectAction:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
+                "assets/collect-icon.png", nullptr), currentAction->getDuration());
             break;
     }
 

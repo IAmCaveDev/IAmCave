@@ -21,6 +21,9 @@ namespace ButtonFunctions {
         namespace Improve {
             void improve(Management& stateRef);
         }
+        namespace Collecting {
+            void collect(Management& stateRef);
+        }
         namespace General {
             void abort(Management& stateRef);
             void confirm(Management& stateRef);

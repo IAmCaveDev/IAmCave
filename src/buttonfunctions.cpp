@@ -49,6 +49,16 @@ namespace ButtonFunctions {
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
         }
+        namespace Collecting {
+            void collect(Management& stateRef) {
+                std::vector<Button*>& buttons = stateRef.getButtons();
+                for (auto& it : buttons) {
+                    it->setClickability(false);
+                }
+                stateRef.setCurrentAction(EActions::CollectAction, 1);
+                ButtonFunctions::Managing::General::actionStart(stateRef);
+            }
+        }
         namespace General {
             void abort(Management& stateRef) {
                 stateRef.deleteCurrentAction();
@@ -56,9 +66,6 @@ namespace ButtonFunctions {
             }
 
             void confirm(Management& stateRef) {
-                if (stateRef.getCurrentAction().getType() == EActions::SexAction && stateRef.getCurrentAction().getActors().size() < 2)
-                    stateRef.deleteCurrentAction();
-                else
                     stateRef.pushCurrentAction();
                 
                 actionEnd(stateRef);
