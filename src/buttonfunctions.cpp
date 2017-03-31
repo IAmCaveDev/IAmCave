@@ -31,7 +31,21 @@ namespace ButtonFunctions {
         }
         namespace Sex {
             void sex(Management& stateRef) {
+                std::vector<Button*>& buttons = stateRef.getButtons();
+                for (auto& it : buttons) {
+                    it->setClickability(false);
+                }
                 stateRef.setCurrentAction(EActions::SexAction, 1);
+                ButtonFunctions::Managing::General::actionStart(stateRef);
+            }
+        }
+        namespace Improve {
+            void improve(Management& stateRef) {
+                std::vector<Button*>& buttons = stateRef.getButtons();
+                for (auto& it : buttons) {
+                    it->setClickability(false);
+                }
+                stateRef.setCurrentAction(EActions::ImproveAction, 1);
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
         }
@@ -42,7 +56,11 @@ namespace ButtonFunctions {
             }
 
             void confirm(Management& stateRef) {
-                stateRef.pushCurrentAction();
+                if (stateRef.getCurrentAction().getType() == EActions::SexAction && stateRef.getCurrentAction().getActors().size() < 2)
+                    stateRef.deleteCurrentAction();
+                else
+                    stateRef.pushCurrentAction();
+                
                 actionEnd(stateRef);
             }
 

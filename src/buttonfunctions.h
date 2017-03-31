@@ -19,7 +19,7 @@ namespace ButtonFunctions {
 
         }
         namespace Improve {
-
+            void improve(Management& stateRef);
         }
         namespace General {
             void abort(Management& stateRef);

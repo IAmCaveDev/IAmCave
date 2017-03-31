@@ -33,8 +33,10 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
         new Button({200, 50}, {200, 100}, "assets/hunt.png",
                 std::bind(&ButtonFunctions::Managing::Hunting::hunt, std::ref(*this))),
         new Button({200, 50}, {200, 200}, "assets/think.png", nullptr),
-        new Button({200, 50}, {200, 300}, "assets/makelove.png", nullptr),
-        new Button({200, 50}, {200, 400}, "assets/improve.png", nullptr),
+        new Button({200, 50}, {200, 300}, "assets/makelove.png",
+                std::bind(&ButtonFunctions::Managing::Sex::sex, std::ref(*this))),
+        new Button({200, 50}, {200, 400}, "assets/improve.png",
+                std::bind(&ButtonFunctions::Managing::Improve::improve, std::ref(*this))),
     };
 
 }
@@ -46,6 +48,12 @@ void Management::setCurrentAction(EActions newaction, short duration) {
             break;
         case EActions::HardHunt:
             currentAction = std::move(actionFactory.createHardHuntingAction(duration));
+            break;
+        case EActions::SexAction:
+            currentAction = std::move(actionFactory.createSexAction());
+            break;
+        case EActions::ImproveAction:
+            currentAction = std::move(actionFactory.createImproveAction(duration));
             break;
         // TODO: add more Actions here
     }
