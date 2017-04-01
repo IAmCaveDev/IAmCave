@@ -6,15 +6,20 @@
 void RoundEnd::resolveActions() {
     std::vector<int> toDelete = {};
     for (auto& it : game.getActions()) {
-        ActionPackage result = it->resolve();
+
+        ActionPackage result;
+        if (it->getType() != EActions::ImproveAction || (it->getType() == EActions::ImproveAction && game.getResources().buildingMaterial - it->getActors().size() * 10 >= 0))
+            result = it->resolve();
+        else
+            result = { false, 0.f, 2, 0, false };
+
         if (!result.isFinal) {
+            if (it->getType() == ImproveAction)
+                game.addToResources({ result.food,-result.buildingMaterial,result.cavemanCapacity });
             return;
         }
         else {
-			if(it->getType()==ImproveAction)
-				game.addToResources({ result.food,game.getResources().buildingMaterial - result.buildingMaterial,result.cavemanCapacity });
-			else
-				game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
+			game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
             if (result.newborn) {
                 game.addCaveman(0, 0);
             }

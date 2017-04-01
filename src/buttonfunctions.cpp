@@ -18,14 +18,14 @@ namespace ButtonFunctions {
                 std::vector<Button*>& buttons = stateRef.getButtons();
                 buttons.pop_back();
                 buttons.pop_back();
-                stateRef.setCurrentAction(EActions::EasyHunt, 1);
+                stateRef.setCurrentAction(EActions::EasyHunt, 3);
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
             void hardHunt(Management& stateRef) {
                 std::vector<Button*>& buttons = stateRef.getButtons();
                 buttons.pop_back();
                 buttons.pop_back();
-                stateRef.setCurrentAction(EActions::HardHunt, 1);
+                stateRef.setCurrentAction(EActions::HardHunt, 5);
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
         }
@@ -40,12 +40,15 @@ namespace ButtonFunctions {
             }
         }
         namespace Improve {
+            short improvement_mod = 1;    //Scales improvement costs
+
             void improve(Management& stateRef) {
                 std::vector<Button*>& buttons = stateRef.getButtons();
                 for (auto& it : buttons) {
                     it->setClickability(false);
                 }
-                stateRef.setCurrentAction(EActions::ImproveAction, 1);
+                stateRef.setCurrentAction(EActions::ImproveAction, 4 * improvement_mod);
+                //improvement_mod++;       //Not in use yet
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
         }

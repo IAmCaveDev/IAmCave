@@ -9,6 +9,7 @@ void Improve::addActor(std::shared_ptr<Caveman> newactor) {
 }
 
 ActionPackage Improve::resolve() {
+    int materialCosts = actors.size() * 10;
 	currentDuration += actors.size();
 
 	if (currentDuration >= totalDuration) {
@@ -18,5 +19,5 @@ ActionPackage Improve::resolve() {
 		return{ true, 0.f, 0, 1, false };
 	}
 
-	return{ false, 0.f, (int) (10 * actors.size()), 0, false };
+	return{ false, 0.f, materialCosts, 0, false };
 }
