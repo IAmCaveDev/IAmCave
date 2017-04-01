@@ -1,6 +1,6 @@
 #include "sex.h"
 
-Sex::Sex() : Action(9) {
+Sex::Sex() : Action(3) {
 	type = EActions::SexAction;
 }
 
@@ -22,13 +22,16 @@ ActionPackage Sex::resolve() {
 
 	for (auto& it : actors) {
 		//Possible bug source if male is not removed from actors
-		if (it->isMale())
-			it->setCurrentAction(Idle);
-		else if(!(std::dynamic_pointer_cast<Female>)(it)->isPregnant())
-			(std::dynamic_pointer_cast<Female>)(it)->setPregnant(true);
+        if (it->isMale()) {
+            it->setCurrentAction(Idle);
+        }
+        else if (!(std::dynamic_pointer_cast<Female>)(it)->isPregnant()) {
+            (std::dynamic_pointer_cast<Female>)(it)->setPregnant(true);
+        }
 	}
-	if(currentDuration == totalDuration)
-		return{ true, 0, 0, 0, true };
-
+    if (currentDuration == totalDuration) {
+        actors.front()->setCurrentAction(Idle);
+        return{ true, 0, 0, 0, true };
+    }
 	return{ false, 0, 0, 0, false };
 }
