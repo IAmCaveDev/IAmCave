@@ -58,7 +58,7 @@ namespace ButtonFunctions {
                 for (auto& it : buttons) {
                     it->setClickability(false);
                 }
-                stateRef.setCurrentAction(EActions::CollectAction, 1);
+                stateRef.setCurrentAction(EActions::CollectAction, 3);
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
         }
