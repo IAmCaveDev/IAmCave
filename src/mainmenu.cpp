@@ -12,12 +12,12 @@ MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
     };
 
     buttons = {
-        new Button({200, 50}, {200, 100}, "assets/play.png", [&](){
+        new Button({200, 80}, {200, 100}, "assets/play.png", [&](){
                     nextState = EGamestates::management;
                 }),
-        new Button({200, 50}, {200, 200}, "assets/options.png",
+        new Button({200, 80}, {200, 200}, "assets/options.png",
                    ButtonFunctions::MainMenu::options),
-        new Button({200, 50}, {200, 300}, "assets/exit.png", [&](){
+        new Button({200, 80}, {200, 300}, "assets/exit.png", [&](){
                     nextState = EGamestates::quit;
                 })
     };

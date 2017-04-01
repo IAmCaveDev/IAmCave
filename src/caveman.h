@@ -30,6 +30,7 @@ private:
     bool infoboxVisible = false;
     Textbox* infobox;
 
+
 public:
     explicit Caveman(int maxAge, int minAge);
     ~Caveman();

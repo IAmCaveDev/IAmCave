@@ -5,15 +5,23 @@ Game::Game(){
         addCaveman(5,5);
     }
 
-    int xPos = 500;
-    int yPos = 500;
+    int xPos = 200;
+    int yPos = 750;
     for(auto& it : tribe){
         it->setPosition(TransformedVector<>(xPos, yPos));
         xPos = xPos + 150;
-        if (xPos >= 1080) {
+
+		if (xPos >= 1920){
+			xPos = 325;
+		}
+		/*
+
+        if (xPos >= 1920) {
             xPos = 500;
             yPos = yPos + 250;
         }
+
+		*/
     }
 
     // starting resources

@@ -11,16 +11,16 @@ namespace ButtonFunctions {
                 for (auto& it : buttons) {
                     it->setClickability(false);
                 }
-                buttons.push_back(new Button({ 200, 50 }, { 450, 100 }, "assets/easyhunt.png", std::bind(&easyHunt, std::ref(stateRef))));
-                buttons.push_back(new Button({ 200, 50 }, { 450, 200 }, "assets/hardhunt.png", std::bind(&hardHunt, std::ref(stateRef))));
+                buttons.push_back(new Button({ 200, 80 }, { 450, 100 }, "assets/easyhunt.png", std::bind(&easyHunt, std::ref(stateRef))));
+                buttons.push_back(new Button({ 200, 80 }, { 450, 200 }, "assets/hardhunt.png", std::bind(&hardHunt, std::ref(stateRef))));
             }
             void easyHunt(Management& stateRef) {
                 std::vector<Button*>& buttons = stateRef.getButtons();
                 buttons.pop_back();
                 buttons.pop_back();
                 stateRef.setCurrentAction(EActions::EasyHunt, 1);
-                buttons.push_back(new Button({ 200, 50 }, { 800, 100 }, "assets/abort.png", std::bind(&ButtonFunctions::Managing::General::abort, std::ref(stateRef))));
-                buttons.push_back(new Button({ 200, 50 }, { 800, 200 }, "assets/confirm.png", std::bind(&ButtonFunctions::Managing::General::confirm, std::ref(stateRef))));
+                buttons.push_back(new Button({ 200, 80 }, { 800, 100 }, "assets/abort.png", std::bind(&ButtonFunctions::Managing::General::abort, std::ref(stateRef))));
+                buttons.push_back(new Button({ 200, 80 }, { 800, 200 }, "assets/confirm.png", std::bind(&ButtonFunctions::Managing::General::confirm, std::ref(stateRef))));
                 for (auto& it : stateRef.getIdlingTribe()) {
                     it->getButton().setCallback(std::bind(&ButtonFunctions::Tribe::addAsActor, std::ref(stateRef), std::ref(*it)));
                 }

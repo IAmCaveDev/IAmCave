@@ -21,6 +21,8 @@ public:
 
 	sf::Texture& resourceDisplay::getFoodTexture();
 	sf::Texture& resourceDisplay::getMaterialsTexture();
+	Rectangle& resourceDisplay::getGrassTexture();
+	Rectangle& resourceDisplay::getFirePlace();
 
 	std::vector<Textbox*> resources;
 	std::vector<Rectangle*> heaps;
@@ -34,8 +36,10 @@ private:
 	Textbox* materials;
 	Textbox* space;
 
+	Rectangle* firePlace;
 	Rectangle* foodHeap;
 	Rectangle* materialsHeap;
+	Rectangle* grass;
 
 
 	sf::Texture* textureMeat;
