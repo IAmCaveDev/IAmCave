@@ -6,8 +6,7 @@ Hunt::Hunt(bool newIsEasy, short time) : Action(time) {
     isEasy = newIsEasy;
     if (isEasy) {
         type = EActions::EasyHunt;
-    }
-    else {
+    } else {
         type = EActions::HardHunt;
     }
 }
@@ -23,21 +22,27 @@ ActionPackage Hunt::resolve() {
     if (currentDuration == totalDuration) {
         short totalFitness = 0;
         short num_casualties = 0;
-        std::default_random_engine generator;
-        std::uniform_int_distribution<int> distribution(1, 20);
-        auto casualtyDice = std::bind(distribution, generator);
+        std::random_device rd;
+        std::mt19937 rng(rd());
+        std::uniform_int_distribution<int> distribEasy(0, 20);
+        std::uniform_int_distribution<int> distribHard(0, 10);
+        
         int pos = 0;
-
         for (auto& it : actors) {
-            //std::random_device rd;
-            //std::mt19937 rng(rd());
-
-            if (!casualtyDice()) {
-                actors.erase(actors.begin() + pos);
-                it->~Caveman();
+            int casualtyDice;
+            if (isEasy) {
+                casualtyDice = distribEasy(rng);
+            } else {
+                casualtyDice = distribHard(rng);
             }
-            totalFitness += it->getFitness();
-			it->setCurrentAction(Idle);
+
+            if (!casualtyDice) {
+                it->setCurrentAction(Dead);
+            } else {
+                totalFitness += it->getFitness();
+                it->setCurrentAction(Idle);
+            }
+            
             pos++;
         }
 

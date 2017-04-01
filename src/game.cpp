@@ -35,6 +35,10 @@ void Game::addCaveman(int maxAge, int minAge) {
     tribe.push_back(cavemanFactory.createRandom(maxAge, minAge));
 }
 
+void Game::removeCaveman(short id) {
+    //TODO implement
+}
+
 std::vector<std::shared_ptr<Caveman>>& Game::getTribe() {
     return tribe;
 }

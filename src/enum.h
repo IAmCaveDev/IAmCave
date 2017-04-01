@@ -8,7 +8,8 @@ enum EActions {
     CollectAction,
     SexAction,
     ThinkAction,
-    ImproveAction
+    ImproveAction,
+    Dead
 };
 
 enum ETechs {

@@ -25,7 +25,9 @@ void RoundEnd::resolveActions() {
             }
             toDelete.push_back(it->getID());
         }
-
+        for (auto& actor : it->getActors()) {
+            if (actor->getCurrentAction() == Dead) game.removeCaveman(actor->getId());
+        }
     }
     for (auto it : toDelete) {
         game.removeAction(it);
