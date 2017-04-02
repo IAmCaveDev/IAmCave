@@ -19,7 +19,7 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     };
 
     buttons = {
-        new Button({200, 80}, {-400, -150}, "assets/go.png", [&]() {
+        new Button({200, 80}, {-400, -120}, "assets/go.png", [&]() {
         nextState = EGamestates::management; })
     };
 }
@@ -61,13 +61,13 @@ void RoundEnd::step(){
     }
 
     std::ostringstream info;
-    info << "Round " << game.getRoundNumber() << "\n"
-         << "Food: " << resourcesBefore.food << " " << std::showpos
-         << game.getResources().food - resourcesBefore.food
-         << std::noshowpos << "\n"
-         << "Building Material: " << resourcesBefore.buildingMaterial << " "
-         << std::showpos << game.getResources().buildingMaterial
-         - resourcesBefore.buildingMaterial << std::noshowpos << "\n"
+    info << "Round " << game.getRoundNumber() << "\n\n"
+         << "Food: " << round(resourcesBefore.food) << " " << std::showpos
+         << round(game.getResources().food - resourcesBefore.food)
+         << std::noshowpos << "\n\n"
+         << "Building Material: " << round(resourcesBefore.buildingMaterial) << " "
+         << std::showpos << round(game.getResources().buildingMaterial
+         - resourcesBefore.buildingMaterial) << std::noshowpos << "\n\n"
          << "Cave Capacity: " << resourcesBefore.cavemanCapacity << " "
          << std::showpos << game.getResources().cavemanCapacity
          - resourcesBefore.cavemanCapacity;

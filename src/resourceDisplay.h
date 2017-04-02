@@ -44,5 +44,6 @@ private:
 
 	sf::Texture* textureMeat;
 	sf::Texture* textureStones;
+	sf::Texture* plainTextBox;
 };
 #endif;

@@ -33,7 +33,7 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     actionDisplay->removeButton(3);
 
     buttons = {
-        new Button({200, 80}, {-400, -150}, "assets/go.png", [&](){
+        new Button({200, 80}, {-400, -120}, "assets/go.png", [&](){
                     nextState = EGamestates::roundEnd;
                 }),
         new Button({200, 80}, {200, 100}, "assets/hunt.png",

@@ -14,16 +14,17 @@ resourceDisplay::resourceDisplay(Game& gameref) : gamereference (gameref) {
 
 	textureMeat = new sf::Texture;
 	textureStones = new sf::Texture;
+	plainTextBox = new sf::Texture;
+	plainTextBox->loadFromFile("assets/resource-column.png");
 }
 
 
 
 std::vector<Textbox*>& resourceDisplay::getResources() {
-
 	food->setText("Meat: " + std::to_string(int(gamereference.getResources().food)));
 	materials->setText("Stones: " + std::to_string(gamereference.getResources().buildingMaterial));
 	space->setText("Beds: " + std::to_string(gamereference.getResources().cavemanCapacity));
-
+	
 	textBoxes.clear();
 	textBoxes.empty();
 	textBoxes.push_back(food);
@@ -34,7 +35,6 @@ std::vector<Textbox*>& resourceDisplay::getResources() {
 }
 
 std::vector<Rectangle*>& resourceDisplay::getHeaps() {
-
 	if (gamereference.getResources().food > 50){
 		textureMeat->loadFromFile("assets/heaps/meat-l.png");
 	}
@@ -107,9 +107,7 @@ Rectangle & resourceDisplay::getFirePlace() {
 
 
 resourceDisplay::~resourceDisplay() {
-	
 	delete food;
 	delete materials;
 	delete space;
-	
 	}
