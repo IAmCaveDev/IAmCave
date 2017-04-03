@@ -16,7 +16,7 @@ Event::Event(std::string path) {
         option->effects.foodGain = data["option"]["food"];
         option->effects.materialGain = data["option"]["materials"];
 
-        options.push_back(option);
+        options.push_back(std::move(option));
     }
     else {
         throw std::runtime_error("Could not open file at " + path);
