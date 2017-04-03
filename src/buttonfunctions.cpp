@@ -69,11 +69,13 @@ namespace ButtonFunctions {
             }
 
             void confirm(Management& stateRef) {
-                if (stateRef.getCurrentAction().getType() == EActions::SexAction && stateRef.getCurrentAction().getActors().size() < 2)
+                if (stateRef.getCurrentAction().getActors().size() < 1) {
                     stateRef.deleteCurrentAction();
-                else
+                } else if (stateRef.getCurrentAction().getType() == EActions::SexAction && stateRef.getCurrentAction().getActors().size() < 2) {
+                    stateRef.deleteCurrentAction();
+                } else {
                     stateRef.pushCurrentAction();
-                
+                }
                 actionEnd(stateRef);
             }
 
