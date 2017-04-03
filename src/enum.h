@@ -26,4 +26,9 @@ enum ETechs {
     Revolution
 };
 
+enum EventTypes {
+    random,
+    narrative,
+    //TODO Add more event types
+};
 #endif
