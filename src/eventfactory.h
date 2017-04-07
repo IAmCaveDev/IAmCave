@@ -9,6 +9,7 @@
 class EventFactory {
 public:
     std::unique_ptr<Event> createEvent(short id, EventTypes type);
+    std::unique_ptr<Event> createRandomEvent(EventTypes type);
 };
 
 #endif
