@@ -48,7 +48,15 @@ void Techtree::positionTree(json data, short level,
 void Techtree::parse(std::shared_ptr<Tech> parent, json data, short level) {
     std::string name = data["name"].get<std::string>();
     std::string techPath = "assets/tech/" + name + ".json";
-    auto newParent = tree.emplace(name, new Tech(techPath, level, {parent}));
+    bool straight;
+    try {
+        straight = data.at("straight");
+    }
+    catch(std::out_of_range& oor) {
+        straight = false;
+    }
+    auto newParent = tree.emplace(name, new Tech(techPath, level, {parent},
+                                  straight));
 
     // if already exists in tree
     if (!newParent.second) {
@@ -88,6 +96,9 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
                                getTransformedPosition().getRealY()
                                + getTransformedSize().getRealY() / 2
                                - techSize / 2});
+        for (auto& it : tree) {
+            it.second->createArrowsToParents();
+        }
     } else {
         throw std::runtime_error("Could not open file at " + path);
     }
@@ -105,7 +116,10 @@ void Techtree::display(sf::RenderWindow& win) {
         this->Rectangle::display(win);
         for (auto& it : tree) {
             it.second->getButton().display(win);
-            // TODO: Draw arrows
+            win.draw(it.second->getArrowsToParents().tip);
+            for(auto& line : it.second->getArrowsToParents().lines) {
+                win.draw(line);
+            }
         }
     }
 }
