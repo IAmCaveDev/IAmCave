@@ -32,6 +32,10 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents)
     }
 }
 
+std::string Tech::getName() {
+    return name;
+}
+
 Tech::ParentsVector& Tech::getParents() {
     return parents;
 }

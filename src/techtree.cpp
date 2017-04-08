@@ -32,7 +32,7 @@ void Techtree::positionTree(json data, short level,
                    - getTransformedSize().getRealY() / (sizePerLevel[level] - 1)
                    * iteratorPerLevel[level];
 
-            if (iteratorPerLevel[level] > 0 && iteratorPerLevel[level]< (sizePerLevel[level] - 1)) {
+            if (iteratorPerLevel[level] > 0 && iteratorPerLevel[level] < (sizePerLevel[level] - 1)) {
                 posY -= techSize / 2;
             } else if(iteratorPerLevel[level] == 0) {
                 posY -= techSize;
@@ -91,6 +91,9 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
     } else {
         throw std::runtime_error("Could not open file at " + path);
     }
+
+    properThinking = new Button({ 200, 80 }, { -250, -130 }, "assets/abort.png", nullptr);
+    abortThinking = new Button({ 200, 80 }, { -250, -330 }, "assets/confirm.png", nullptr);
 }
 
 void Techtree::setVisibility(bool newVisibility) {
@@ -107,6 +110,8 @@ void Techtree::display(sf::RenderWindow& win) {
             it.second->getButton().display(win);
             // TODO: Draw arrows
         }
+        properThinking->display(win);
+        abortThinking->display(win);
     }
 }
 
@@ -116,4 +121,20 @@ void Techtree::onResize() {
         button.setPosition(button.getTransformedPosition());
         button.setSize(button.getTransformedSize());
     }
+    properThinking->setPosition(properThinking->getTransformedPosition());
+    abortThinking->setPosition(abortThinking->getTransformedPosition());
+    properThinking->setSize(properThinking->getTransformedSize());
+    abortThinking->setSize(abortThinking->getTransformedSize());
+}
+
+std::map<std::string, std::shared_ptr<Tech>>& Techtree::getTree() {
+    return tree;
+}
+
+Button& Techtree::getProperThinking() {
+    return *properThinking;
+}
+
+Button& Techtree::getAbortThinking() {
+    return *abortThinking;
 }

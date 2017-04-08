@@ -43,6 +43,7 @@ public:
      */
     Tech(std::string path, short newLevel, ParentsVector newParents);
 
+    std::string getName();
     /**
      * @return A reference to the list of parents.
      */

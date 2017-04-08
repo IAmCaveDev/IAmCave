@@ -26,6 +26,9 @@ private:
 
     bool visibility;
 
+    Button* properThinking;
+    Button* abortThinking;
+
     /**
      * Positions the Techs according to the tree's structure.
      */
@@ -60,6 +63,11 @@ public:
      * Resizes and repositions all Techs in the Techtree.
      */
     void onResize();
+
+    std::map<std::string, std::shared_ptr<Tech>>& getTree();
+
+    Button& getProperThinking();
+    Button& getAbortThinking();
 };
 
 #endif

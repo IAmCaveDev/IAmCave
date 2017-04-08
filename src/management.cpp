@@ -88,6 +88,15 @@ void Management::deleteCurrentAction() {
     currentAction.reset();
 }
 
+void Management::setActiveTech(std::string newTech) {
+    activeTech = newTech;
+    int i = 0;
+}
+
+std::string Management::getActiveTech() {
+    return activeTech;
+}
+
 std::vector<std::shared_ptr<Caveman>> Management::getIdlingTribe() {
     std::vector<std::shared_ptr<Caveman>> idlingTribe;
     for (auto& it : game.getTribe()) {

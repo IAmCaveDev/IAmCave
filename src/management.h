@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <string>
 
 #include "gamestate.h"
 #include "actionfactory.h"
@@ -20,6 +21,8 @@ private:
 
     VerticalButtonList* actionDisplay;
 
+    std::string activeTech;
+
 public:
     Management() = delete;
     explicit Management(Game& gameRef);
@@ -29,6 +32,8 @@ public:
     void pushCurrentAction();
     void deleteCurrentAction();
 
+    void setActiveTech(std::string newTech);
+    std::string getActiveTech();
     /**
      * Gets all cavemen that are not doing anything.
      */
