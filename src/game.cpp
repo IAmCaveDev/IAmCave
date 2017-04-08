@@ -4,6 +4,7 @@
 
 Game::Game() : techtree("assets/tech/techtree.json", {1920, 1080}, 0) {
     CavemanFactory cavemanFactory;
+    EventFactory eventFactory;
 
     // Starting population
     for(int i = 0; i < 3; ++i){
@@ -28,6 +29,8 @@ Game::Game() : techtree("assets/tech/techtree.json", {1920, 1080}, 0) {
     resources.food = 200;
     resources.buildingMaterial = 50;
     resources.cavemanCapacity = 10;
+
+    eventStack.push_back(eventFactory.createEvent(0, Narrative));
 }
 
 void Game::addCaveman(int maxAge, int minAge) {

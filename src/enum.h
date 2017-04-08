@@ -27,8 +27,8 @@ enum ETechs {
 };
 
 enum EventTypes {
-    random,
-    narrative,
+    Random,
+    Narrative,
     //TODO Add more event types
 };
 #endif
