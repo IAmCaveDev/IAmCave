@@ -103,6 +103,10 @@ void Techtree::setVisibility(bool newVisibility) {
     }
 }
 
+bool Techtree::getVisibility() {
+    return visibility;
+}
+
 void Techtree::display(sf::RenderWindow& win) {
     if (visibility) {
         this->Rectangle::display(win);

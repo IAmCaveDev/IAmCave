@@ -54,6 +54,8 @@ public:
      */
     void setVisibility(bool newVisibility);
 
+    bool getVisibility();
+
     /**
      * Displays the Techtree and it's Techs.
      */
