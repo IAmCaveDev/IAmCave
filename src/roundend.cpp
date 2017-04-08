@@ -31,11 +31,15 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     std::random_device rd;
     rng = std::mt19937(rd());
 
-    infoColumn = new Textbox({450, 1080}, {0, 0}, "assets/endround-column.png", "", 5, 30);
+    infoColumn = new Textbox({450, 1080}, {0, 0}, "assets/endround-column.png",
+                             "", 5, 30);
+    textbox = new Textbox({1580, 140}, {20, 1080 - 160},
+                          "assets/state-textbox.png", "", 15, 30);
 
     rectangles = {
         new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
         infoColumn,
+        textbox
     };
 
     buttons = {
@@ -101,4 +105,8 @@ void RoundEnd::display(sf::RenderWindow& win) {
     for (auto const& it : buttons) {
         it->display(win);
     }
+}
+
+void RoundEnd::setTextboxText(std::string str) {
+    textbox->setText(str);
 }
