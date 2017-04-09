@@ -72,6 +72,7 @@ public:
     void setLevel(short newLevel);
 
     void createArrowsToParents();
+    void updateArrowsToParents();
 
     TransformedVector<> getRightArrowNode();
     TransformedVector<> getLeftArrowNode();

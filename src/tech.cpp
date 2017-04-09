@@ -104,6 +104,12 @@ void Tech::createArrowsToParents() {
     }
 }
 
+void Tech::updateArrowsToParents() {
+    arrowsToParents.lines.clear();
+
+    createArrowsToParents();
+}
+
 TransformedVector<> Tech::getRightArrowNode() {
     TransformedVector<> buttonPos = button.getTransformedPosition();
     TransformedVector<> buttonSize = button.getTransformedSize();

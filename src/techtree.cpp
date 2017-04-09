@@ -138,6 +138,8 @@ void Techtree::onResize() {
         auto& button = it.second->getButton();
         button.setPosition(button.getTransformedPosition());
         button.setSize(button.getTransformedSize());
+
+        it.second->createArrowsToParents();
     }
     properThinking->setPosition(properThinking->getTransformedPosition());
     abortThinking->setPosition(abortThinking->getTransformedPosition());
