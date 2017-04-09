@@ -1,9 +1,7 @@
 #include "event.h"
 
 Event::Event(std::string path) {
-    //std::ifstream in(path);
-    std::ifstream in;
-    in.open("assets/events/000-test.json", std::ios::in);
+    std::ifstream in(path);
 
     if (in.good()) {
         json data;
@@ -13,8 +11,8 @@ Event::Event(std::string path) {
         title = data["title"];
         description = data["description"];
 
-
-        if (!data["trigger"]["techResearched"].empty()) trigger.techResearched = data["trigger"]["techResearched"];
+        if (!data["trigger"]["has_tech"].empty()) trigger.has_tech = data["trigger"]["has_tech"];
+        if (!data["trigger"]["missing_tech"].empty()) trigger.missing_tech = data["trigger"]["missing_tech"];
         if (!data["trigger"]["tribeFood"].empty()) trigger.tribeFood = data["trigger"]["tribeFood"];
         if (!data["trigger"]["tribeSize"].empty()) trigger.tribeSize = data["trigger"]["tribeSize"];
         if (!data["trigger"]["tribeMaterial"].empty()) trigger.tribeMaterial = data["trigger"]["tribeMaterial"];
