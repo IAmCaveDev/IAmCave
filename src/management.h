@@ -24,6 +24,8 @@ private:
 
     std::string activeTech;
 
+    Rectangle* grass;
+
     Textbox* textbox;
 
 public:

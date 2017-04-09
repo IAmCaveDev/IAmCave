@@ -13,15 +13,11 @@ Game::Game() : techtree("assets/techtreebackground.png", "assets/tech/techtree.j
         tribe.push_back(cavemanFactory.createFemale(5, 5));
     }
 
-    int xPos = 500;
-    int yPos = 500;
+    int xPos = 150;
+    int yPos = 650;
     for(auto& it : tribe){
         it->setPosition(TransformedVector<>(xPos, yPos));
         xPos = xPos + 150;
-        if (xPos >= 1080) {
-            xPos = 500;
-            yPos = yPos + 250;
-        }
     }
 
     // starting resources

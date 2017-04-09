@@ -23,6 +23,8 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
 
     actionDisplay = new VerticalButtonList({50, 1080}, {-50, 0}, "");
 
+    grass = new Rectangle({1920, 1080}, {0, 0}, "assets/cave-grass.png");
+
     buttons = {
         new Button({200, 80}, {-250, -130}, "assets/go.png", [&](){
                     actionDisplay->decreasePriorityOfAll();
@@ -136,6 +138,8 @@ void Management::display(sf::RenderWindow& win) {
     for (auto const& it : getIdlingTribe()) {
         it->display(win);
     }
+
+    grass->display(win);
 
     game.getTechtree().display(win);
 
