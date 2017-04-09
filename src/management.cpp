@@ -11,8 +11,12 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::management;
     nextState = type;
 
+    textbox = new Textbox({1580, 140}, {20, 1080 - 160},
+                           "assets/state-textbox.png", "", 15, 30);
+
     rectangles = {
         new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
+        textbox
     };
 
     actionFactory = ActionFactory();
@@ -135,4 +139,8 @@ void Management::display(sf::RenderWindow& win) {
 
     game.getTechtree().display(win);
 
+}
+
+void Management::setTextboxText(std::string str) {
+    textbox->setText(str);
 }

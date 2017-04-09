@@ -9,6 +9,7 @@
 #include "actionfactory.h"
 #include "action.h"
 #include "verticalbuttonlist.h"
+#include "textbox.h"
 
 /**
  * The management phase of the game.
@@ -22,6 +23,8 @@ private:
     VerticalButtonList* actionDisplay;
 
     std::string activeTech;
+
+    Textbox* textbox;
 
 public:
     Management() = delete;
@@ -51,6 +54,11 @@ public:
      * @param win The window to draw on.
      */
     void display(sf::RenderWindow& win);
+
+    /**
+     * Sets the text of the state's textbox.
+     */
+    void setTextboxText(std::string str);
 };
 
 #endif
