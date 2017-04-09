@@ -67,7 +67,7 @@ void Caveman::initButton() {
 void Caveman::setPosition(TransformedVector<> newPosition){
     button->setTransformedPosition(newPosition);
     infobox->setTransformedPosition(
-        {newPosition.getRealX() - infobox->getTransformedSize().getRealX(),
+        {newPosition.getRealX() - button->getTransformedSize().getRealX()/2,
          newPosition.getRealY() - infobox->getTransformedSize().getRealY()});
 }
 
