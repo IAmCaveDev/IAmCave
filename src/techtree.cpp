@@ -143,6 +143,8 @@ void Techtree::onResize() {
     abortThinking->setPosition(abortThinking->getTransformedPosition());
     properThinking->setSize(properThinking->getTransformedSize());
     abortThinking->setSize(abortThinking->getTransformedSize());
+    setPosition(getTransformedPosition());
+    setSize(getTransformedSize());
 }
 
 std::map<std::string, std::shared_ptr<Tech>>& Techtree::getTree() {
