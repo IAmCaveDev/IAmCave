@@ -103,8 +103,8 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
         throw std::runtime_error("Could not open file at " + path);
     }
 
-    properThinking = new Button({ 200, 80 }, { -250, -130 }, "assets/abort.png", nullptr);
-    abortThinking = new Button({ 200, 80 }, { -250, -330 }, "assets/confirm.png", nullptr);
+    properThinking = new Button({ 200, 80 }, { -250, -130 }, "assets/confirm.png", nullptr);
+    abortThinking = new Button({ 200, 80 }, { -250, -330 }, "assets/abort.png", nullptr);
 }
 
 void Techtree::setVisibility(bool newVisibility) {

@@ -48,11 +48,11 @@ namespace ButtonFunctions {
                     it->getButton().setClickability(false);
                 }
 
-                techtreeRef.getProperThinking().setCallback(std::bind(&ButtonFunctions::Managing::Research::thinkConfirm, std::ref(stateRef), std::ref(techtreeRef)));
-                techtreeRef.getAbortThinking().setCallback(std::bind(&ButtonFunctions::Managing::Research::thinkAbort, std::ref(stateRef), std::ref(techtreeRef)));
+                techtreeRef.getProperThinking().setCallback(std::bind(&thinkConfirm, std::ref(stateRef), std::ref(techtreeRef)));
+                techtreeRef.getAbortThinking().setCallback(std::bind(&thinkAbort, std::ref(stateRef), std::ref(techtreeRef)));
 
                 for (auto& it : techtreeRef.getTree()) {
-                    it.second->getButton().setCallback(std::bind(&ButtonFunctions::Managing::Research::techCallback, std::ref(stateRef), std::ref(it.second)));
+                    it.second->getButton().setCallback(std::bind(&techCallback, std::ref(stateRef), std::ref(it.second)));
                 }
             }
             void techCallback(Management& stateRef, std::shared_ptr<Tech> techRef) {
@@ -62,13 +62,19 @@ namespace ButtonFunctions {
                 techtreeRef.setVisibility(false);
                 for (auto& it : stateRef.getIdlingTribe()) {
                     it->getButton().setClickability(true);
+                    it->getButton().setCallback(nullptr);
                 }
                 stateRef.deleteCurrentAction();
-                General::actionEnd(stateRef);
+                std::vector<Button*>& buttons = stateRef.getButtons();
+                for (auto& it : buttons) {
+                    it->setClickability(true);
+                }
             }
 
             void thinkConfirm(Management& stateRef, Techtree& techtreeRef) {
                 techtreeRef.setVisibility(false);
+                //TODO: check for duration of specific Tech and use it instead of 1
+                stateRef.setCurrentAction(EActions::ThinkAction, 1);
                 for (auto& it : stateRef.getIdlingTribe()) {
                     it->getButton().setClickability(true);
                 }
@@ -78,11 +84,13 @@ namespace ButtonFunctions {
         namespace General {
             void abort(Management& stateRef) {
                 stateRef.deleteCurrentAction();
+                stateRef.deleteActiveTech();
                 actionEnd(stateRef);
             }
 
             void confirm(Management& stateRef) {
                 stateRef.pushCurrentAction();
+                stateRef.deleteActiveTech();
                 actionEnd(stateRef);
             }
 
@@ -92,8 +100,8 @@ namespace ButtonFunctions {
                     it->setClickability(false);
                 }
 
-                buttons.push_back(new Button({ 200, 80 }, { -250, -230 }, "assets/abort.png", std::bind(&ButtonFunctions::Managing::General::abort, std::ref(stateRef))));
-                buttons.push_back(new Button({ 200, 80 }, { -250, -330 }, "assets/confirm.png", std::bind(&ButtonFunctions::Managing::General::confirm, std::ref(stateRef))));
+                buttons.push_back(new Button({ 200, 80 }, { -250, -230 }, "assets/abort.png", std::bind(&abort, std::ref(stateRef))));
+                buttons.push_back(new Button({ 200, 80 }, { -250, -330 }, "assets/confirm.png", std::bind(&confirm, std::ref(stateRef))));
                 for (auto& it : stateRef.getIdlingTribe()) {
                     it->getButton().setCallback(std::bind(&ButtonFunctions::Tribe::addAsActor, std::ref(stateRef), it));
                 }

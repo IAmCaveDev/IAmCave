@@ -42,6 +42,9 @@ void Management::setCurrentAction(EActions newaction, short duration) {
         case EActions::HardHunt:
             currentAction = std::move(actionFactory.createHardHuntingAction(duration));
             break;
+        case EActions::ThinkAction:
+            currentAction = std::move(actionFactory.createThinkingAction(activeTech,duration));
+            break;
         // TODO: add more Actions here
     }
 
@@ -71,7 +74,7 @@ void Management::pushCurrentAction() {
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/improve-icon.png", nullptr), currentAction->getDuration());
             break;
-        case EActions::Think:
+        case EActions::ThinkAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                                     "assets/think-icon.png", nullptr), currentAction->getDuration());
             break;
@@ -95,6 +98,10 @@ void Management::setActiveTech(std::string newTech) {
 
 std::string Management::getActiveTech() {
     return activeTech;
+}
+
+void Management::deleteActiveTech() {
+    activeTech = "";
 }
 
 std::vector<std::shared_ptr<Caveman>> Management::getIdlingTribe() {

@@ -34,6 +34,8 @@ public:
 
     void setActiveTech(std::string newTech);
     std::string getActiveTech();
+    void deleteActiveTech();
+
     /**
      * Gets all cavemen that are not doing anything.
      */

@@ -7,7 +7,7 @@ enum EActions {
     HardHunt,
     Collect,
     Sex,
-    Think,
+    ThinkAction,
     Improve
 };
 
