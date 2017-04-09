@@ -7,6 +7,7 @@
 
 #include "enum.h"
 #include "json.hpp"
+#include "cavemanfactory.h"
 using json = nlohmann::json;
 
 class Event {
@@ -15,7 +16,8 @@ private:
     * Requirements for the event to trigger
     */
     struct Trigger {
-        ETechs techResearched;
+        ETechs has_tech;
+        ETechs missing_tech;
         int tribeSize;
         float tribeFood;
         int tribeMaterial;

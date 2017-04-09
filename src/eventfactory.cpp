@@ -3,13 +3,25 @@
 
 std::unique_ptr<Event> EventFactory::createEvent(short id, EventTypes type) {
     std::string path = "assets/events/";
+
+    switch (type) {
+    case Narrative:
+        path += "narrative/";
+        break;
+    case Random:
+        path += "random/";
+        break;
+    default:
+        break;
+    }
+
     if (id < 10) {
-        path = path + "0" + "0";
+        path += "00";
+    } else {
+        path += "0";
     }
-    else {
-        path = path + "0";
-    }
-    path = path + std::to_string(id) + "*.json";
+
+    path += std::to_string(id) + ".json";
 
     std::unique_ptr<Event> event(new Event(path));
     return event;
