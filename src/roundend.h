@@ -45,6 +45,8 @@ public:
      * Sets the text of the state's textbox.
      */
     void setTextboxText(std::string str);
+
+    void additionalResizes();
 };
 
 #endif

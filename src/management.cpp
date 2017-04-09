@@ -22,6 +22,7 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     actionFactory = ActionFactory();
 
     actionDisplay = new VerticalButtonList({50, 1080}, {-50, 0}, "");
+    resourceDisplay = new ResourceDisplay(gameRef);
 
     grass = new Rectangle({1920, 1080}, {0, 0}, "assets/cave-grass.png");
 
@@ -139,6 +140,8 @@ void Management::display(sf::RenderWindow& win) {
         it->display(win);
     }
 
+    resourceDisplay->display(win);
+
     grass->display(win);
 
     game.getTechtree().display(win);
@@ -147,4 +150,11 @@ void Management::display(sf::RenderWindow& win) {
 
 void Management::setTextboxText(std::string str) {
     textbox->setText(str);
+}
+
+void Management::additionalResizes() {
+    grass->setSize(grass->getTransformedSize());
+    grass->setPosition(grass->getTransformedPosition());
+    resourceDisplay->onResize();
+    game.getTechtree().onResize();
 }

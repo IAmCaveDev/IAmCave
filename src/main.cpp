@@ -125,7 +125,6 @@ int main(int argc, char *argv[]){
                 window.setView(view);
 
                 gameManager.getCurrentGameState().onResize();
-                gameManager.getGame().getTechtree().onResize();
             }
         }
 

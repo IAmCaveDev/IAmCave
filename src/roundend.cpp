@@ -110,3 +110,7 @@ void RoundEnd::display(sf::RenderWindow& win) {
 void RoundEnd::setTextboxText(std::string str) {
     textbox->setText(str);
 }
+
+void RoundEnd::additionalResizes() {
+
+}

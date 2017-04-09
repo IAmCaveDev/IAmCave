@@ -10,6 +10,7 @@
 #include "action.h"
 #include "verticalbuttonlist.h"
 #include "textbox.h"
+#include "resourcedisplay.h"
 
 /**
  * The management phase of the game.
@@ -21,6 +22,7 @@ private:
     std::unique_ptr<Action> currentAction;
 
     VerticalButtonList* actionDisplay;
+    ResourceDisplay* resourceDisplay;
 
     std::string activeTech;
 
@@ -61,6 +63,8 @@ public:
      * Sets the text of the state's textbox.
      */
     void setTextboxText(std::string str);
+
+    void additionalResizes();
 };
 
 #endif
