@@ -22,6 +22,11 @@ private:
         float intelligenceGain;
     };
 
+    struct ArrowsToParents {
+        sf::VertexArray tip;
+        std::vector<sf::VertexArray> lines;
+    } arrowsToParents;
+
     short level;
 
     ParentsVector parents;
@@ -35,13 +40,16 @@ private:
     Button button;
 
 public:
+    bool straightLine;
+
     /**
      * Constructs a new Tech.
      * @param path The icon
      * @param newLevel The level in the Techtree the Tech is in
      * @param newParents A list of parents
      */
-    Tech(std::string path, short newLevel, ParentsVector newParents);
+    Tech(std::string path, short newLevel, ParentsVector newParents,
+         bool newStraightLine = false);
 
     std::string getName();
     /**
@@ -62,6 +70,13 @@ public:
      * Sets the level of the Tech in the Techtree.
      */
     void setLevel(short newLevel);
+
+    void createArrowsToParents();
+
+    TransformedVector<> getRightArrowNode();
+    TransformedVector<> getLeftArrowNode();
+
+    ArrowsToParents getArrowsToParents();
 };
 
 #endif
