@@ -35,11 +35,11 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
                 std::bind(&ButtonFunctions::Managing::Hunting::hunt, std::ref(*this))),
         new Button({200, 80}, {50, 150}, "assets/think.png",
                 std::bind(&ButtonFunctions::Managing::Research::think, std::ref(*this), std::ref(gameRef.getTechtree()))),
-        new Button({200, 50}, {200, 300}, "assets/makelove.png",
+        new Button({200, 80}, {50, 250}, "assets/makelove.png",
                 std::bind(&ButtonFunctions::Managing::Sex::sex, std::ref(*this))),
-        new Button({200, 50}, {200, 400}, "assets/improve.png",
+        new Button({200, 80}, {50, 350}, "assets/improve.png",
                 std::bind(&ButtonFunctions::Managing::Improve::improve, std::ref(*this))),
-        new Button({ 200, 50 },{ 200, 500 }, "assets/collect.png",
+        new Button({200, 80}, {50, 450}, "assets/collect.png",
                 std::bind(&ButtonFunctions::Managing::Collecting::collect, std::ref(*this))),
     };
 
@@ -147,10 +147,6 @@ void Management::display(sf::RenderWindow& win) {
         it->display(win);
     }
 
-    for (auto const& it : buttons) {
-        it->display(win);
-    }
-
     actionDisplay->display(win);
 
     for (auto const& it : getIdlingTribe()) {
@@ -160,6 +156,10 @@ void Management::display(sf::RenderWindow& win) {
     resourceDisplay->display(win);
 
     grass->display(win);
+
+    for (auto const& it : buttons) {
+        it->display(win);
+    }
 
     game.getTechtree().display(win);
 
