@@ -2,8 +2,9 @@
 
 #include "cavemanfactory.h"
 
-Game::Game() : techtree("assets/tech/techtree.json", {1920, 1080}, 0) {
+Game::Game() : techtree("assets/techtreebackground.png", "assets/tech/techtree.json", {1920, 1080}, 0) {
     CavemanFactory cavemanFactory;
+    EventFactory eventFactory;
 
     // Starting population
     for(int i = 0; i < 3; ++i){
@@ -13,26 +14,28 @@ Game::Game() : techtree("assets/tech/techtree.json", {1920, 1080}, 0) {
         tribe.push_back(cavemanFactory.createFemale(5, 5));
     }
 
-    int xPos = 500;
-    int yPos = 500;
+    int xPos = 150;
+    int yPos = 650;
     for(auto& it : tribe){
         it->setPosition(TransformedVector<>(xPos, yPos));
         xPos = xPos + 150;
-        if (xPos >= 1080) {
-            xPos = 500;
-            yPos = yPos + 250;
-        }
     }
 
     // starting resources
     resources.food = 200;
     resources.buildingMaterial = 50;
     resources.cavemanCapacity = 10;
+
+    eventStack.push_back(eventFactory.createEvent(0, Narrative));
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
     CavemanFactory cavemanFactory;
     tribe.push_back(cavemanFactory.createRandom(maxAge, minAge));
+}
+
+void Game::removeCaveman(short id) {
+    //TODO implement
 }
 
 std::vector<std::shared_ptr<Caveman>>& Game::getTribe() {

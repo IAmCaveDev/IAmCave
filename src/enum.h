@@ -5,10 +5,11 @@ enum EActions {
     Idle,
     EasyHunt,
     HardHunt,
-    Collect,
-    Sex,
-    Think,
-    Improve
+    CollectAction,
+    SexAction,
+    ThinkAction,
+    ImproveAction,
+    Dead
 };
 
 enum ETechs {
@@ -25,4 +26,9 @@ enum ETechs {
     Revolution
 };
 
+enum EventTypes {
+    Random,
+    Narrative,
+    //TODO Add more event types
+};
 #endif

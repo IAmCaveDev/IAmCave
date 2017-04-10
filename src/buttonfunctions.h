@@ -16,10 +16,16 @@ namespace ButtonFunctions {
             void sex(Management& stateRef);
         }
         namespace Research {
-
+            void think(Management& stateRef, Techtree& techtreeRef);
+            void techCallback(Management& stateRef, std::shared_ptr<Tech> techRef);
+            void thinkAbort(Management& stateRef, Techtree& techtreeRef);
+            void thinkConfirm(Management& stateRef, Techtree& techtreeRef);
         }
         namespace Improve {
-
+            void improve(Management& stateRef);
+        }
+        namespace Collecting {
+            void collect(Management& stateRef);
         }
         namespace General {
             void abort(Management& stateRef);
