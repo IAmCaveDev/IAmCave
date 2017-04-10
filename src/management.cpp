@@ -103,7 +103,7 @@ void Management::pushCurrentAction() {
                 "assets/collect-icon.png", nullptr), currentAction->getDuration());
             break;
     }
-
+    
     for (auto& it : currentAction->getActors()) {
         it->setCurrentAction(currentType);
     }

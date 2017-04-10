@@ -29,7 +29,7 @@ private:
 
     std::vector<std::shared_ptr<Caveman>> tribe;
     std::vector<std::unique_ptr<Action>> actions;
-    std::vector<std::unique_ptr<Event>> eventStack;
+    std::vector<std::shared_ptr<Event>> eventStack;
     Techtree techtree;
 
     Resources resources;
@@ -57,6 +57,7 @@ public:
     void removeCaveman(short id);
 
     void addAction(std::unique_ptr<Action> newAction);
+    void addEvent(std::shared_ptr<Event> newEvent);
     void removeAction(int id);
     std::vector<std::unique_ptr<Action>>& getActions();
     void addToResources(Resources amount);

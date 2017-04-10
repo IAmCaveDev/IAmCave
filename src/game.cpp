@@ -26,7 +26,7 @@ Game::Game() : techtree("assets/techtreebackground.png", "assets/tech/techtree.j
     resources.buildingMaterial = 50;
     resources.cavemanCapacity = 10;
 
-    eventStack.push_back(eventFactory.createEvent(0, Narrative));
+    //eventStack.push_back(eventFactory.createEvent(0, Narrative));
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
@@ -44,6 +44,10 @@ std::vector<std::shared_ptr<Caveman>>& Game::getTribe() {
 
 void Game::addAction(std::unique_ptr<Action> newAction) {
     actions.push_back(std::move(newAction));
+}
+
+void Game::addEvent(std::shared_ptr<Event> newEvent) {
+    eventStack.push_back(std::move(newEvent));
 }
 
 void Game::removeAction(int id) {

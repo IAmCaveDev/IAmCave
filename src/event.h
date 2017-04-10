@@ -10,7 +10,7 @@
 #include "cavemanfactory.h"
 using json = nlohmann::json;
 
-class Event {
+class Event : std::enable_shared_from_this<Event> {
 private:
     /**
     * Requirements for the event to trigger
@@ -52,17 +52,23 @@ private:
     struct Option {
         std::string name;
         Effects effects;
+        Button* button;
     };
 
     short id;
     std::string title;
     std::string description;
     Trigger trigger;
-    std::vector<std::unique_ptr<Option>> options;
+    std::vector<std::shared_ptr<Option>> options;
+    Textbox* textbox;
 
 public:
     Event(const std::string path);
     ~Event();
+
+    Trigger getTrigger() const;
+    std::vector<std::shared_ptr<Option>> getOptions() const;
+    Textbox* getTextBox() const;
 };
 
 #endif

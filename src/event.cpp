@@ -18,8 +18,7 @@ Event::Event(std::string path) {
         if (!data["trigger"]["tribeMaterial"].empty()) trigger.tribeMaterial = data["trigger"]["tribeMaterial"];
 
         for (auto& it : data["options"]) {
-        std::unique_ptr<Option> option(new Option{ "", {0.0, 0.0, 0.0, 0.0, 0, 0.0, 0, 0, 0, 0, false } });
-            option->name = it["name"];
+        std::shared_ptr<Option> option(new Option{ it["name"], {0.0, 0.0, 0.0, 0.0, 0, 0.0, 0, 0, 0, 0, false } });
             if (!it["huntBonus"].empty()) option->effects.huntBonus = it["huntBonus"];
             if (!it["gatheringBonus"].empty()) option->effects.gatheringBonus = it["gatheringBonus"];
             if (!it["fitnessGain"].empty()) option->effects.fitnessGain = it["fitnessGain"];
@@ -34,14 +33,28 @@ Event::Event(std::string path) {
                 option->effects.new_intelligence = caveman["intelligence"];
                 option->effects.new_isMale = caveman["isMale"];
             }
-
+            option->button = new Button({ 200, 100 }, { 850, 700 }, "assets/confirm.png", std::bind([&](){}), nullptr);
             options.push_back(std::move(option));
         }
     }
     else {
         throw std::runtime_error("Could not open file at " + path);
     }
+    
+    textbox = new Textbox({ 700, 250 }, { 850, 400 }, "assets/info.png", title + "\n" + description);
 }
 
 Event::~Event() {
+}
+
+Event::Trigger Event::getTrigger() const {
+    return trigger;
+}
+
+std::vector<std::shared_ptr<Event::Option>> Event::getOptions() const {
+    return options;
+}
+
+Textbox* Event::getTextBox() const {
+    return textbox;
 }

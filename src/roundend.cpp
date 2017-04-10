@@ -60,7 +60,20 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
 
 void RoundEnd::step(){
     Resources resourcesBefore = game.getResources();
-
+    EventFactory eventFactory;
+    std::shared_ptr<Event> event(eventFactory.createRandomEvent());
+    
+    //TODO make sure ALL trigger requirements are met
+    if (resourcesBefore.food >= event->getTrigger().tribeFood 
+        || resourcesBefore.buildingMaterial >= event->getTrigger().tribeMaterial 
+        || resourcesBefore.cavemanCapacity >= event->getTrigger().tribeSize) {
+        rectangles.push_back(event->getTextBox());
+        for (auto& it : event->getOptions()) {
+            it->button->setCallback(std::bind([&]() {resourcesBefore.food += it->effects.foodGain;}));
+            buttons.push_back(it->button);
+        }
+    }
+    game.addEvent(event);
     //resolve Actions
     resolveActions();
 
@@ -105,6 +118,7 @@ void RoundEnd::step(){
          - resourcesBefore.cavemanCapacity;
 
     infoColumn->setText(info.str());
+    
 }
 
 void RoundEnd::display(sf::RenderWindow& win) {
