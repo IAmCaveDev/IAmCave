@@ -1,0 +1,15 @@
+{
+    "id": 1,
+    "title": "Filthy Foxes!",
+    "description": "Chief!\n Foxes have invaded our storage! They already filled up their bellies with our finest meat before we could even notice anything!",
+
+    "trigger": {
+	},
+
+    "options": [
+    {
+    "name": "I wish we had something to protect our food...",
+        "food": -20
+    }
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "id": 1,
+    "title": "A new Beginning",
+    "description": "Greetings chief,\n You are the leader of the Ugalakka Tribe and it's your jobto help your tribesmen survive in the harsh wilderness and to introduce them to the wonders of civilization and technologies of a new age!",
+
+    "trigger": {
+	},
+
+    "options": [
+    { 
+        "name": "Let's do this!"
+    }
+    ]
+}
