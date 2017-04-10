@@ -1,7 +1,7 @@
 #include "eventfactory.h"
 
 
-std::unique_ptr<Event> EventFactory::createEvent(short id, EventTypes type) {
+std::shared_ptr<Event> EventFactory::createEvent(short id, EventTypes type) {
     std::string path = "assets/events/";
 
     switch (type) {
@@ -23,11 +23,12 @@ std::unique_ptr<Event> EventFactory::createEvent(short id, EventTypes type) {
 
     path += std::to_string(id) + ".json";
 
-    std::unique_ptr<Event> event(new Event(path));
+    std::shared_ptr<Event> event(new Event(path));
+    event->initButtons();
     return event;
 }
 
-std::unique_ptr<Event> EventFactory::createRandomEvent(EventTypes type) {
+std::shared_ptr<Event> EventFactory::createRandomEvent(EventTypes type) {
     std::string path = "assets/events/";
 
     std::random_device rd;
@@ -42,6 +43,7 @@ std::unique_ptr<Event> EventFactory::createRandomEvent(EventTypes type) {
     }
     path = path + std::to_string(id) + "*.json";
 
-    std::unique_ptr<Event> event(new Event(std::to_string(0)));
+    std::shared_ptr<Event> event(new Event(std::to_string(0)));
+    event->initButtons();
     return event;
 }

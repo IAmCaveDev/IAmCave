@@ -103,6 +103,11 @@ namespace ButtonFunctions {
                 }
             }
         }
+        namespace Events {
+            void confirmOption(std::shared_ptr<Event> event) {
+
+            }
+        }
     }
 
     namespace MainMenu {

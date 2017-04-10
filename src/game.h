@@ -29,7 +29,7 @@ private:
 
     std::vector<std::shared_ptr<Caveman>> tribe;
     std::vector<std::unique_ptr<Action>> actions;
-    std::vector<std::unique_ptr<Event>> eventStack;
+    std::vector<std::shared_ptr<Event>> events;
     Techtree techtree;
 
     Resources resources;
@@ -78,7 +78,12 @@ public:
     Resources& getResources();
 
     /**
-     * Returns the curren round number.
+    * Returns a reference to the currently active events.
+    */
+    std::vector<std::shared_ptr<Event>>& getEvents();
+
+    /**
+     * Returns the current round number.
      */
     unsigned int getRoundNumber();
     /**

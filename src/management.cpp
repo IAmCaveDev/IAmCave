@@ -124,6 +124,10 @@ VerticalButtonList& Management::getActionDisplay() {
     return *actionDisplay;
 }
 
+std::vector<std::shared_ptr<Event>> Management::getEvents() {
+    return game.getEvents();
+}
+
 void Management::display(sf::RenderWindow& win) {
     for (auto const& it : rectangles) {
         it->display(win);
@@ -139,4 +143,7 @@ void Management::display(sf::RenderWindow& win) {
         it->display(win);
     }
 
+    for (auto const& it : getEvents()) {
+        it->display(win);
+    }
 }

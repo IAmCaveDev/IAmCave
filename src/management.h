@@ -39,6 +39,11 @@ public:
     VerticalButtonList& getActionDisplay();
 
     /**
+    * Gets the currently active events that can be displayed for the user.
+    */
+    std::vector<std::shared_ptr<Event>> getEvents();
+
+    /**
      * Displays all Rectangles and Button and the Buttons from the tribe in
      * Game.
      * @param win The window to draw on.

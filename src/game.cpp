@@ -30,7 +30,7 @@ Game::Game() : techtree("assets/tech/techtree.json", {1920, 1080}, 0) {
     resources.buildingMaterial = 50;
     resources.cavemanCapacity = 10;
 
-    eventStack.push_back(eventFactory.createEvent(0, Narrative));
+    events.push_back(eventFactory.createEvent(1, Narrative));
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
@@ -76,6 +76,11 @@ Techtree& Game::getTechtree(){
 
 Resources& Game::getResources(){
     return resources;
+}
+
+
+std::vector<std::shared_ptr<Event>>& Game::getEvents() {
+    return events;
 }
 
 unsigned int Game::getRoundNumber(){
