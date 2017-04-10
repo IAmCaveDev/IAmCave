@@ -117,14 +117,16 @@ void Tech::updateArrowsToParents() {
 TransformedVector<> Tech::getRightArrowNode() {
     TransformedVector<> buttonPos = button->getTransformedPosition();
     TransformedVector<> buttonSize = button->getTransformedSize();
-    return {buttonPos.getRealX() + buttonSize.getRealX(),
+    // 10: image padding, 280: image size
+    return {buttonPos.getRealX() + buttonSize.getRealX() - 10.f/280.f * buttonSize.getRealX(),
             buttonPos.getRealY() + buttonSize.getRealY() / 2};
 }
 
 TransformedVector<> Tech::getLeftArrowNode() {
     TransformedVector<> buttonPos = button->getTransformedPosition();
     TransformedVector<> buttonSize = button->getTransformedSize();
-    return {buttonPos.getRealX(),
+    // 10: image padding, 280: image size
+    return {buttonPos.getRealX() + 10.f/280.f * buttonSize.getRealX(),
             buttonPos.getRealY() + buttonSize.getRealY() / 2};
 }
 
