@@ -16,10 +16,9 @@ std::unique_ptr<Action> ActionFactory::createSexAction() {
     return std::unique_ptr<Sex>(new Sex());
 }
 
-std::unique_ptr<Action> ActionFactory::createThinkAction(ETechs tech, short duration) {
-    return std::unique_ptr<Think>(new Think(tech, duration));
-}
-
 std::unique_ptr<Action> ActionFactory::createImproveAction(short duration) {
     return std::unique_ptr<Improve>(new Improve(duration));
+
+std::unique_ptr<Action> ActionFactory::createThinkingAction(std::string techName,short duration) {
+    return std::unique_ptr<Think>(new Think(techName, duration));
 }

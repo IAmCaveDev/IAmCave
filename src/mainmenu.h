@@ -23,6 +23,8 @@ public:
      * @param win The window to draw on.
      */
     void display(sf::RenderWindow& win);
+
+    void additionalResizes();
 };
 
 #endif

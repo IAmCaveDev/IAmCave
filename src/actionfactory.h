@@ -2,6 +2,7 @@
 #define ACTIONFACTORY_H
 
 #include <memory>
+#include <string>
 
 #include "action.h"
 #include "hunt.h"
@@ -14,10 +15,11 @@ class ActionFactory {
 public:
     std::unique_ptr<Action> createEasyHuntingAction(short duration);
     std::unique_ptr<Action> createHardHuntingAction(short duration);
-	std::unique_ptr<Action> createCollectAction(short duration);
-	std::unique_ptr<Action> createSexAction();
-	std::unique_ptr<Action> createThinkAction(ETechs tech, short duration);
-	std::unique_ptr<Action> createImproveAction(short duration);
+    std::unique_ptr<Action> createCollectAction(short duration);
+    std::unique_ptr<Action> createSexAction();
+    std::unique_ptr<Action> createImproveAction(short duration);
+    std::unique_ptr<Action> createThinkingAction(std::string techName, short duration);
+    //TODO: more methods for creating other actions
 
 };
 #endif

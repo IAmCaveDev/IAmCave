@@ -25,6 +25,7 @@ void GameState::onResize(){
         it->setPosition(it->getTransformedPosition());
         it->setSize(it->getTransformedSize());
     }
+    additionalResizes();
 }
 
 std::vector<Button*>& GameState::getButtons(){

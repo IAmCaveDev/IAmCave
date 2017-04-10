@@ -32,3 +32,8 @@ void Rectangle::setTransformedPosition(TransformedVector<> newPosition){
     transformedPosition = newPosition;
     setPosition(newPosition);
 }
+
+void Rectangle::changeTexture(std::string texturePath) {
+    tex.loadFromFile(texturePath);
+    setTexture(&tex);
+}

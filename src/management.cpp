@@ -11,28 +11,30 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::management;
     nextState = type;
 
+    textbox = new Textbox({1580, 140}, {20, 1080 - 160},
+                           "assets/state-textbox.png", "", 15, 30);
+
     rectangles = {
         new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
+        textbox
     };
 
     actionFactory = ActionFactory();
 
     actionDisplay = new VerticalButtonList({50, 1080}, {-50, 0}, "");
+    resourceDisplay = new ResourceDisplay(gameRef);
 
-    actionDisplay->addButton(0, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 1);
-    actionDisplay->addButton(1, new Button({200, 50}, {200, 300}, "assets/makelove-icon.png", nullptr), 0);
-    actionDisplay->addButton(2, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 2);
-    actionDisplay->addButton(3, new Button({200, 50}, {200, 300}, "assets/hunt-icon.png", nullptr), 2);
-    actionDisplay->removeButton(3);
+    grass = new Rectangle({1920, 1080}, {0, 0}, "assets/cave-grass.png");
 
     buttons = {
-        new Button({200, 50}, {-400, -150}, "assets/go.png", [&](){
+        new Button({200, 80}, {-250, -130}, "assets/go.png", [&](){
                     actionDisplay->decreasePriorityOfAll();
                     nextState = EGamestates::roundEnd;
                 }),
-        new Button({200, 50}, {200, 100}, "assets/hunt.png",
+        new Button({200, 80}, {50, 50}, "assets/hunt.png",
                 std::bind(&ButtonFunctions::Managing::Hunting::hunt, std::ref(*this))),
-        new Button({200, 50}, {200, 200}, "assets/think.png", nullptr),
+        new Button({200, 80}, {50, 150}, "assets/think.png",
+                std::bind(&ButtonFunctions::Managing::Research::think, std::ref(*this), std::ref(gameRef.getTechtree()))),
         new Button({200, 50}, {200, 300}, "assets/makelove.png",
                 std::bind(&ButtonFunctions::Managing::Sex::sex, std::ref(*this))),
         new Button({200, 50}, {200, 400}, "assets/improve.png",
@@ -60,7 +62,10 @@ void Management::setCurrentAction(EActions newaction, short duration) {
         case EActions::CollectAction:
             currentAction = std::move(actionFactory.createCollectAction(duration));
             break;
-        // TODO Add think action here
+        case EActions::ThinkAction:
+            currentAction = std::move(actionFactory.createThinkingAction(activeTech,duration));
+            break;
+        // TODO: add more Actions here
     }
 
 }
@@ -110,6 +115,19 @@ void Management::deleteCurrentAction() {
     currentAction.reset();
 }
 
+void Management::setActiveTech(std::string newTech) {
+    activeTech = newTech;
+    int i = 0;
+}
+
+std::string Management::getActiveTech() {
+    return activeTech;
+}
+
+void Management::deleteActiveTech() {
+    activeTech = "";
+}
+
 std::vector<std::shared_ptr<Caveman>> Management::getIdlingTribe() {
     std::vector<std::shared_ptr<Caveman>> idlingTribe;
     for (auto& it : game.getTribe()) {
@@ -139,4 +157,21 @@ void Management::display(sf::RenderWindow& win) {
         it->display(win);
     }
 
+    resourceDisplay->display(win);
+
+    grass->display(win);
+
+    game.getTechtree().display(win);
+
+}
+
+void Management::setTextboxText(std::string str) {
+    textbox->setText(str);
+}
+
+void Management::additionalResizes() {
+    grass->setSize(grass->getTransformedSize());
+    grass->setPosition(grass->getTransformedPosition());
+    resourceDisplay->onResize();
+    game.getTechtree().onResize();
 }

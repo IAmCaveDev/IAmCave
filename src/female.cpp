@@ -16,21 +16,15 @@ std::vector<std::string> femaleNames = {
     "Harleen"
 };
 
-std::vector<std::string> femaleTextures = {
-    "assets/cavewoman.png",
-    "assets/cavewoman2.png",
-    "assets/cavewoman3.png"
-};
-
 Female::Female(int maxAge, int minAge) : Caveman(maxAge, minAge) {
     std::random_device rd;
     std::mt19937 rng(rd());
 
-    std::uniform_int_distribution<int> femaleN(0, femaleNames.size() - 1);
-    name = femaleNames[femaleN(rng)];
+    std::uniform_int_distribution<int> femaleName(0, femaleNames.size() - 1);
+    name = femaleNames[femaleName(rng)];
 
-    std::uniform_int_distribution<int> femaleT(0, femaleTextures.size() - 1);
-    texPath = femaleTextures[femaleT(rng)];
+    std::uniform_int_distribution<int> femaleTex(1, 162);
+    texPath = "assets/women/woman-" + std::to_string(femaleTex(rng)) + ".png";
 
 }
 
