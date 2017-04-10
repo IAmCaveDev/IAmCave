@@ -6,7 +6,7 @@
 using json = nlohmann::json;
 
 Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newStraightLine)
-          : parents(newParents), button(100, 0, "assets/techplaceholder.png", nullptr) {
+          : parents(newParents){
     level = newLevel;
     straightLine = newStraightLine;
 
@@ -31,6 +31,10 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newS
     } else {
         throw std::runtime_error("Could not open file at " + path);
     }
+
+    std::string lowerName = name;
+    std::transform(lowerName.begin(), lowerName.end(), lowerName.begin(), ::tolower);
+    button = new Button(100, 0, "assets/techtree/res-"+lowerName+".png", nullptr);
 }
 
 std::string Tech::getName() {
@@ -42,7 +46,7 @@ Tech::ParentsVector& Tech::getParents() {
 }
 
 Button& Tech::getButton() {
-    return button;
+    return *button;
 }
 
 short Tech::getLevel() {
@@ -111,15 +115,15 @@ void Tech::updateArrowsToParents() {
 }
 
 TransformedVector<> Tech::getRightArrowNode() {
-    TransformedVector<> buttonPos = button.getTransformedPosition();
-    TransformedVector<> buttonSize = button.getTransformedSize();
+    TransformedVector<> buttonPos = button->getTransformedPosition();
+    TransformedVector<> buttonSize = button->getTransformedSize();
     return {buttonPos.getRealX() + buttonSize.getRealX(),
             buttonPos.getRealY() + buttonSize.getRealY() / 2};
 }
 
 TransformedVector<> Tech::getLeftArrowNode() {
-    TransformedVector<> buttonPos = button.getTransformedPosition();
-    TransformedVector<> buttonSize = button.getTransformedSize();
+    TransformedVector<> buttonPos = button->getTransformedPosition();
+    TransformedVector<> buttonSize = button->getTransformedSize();
     return {buttonPos.getRealX(),
             buttonPos.getRealY() + buttonSize.getRealY() / 2};
 }

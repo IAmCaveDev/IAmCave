@@ -37,7 +37,7 @@ private:
     int requiredIntelligence;
     StatBoosts statBoosts;
 
-    Button button;
+    Button* button;
 
 public:
     bool straightLine;
