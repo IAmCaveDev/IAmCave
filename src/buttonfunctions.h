@@ -30,21 +30,17 @@ namespace ButtonFunctions {
             void actionStart(Management& stateRef);
             void actionEnd(Management& stateRef);
         }
-        namespace Events {
-            void confirmOption(std::shared_ptr<Event> event);
-        }
     }
     namespace MainMenu {
-        //void start(Game& game);
+        void start(Game& game);
         void options();
-        //void quit(Game& game);
+        void quit(Game& game);
     }
     namespace Tribe {
         void addAsActor(Management& stateRef, std::shared_ptr<Caveman> caveman);
         void displayInfo(std::shared_ptr<Caveman> caveman);
         void hideInfo(std::shared_ptr<Caveman> caveman);
     }
-
 }
 
 

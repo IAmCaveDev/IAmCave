@@ -7,10 +7,10 @@
 
 #include "enum.h"
 #include "json.hpp"
-using json = nlohmann::json;
 #include "cavemanfactory.h"
+using json = nlohmann::json;
 
-class Event : public std::enable_shared_from_this<Event> {
+class Event {
 private:
     /**
     * Requirements for the event to trigger
@@ -52,7 +52,6 @@ private:
     struct Option {
         std::string name;
         Effects effects;
-        Button* button;
     };
 
     short id;
@@ -60,14 +59,10 @@ private:
     std::string description;
     Trigger trigger;
     std::vector<std::unique_ptr<Option>> options;
-    Textbox* eventbox;
 
 public:
     Event(const std::string path);
     ~Event();
-
-    void initButtons();
-    void display(sf::RenderWindow& win) const;
 };
 
 #endif

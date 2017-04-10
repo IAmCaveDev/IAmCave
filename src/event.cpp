@@ -1,7 +1,5 @@
 #include "event.h"
 
-#include "buttonfunctions.h"
-
 Event::Event(std::string path) {
     std::ifstream in(path);
 
@@ -43,22 +41,7 @@ Event::Event(std::string path) {
     else {
         throw std::runtime_error("Could not open file at " + path);
     }
-
-    eventbox = new Textbox({ 200, 200 }, { 450, 400 }, "assets/info.png", description);
 }
 
 Event::~Event() {
-}
-
-void Event::initButtons() {
-    short numOptions = options.size();
-    for (auto& it : options) {
-    }
-}
-
-void Event::display(sf::RenderWindow& win) const {
-    for (auto& it : options) {
-        win.draw(*it->button);
-}
-    win.draw(*eventbox);
 }
