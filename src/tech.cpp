@@ -118,7 +118,7 @@ TransformedVector<> Tech::getRightArrowNode() {
     TransformedVector<> buttonPos = button->getTransformedPosition();
     TransformedVector<> buttonSize = button->getTransformedSize();
     // 10: image padding, 280: image size
-    return {buttonPos.getRealX() + buttonSize.getRealX() - 10.f/280.f * buttonSize.getRealX(),
+    return {buttonPos.getRealX() + buttonSize.getRealX() - static_cast<int>(10.f/280.f * buttonSize.getRealX()),
             buttonPos.getRealY() + buttonSize.getRealY() / 2};
 }
 
@@ -126,7 +126,7 @@ TransformedVector<> Tech::getLeftArrowNode() {
     TransformedVector<> buttonPos = button->getTransformedPosition();
     TransformedVector<> buttonSize = button->getTransformedSize();
     // 10: image padding, 280: image size
-    return {buttonPos.getRealX() + 10.f/280.f * buttonSize.getRealX(),
+    return {buttonPos.getRealX() + static_cast<int>(10.f/280.f * buttonSize.getRealX()),
             buttonPos.getRealY() + buttonSize.getRealY() / 2};
 }
 
