@@ -80,6 +80,16 @@ public:
         return sf::Vector2f(getX(), getY());
     };
 
+    TransformedVector<T> operator- (const TransformedVector& other) {
+        return {this->getRealX() - other.getRealX(),
+                this->getRealY() - other.getRealY()};
+    };
+
+    TransformedVector<T> operator+ (const TransformedVector& other) {
+        return {this->getRealX() + other.getRealX(),
+                this->getRealY() + other.getRealY()};
+    };
+
     /**
      * Gets the transformed value for the first component.
      */

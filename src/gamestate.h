@@ -50,6 +50,8 @@ public:
      */
     void onResize();
 
+    virtual void additionalResizes() = 0;
+
     /**
      * Gets the list of Buttons in the GameState.
      */

@@ -19,7 +19,7 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     fitness = stats(rng);
     intelligence = stats(rng);
 
-    infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "TEST");
+    infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "");
 
     counter += 1;
 }
@@ -67,7 +67,7 @@ void Caveman::initButton() {
 void Caveman::setPosition(TransformedVector<> newPosition){
     button->setTransformedPosition(newPosition);
     infobox->setTransformedPosition(
-        {newPosition.getRealX() - infobox->getTransformedSize().getRealX(),
+        {newPosition.getRealX() - button->getTransformedSize().getRealX()/2,
          newPosition.getRealY() - infobox->getTransformedSize().getRealY()});
 }
 

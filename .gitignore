@@ -254,3 +254,6 @@ paket-files/
 *.vcxproj
 *.vcxproj.filters
 *.dll
+
+# swp files
+*.swp

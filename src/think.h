@@ -4,19 +4,15 @@
 #include <vector>
 #include <string>
 #include "action.h"
-#include "techtree.h"
-
 class Think : public Action {
 private:
-	ETechs tech;
+    std::string name;
 
 public:
-    Think(ETechs newtech, short time);
+    Think(std::string techName, short time);
 
     void addActor(std::shared_ptr<Caveman> actor);
     ActionPackage resolve();
-	
-    //ETechs getTech();
 };
 
 #endif

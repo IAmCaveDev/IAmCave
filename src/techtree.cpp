@@ -24,12 +24,15 @@ void Techtree::positionTree(json data, short level,
         int posY;
 
         if (sizePerLevel[level] == 1) {
-            posY = pos.getRealY() + size.getRealY()/2 - techSize/2;
+            posY = getTransformedPosition().getRealY()
+                   + getTransformedSize().getRealY()/2 - techSize/2;
         } else {
-            posY = pos.getRealY() + size.getRealY() - size.getRealY()
-                       / (sizePerLevel[level] - 1) * iteratorPerLevel[level];
+            posY = getTransformedPosition().getRealY()
+                   + getTransformedSize().getRealY()
+                   - getTransformedSize().getRealY() / (sizePerLevel[level] - 1)
+                   * iteratorPerLevel[level];
 
-            if (iteratorPerLevel[level] > 0 && iteratorPerLevel[level]< (sizePerLevel[level] - 1)) {
+            if (iteratorPerLevel[level] > 0 && iteratorPerLevel[level] < (sizePerLevel[level] - 1)) {
                 posY -= techSize / 2;
             } else if(iteratorPerLevel[level] == 0) {
                 posY -= techSize;
@@ -45,7 +48,15 @@ void Techtree::positionTree(json data, short level,
 void Techtree::parse(std::shared_ptr<Tech> parent, json data, short level) {
     std::string name = data["name"].get<std::string>();
     std::string techPath = "assets/tech/" + name + ".json";
-    auto newParent = tree.emplace(name, new Tech(techPath, level, {parent}));
+    bool straight;
+    try {
+        straight = data.at("straight");
+    }
+    catch(std::out_of_range& oor) {
+        straight = false;
+    }
+    auto newParent = tree.emplace(name, new Tech(techPath, level, {parent},
+                                  straight));
 
     // if already exists in tree
     if (!newParent.second) {
@@ -70,10 +81,10 @@ void Techtree::parse(std::shared_ptr<Tech> parent, json data, short level) {
     }
 }
 
-Techtree::Techtree(std::string path, TransformedVector<> newSize,
-                   TransformedVector<> newPos) {
-    size = newSize;
-    pos = newPos;
+Techtree::Techtree(std::string backgroundPath, std::string path,
+                   TransformedVector<> newSize, TransformedVector<> newPos)
+                   : Rectangle(newSize, newPos, backgroundPath) {
+    visibility = false;
 
     std::ifstream in(path);
     if (in.good()) {
@@ -81,16 +92,44 @@ Techtree::Techtree(std::string path, TransformedVector<> newSize,
         in >> data;
 
         parse(nullptr, data, 0);
-        positionTree(data, 1, {pos.getRealX(),pos.getRealY()+size.getRealY()/2-techSize/2});
+        positionTree(data, 1, {getTransformedPosition().getRealX(),
+                               getTransformedPosition().getRealY()
+                               + getTransformedSize().getRealY() / 2
+                               - techSize / 2});
+        for (auto& it : tree) {
+            it.second->createArrowsToParents();
+        }
     } else {
         throw std::runtime_error("Could not open file at " + path);
     }
+
+    properThinking = new Button({ 200, 80 }, { -250, -130 }, "assets/confirm.png", nullptr);
+    abortThinking = new Button({ 200, 80 }, { -250, -330 }, "assets/abort.png", nullptr);
+}
+
+void Techtree::setVisibility(bool newVisibility) {
+    visibility = newVisibility;
+    for (auto& it : tree) {
+        it.second->getButton().setVisibility(newVisibility);
+    }
+}
+
+bool Techtree::getVisibility() {
+    return visibility;
 }
 
 void Techtree::display(sf::RenderWindow& win) {
-    for (auto& it : tree) {
-        it.second->getButton().display(win);
-        // TODO: Draw arrows
+    if (visibility) {
+        this->Rectangle::display(win);
+        for (auto& it : tree) {
+            it.second->getButton().display(win);
+            win.draw(it.second->getArrowsToParents().tip);
+            for(auto& line : it.second->getArrowsToParents().lines) {
+                win.draw(line);
+            }
+        }
+        properThinking->display(win);
+        abortThinking->display(win);
     }
 }
 
@@ -99,5 +138,25 @@ void Techtree::onResize() {
         auto& button = it.second->getButton();
         button.setPosition(button.getTransformedPosition());
         button.setSize(button.getTransformedSize());
+
+        it.second->updateArrowsToParents();
     }
+    properThinking->setPosition(properThinking->getTransformedPosition());
+    abortThinking->setPosition(abortThinking->getTransformedPosition());
+    properThinking->setSize(properThinking->getTransformedSize());
+    abortThinking->setSize(abortThinking->getTransformedSize());
+    setPosition(getTransformedPosition());
+    setSize(getTransformedSize());
+}
+
+std::map<std::string, std::shared_ptr<Tech>>& Techtree::getTree() {
+    return tree;
+}
+
+Button& Techtree::getProperThinking() {
+    return *properThinking;
+}
+
+Button& Techtree::getAbortThinking() {
+    return *abortThinking;
 }
