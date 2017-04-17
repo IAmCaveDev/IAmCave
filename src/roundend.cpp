@@ -8,18 +8,21 @@ void RoundEnd::resolveActions() {
     for (auto& it : game.getActions()) {
 
         ActionPackage result;
-        if (it->getType() != EActions::ImproveAction || (it->getType() == EActions::ImproveAction && game.getResources().buildingMaterial - it->getActors().size() * 10 >= 0))
+        if (it->getType() != EActions::ImproveAction ||
+            (it->getType() == EActions::ImproveAction &&
+             game.getResources().buildingMaterial - it->getActors().size() * 10 >= 0)) {
             result = it->resolve();
-        else
+        } else {
             result = { false, 0.f, 2, 0, false };
+        }
 
         if (!result.isFinal) {
-            if (it->getType() == ImproveAction)
+            if (it->getType() == ImproveAction) {
                 game.addToResources({ result.food,-result.buildingMaterial,result.cavemanCapacity });
+            }
             return;
-        }
-        else {
-			game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
+        } else {
+            game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
             if (result.newborn) {
                 game.addCaveman(0, 0);
             }
@@ -29,7 +32,7 @@ void RoundEnd::resolveActions() {
             if (actor->getCurrentAction() == Dead) game.removeCaveman(actor->getId());
         }
     }
-    for (auto it : toDelete) {
+    for (auto& it : toDelete) {
         game.removeAction(it);
     }
 }
