@@ -37,6 +37,34 @@ void RoundEnd::resolveActions() {
     }
 }
 
+void RoundEnd::doPassives() {
+    // idle food consumption
+    std::normal_distribution<float> normal(0, 0.33);
+
+    for (auto& it : game.getTribe()) {
+        if (it->getCurrentAction() != EActions::EasyHunt &&
+            it->getCurrentAction() != EActions::HardHunt) {
+            float foodConsumption = 1;
+
+            if (it->getAge() > MIN_ADULT_AGE) {
+                foodConsumption += 1;
+
+                if (it->isMale()) {
+                    foodConsumption += 1;
+                }
+                for (int i = 0; i < it->getFitness(); ++i) {
+                    foodConsumption += 0.05;
+                }
+            }
+
+            foodConsumption += normal(rng);
+
+            game.getResources().food -= foodConsumption;
+        }
+
+    }
+}
+
 RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::roundEnd;
     nextState = type;
@@ -64,36 +92,18 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
 void RoundEnd::step(){
     Resources resourcesBefore = game.getResources();
 
-    //resolve Actions
     resolveActions();
 
-    // idle food consumption
-    std::normal_distribution<float> normal(0, 0.33);
+    doPassives();
 
-    for(auto& it : game.getTribe()){
-        if((it->getCurrentAction() != EActions::EasyHunt) && (it->getCurrentAction() != EActions::HardHunt)){
-            float foodConsumption = 1;
-
-            if(it->getAge() > MIN_ADULT_AGE){
-                foodConsumption += 1;
-
-                if(it->isMale()){
-                    foodConsumption += 1;
-                }
-                for(int i = 0; i < it->getFitness(); ++i){
-                    foodConsumption += 0.05;
-                }
-            }
-
-            foodConsumption += normal(rng);
-
-            game.getResources().food -= foodConsumption;
-        }
-
-    }
-    if(game.getResources().food < 0){
+    if (game.getResources().food < 0) {
         game.getResources().food = 0;
     }
+    if (game.getResources().buildingMaterial < 0) {
+        game.getResources().buildingMaterial = 0;
+    }
+
+    game.increaseRoundNumber();
 
     std::ostringstream info;
     info << "Round " << game.getRoundNumber() << "\n"
