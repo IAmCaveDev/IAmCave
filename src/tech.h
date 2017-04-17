@@ -37,6 +37,8 @@ private:
     int requiredIntelligence;
     StatBoosts statBoosts;
 
+    bool researched;
+
     Button* button;
 
 public:
@@ -78,6 +80,10 @@ public:
     TransformedVector<> getLeftArrowNode();
 
     ArrowsToParents getArrowsToParents();
+
+    bool isResearched();
+
+    void updateButtonState();
 };
 
 #endif

@@ -7,6 +7,7 @@ using json = nlohmann::json;
 
 Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newStraightLine)
           : parents(newParents){
+    researched = false;
     level = newLevel;
     straightLine = newStraightLine;
 
@@ -132,4 +133,24 @@ TransformedVector<> Tech::getLeftArrowNode() {
 
 Tech::ArrowsToParents Tech::getArrowsToParents() {
     return arrowsToParents;
+}
+
+bool Tech::isResearched() {
+    return researched;
+}
+
+void Tech::updateButtonState() {
+    if (!researched) {
+        button->setClickability(true);
+    }
+
+    for (auto& it : parents) {
+        if (it == nullptr) {
+            return;
+        }
+        if (!it->isResearched()) {
+            button->setClickability(false);
+            break;
+        }
+    }
 }

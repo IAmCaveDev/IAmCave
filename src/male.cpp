@@ -1,7 +1,6 @@
 #include "male.h"
 #include "buttonfunctions.h"
 
-#include <iostream>
 
 #include <random>
 #include <vector>
@@ -27,7 +26,6 @@ Male::Male(int maxAge, int minAge) : Caveman(maxAge, minAge) {
 
     std::uniform_int_distribution<int> maleTex(1, 243);
     texPath = "assets/men/man-" + std::to_string(maleTex(rng)) + ".png";
-    std::cout << texPath << "\n";
 }
 
 bool Male::isMale() {
