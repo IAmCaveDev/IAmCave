@@ -24,6 +24,7 @@ private:
 
     bool infoboxVisible = false;
     Textbox* infobox;
+    Button* actionbox;
 
 protected:
     std::string name;
