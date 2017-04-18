@@ -7,14 +7,7 @@ void RoundEnd::resolveActions() {
     std::vector<int> toDelete = {};
     for (auto& it : game.getActions()) {
 
-        ActionPackage result;
-        if (it->getType() != EActions::ImproveAction ||
-            (it->getType() == EActions::ImproveAction &&
-             game.getResources().buildingMaterial - it->getActors().size() * 10 >= 0)) {
-            result = it->resolve();
-        } else {
-            result = { false, 0.f, 2, 0, false };
-        }
+        ActionPackage result = it->resolve();
 
         if (!result.isFinal) {
             if (it->getType() == ImproveAction) {
