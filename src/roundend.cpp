@@ -9,20 +9,16 @@ void RoundEnd::resolveActions() {
 
         ActionPackage result = it->resolve();
 
-        if (!result.isFinal) {
-            if (it->getType() == ImproveAction) {
-                game.addToResources({ result.food,-result.buildingMaterial,result.cavemanCapacity });
-            }
-            return;
-        } else {
+        if (result.isFinal) {
             game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
             if (result.newborn) {
                 game.addCaveman(0, 0);
             }
             toDelete.push_back(it->getID());
-        }
-        for (auto& actor : it->getActors()) {
-            if (actor->getCurrentAction() == Dead) game.removeCaveman(actor->getId());
+
+            for (auto& actor : it->getActors()) {
+                if (actor->getCurrentAction() == Dead) game.removeCaveman(actor->getId());
+            }
         }
     }
     for (auto& it : toDelete) {
