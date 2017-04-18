@@ -4,18 +4,17 @@
 #define MIN_ADULT_AGE 3
 
 #include <string>
+#include <memory>
 
-#include "action.h"
+#include "enum.h"
 #include "button.h"
 
-class Caveman {
+class Caveman : public std::enable_shared_from_this<Caveman> {
 private:
     static short counter;
 
     const short id;
-    std::string name;
 
-    bool male;
     unsigned short age;
 
     EActions currentAction;
@@ -23,23 +22,24 @@ private:
     short fitness;
     short intelligence;
 
-    std::string texPath;
-
-    Button* button;
-
     bool infoboxVisible = false;
     Textbox* infobox;
 
+protected:
+    std::string name;
+
+    std::string texPath;
+    Button* button;
 
 public:
-    explicit Caveman(int maxAge, int minAge);
+    Caveman(int maxAge, int minAge);
     ~Caveman();
 
     void setInfoboxVisible(bool visible);
 
     short getId();
     std::string getName();
-    bool isMale();
+    virtual bool isMale() = 0;
     unsigned short getAge();
     short getFitness();
     void setFitness(short newFit);
@@ -47,6 +47,8 @@ public:
 
     Button& getButton();
     Textbox& getInfobox();
+
+    void initButton();
 
     void setPosition(TransformedVector<> newPosition);
 
@@ -57,7 +59,6 @@ public:
 
     void display(sf::RenderWindow& win) const;
 
-    friend Action;
 };
 
 #endif

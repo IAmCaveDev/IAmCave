@@ -51,8 +51,8 @@ void Textbox::wrap(){
         string = string.substr(index+1);
 
         sf::Vector2i pos(text.findCharacterPos(oIndex));
-        if(pos.x > (getTransformedSize().getX() + getTransformedPosition().getX())){
-            output.insert(oIndex, "\n");
+        if(pos.x > (getTransformedSize().getRealX() + getTransformedPosition().getRealX())){
+            output.insert(oIndex - index - 1, "\n");
             text.setString(output);
             oIndex += 1;
         }

@@ -33,6 +33,15 @@ int main(int argc, char *argv[]){
                     std::vector<Button*> buttons;
                     buttons = gameManager.getCurrentGameState().getButtons();
 
+                    Techtree techtree = gameManager.getGame().getTechtree();
+                    if (techtree.getVisibility()) {
+                        for (auto& it : techtree.getTree()) {
+                            buttons.push_back(&it.second->getButton());
+                        }
+                        buttons.push_back(&techtree.getAbortThinking());
+                        buttons.push_back(&techtree.getProperThinking());
+                    }
+
                     sf::Vector2i pos = sf::Mouse::getPosition(window);
                     pos = sf::Vector2i(window.mapPixelToCoords(pos));
 
@@ -44,7 +53,7 @@ int main(int argc, char *argv[]){
                         }
                     }
 
-                    std::vector<Caveman*> cavemen;
+                    std::vector<std::shared_ptr<Caveman>> cavemen;
                     cavemen = gameManager.getGame().getTribe();
 
                     for(auto& it : cavemen){
@@ -62,6 +71,15 @@ int main(int argc, char *argv[]){
                     std::vector<Button*> buttons;
                     buttons = gameManager.getCurrentGameState().getButtons();
 
+                    Techtree techtree = gameManager.getGame().getTechtree();
+                    if (techtree.getVisibility()) {
+                        for (auto& it : techtree.getTree()) {
+                            buttons.push_back(&it.second->getButton());
+                        }
+                        buttons.push_back(&techtree.getAbortThinking());
+                        buttons.push_back(&techtree.getProperThinking());
+                    }
+
                     sf::Vector2i pos = sf::Mouse::getPosition(window);
                     pos = sf::Vector2i(window.mapPixelToCoords(pos));
 
@@ -73,7 +91,7 @@ int main(int argc, char *argv[]){
                         }
                     }
 
-                    std::vector<Caveman*> cavemen;
+                    std::vector<std::shared_ptr<Caveman>> cavemen;
                     cavemen = gameManager.getGame().getTribe();
 
                     for(auto& it : cavemen){

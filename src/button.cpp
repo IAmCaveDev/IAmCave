@@ -21,17 +21,19 @@ Button::Button(const TransformedVector<>& size,
 
 void Button::init(std::string texPath, std::function<void()> newCallback,
                   std::function<void()> newAltCallback){
-    size_t dotPos = texPath.find(".");
-    std::string hiTexPath = texPath.substr(0, dotPos) + "-h"
-                            + texPath.substr(dotPos);
-    std::string diTexPath = texPath.substr(0, dotPos) + "-d"
-                            + texPath.substr(dotPos);
+    if(!texPath.empty()){
+        size_t dotPos = texPath.find(".");
+        std::string hiTexPath = texPath.substr(0, dotPos) + "-h"
+                                + texPath.substr(dotPos);
+        std::string diTexPath = texPath.substr(0, dotPos) + "-d"
+                                + texPath.substr(dotPos);
 
-    if(!highlightedTex.loadFromFile(hiTexPath)){
-        highlightedTex = tex;
-    }
-    if(!disabledTex.loadFromFile(diTexPath)){
-        disabledTex = tex;
+        if(!highlightedTex.loadFromFile(hiTexPath)){
+            highlightedTex = tex;
+        }
+        if(!disabledTex.loadFromFile(diTexPath)){
+            disabledTex = tex;
+        }
     }
 
     callback = newCallback;
@@ -42,7 +44,7 @@ void Button::init(std::string texPath, std::function<void()> newCallback,
 }
 
 void Button::highlighted(const sf::Vector2i& mousePosition, bool useAlt){
-    if(!clickable) return;
+    if(!clickable || !visible) return;
     sf::Vector2i myPosition = sf::Vector2i(getTransformedPosition());
     if((mousePosition.x >= myPosition.x) &&
        (mousePosition.x <= myPosition.x + getTransformedSize().getX()) &&
@@ -58,7 +60,7 @@ void Button::highlighted(const sf::Vector2i& mousePosition, bool useAlt){
 }
 
 void Button::executed(const sf::Vector2i& mousePosition, bool useAlt){
-    if(!clickable || !isHighlighted) return;
+    if(!clickable || !isHighlighted || !visible) return;
     sf::Vector2i myPosition = sf::Vector2i(getTransformedPosition());
     if((mousePosition.x >= myPosition.x) &&
        (mousePosition.x <= myPosition.x + getTransformedSize().getX()) &&

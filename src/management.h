@@ -3,12 +3,14 @@
 
 #include <SFML/Graphics.hpp>
 #include <memory>
+#include <string>
 
 #include "gamestate.h"
 #include "actionfactory.h"
 #include "action.h"
 #include "verticalbuttonlist.h"
-#include "resourceDisplay.h"
+#include "textbox.h"
+#include "resourcedisplay.h"
 
 /**
  * The management phase of the game.
@@ -20,23 +22,31 @@ private:
     std::unique_ptr<Action> currentAction;
 
     VerticalButtonList* actionDisplay;
+    ResourceDisplay* resourceDisplay;
 
-	resourceDisplay* resources;
+    std::string activeTech;
+
+    Rectangle* grass;
+
+    Textbox* textbox;
 
 public:
     Management() = delete;
     explicit Management(Game& gameRef);
 
-	Game& gamereference = game;
     void setCurrentAction(EActions newaction, short duration);
     Action& getCurrentAction();
     void pushCurrentAction();
     void deleteCurrentAction();
 
+    void setActiveTech(std::string newTech);
+    std::string getActiveTech();
+    void deleteActiveTech();
+
     /**
      * Gets all cavemen that are not doing anything.
      */
-    std::vector<Caveman*> getIdlingTribe();
+    std::vector<std::shared_ptr<Caveman>> getIdlingTribe();
     /**
      * Gets the VerticalButtonList used to display the actions in progress.
      */
@@ -48,6 +58,13 @@ public:
      * @param win The window to draw on.
      */
     void display(sf::RenderWindow& win);
+
+    /**
+     * Sets the text of the state's textbox.
+     */
+    void setTextboxText(std::string str);
+
+    void additionalResizes();
 };
 
 #endif

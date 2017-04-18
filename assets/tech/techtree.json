@@ -1,0 +1,21 @@
+{
+    "name": "handaxe",
+    "children": [
+        { "name": "axe", "children": [
+            { "name": "plaiting", "children": [
+                { "name": "basket", "children": [] },
+                { "name": "woodenfence", "children":[
+                  { "name": "revolution", "children": [] }
+                ]}
+            ]},
+            { "name": "spear", "children": [
+                { "name": "archery", "children": [] }
+            ]},
+            { "name": "pickaxe", "children": [] }
+        ]},
+        { "name": "hierarchy", "children": [] },
+        { "name": "pottery", "straight": true, "children": [
+            { "name": "revolution", "children": [] }
+        ]}
+    ]
+}

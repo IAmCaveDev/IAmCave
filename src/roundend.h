@@ -7,6 +7,7 @@
 #include "gamestate.h"
 #include "textbox.h"
 #include "action.h"
+#include "textbox.h"
 
 /**
  * The end of a round.
@@ -17,6 +18,13 @@ private:
     std::mt19937 rng;
 
     Textbox* infoColumn;
+
+    Textbox* textbox;
+
+    /**
+    * Calls the resolve function of nextAction and adds to Gameresources
+    */
+    void resolveActions();
 
 public:
     RoundEnd() = delete;
@@ -32,6 +40,13 @@ public:
      * management state and begin a new round.
      */
     void display(sf::RenderWindow& win);
+
+    /**
+     * Sets the text of the state's textbox.
+     */
+    void setTextboxText(std::string str);
+
+    void additionalResizes();
 };
 
 #endif

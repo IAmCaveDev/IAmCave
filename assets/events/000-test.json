@@ -1,0 +1,14 @@
+{
+    "id": 0,
+    "title": "Test Event",
+    "description": "Testing event, please ignore.",
+
+    "trigger": {
+	},
+
+    "option": {
+        "name": "Yes",
+        "food": 10,
+        "materials": 10
+    }
+}

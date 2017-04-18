@@ -11,36 +11,36 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::management;
     nextState = type;
 
-	resources = new resourceDisplay(gamereference);
-	rectangles = {
-		new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
-		new Rectangle({ 200, 400 },{ 1223, 160 }, "assets/heaps/meat-l.png"),
-		new Rectangle({ 400, 800 },{ 1400, 138 }, "assets/heaps/stones-m.png"),
-		new Textbox({ 450, 150 },{ 800, 0 }, "assets/resource-column.png", "Beds: " + std::to_string(gameRef.getResources().cavemanCapacity), 5, 30),
-		new Textbox({ 450, 150 },{ 400, 0 }, "assets/resource-column.png", "Meat: " + std::to_string(int(gameRef.getResources().food)), 5, 30),
-		new Textbox({ 450, 150 },{ 600, 0 }, "assets/resource-column.png", "Stones: " + std::to_string(gameRef.getResources().buildingMaterial), 5, 30),
-		new Rectangle({ 2160, 70 },{ 0, 900 }, "assets/cave-grass.png")
+    textbox = new Textbox({1580, 140}, {20, 1080 - 160},
+                           "assets/state-textbox.png", "", 15, 30);
+
+    rectangles = {
+        new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
+        textbox
     };
 
     actionFactory = ActionFactory();
 
     actionDisplay = new VerticalButtonList({50, 1080}, {-50, 0}, "");
+    resourceDisplay = new ResourceDisplay(gameRef);
 
-    actionDisplay->addButton(0, new Button({200, 80}, {200, 300}, "assets/hunt-icon.png", nullptr), 1);
-    actionDisplay->addButton(1, new Button({200, 80}, {200, 300}, "assets/makelove-icon.png", nullptr), 0);
-    actionDisplay->addButton(2, new Button({200, 80}, {200, 300}, "assets/hunt-icon.png", nullptr), 2);
-    actionDisplay->addButton(3, new Button({200, 80}, {200, 300}, "assets/hunt-icon.png", nullptr), 2);
-    actionDisplay->removeButton(3);
+    grass = new Rectangle({1920, 1080}, {0, 0}, "assets/cave-grass.png");
 
     buttons = {
-        new Button({200, 80}, {-400, -120}, "assets/go.png", [&](){
+        new Button({200, 80}, {-250, -130}, "assets/go.png", [&](){
+                    actionDisplay->decreasePriorityOfAll();
                     nextState = EGamestates::roundEnd;
                 }),
-        new Button({200, 80}, {200, 100}, "assets/hunt.png",
+        new Button({200, 80}, {50, 50}, "assets/hunt.png",
                 std::bind(&ButtonFunctions::Managing::Hunting::hunt, std::ref(*this))),
-        new Button({200, 80}, {200, 200}, "assets/think.png", nullptr),
-        new Button({200, 80}, {200, 300}, "assets/makelove.png", nullptr),
-        new Button({200, 80}, {200, 400}, "assets/improve.png", nullptr),
+        new Button({200, 80}, {50, 150}, "assets/think.png",
+                std::bind(&ButtonFunctions::Managing::Research::think, std::ref(*this), std::ref(gameRef.getTechtree()))),
+        new Button({200, 80}, {50, 250}, "assets/makelove.png",
+                std::bind(&ButtonFunctions::Managing::Sex::sex, std::ref(*this))),
+        new Button({200, 80}, {50, 350}, "assets/improve.png",
+                std::bind(&ButtonFunctions::Managing::Improve::improve, std::ref(*this))),
+        new Button({200, 80}, {50, 450}, "assets/collect.png",
+                std::bind(&ButtonFunctions::Managing::Collecting::collect, std::ref(*this))),
     };
 
 }
@@ -53,7 +53,19 @@ void Management::setCurrentAction(EActions newaction, short duration) {
         case EActions::HardHunt:
             currentAction = std::move(actionFactory.createHardHuntingAction(duration));
             break;
-        // add more Actions here
+        case EActions::SexAction:
+            currentAction = std::move(actionFactory.createSexAction());
+            break;
+        case EActions::ImproveAction:
+            currentAction = std::move(actionFactory.createImproveAction(duration));
+            break;
+        case EActions::CollectAction:
+            currentAction = std::move(actionFactory.createCollectAction(duration));
+            break;
+        case EActions::ThinkAction:
+            currentAction = std::move(actionFactory.createThinkingAction(activeTech,duration));
+            break;
+        // TODO: add more Actions here
     }
 
 }
@@ -63,18 +75,61 @@ Action& Management::getCurrentAction() {
 }
 
 void Management::pushCurrentAction() {
+    EActions currentType = currentAction->getType();
+
+    switch (currentType) {
+        case EActions::EasyHunt:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
+                                    "assets/hunt-icon.png", nullptr), currentAction->getDuration());
+            break;
+        case EActions::HardHunt:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
+                                    "assets/hunt-icon.png", nullptr), currentAction->getDuration());
+            break;
+        case EActions::SexAction:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
+                                    "assets/makelove-icon.png", nullptr), currentAction->getDuration());
+            break;
+        case EActions::ImproveAction:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
+                                    "assets/improve-icon.png", nullptr), currentAction->getDuration());
+            break;
+        case EActions::ThinkAction:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
+                                    "assets/think-icon.png", nullptr), currentAction->getDuration());
+            break;
+        case EActions::CollectAction:
+            actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
+                "assets/collect-icon.png", nullptr), currentAction->getDuration());
+            break;
+    }
+
+    for (auto& it : currentAction->getActors()) {
+        it->setCurrentAction(currentType);
+    }
+
     game.addAction(std::move(currentAction));
-    //deleteCurrentAction();
-    // TODO: set currentAction in all caveman who are participating from idle
-    // to EActions::Actiontype
 }
 
 void Management::deleteCurrentAction() {
-    currentAction = nullptr;
+    currentAction.reset();
 }
 
-std::vector<Caveman*> Management::getIdlingTribe() {
-    std::vector<Caveman*> idlingTribe;
+void Management::setActiveTech(std::string newTech) {
+    activeTech = newTech;
+    int i = 0;
+}
+
+std::string Management::getActiveTech() {
+    return activeTech;
+}
+
+void Management::deleteActiveTech() {
+    activeTech = "";
+}
+
+std::vector<std::shared_ptr<Caveman>> Management::getIdlingTribe() {
+    std::vector<std::shared_ptr<Caveman>> idlingTribe;
     for (auto& it : game.getTribe()) {
         if (it->getCurrentAction() == EActions::Idle) {
             idlingTribe.push_back(it);
@@ -88,38 +143,35 @@ VerticalButtonList& Management::getActionDisplay() {
 }
 
 void Management::display(sf::RenderWindow& win) {
-	for (auto const& it : rectangles) {
-		it->display(win);
-	}
+    for (auto const& it : rectangles) {
+        it->display(win);
+    }
 
-	for (auto const& it : buttons) {
-		it->display(win);
-	}
+    actionDisplay->display(win);
 
-	actionDisplay->display(win);
+    for (auto const& it : getIdlingTribe()) {
+        it->display(win);
+    }
 
-	
+    resourceDisplay->display(win);
 
-	for (auto const& it : game.getTribe()) {
-		it->display(win);
-	}
+    grass->display(win);
 
+    for (auto const& it : buttons) {
+        it->display(win);
+    }
 
-	//resources->getGrassTexture().display(win);
+    game.getTechtree().display(win);
 
+}
 
-	rectangles[1] = resources->getHeaps()[0];
-	rectangles[2] = resources->getHeaps()[1];
-	rectangles[3] = resources->getResources()[0];
-	rectangles[4] = resources->getResources()[1];
-	rectangles[5] = resources->getResources()[2];
-	rectangles[6]->display(win);
+void Management::setTextboxText(std::string str) {
+    textbox->setText(str);
+}
 
-	/*
-	sf::Texture textureMeat = resources->getFoodTexture();
-	rectangles[1]->setTexture(&textureMeat);
-
-	sf::Texture textureMaterials = resources->getMaterialsTexture();
-	rectangles[2]->setTexture(&textureMaterials);
-	*/
+void Management::additionalResizes() {
+    grass->setSize(grass->getTransformedSize());
+    grass->setPosition(grass->getTransformedPosition());
+    resourceDisplay->onResize();
+    game.getTechtree().onResize();
 }

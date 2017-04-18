@@ -6,6 +6,8 @@
 
 #include "caveman.h"
 #include "action.h"
+#include "techtree.h"
+#include "eventfactory.h"
 
 /**
  * Resource data.
@@ -25,8 +27,10 @@ class Game {
 private:
     unsigned int roundNumber = 0;
 
-    std::vector<Caveman*> tribe;
+    std::vector<std::shared_ptr<Caveman>> tribe;
     std::vector<std::unique_ptr<Action>> actions;
+    std::vector<std::unique_ptr<Event>> eventStack;
+    Techtree techtree;
 
     Resources resources;
 
@@ -61,7 +65,12 @@ public:
     /**
      * Returns a reference to the tribe.
      */
-    std::vector<Caveman*>& getTribe();
+    std::vector<std::shared_ptr<Caveman>>& getTribe();
+
+    /**
+     * Returns a reference to the techtree.
+     */
+    Techtree& getTechtree();
 
     /**
      * Returns a reference to the tribe.

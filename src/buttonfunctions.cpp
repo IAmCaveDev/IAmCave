@@ -11,40 +11,137 @@ namespace ButtonFunctions {
                 for (auto& it : buttons) {
                     it->setClickability(false);
                 }
-                buttons.push_back(new Button({ 200, 80 }, { 450, 100 }, "assets/easyhunt.png", std::bind(&easyHunt, std::ref(stateRef))));
-                buttons.push_back(new Button({ 200, 80 }, { 450, 200 }, "assets/hardhunt.png", std::bind(&hardHunt, std::ref(stateRef))));
+                buttons.push_back(new Button({ 200, 80 }, { 300, 50 }, "assets/easyhunt.png", std::bind(&easyHunt, std::ref(stateRef))));
+                buttons.push_back(new Button({ 200, 80 }, { 550, 50 }, "assets/hardhunt.png", std::bind(&hardHunt, std::ref(stateRef))));
             }
             void easyHunt(Management& stateRef) {
                 std::vector<Button*>& buttons = stateRef.getButtons();
                 buttons.pop_back();
                 buttons.pop_back();
-                stateRef.setCurrentAction(EActions::EasyHunt, 1);
-                buttons.push_back(new Button({ 200, 80 }, { 800, 100 }, "assets/abort.png", std::bind(&ButtonFunctions::Managing::General::abort, std::ref(stateRef))));
-                buttons.push_back(new Button({ 200, 80 }, { 800, 200 }, "assets/confirm.png", std::bind(&ButtonFunctions::Managing::General::confirm, std::ref(stateRef))));
-                for (auto& it : stateRef.getIdlingTribe()) {
-                    it->getButton().setCallback(std::bind(&ButtonFunctions::Tribe::addAsActor, std::ref(stateRef), std::ref(*it)));
-                }
+                stateRef.setCurrentAction(EActions::EasyHunt, 3);
+                ButtonFunctions::Managing::General::actionStart(stateRef);
             }
             void hardHunt(Management& stateRef) {
                 std::vector<Button*>& buttons = stateRef.getButtons();
+                buttons.pop_back();
+                buttons.pop_back();
+                stateRef.setCurrentAction(EActions::HardHunt, 5);
+                ButtonFunctions::Managing::General::actionStart(stateRef);
+            }
+        }
+        namespace Sex {
+            void sex(Management& stateRef) {
+                std::vector<Button*>& buttons = stateRef.getButtons();
+                for (auto& it : buttons) {
+                    it->setClickability(false);
+                }
+                stateRef.setCurrentAction(EActions::SexAction, 1);
+                ButtonFunctions::Managing::General::actionStart(stateRef);
+            }
+        }
+        namespace Improve {
+            short improvement_mod = 1;    //Scales improvement costs
 
+            void improve(Management& stateRef) {
+                std::vector<Button*>& buttons = stateRef.getButtons();
+                for (auto& it : buttons) {
+                    it->setClickability(false);
+                }
+                stateRef.setCurrentAction(EActions::ImproveAction, 4 * improvement_mod);
+                //improvement_mod++;       //Not in use yet
+                ButtonFunctions::Managing::General::actionStart(stateRef);
+            }
+        }
+        namespace Collecting {
+            void collect(Management& stateRef) {
+                std::vector<Button*>& buttons = stateRef.getButtons();
+                for (auto& it : buttons) {
+                    it->setClickability(false);
+                }
+                stateRef.setCurrentAction(EActions::CollectAction, 3);
+                ButtonFunctions::Managing::General::actionStart(stateRef);
+            }
+        }
+        namespace Research {
+            void think(Management& stateRef, Techtree& techtreeRef) {
+
+                techtreeRef.setVisibility(true);
+                std::vector<Button*>& buttons = stateRef.getButtons();
+
+                for (auto& it : buttons) {
+                    it->setClickability(false);
+                }
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    it->getButton().setClickability(false);
+                }
+
+                techtreeRef.getProperThinking().setCallback(std::bind(&thinkConfirm, std::ref(stateRef), std::ref(techtreeRef)));
+                techtreeRef.getAbortThinking().setCallback(std::bind(&thinkAbort, std::ref(stateRef), std::ref(techtreeRef)));
+
+                for (auto& it : techtreeRef.getTree()) {
+                    it.second->getButton().setCallback(std::bind(&techCallback, std::ref(stateRef), std::ref(it.second)));
+                }
+            }
+            void techCallback(Management& stateRef, std::shared_ptr<Tech> techRef) {
+                stateRef.setActiveTech(techRef->getName());
+            }
+            void thinkAbort(Management& stateRef, Techtree& techtreeRef) {
+                techtreeRef.setVisibility(false);
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    it->getButton().setClickability(true);
+                    it->getButton().setCallback(nullptr);
+                }
+                stateRef.deleteCurrentAction();
+                std::vector<Button*>& buttons = stateRef.getButtons();
+                for (auto& it : buttons) {
+                    it->setClickability(true);
+                }
+            }
+
+            void thinkConfirm(Management& stateRef, Techtree& techtreeRef) {
+                techtreeRef.setVisibility(false);
+                //TODO: check for duration of specific Tech and use it instead of 1
+                stateRef.setCurrentAction(EActions::ThinkAction, 1);
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    it->getButton().setClickability(true);
+                }
+                General::actionStart(stateRef);
             }
         }
         namespace General {
             void abort(Management& stateRef) {
                 stateRef.deleteCurrentAction();
-                std::vector<Button*>& buttons = stateRef.getButtons();
-                buttons.pop_back();
-                buttons.pop_back();
-                for (auto& it : buttons) {
-                    it->setClickability(true);
+                stateRef.deleteActiveTech();
+                actionEnd(stateRef);
+            }
+
+            void confirm(Management& stateRef) {
+                if (stateRef.getCurrentAction().getActors().size() < 1) {
+                    stateRef.deleteCurrentAction();
+                } else if (stateRef.getCurrentAction().getType() == EActions::SexAction && stateRef.getCurrentAction().getActors().size() < 2) {
+                    stateRef.deleteCurrentAction();
+                } else {
+                    stateRef.pushCurrentAction();
                 }
+
+                stateRef.deleteActiveTech();
+                actionEnd(stateRef);
+            }
+
+            void actionStart(Management& stateRef) {
+                std::vector<Button*>& buttons = stateRef.getButtons();
+                for (auto& it : buttons) {
+                    it->setClickability(false);
+                }
+
+                buttons.push_back(new Button({ 200, 80 }, { -250, -230 }, "assets/abort.png", std::bind(&abort, std::ref(stateRef))));
+                buttons.push_back(new Button({ 200, 80 }, { -250, -330 }, "assets/confirm.png", std::bind(&confirm, std::ref(stateRef))));
                 for (auto& it : stateRef.getIdlingTribe()) {
-                    it->getButton().setCallback(nullptr);
+                    it->getButton().setCallback(std::bind(&ButtonFunctions::Tribe::addAsActor, std::ref(stateRef), it));
                 }
             }
-            void confirm(Management& stateRef) {
-                stateRef.pushCurrentAction();
+
+            void actionEnd(Management& stateRef) {
                 std::vector<Button*>& buttons = stateRef.getButtons();
                 buttons.pop_back();
                 buttons.pop_back();
@@ -65,28 +162,28 @@ namespace ButtonFunctions {
     }
 
     namespace Tribe {
-        void addAsActor(Management& stateRef, Caveman& caveman) {
-           stateRef.getCurrentAction().addActor(&caveman);
+        void addAsActor(Management& stateRef, std::shared_ptr<Caveman> caveman) {
+           stateRef.getCurrentAction().addActor(caveman);
+           caveman->getButton().setCallback(nullptr);
         }
-        void displayInfo(Caveman& caveman) {
+        void displayInfo(std::shared_ptr<Caveman> caveman) {
             std::ostringstream oss;
-            oss << caveman.getName()
-                << "\nID: " << caveman.getId()
-                << "\nSex: " << (caveman.isMale() ? "Male" : "Female")
-                << "\nAge: " << caveman.getAge()
-                << "\nFitness: " << caveman.getFitness()
-                << "\nIntelligence: " << caveman.getIntelligence();
+            oss << caveman->getName()
+                << "\nID: " << caveman->getId()
+                << "\nSex: " << (caveman->isMale() ? "Male" : "Female")
+                << "\nAge: " << caveman->getAge()
+                << "\nFitness: " << caveman->getFitness()
+                << "\nIntelligence: " << caveman->getIntelligence();
 
-            caveman.getInfobox().setText(oss.str());
+            caveman->getInfobox().setText(oss.str());
 
-            caveman.setInfoboxVisible(true);
-            caveman.getButton().setAltCallback(std::bind(&hideInfo,
-                                                         std::ref(caveman)));
+            caveman->setInfoboxVisible(true);
+            caveman->getButton().setAltCallback(std::bind(&hideInfo, caveman));
         }
-        void hideInfo(Caveman& caveman){
-            caveman.setInfoboxVisible(false);
-            caveman.getButton().setAltCallback(std::bind(&displayInfo,
-                                                         std::ref(caveman)));
+        void hideInfo(std::shared_ptr<Caveman> caveman){
+            caveman->setInfoboxVisible(false);
+            caveman->getButton().setAltCallback(std::bind(&displayInfo,
+                                                          caveman));
         }
     }
 }

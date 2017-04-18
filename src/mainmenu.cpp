@@ -32,3 +32,7 @@ void MainMenu::display(sf::RenderWindow& win) {
         it->display(win);
     }
 }
+
+void MainMenu::additionalResizes() {
+
+}
