@@ -1,7 +1,7 @@
 #include "roundend.h"
 
 #include <sstream>
-#include <locale>
+#include <algorithm>
 
 #include "game.h"
 
@@ -14,7 +14,7 @@ void RoundEnd::resolveActions() {
         if (it->getType() == EActions::ThinkAction) {
             if (result.isFinal) {
                 std::string name = result.techName;
-                name[0] = std::tolower(name[0]);
+                std::transform(name.begin(), name.end(), name.begin(), ::tolower);
                 std::shared_ptr<Tech> tech = game.getTechtree().getTree()
                                                  .find(name)
                                                  ->second;
