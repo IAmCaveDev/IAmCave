@@ -9,11 +9,12 @@ void RoundEnd::resolveActions() {
 
         ActionPackage result = it->resolve();
 
+        game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
+        if (result.newborn) {
+            game.addCaveman(0, 0);
+        }
+
         if (result.isFinal) {
-            game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
-            if (result.newborn) {
-                game.addCaveman(0, 0);
-            }
             toDelete.push_back(it->getID());
 
             for (auto& actor : it->getActors()) {

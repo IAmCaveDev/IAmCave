@@ -16,8 +16,8 @@ ActionPackage Improve::resolve() {
         for (auto& it : actors) {
             it->setCurrentAction(Idle);
         }
-        return{ true, 0.f, 0, 1, false };
+        return { true, 0.f, 0, 1, false };
     }
 
-    return{ false, 0.f, -materialCosts, 0, false };
+    return { false, 0.f, -materialCosts, 0, false };
 }
