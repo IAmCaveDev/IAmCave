@@ -1,7 +1,9 @@
 #include "roundend.h"
 
-#include "game.h"
 #include <sstream>
+#include <locale>
+
+#include "game.h"
 
 void RoundEnd::resolveActions() {
     std::vector<int> toDelete = {};
@@ -11,8 +13,10 @@ void RoundEnd::resolveActions() {
 
         if (it->getType() == EActions::ThinkAction) {
             if (result.isFinal) {
+                std::string name = result.techName;
+                name[0] = std::tolower(name[0]);
                 std::shared_ptr<Tech> tech = game.getTechtree().getTree()
-                                                 .find(result.techName)
+                                                 .find(name)
                                                  ->second;
                 game.setTechBonuses(game.getTechBonuses() + tech->getBonuses());
                 tech->setResearched(true);
