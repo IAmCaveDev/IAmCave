@@ -34,6 +34,8 @@ private:
 
     Resources resources;
 
+    Tech::StatBoosts techBonuses;
+
 public:
     /**
      * Default constructor for game.
@@ -76,6 +78,10 @@ public:
      * Returns a reference to the tribe.
      */
     Resources& getResources();
+
+    Tech::StatBoosts getTechBonuses();
+
+    void setTechBonuses(Tech::StatBoosts newTechBonuses);
 
     /**
      * Returns the curren round number.

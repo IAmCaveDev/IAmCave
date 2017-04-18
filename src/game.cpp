@@ -74,6 +74,14 @@ Resources& Game::getResources(){
     return resources;
 }
 
+Tech::StatBoosts Game::getTechBonuses() {
+    return techBonuses;
+}
+
+void Game::setTechBonuses(Tech::StatBoosts newTechBonuses) {
+    techBonuses = newTechBonuses;
+}
+
 unsigned int Game::getRoundNumber(){
     return roundNumber;
 }

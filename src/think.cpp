@@ -16,9 +16,8 @@ ActionPackage Think::resolve() {
 
     if (currentDuration == totalDuration) {
         actors.front()->setCurrentAction(Idle);
-        //do stuff depending on which tech is done + set is Final(?)
-        return{ true, 0.f, 0, false };
+        return { true, 0, 0, 0, false, name };
     }
 
-    return{ false, 0.f, 0, false };
+    return { false, 0, 0, 0, false };
 }

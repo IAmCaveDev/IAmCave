@@ -9,9 +9,22 @@ void RoundEnd::resolveActions() {
 
         ActionPackage result = it->resolve();
 
-        game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
-        if (result.newborn) {
-            game.addCaveman(0, 0);
+        if (it->getType() == EActions::ThinkAction) {
+            if (result.isFinal) {
+                std::shared_ptr<Tech> tech = game.getTechtree().getTree()
+                                                 .find(result.techName)
+                                                 ->second;
+                game.setTechBonuses(game.getTechBonuses() + tech->getBonuses());
+                tech->setResearched(true);
+            }
+
+        } else {
+            game.addToResources({result.food,
+                                 result.buildingMaterial,
+                                 result.cavemanCapacity});
+            if (result.newborn) {
+                game.addCaveman(0, 0);
+            }
         }
 
         if (result.isFinal) {

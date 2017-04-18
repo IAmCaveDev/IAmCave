@@ -3,7 +3,10 @@
 
 #include <vector>
 #include <string>
+
 #include "action.h"
+#include "tech.h"
+
 class Think : public Action {
 private:
     std::string name;

@@ -23,7 +23,8 @@ struct ActionPackage {
     int buildingMaterial;
     int cavemanCapacity;
     bool newborn;
-    //Tech ID
+
+    std::string techName;
 };
 
 /**
