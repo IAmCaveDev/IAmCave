@@ -20,7 +20,7 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     intelligence = stats(rng);
 
     infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "");
-    actionbox = new Button({0, 0}, {50, 50}, "assets/idle.png", nullptr);
+    actionbox = new Button({50, 50}, {0, 0}, "assets/idle.png", nullptr);
     actionbox->setVisibility(false);
 
     counter += 1;
@@ -74,9 +74,9 @@ void Caveman::setPosition(TransformedVector<> newPosition){
         {newPosition.getRealX() - button->getTransformedSize().getRealX()/2,
          newPosition.getRealY() - infobox->getTransformedSize().getRealY()});
     actionbox->setTransformedPosition(
-        {newPosition.getRealX() + button->getTransformedSize().getRealX() -
-         actionbox->getTransformedSize().getRealX(),
-         newPosition.getRealY() - actionbox->getTransformedSize().getRealY()});
+        {newPosition.getRealX() + button->getTransformedSize().getRealX()/2 -
+         actionbox->getTransformedSize().getRealX()/2,
+         newPosition.getRealY() - actionbox->getTransformedSize().getRealY()/2});
 }
 
 EActions Caveman::getCurrentAction(){
@@ -85,11 +85,14 @@ EActions Caveman::getCurrentAction(){
 
 void Caveman::setCurrentAction(EActions newOccupation) {
     currentAction = newOccupation;
+}
 
-    if (currentAction == EActions::Idle) {
+void Caveman::setActionBox(EActions displayedAction) {
+    if (displayedAction == EActions::Idle) {
         actionbox->setVisibility(false);
     } else {
         actionbox->setVisibility(true);
+        actionbox->changeTexture("assets/arrow.png");
     }
 }
 
@@ -107,5 +110,7 @@ void Caveman::display(sf::RenderWindow& win) const {
     if(infoboxVisible){
         win.draw(*infobox);
     }
-    win.draw(*actionbox);
+    if (actionbox->getVisibility()) {
+        win.draw(*actionbox);
+    }
 }

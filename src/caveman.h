@@ -55,6 +55,7 @@ public:
 
     EActions getCurrentAction();
     void setCurrentAction(EActions newOccupation);
+    void setActionBox(EActions displayedAction);
 
     void onResize();
 

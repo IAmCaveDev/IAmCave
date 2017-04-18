@@ -110,12 +110,20 @@ namespace ButtonFunctions {
         }
         namespace General {
             void abort(Management& stateRef) {
+                for (auto& it : stateRef.getCurrentAction().getActors()) {
+                    it->getButton().setCallback(nullptr);
+                    it->setActionBox(EActions::Idle);
+                }
                 stateRef.deleteCurrentAction();
                 stateRef.deleteActiveTech();
                 actionEnd(stateRef);
             }
 
             void confirm(Management& stateRef) {
+                for (auto& it : stateRef.getCurrentAction().getActors()) {
+                    it->getButton().setCallback(nullptr);
+                    it->setActionBox(EActions::Idle);
+                }
                 if (stateRef.getCurrentAction().getActors().size() < 1) {
                     stateRef.deleteCurrentAction();
                 } else if (stateRef.getCurrentAction().getType() == EActions::SexAction && stateRef.getCurrentAction().getActors().size() < 2) {
@@ -163,8 +171,14 @@ namespace ButtonFunctions {
 
     namespace Tribe {
         void addAsActor(Management& stateRef, std::shared_ptr<Caveman> caveman) {
-           stateRef.getCurrentAction().addActor(caveman);
-           caveman->getButton().setCallback(nullptr);
+            stateRef.getCurrentAction().addActor(caveman);
+            caveman->setActionBox(stateRef.getCurrentAction().getType());
+            caveman->getButton().setCallback(std::bind(&ButtonFunctions::Tribe::removeAsActor, std::ref(stateRef), caveman));
+        }
+        void removeAsActor(Management& stateRef, std::shared_ptr<Caveman> caveman) {
+            stateRef.getCurrentAction().removeActor(caveman);
+            caveman->setActionBox(EActions::Idle);
+            caveman->getButton().setCallback(std::bind(&ButtonFunctions::Tribe::addAsActor, std::ref(stateRef), caveman));
         }
         void displayInfo(std::shared_ptr<Caveman> caveman) {
             std::ostringstream oss;

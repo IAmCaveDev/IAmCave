@@ -66,6 +66,10 @@ public:
     */
     std::vector<std::shared_ptr<Caveman>>& getActors();
     /**
+    * Remnoves an Actor from the Action by ID.
+    */
+    void Action::removeActor(std::shared_ptr<Caveman> caveman);
+    /**
     * Adds a Caveman as an Actor to the Action.
     */
     virtual void addActor(std::shared_ptr<Caveman> actor) = 0;
