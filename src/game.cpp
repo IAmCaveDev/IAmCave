@@ -14,10 +14,9 @@ Game::Game() : techtree("assets/techtreebackground.png", "assets/tech/techtree.j
         tribe.push_back(cavemanFactory.createFemale(5, 5));
     }
 
-    int xPos = 150;
-    int yPos = 650;
+    int xPos = tribeXPos;
     for(auto& it : tribe){
-        it->setPosition(TransformedVector<>(xPos, yPos));
+        it->setPosition(TransformedVector<>(xPos, tribeYPos));
         xPos = xPos + 150;
     }
 
@@ -35,7 +34,20 @@ void Game::addCaveman(int maxAge, int minAge) {
 }
 
 void Game::removeCaveman(short id) {
-    //TODO implement
+    auto result = std::find_if(tribe.begin(), tribe.end(),
+                               [&id](std::shared_ptr<Caveman> caveman) {
+            return caveman->getId() == id;
+    });
+
+    if (result != std::end(tribe)) {
+        tribe.erase(result);
+    }
+
+    int xPos = tribeXPos;
+    for(auto& it : tribe){
+        it->setPosition(TransformedVector<>(xPos, tribeYPos));
+        xPos = xPos + 150;
+    }
 }
 
 std::vector<std::shared_ptr<Caveman>>& Game::getTribe() {

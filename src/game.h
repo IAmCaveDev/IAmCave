@@ -36,6 +36,9 @@ private:
 
     Tech::StatBoosts techBonuses;
 
+    const int tribeXPos = 150;
+    const int tribeYPos = 650;
+
 public:
     /**
      * Default constructor for game.
