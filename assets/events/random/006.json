@@ -1,0 +1,16 @@
+{
+    "id": 6,
+    "title": "Fruit Knowledge",
+    "description": "Our woman have gotten pretty experienced with the local fruits. They can now take a guess on whether something is eatable from 100m!",
+
+    "trigger": {
+    "tribeSize": 20
+	},
+
+    "options": [
+    {
+        "name": "I'm sick of eating the wrong shrooms!",
+        "gatheringBonus": "0.3"
+    }
+    ]
+}

@@ -9,7 +9,7 @@
     "options": [
     {
     "name": "I wish we had something to protect our food...",
-        "food": -20
+        "foodGain": -20
     }
     ]
 }
