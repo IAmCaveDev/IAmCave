@@ -31,6 +31,8 @@ private:
      */
     void doPassives();
 
+    void doEvents(Resources resourcesBefore);
+
 public:
     RoundEnd() = delete;
     explicit RoundEnd(Game& gameRef);

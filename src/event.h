@@ -25,6 +25,7 @@ private:
     /**
     * A list of possible effects created by the event
     */
+public:
     struct Effects {
         /**
         * General effects affecting the entire game
@@ -45,14 +46,14 @@ private:
         short new_fitness;
         bool new_isMale;
     };
-
+private:
     /**
     * Content and effects for choosable options by the player
     */
     struct Option {
         std::string name;
         Effects effects;
-        Button* button;
+        //std::shared_ptr<Button> button;
     };
 
     short id;
@@ -63,12 +64,14 @@ private:
     Textbox* textbox;
 
 public:
+
     Event(const std::string path);
     ~Event();
 
     Trigger getTrigger() const;
     std::vector<std::shared_ptr<Option>> getOptions() const;
     Textbox* getTextBox() const;
+    short getID() const;
 };
 
 #endif

@@ -33,7 +33,8 @@ Event::Event(std::string path) {
                 option->effects.new_intelligence = caveman["intelligence"];
                 option->effects.new_isMale = caveman["isMale"];
             }
-            option->button = new Button({ 200, 100 }, { 850, 700 }, "assets/confirm.png", std::bind([&](){}), nullptr);
+            //std::shared_ptr<Button> button(new Button({ 200, 100 }, { 850, 700 }, "assets/confirm.png", std::bind([&]() {}), nullptr));
+            //option->button = button;
             options.push_back(std::move(option));
         }
     }
@@ -57,4 +58,8 @@ std::vector<std::shared_ptr<Event::Option>> Event::getOptions() const {
 
 Textbox* Event::getTextBox() const {
     return textbox;
+}
+
+short Event::getID() const {
+    return id;
 }
