@@ -88,7 +88,7 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
 
     infoColumn = new Textbox({450, 1080}, {0, 0}, "assets/endround-column.png",
                              "", 5, 30);
-    textbox = new Textbox({1580, 140}, {20, 1080 - 160},
+    textbox = new Textbox({1580, 160}, {20, 1080 - 180},
                           "assets/state-textbox.png", "", 15, 30);
 
     rectangles = {
