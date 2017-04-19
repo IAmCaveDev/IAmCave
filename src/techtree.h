@@ -34,6 +34,8 @@ private:
     Button* properThinking;
     Button* abortThinking;
 
+    Textbox* textbox;
+
     /**
      * Positions the Techs according to the tree's structure.
      */
@@ -64,6 +66,8 @@ public:
     void setVisibility(bool newVisibility);
 
     bool getVisibility();
+
+    void setTextboxText(std::string str);
 
     /**
      * Displays the Techtree and it's Techs.

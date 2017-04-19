@@ -88,6 +88,9 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
     paddingLeft = newPaddingLeft;
     visibility = false;
 
+    textbox = new Textbox({1580, 160}, {20, 1080 - 180},
+                           "assets/state-textbox.png", "", 15, 30);
+
     std::ifstream in(path);
     if (in.good()) {
         json data;
@@ -121,6 +124,10 @@ bool Techtree::getVisibility() {
     return visibility;
 }
 
+void Techtree::setTextboxText(std::string str) {
+    textbox->setText(str);
+}
+
 void Techtree::display(sf::RenderWindow& win) {
     if (visibility) {
         this->Rectangle::display(win);
@@ -146,6 +153,7 @@ void Techtree::display(sf::RenderWindow& win) {
         }
         properThinking->display(win);
         abortThinking->display(win);
+        textbox->display(win);
     }
 }
 
@@ -163,6 +171,8 @@ void Techtree::onResize() {
     abortThinking->setSize(abortThinking->getTransformedSize());
     setPosition(getTransformedPosition());
     setSize(getTransformedSize());
+    textbox->setTransformedPosition(textbox->getTransformedPosition());
+    textbox->setTransformedSize(textbox->getTransformedSize());
 }
 
 std::map<std::string, std::shared_ptr<Tech>>& Techtree::getTree() {
