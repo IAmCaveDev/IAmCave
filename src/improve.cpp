@@ -8,7 +8,7 @@ void Improve::addActor(std::shared_ptr<Caveman> newactor) {
         actors.push_back(newactor);
 }
 
-ActionPackage Improve::resolve() {
+ActionPackage Improve::resolve(Tech::StatBoosts bonuses) {
     int materialCosts = actors.size() * 10;
     currentDuration += actors.size();
 

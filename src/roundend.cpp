@@ -9,7 +9,7 @@ void RoundEnd::resolveActions() {
     std::vector<int> toDelete = {};
     for (auto& it : game.getActions()) {
 
-        ActionPackage result = it->resolve();
+        ActionPackage result = it->resolve(game.getTechBonuses());
 
         if (it->getType() == EActions::ThinkAction) {
             if (result.isFinal) {
@@ -23,6 +23,13 @@ void RoundEnd::resolveActions() {
             }
 
         } else {
+            Tech::StatBoosts bonuses = game.getTechBonuses();
+            if (it->getType() == EActions::EasyHunt ||
+                it->getType() == EActions::HardHunt) {
+                result.food += bonuses.addends.huntBonus;
+            } else if (it->getType() == EActions::CollectAction) {
+                result.food += bonuses.addends.gatheringBonus;
+            }
             game.addToResources({result.food,
                                  result.buildingMaterial,
                                  result.cavemanCapacity});

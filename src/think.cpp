@@ -11,7 +11,7 @@ void Think::addActor(std::shared_ptr<Caveman> newactor) {
     }
 }
 
-ActionPackage Think::resolve() {
+ActionPackage Think::resolve(Tech::StatBoosts bonuses) {
     currentDuration += 1;
 
     if (currentDuration == totalDuration) {

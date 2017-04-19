@@ -7,6 +7,7 @@
 
 #include "enum.h"
 #include "caveman.h"
+#include "tech.h"
 
 
  /**
@@ -78,7 +79,7 @@ public:
      * Called every round in RoundEnd.
      * @return The changes caused by the Action.
      */
-    virtual ActionPackage resolve() = 0;
+    virtual ActionPackage resolve(Tech::StatBoosts bonuses) = 0;
 };
 
 #endif
