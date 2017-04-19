@@ -24,7 +24,10 @@ private:
     int techSize = 100;
     int techPadding = 200;
 
-    TransformedVector<> padding = { 200, 200 };
+    int paddingTop = 0;
+    int paddingBottom = 0;
+    int paddingLeft = 0;
+    // Padding right left out on purpose
 
     bool visibility;
 
@@ -47,9 +50,13 @@ public:
      * @param path The path to a json file to load the Techtree data from.
      * @param newSize The display size of the Techtree.
      * @param newPos The display position of the Techtree.
+     * @param newPaddingTop The top padding.
+     * @param newPaddingBottom The bottom padding.
+     * @param newPaddingLeft The left padding.
      */
     Techtree(std::string backgroundPath, std::string path,
-             TransformedVector<> newSize, TransformedVector<> newPos);
+             TransformedVector<> newSize, TransformedVector<> newPos,
+             int newPaddingTop, int newPaddingBottom, int newPaddingLeft);
 
     /**
      * Sets the visiblity of the Techtree.

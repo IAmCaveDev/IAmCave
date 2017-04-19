@@ -21,7 +21,7 @@ void Techtree::positionTree(json data, short level,
     }
 
     for (auto& it : data["children"]) {
-        int sizeY = getTransformedSize().getRealY() - padding.getRealY() * 2;
+        int sizeY = getTransformedSize().getRealY() - (paddingTop + paddingBottom);
         int posY = getTransformedPosition().getRealY();
 
         if (sizePerLevel[level] == 1) {
@@ -37,7 +37,7 @@ void Techtree::positionTree(json data, short level,
             }
         }
 
-        positionTree(it, level + 1, {lastPos.getRealX()+techSize+techPadding,posY+padding.getRealY()});
+        positionTree(it, level + 1, {lastPos.getRealX()+techSize+techPadding,posY+paddingTop});
 
         iteratorPerLevel[level] += 1;
     }
@@ -80,8 +80,12 @@ void Techtree::parse(std::shared_ptr<Tech> parent, json data, short level) {
 }
 
 Techtree::Techtree(std::string backgroundPath, std::string path,
-                   TransformedVector<> newSize, TransformedVector<> newPos)
+                   TransformedVector<> newSize, TransformedVector<> newPos,
+                   int newPaddingTop, int newPaddingBottom, int newPaddingLeft)
                    : Rectangle(newSize, newPos, backgroundPath) {
+    paddingTop = newPaddingTop;
+    paddingBottom = newPaddingBottom;
+    paddingLeft = newPaddingLeft;
     visibility = false;
 
     std::ifstream in(path);
@@ -90,9 +94,9 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
         in >> data;
 
         parse(nullptr, data, 0);
-        positionTree(data, 1, {getTransformedPosition().getRealX() + padding.getRealX(),
-                               getTransformedPosition().getRealY()
-                               + getTransformedSize().getRealY() / 2
+        positionTree(data, 1, {getTransformedPosition().getRealX() + paddingLeft,
+                               getTransformedPosition().getRealY() + paddingTop
+                               + (getTransformedSize().getRealY() - (paddingTop + paddingBottom)) / 2
                                - techSize / 2});
         for (auto& it : tree) {
             it.second->createArrowsToParents();

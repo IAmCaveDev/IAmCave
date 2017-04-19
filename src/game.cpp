@@ -10,7 +10,10 @@ void Game::repositionTribe() {
     }
 }
 
-Game::Game() : techtree("assets/background-techtree.png", "assets/tech/techtree.json", {1920, 1080}, 0) {
+Game::Game() : techtree("assets/background-techtree.png",
+                        "assets/tech/techtree.json", {1920, 1080}, 0,
+                        200, 200, 200) {
+
     CavemanFactory cavemanFactory;
     EventFactory eventFactory;
 
