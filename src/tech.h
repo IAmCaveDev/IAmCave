@@ -94,6 +94,8 @@ public:
 
     StatBoosts getBonuses();
 
+    std::string getDescription();
+
     void createArrowsToParents();
     void updateArrowsToParents();
 

@@ -64,6 +64,10 @@ Tech::StatBoosts Tech::getBonuses() {
     return statBoosts;
 }
 
+std::string Tech::getDescription() {
+    return description;
+}
+
 void Tech::createArrowsToParents() {
     if (parents[0] == nullptr) {
         return;

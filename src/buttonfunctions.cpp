@@ -94,6 +94,7 @@ namespace ButtonFunctions {
             }
             void techCallback(Management& stateRef, std::shared_ptr<Tech> techRef) {
                 stateRef.setActiveTech(techRef->getName());
+                stateRef.getTechtree().setTextboxText(techRef->getName() + "\n" + techRef->getDescription());
             }
             void thinkAbort(Management& stateRef, Techtree& techtreeRef) {
                 techtreeRef.setVisibility(false);
