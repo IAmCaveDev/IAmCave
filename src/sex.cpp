@@ -21,19 +21,15 @@ ActionPackage Sex::resolve(Tech::StatBoosts bonuses) {
     currentDuration += 1;
 
     for (auto& it : actors) {
-        //Possible bug source if male is not removed from actors
         if (it->isMale()) {
-            it->setCurrentAction(Idle);
-        }
-        else if (!it->isMale()) {
-            (std::dynamic_pointer_cast<Female>)(it)->setPregnant(true);
+            it->setCurrentAction(EActions::Idle);
+            removeActor(it);
+            break;
         }
     }
     if (currentDuration == totalDuration) {
         for (auto& it : actors) {
-            if (!it->isMale()) {
                 it->setCurrentAction(EActions::Idle);
-            }
         }
         return{ true, 0, 0, 0, true };
     }
