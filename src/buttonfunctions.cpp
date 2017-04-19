@@ -13,6 +13,11 @@ namespace ButtonFunctions {
                 }
                 buttons.push_back(new Button({ 200, 80 }, { 300, 50 }, "assets/easyhunt.png", std::bind(&easyHunt, std::ref(stateRef))));
                 buttons.push_back(new Button({ 200, 80 }, { 550, 50 }, "assets/hardhunt.png", std::bind(&hardHunt, std::ref(stateRef))));
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    if (!it->isMale()) {
+                        it->getButton().setClickability(false);
+                    }
+                }
             }
             void easyHunt(Management& stateRef) {
                 std::vector<Button*>& buttons = stateRef.getButtons();
@@ -58,6 +63,11 @@ namespace ButtonFunctions {
                 for (auto& it : buttons) {
                     it->setClickability(false);
                 }
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    if (it->isMale()) {
+                        it->getButton().setClickability(false);
+                    }
+                }
                 stateRef.setCurrentAction(EActions::CollectAction, 3);
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
@@ -101,6 +111,7 @@ namespace ButtonFunctions {
             void thinkConfirm(Management& stateRef, Techtree& techtreeRef) {
                 techtreeRef.setVisibility(false);
                 //TODO: check for duration of specific Tech and use it instead of 1
+                //also only enable clickability for cavemen with sufficient intelligence 
                 stateRef.setCurrentAction(EActions::ThinkAction, 1);
                 for (auto& it : stateRef.getIdlingTribe()) {
                     it->getButton().setClickability(true);
@@ -110,6 +121,9 @@ namespace ButtonFunctions {
         }
         namespace General {
             void abort(Management& stateRef) {
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    it->getButton().setClickability(true);
+                }
                 for (auto& it : stateRef.getCurrentAction().getActors()) {
                     it->getButton().setCallback(nullptr);
                     it->setActionBox(EActions::Idle);
@@ -120,6 +134,9 @@ namespace ButtonFunctions {
             }
 
             void confirm(Management& stateRef) {
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    it->getButton().setClickability(true);
+                }
                 for (auto& it : stateRef.getCurrentAction().getActors()) {
                     it->getButton().setCallback(nullptr);
                     it->setActionBox(EActions::Idle);
@@ -171,14 +188,60 @@ namespace ButtonFunctions {
 
     namespace Tribe {
         void addAsActor(Management& stateRef, std::shared_ptr<Caveman> caveman) {
+            EActions actionType = stateRef.getCurrentAction().getType();
             stateRef.getCurrentAction().addActor(caveman);
-            caveman->setActionBox(stateRef.getCurrentAction().getType());
+            caveman->setActionBox(actionType);
             caveman->getButton().setCallback(std::bind(&ButtonFunctions::Tribe::removeAsActor, std::ref(stateRef), caveman));
+            //sex action
+            if (actionType == EActions::SexAction && caveman->isMale()) {
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    if (it->isMale() && it != caveman) {
+                        it->getButton().setClickability(false);
+                    }
+                }
+            }
+            if (actionType == EActions::SexAction && !caveman->isMale()) {
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    if (!it->isMale() && it != caveman) {
+                        it->getButton().setClickability(false);
+                    }
+                }
+            }
+            //think action
+            if (actionType == EActions::ThinkAction) {
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    if (it != caveman) {
+                        it->getButton().setClickability(false);
+                    }
+                }
+            }
         }
         void removeAsActor(Management& stateRef, std::shared_ptr<Caveman> caveman) {
+            EActions actionType = stateRef.getCurrentAction().getType();
             stateRef.getCurrentAction().removeActor(caveman);
             caveman->setActionBox(EActions::Idle);
             caveman->getButton().setCallback(std::bind(&ButtonFunctions::Tribe::addAsActor, std::ref(stateRef), caveman));
+            //sex action
+            if (actionType == EActions::SexAction && caveman->isMale()) {
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    if (it->isMale()) {
+                        it->getButton().setClickability(true);
+                    }
+                }
+            }
+            if (actionType == EActions::SexAction && !caveman->isMale()) {
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    if (!it->isMale() && it != caveman) {
+                        it->getButton().setClickability(true);
+                    }
+                }
+            }
+            //think action
+            if (actionType == EActions::ThinkAction) {
+                for (auto& it : stateRef.getIdlingTribe()) {
+                    it->getButton().setClickability(true);
+                }
+            }
         }
         void displayInfo(std::shared_ptr<Caveman> caveman) {
             std::ostringstream oss;

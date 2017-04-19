@@ -67,7 +67,7 @@ public:
     */
     std::vector<std::shared_ptr<Caveman>>& getActors();
     /**
-    * Remnoves an Actor from the Action by ID.
+    * Removes an Actor from the Action by ID.
     */
     void removeActor(std::shared_ptr<Caveman> caveman);
     /**

@@ -25,12 +25,16 @@ ActionPackage Sex::resolve(Tech::StatBoosts bonuses) {
         if (it->isMale()) {
             it->setCurrentAction(Idle);
         }
-        else if (!(std::dynamic_pointer_cast<Female>)(it)->isPregnant()) {
+        else if (!it->isMale()) {
             (std::dynamic_pointer_cast<Female>)(it)->setPregnant(true);
         }
     }
     if (currentDuration == totalDuration) {
-        actors.front()->setCurrentAction(Idle);
+        for (auto& it : actors) {
+            if (!it->isMale()) {
+                it->setCurrentAction(EActions::Idle);
+            }
+        }
         return{ true, 0, 0, 0, true };
     }
     return{ false, 0, 0, 0, false };
