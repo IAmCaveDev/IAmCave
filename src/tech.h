@@ -10,18 +10,37 @@
  * A researchable technology.
  */
 class Tech {
-private:
-    typedef std::vector<std::shared_ptr<Tech>> ParentsVector;
+public:
     /**
      * The bonuses a technology provides when researched.
      */
     struct StatBoosts {
-        float huntBonus;
-        float gatheringBonus;
-        float fitnessGain;
-        float intelligenceGain;
+        struct {
+            float huntBonus;
+            float gatheringBonus;
+            float fitnessGain;
+            float intelligenceGain;
+        } addends;
+        struct {
+            float example;
+        } multipliers;
+
+        StatBoosts operator+(const StatBoosts& other) const {
+            return StatBoosts({
+                {
+                    addends.huntBonus + other.addends.huntBonus,
+                    addends.gatheringBonus + other.addends.gatheringBonus,
+                    addends.fitnessGain + other.addends.fitnessGain,
+                    addends.intelligenceGain + other.addends.intelligenceGain
+                },
+                {
+                    multipliers.example + other.multipliers.example - 1
+                }});
+        }
     };
 
+private:
+    typedef std::vector<std::shared_ptr<Tech>> ParentsVector;
     struct ArrowsToParents {
         sf::VertexArray tip;
         std::vector<sf::VertexArray> lines;
@@ -37,7 +56,9 @@ private:
     int requiredIntelligence;
     StatBoosts statBoosts;
 
-    Button button;
+    bool researched;
+
+    Button* button;
 
 public:
     bool straightLine;
@@ -71,6 +92,8 @@ public:
      */
     void setLevel(short newLevel);
 
+    StatBoosts getBonuses();
+
     void createArrowsToParents();
     void updateArrowsToParents();
 
@@ -78,6 +101,12 @@ public:
     TransformedVector<> getLeftArrowNode();
 
     ArrowsToParents getArrowsToParents();
+
+    bool isResearched();
+
+    void setResearched(bool newResearched);
+
+    void updateButtonState();
 };
 
 #endif

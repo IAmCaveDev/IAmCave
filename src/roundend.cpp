@@ -1,36 +1,81 @@
 #include "roundend.h"
 
-#include "game.h"
 #include <sstream>
+#include <algorithm>
+
+#include "game.h"
 
 void RoundEnd::resolveActions() {
     std::vector<int> toDelete = {};
     for (auto& it : game.getActions()) {
 
-        ActionPackage result;
-        if (it->getType() != EActions::ImproveAction || (it->getType() == EActions::ImproveAction && game.getResources().buildingMaterial - it->getActors().size() * 10 >= 0))
-            result = it->resolve();
-        else
-            result = { false, 0.f, 2, 0, false };
+        ActionPackage result = it->resolve(game.getTechBonuses());
 
-        if (!result.isFinal) {
-            if (it->getType() == ImproveAction)
-                game.addToResources({ result.food,-result.buildingMaterial,result.cavemanCapacity });
-            return;
-        }
-        else {
-			game.addToResources({ result.food,result.buildingMaterial,result.cavemanCapacity });
+        if (it->getType() == EActions::ThinkAction) {
+            if (result.isFinal) {
+                std::string name = result.techName;
+                std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+                std::shared_ptr<Tech> tech = game.getTechtree().getTree()
+                                                 .find(name)
+                                                 ->second;
+                game.setTechBonuses(game.getTechBonuses() + tech->getBonuses());
+                tech->setResearched(true);
+            }
+
+        } else {
+            Tech::StatBoosts bonuses = game.getTechBonuses();
+            if (it->getType() == EActions::EasyHunt ||
+                it->getType() == EActions::HardHunt) {
+                result.food += bonuses.addends.huntBonus;
+            } else if (it->getType() == EActions::CollectAction) {
+                result.food += bonuses.addends.gatheringBonus;
+            }
+            game.addToResources({result.food,
+                                 result.buildingMaterial,
+                                 result.cavemanCapacity});
             if (result.newborn) {
                 game.addCaveman(0, 0);
             }
-            toDelete.push_back(it->getID());
         }
-        for (auto& actor : it->getActors()) {
-            if (actor->getCurrentAction() == Dead) game.removeCaveman(actor->getId());
+
+        if (result.isFinal) {
+            toDelete.push_back(it->getID());
+
+            for (auto& actor : it->getActors()) {
+                if (actor->getCurrentAction() == Dead) game.removeCaveman(actor->getId());
+            }
         }
     }
-    for (auto it : toDelete) {
+    for (auto& it : toDelete) {
         game.removeAction(it);
+    }
+}
+
+void RoundEnd::doPassives() {
+    // idle food consumption
+    std::normal_distribution<float> normal(0, 0.33);
+
+    for (auto& it : game.getTribe()) {
+        if (it->getCurrentAction() != EActions::EasyHunt &&
+            it->getCurrentAction() != EActions::HardHunt) {
+            float foodConsumption = 1;
+
+            if (it->getAge() > MIN_ADULT_AGE) {
+                foodConsumption += 1;
+
+                if (it->isMale()) {
+                    foodConsumption += 1;
+                }
+                for (int i = 0; i < it->getFitness(); ++i) {
+                    foodConsumption += 0.05;
+                }
+            }
+
+            foodConsumption += normal(rng);
+
+            game.getResources().food -= foodConsumption;
+        }
+
     }
 }
 
@@ -61,36 +106,18 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
 void RoundEnd::step(){
     Resources resourcesBefore = game.getResources();
 
-    //resolve Actions
     resolveActions();
 
-    // idle food consumption
-    std::normal_distribution<float> normal(0, 0.33);
+    doPassives();
 
-    for(auto& it : game.getTribe()){
-        if((it->getCurrentAction() != EActions::EasyHunt) && (it->getCurrentAction() != EActions::HardHunt)){
-            float foodConsumption = 1;
-
-            if(it->getAge() > MIN_ADULT_AGE){
-                foodConsumption += 1;
-
-                if(it->isMale()){
-                    foodConsumption += 1;
-                }
-                for(int i = 0; i < it->getFitness(); ++i){
-                    foodConsumption += 0.05;
-                }
-            }
-
-            foodConsumption += normal(rng);
-
-            game.getResources().food -= foodConsumption;
-        }
-
-    }
-    if(game.getResources().food < 0){
+    if (game.getResources().food < 0) {
         game.getResources().food = 0;
     }
+    if (game.getResources().buildingMaterial < 0) {
+        game.getResources().buildingMaterial = 0;
+    }
+
+    game.increaseRoundNumber();
 
     std::ostringstream info;
     info << "Round " << game.getRoundNumber() << "\n"

@@ -11,7 +11,7 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::management;
     nextState = type;
 
-    textbox = new Textbox({1580, 140}, {20, 1080 - 160},
+    textbox = new Textbox({1580, 160}, {20, 1080 - 180},
                            "assets/state-textbox.png", "", 15, 30);
 
     rectangles = {

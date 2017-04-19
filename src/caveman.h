@@ -24,6 +24,7 @@ private:
 
     bool infoboxVisible = false;
     Textbox* infobox;
+    Button* actionbox;
 
 protected:
     std::string name;
@@ -54,6 +55,7 @@ public:
 
     EActions getCurrentAction();
     void setCurrentAction(EActions newOccupation);
+    void setActionBox(EActions displayedAction);
 
     void onResize();
 

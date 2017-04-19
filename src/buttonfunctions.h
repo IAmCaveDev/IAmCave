@@ -41,6 +41,7 @@ namespace ButtonFunctions {
     }
     namespace Tribe {
         void addAsActor(Management& stateRef, std::shared_ptr<Caveman> caveman);
+        void removeAsActor(Management& stateRef, std::shared_ptr<Caveman> caveman);
         void displayInfo(std::shared_ptr<Caveman> caveman);
         void hideInfo(std::shared_ptr<Caveman> caveman);
     }

@@ -13,7 +13,7 @@ public:
     Hunt(bool newIsEasy, short duration);
 
     void addActor(std::shared_ptr<Caveman> actor);
-    ActionPackage resolve();
+    ActionPackage resolve(Tech::StatBoosts bonuses);
 };
 
 #endif
