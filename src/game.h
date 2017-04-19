@@ -36,6 +36,9 @@ private:
 
     Tech::StatBoosts techBonuses;
 
+
+    void repositionTribe();
+
     const int tribeXPos = 150;
     const int tribeYPos = 650;
 
