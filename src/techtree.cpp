@@ -21,16 +21,14 @@ void Techtree::positionTree(json data, short level,
     }
 
     for (auto& it : data["children"]) {
-        int posY;
+        int sizeY = getTransformedSize().getRealY() - padding.getRealY() * 2;
+        int posY = getTransformedPosition().getRealY();
 
         if (sizePerLevel[level] == 1) {
-            posY = getTransformedPosition().getRealY()
-                   + getTransformedSize().getRealY()/2 - techSize/2;
+            posY += sizeY/2 - techSize/2;
         } else {
-            posY = getTransformedPosition().getRealY()
-                   + getTransformedSize().getRealY()
-                   - getTransformedSize().getRealY() / (sizePerLevel[level] - 1)
-                   * iteratorPerLevel[level];
+            posY += sizeY - sizeY / (sizePerLevel[level] - 1) *
+                    iteratorPerLevel[level];
 
             if (iteratorPerLevel[level] > 0 && iteratorPerLevel[level] < (sizePerLevel[level] - 1)) {
                 posY -= techSize / 2;
@@ -39,7 +37,7 @@ void Techtree::positionTree(json data, short level,
             }
         }
 
-        positionTree(it, level + 1, {lastPos.getRealX()+techSize+padding,posY});
+        positionTree(it, level + 1, {lastPos.getRealX()+techSize+techPadding,posY+padding.getRealY()});
 
         iteratorPerLevel[level] += 1;
     }
@@ -92,7 +90,7 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
         in >> data;
 
         parse(nullptr, data, 0);
-        positionTree(data, 1, {getTransformedPosition().getRealX(),
+        positionTree(data, 1, {getTransformedPosition().getRealX() + padding.getRealX(),
                                getTransformedPosition().getRealY()
                                + getTransformedSize().getRealY() / 2
                                - techSize / 2});
@@ -127,6 +125,19 @@ void Techtree::display(sf::RenderWindow& win) {
             win.draw(it.second->getArrowsToParents().tip);
             for(auto& line : it.second->getArrowsToParents().lines) {
                 win.draw(line);
+                sf::Transform transform;
+
+                transform.translate(0, 1);
+                win.draw(line, transform);
+
+                transform.translate(0, -2);
+                win.draw(line, transform);
+
+                transform.translate(1, 1);
+                win.draw(line, transform);
+
+                transform.translate(-2, 0);
+                win.draw(line, transform);
             }
         }
         properThinking->display(win);

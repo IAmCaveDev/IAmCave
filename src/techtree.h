@@ -22,7 +22,9 @@ private:
     std::vector<short> iteratorPerLevel;
 
     int techSize = 100;
-    int padding = 200;
+    int techPadding = 200;
+
+    TransformedVector<> padding = { 200, 200 };
 
     bool visibility;
 
