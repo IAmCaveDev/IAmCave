@@ -26,6 +26,11 @@ private:
     */
     void resolveActions();
 
+    /**
+     * Passive resource consumption
+     */
+    void doPassives();
+
 public:
     RoundEnd() = delete;
     explicit RoundEnd(Game& gameRef);

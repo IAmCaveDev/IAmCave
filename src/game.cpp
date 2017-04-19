@@ -2,6 +2,14 @@
 
 #include "cavemanfactory.h"
 
+void Game::repositionTribe() {
+    int xPos = tribeXPos;
+    for(auto& it : tribe){
+        it->setPosition(TransformedVector<>(xPos, tribeYPos));
+        xPos = xPos + 150;
+    }
+}
+
 Game::Game() : techtree("assets/techtreebackground.png", "assets/tech/techtree.json", {1920, 1080}, 0) {
     CavemanFactory cavemanFactory;
     EventFactory eventFactory;
@@ -14,12 +22,7 @@ Game::Game() : techtree("assets/techtreebackground.png", "assets/tech/techtree.j
         tribe.push_back(cavemanFactory.createFemale(5, 5));
     }
 
-    int xPos = 150;
-    int yPos = 650;
-    for(auto& it : tribe){
-        it->setPosition(TransformedVector<>(xPos, yPos));
-        xPos = xPos + 150;
-    }
+    repositionTribe();
 
     // starting resources
     resources.food = 200;
@@ -32,10 +35,21 @@ Game::Game() : techtree("assets/techtreebackground.png", "assets/tech/techtree.j
 void Game::addCaveman(int maxAge, int minAge) {
     CavemanFactory cavemanFactory;
     tribe.push_back(cavemanFactory.createRandom(maxAge, minAge));
+
+    repositionTribe();
 }
 
 void Game::removeCaveman(short id) {
-    //TODO implement
+    auto result = std::find_if(tribe.begin(), tribe.end(),
+                               [&id](std::shared_ptr<Caveman> caveman) {
+            return caveman->getId() == id;
+    });
+
+    if (result != std::end(tribe)) {
+        tribe.erase(result);
+    }
+
+    repositionTribe();
 }
 
 std::vector<std::shared_ptr<Caveman>>& Game::getTribe() {
@@ -76,6 +90,14 @@ Techtree& Game::getTechtree(){
 
 Resources& Game::getResources(){
     return resources;
+}
+
+Tech::StatBoosts Game::getTechBonuses() {
+    return techBonuses;
+}
+
+void Game::setTechBonuses(Tech::StatBoosts newTechBonuses) {
+    techBonuses = newTechBonuses;
 }
 
 unsigned int Game::getRoundNumber(){

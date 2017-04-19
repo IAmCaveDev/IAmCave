@@ -3,7 +3,10 @@
 
 #include <vector>
 #include <string>
+
 #include "action.h"
+#include "tech.h"
+
 class Think : public Action {
 private:
     std::string name;
@@ -12,7 +15,7 @@ public:
     Think(std::string techName, short time);
 
     void addActor(std::shared_ptr<Caveman> actor);
-    ActionPackage resolve();
+    ActionPackage resolve(Tech::StatBoosts bonuses);
 };
 
 #endif
