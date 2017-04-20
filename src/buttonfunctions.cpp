@@ -94,7 +94,9 @@ namespace ButtonFunctions {
             }
             void techCallback(Management& stateRef, std::shared_ptr<Tech> techRef) {
                 stateRef.setActiveTech(techRef->getName());
-                stateRef.getTechtree().setTextboxText(techRef->getName() + "\n" + techRef->getDescription());
+                stateRef.getTechtree().setTextboxText(techRef->getName() + "\n"
+                        + std::to_string(techRef->getRequiredIntelligence())
+                        + " int required\n" + techRef->getDescription());
             }
             void thinkAbort(Management& stateRef, Techtree& techtreeRef) {
                 techtreeRef.setVisibility(false);
@@ -112,10 +114,20 @@ namespace ButtonFunctions {
             void thinkConfirm(Management& stateRef, Techtree& techtreeRef) {
                 techtreeRef.setVisibility(false);
                 //TODO: check for duration of specific Tech and use it instead of 1
-                //also only enable clickability for cavemen with sufficient intelligence 
                 stateRef.setCurrentAction(EActions::ThinkAction, 1);
+
+                std::string name = stateRef.getActiveTech();
+                std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+                auto tech = techtreeRef.getTree().find(name)->second;
+
+                stateRef.setTextboxText("Select a caveman with " +
+                        std::to_string(tech->getRequiredIntelligence()) +
+                        " intelligence or higher to research " +
+                        tech->getName() + ".");
                 for (auto& it : stateRef.getIdlingTribe()) {
-                    it->getButton().setClickability(true);
+                    if(it->getIntelligence() >= tech->getRequiredIntelligence()){
+                        it->getButton().setClickability(true);
+                    }
                 }
                 General::actionStart(stateRef);
             }
@@ -239,8 +251,14 @@ namespace ButtonFunctions {
             }
             //think action
             if (actionType == EActions::ThinkAction) {
+                std::string name = stateRef.getActiveTech();
+                std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+                auto tech = stateRef.getTechtree().getTree().find(name)->second;
+
                 for (auto& it : stateRef.getIdlingTribe()) {
-                    it->getButton().setClickability(true);
+                    if(it->getIntelligence() >= tech->getRequiredIntelligence()){
+                        it->getButton().setClickability(true);
+                    }
                 }
             }
         }

@@ -106,6 +106,8 @@ public:
 
     bool isResearched();
 
+    int getRequiredIntelligence();
+
     void setResearched(bool newResearched);
 
     void updateButtonState();

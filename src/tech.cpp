@@ -149,6 +149,10 @@ bool Tech::isResearched() {
     return researched;
 }
 
+int Tech::getRequiredIntelligence() {
+    return requiredIntelligence;
+}
+
 void Tech::setResearched(bool newResearched) {
     researched = newResearched;
 }
