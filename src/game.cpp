@@ -3,9 +3,9 @@
 #include "cavemanfactory.h"
 
 void Game::repositionTribe() {
-    int totalTribeWidth = (tribe[0]->getButton().getTransformedSize().getRealX()
-                          + tribePadding) * tribe.size();
-    int availableTribeWidth = 1080 - tribeXPos * 2;
+    int totalTribeWidth = (normalCavemanWidht + tribePadding) * tribe.size() -
+                          tribePadding;
+    int availableTribeWidth = 1920 - tribeXPos * 2;
 
     if (totalTribeWidth >= availableTribeWidth) {
         tribeScale = static_cast<float>(availableTribeWidth) /
@@ -14,12 +14,12 @@ void Game::repositionTribe() {
 
     int xPos = tribeXPos;
     for(auto& it : tribe){
-        TransformedVector<> size = it->getButton().getTransformedSize();
-        int translationDueToSize = size.getRealY() - size.getRealY() * tribeScale;
+        int translationDueToSize = normalCavemanHeight - normalCavemanHeight *
+                                   tribeScale;
 
         it->setPosition(TransformedVector<>(xPos, tribeYPos + translationDueToSize));
-        it->setSize({static_cast<int>(size.getRealX() * tribeScale),
-                     static_cast<int>(size.getRealY() * tribeScale)});
+        it->setSize({static_cast<int>(normalCavemanWidht * tribeScale),
+                     static_cast<int>(normalCavemanHeight * tribeScale)});
         xPos += tribePadding * tribeScale;
     }
 }

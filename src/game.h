@@ -44,6 +44,9 @@ private:
     float tribeScale = 1;
     int tribePadding = 150;
 
+    const int normalCavemanWidht = 100;
+    const int normalCavemanHeight = 200;
+
 public:
     /**
      * Default constructor for game.
