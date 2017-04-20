@@ -93,11 +93,10 @@ namespace ButtonFunctions {
                 techtreeRef.getProperThinking().setCallback(std::bind(&thinkConfirm, std::ref(stateRef), std::ref(techtreeRef)));
                 techtreeRef.getProperThinking().setClickability(false);
                 techtreeRef.getAbortThinking().setCallback(std::bind(&thinkAbort, std::ref(stateRef), std::ref(techtreeRef)));
-                std::shared_ptr<Tech> training = techtreeRef.getTraining();
-                techtreeRef.getTrainingButton().setCallback(std::bind(&techCallback, std::ref(stateRef), std::ref(techtreeRef),std::ref(training)));
+                techtreeRef.getTrainingButton().setCallback(std::bind(&techCallback, std::ref(stateRef), std::ref(techtreeRef),techtreeRef.getTraining()));
 
                 for (auto& it : techtreeRef.getTree()) {
-                    it.second->getButton().setCallback(std::bind(&techCallback, std::ref(stateRef),std::ref(techtreeRef), std::ref(it.second)));
+                    it.second->getButton().setCallback(std::bind(&techCallback, std::ref(stateRef),std::ref(techtreeRef), it.second));
                 }
             }
             void techCallback(Management& stateRef, Techtree& techtreeRef, std::shared_ptr<Tech> techRef) {

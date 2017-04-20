@@ -40,6 +40,7 @@ int main(int argc, char *argv[]){
                         }
                         buttons.push_back(&techtree.getAbortThinking());
                         buttons.push_back(&techtree.getProperThinking());
+                        buttons.push_back(&techtree.getTrainingButton());
                     }
 
                     sf::Vector2i pos = sf::Mouse::getPosition(window);
@@ -78,6 +79,7 @@ int main(int argc, char *argv[]){
                         }
                         buttons.push_back(&techtree.getAbortThinking());
                         buttons.push_back(&techtree.getProperThinking());
+                        buttons.push_back(&techtree.getTrainingButton());
                     }
 
                     sf::Vector2i pos = sf::Mouse::getPosition(window);
