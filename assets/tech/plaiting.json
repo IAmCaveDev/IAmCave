@@ -10,7 +10,9 @@
         "addends": {
             "huntBonus": 2,
             "gatheringBonus": 5,
-            "fitnessGain": 0
+            "fitnessGain": 0,
+            "buildingBonus": 0,
+            "birthGain": 0
         },
         "multipliers": {
 

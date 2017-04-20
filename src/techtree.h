@@ -31,7 +31,7 @@ private:
 
     bool visibility;
 
-    Tech* training;
+    std::shared_ptr<Tech> training;
     Button* trainingButton;
 
     Button* properThinking;
@@ -84,6 +84,8 @@ public:
 
     std::map<std::string, std::shared_ptr<Tech>>& getTree();
 
+    std::shared_ptr<Tech>& getTraining();
+    Button& getTrainingButton();
     Button& getProperThinking();
     Button& getAbortThinking();
 };

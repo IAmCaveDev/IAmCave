@@ -108,9 +108,9 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
         throw std::runtime_error("Could not open file at " + path);
     }
 
-    training = new Tech("assets/tech/training.json", 0, { nullptr });
-    trainingButton = new Button({ 200, 80 }, { -250, -530 }, "assets/train.png", nullptr);
+    training = std::shared_ptr<Tech>(new Tech("assets/tech/training.json", 0, { nullptr }));
     training->getButton().setVisibility(false);
+    trainingButton = new Button({ 200, 80 }, { -250, 530 }, "assets/think.png", nullptr);
 
     properThinking = new Button({ 200, 80 }, { -250, -130 }, "assets/confirm.png", nullptr);
     abortThinking = new Button({ 200, 80 }, { -250, -330 }, "assets/abort.png", nullptr);
@@ -155,6 +155,7 @@ void Techtree::display(sf::RenderWindow& win) {
                 win.draw(line, transform);
             }
         }
+        trainingButton->display(win);
         properThinking->display(win);
         abortThinking->display(win);
         textbox->display(win);
@@ -169,8 +170,10 @@ void Techtree::onResize() {
 
         it.second->updateArrowsToParents();
     }
+    trainingButton->setPosition(trainingButton->getTransformedPosition());
     properThinking->setPosition(properThinking->getTransformedPosition());
     abortThinking->setPosition(abortThinking->getTransformedPosition());
+    trainingButton->setSize(trainingButton->getTransformedSize());
     properThinking->setSize(properThinking->getTransformedSize());
     abortThinking->setSize(abortThinking->getTransformedSize());
     setPosition(getTransformedPosition());
@@ -181,6 +184,14 @@ void Techtree::onResize() {
 
 std::map<std::string, std::shared_ptr<Tech>>& Techtree::getTree() {
     return tree;
+}
+
+std::shared_ptr<Tech>& Techtree::getTraining() {
+    return training;
+}
+
+Button& Techtree::getTrainingButton() {
+    return *trainingButton;
 }
 
 Button& Techtree::getProperThinking() {

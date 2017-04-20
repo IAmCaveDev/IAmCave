@@ -11,6 +11,7 @@
             "huntBonus": 20,
             "gatheringBonus": 20,
             "fitnessGain": 0.5,
+            "buildingBonus": 0,
             "birthGain": 0.7
         },
         "multipliers": {
