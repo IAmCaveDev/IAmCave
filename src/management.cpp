@@ -169,6 +169,10 @@ void Management::setTextboxText(std::string str) {
     textbox->setText(str);
 }
 
+Techtree& Management::getTechtree() {
+    return game.getTechtree();
+}
+
 void Management::additionalResizes() {
     grass->setSize(grass->getTransformedSize());
     grass->setPosition(grass->getTransformedPosition());

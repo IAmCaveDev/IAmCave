@@ -22,12 +22,22 @@ private:
     std::vector<short> iteratorPerLevel;
 
     int techSize = 100;
-    int padding = 200;
+    int techPadding = 200;
+
+    int paddingTop = 0;
+    int paddingBottom = 0;
+    int paddingLeft = 0;
+    // Padding right left out on purpose
 
     bool visibility;
 
+    std::shared_ptr<Tech> training;
+    Button* trainingButton;
+
     Button* properThinking;
     Button* abortThinking;
+
+    Textbox* textbox;
 
     /**
      * Positions the Techs according to the tree's structure.
@@ -45,9 +55,13 @@ public:
      * @param path The path to a json file to load the Techtree data from.
      * @param newSize The display size of the Techtree.
      * @param newPos The display position of the Techtree.
+     * @param newPaddingTop The top padding.
+     * @param newPaddingBottom The bottom padding.
+     * @param newPaddingLeft The left padding.
      */
     Techtree(std::string backgroundPath, std::string path,
-             TransformedVector<> newSize, TransformedVector<> newPos);
+             TransformedVector<> newSize, TransformedVector<> newPos,
+             int newPaddingTop, int newPaddingBottom, int newPaddingLeft);
 
     /**
      * Sets the visiblity of the Techtree.
@@ -55,6 +69,8 @@ public:
     void setVisibility(bool newVisibility);
 
     bool getVisibility();
+
+    void setTextboxText(std::string str);
 
     /**
      * Displays the Techtree and it's Techs.
@@ -68,6 +84,8 @@ public:
 
     std::map<std::string, std::shared_ptr<Tech>>& getTree();
 
+    std::shared_ptr<Tech>& getTraining();
+    Button& getTrainingButton();
     Button& getProperThinking();
     Button& getAbortThinking();
 };

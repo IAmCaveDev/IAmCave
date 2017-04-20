@@ -60,18 +60,19 @@ public:
      * Gets the list of Rectangles in the GameState.
      */
     std::vector<Rectangle*>& getRectangles();
-
+    /**
+     * Gets all the actions currently in game
+     */
+    std::vector<std::unique_ptr<Action>>& getActions();
     /**
      * Displays the game state.
      * @param win The window to draw on.
      */
     virtual void display(sf::RenderWindow& win) = 0;
-
     /**
      * Gets the type of the GameState.
      */
     EGamestates getType();
-
     /**
      * Gets the next state.
      * Is equal to the type of the current GameState as long as the state should

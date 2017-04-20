@@ -19,7 +19,6 @@ public:
             float huntBonus;
             float gatheringBonus;
             float fitnessGain;
-            float intelligenceGain;
         } addends;
         struct {
             float example;
@@ -31,7 +30,6 @@ public:
                     addends.huntBonus + other.addends.huntBonus,
                     addends.gatheringBonus + other.addends.gatheringBonus,
                     addends.fitnessGain + other.addends.fitnessGain,
-                    addends.intelligenceGain + other.addends.intelligenceGain
                 },
                 {
                     multipliers.example + other.multipliers.example - 1
@@ -55,6 +53,7 @@ private:
     std::string iconPath;
     int requiredIntelligence;
     StatBoosts statBoosts;
+    short intelligenceGain;
 
     bool researched;
 
@@ -65,9 +64,11 @@ public:
 
     /**
      * Constructs a new Tech.
-     * @param path The icon
+     * @param path The path to the tech JSON file
      * @param newLevel The level in the Techtree the Tech is in
      * @param newParents A list of parents
+     * @param newStraightLine The lines generated to this Tech's children will
+     * be straight if true.
      */
     Tech(std::string path, short newLevel, ParentsVector newParents,
          bool newStraightLine = false);
@@ -92,7 +93,11 @@ public:
      */
     void setLevel(short newLevel);
 
+    short getIntelligenceGain();
+
     StatBoosts getBonuses();
+
+    std::string getDescription();
 
     void createArrowsToParents();
     void updateArrowsToParents();
@@ -103,6 +108,8 @@ public:
     ArrowsToParents getArrowsToParents();
 
     bool isResearched();
+
+    int getRequiredIntelligence();
 
     void setResearched(bool newResearched);
 

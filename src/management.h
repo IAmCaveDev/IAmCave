@@ -64,6 +64,8 @@ public:
      */
     void setTextboxText(std::string str);
 
+    Techtree& getTechtree();
+
     void additionalResizes();
 };
 

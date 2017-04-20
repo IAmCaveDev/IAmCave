@@ -31,6 +31,9 @@ private:
      */
     void doPassives();
 
+    /**
+    * Create new events for the next turn
+    */
     void doEvents(Resources resourcesBefore);
 
 public:

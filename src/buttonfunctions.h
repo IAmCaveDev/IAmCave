@@ -18,7 +18,7 @@ namespace ButtonFunctions {
         }
         namespace Research {
             void think(Management& stateRef, Techtree& techtreeRef);
-            void techCallback(Management& stateRef, std::shared_ptr<Tech> techRef);
+            void techCallback(Management& stateRef, Techtree& techtreeRef, std::shared_ptr<Tech> techRef);
             void thinkAbort(Management& stateRef, Techtree& techtreeRef);
             void thinkConfirm(Management& stateRef, Techtree& techtreeRef);
         }
