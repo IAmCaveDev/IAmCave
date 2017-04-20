@@ -74,7 +74,12 @@ namespace ButtonFunctions {
         }
         namespace Research {
             void think(Management& stateRef, Techtree& techtreeRef) {
-
+                for (auto& it : stateRef.getActions()) {
+                    if (it->getType() == EActions::ThinkAction) {
+                        stateRef.setTextboxText("It is only possible to have one think Action at a time!");
+                        return;
+                    }
+                }
                 techtreeRef.setVisibility(true);
                 std::vector<Button*>& buttons = stateRef.getButtons();
 
