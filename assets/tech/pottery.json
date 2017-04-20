@@ -4,11 +4,16 @@
     "iconPath": "assets/potterytech.png",
 
     "requiredIntelligence": 25,
+    "intelligenceGain": 5,
 
     "statBoosts": {
-        "huntBonus": 0,
-        "gatheringBonus": 20,
-        "fitnessGain": 0.5,
-        "intelligenceGain": 7
+        "addends": {
+            "huntBonus": 0,
+            "gatheringBonus": 20,
+            "fitnessGain": 0.5
+        },
+        "multipliers": {
+
+        }
     }
 }

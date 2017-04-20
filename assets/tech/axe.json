@@ -4,11 +4,16 @@
     "iconPath": "assets/axetech.png",
 
     "requiredIntelligence": 10,
+    "intelligenceGain": 5,
 
     "statBoosts": {
-        "huntBonus": 10,
-        "gatheringBonus": 10,
-        "fitnessGain": 0.3,
-        "intelligenceGain": 3
+        "addends": {
+            "huntBonus": 10,
+            "gatheringBonus": 10,
+            "fitnessGain": 0.3
+        },
+        "multipliers": {
+
+        }
     }
 }

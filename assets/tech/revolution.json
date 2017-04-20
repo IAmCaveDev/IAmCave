@@ -4,11 +4,16 @@
     "iconPath": "assets/revolutiontech.png",
 
     "requiredIntelligence": 60,
+    "intelligenceGain": 5,
 
     "statBoosts": {
-        "huntBonus": 100,
-        "gatheringBonus": 100,
-        "fitnessGain": 1,
-        "intelligenceGain": 1
+        "addends": {
+            "huntBonus": 100,
+            "gatheringBonus": 100,
+            "fitnessGain": 1
+        },
+        "multipliers": {
+
+        }
     }
 }

@@ -4,12 +4,17 @@
     "iconPath": "assets/hierarchytech.png",
 
     "requiredIntelligence": 40,
+    "intelligenceGain": 5,
 
     "statBoosts": {
-        "huntBonus": 20,
-        "gatheringBonus": 20,
-        "fitnessGain": 0.5,
-        "intelligenceGain": 10,
-        "birthGain": 0.7
+        "addends": {
+            "huntBonus": 20,
+            "gatheringBonus": 20,
+            "fitnessGain": 0.5,
+            "birthGain": 0.7
+        },
+        "multipliers": {
+
+        }
     }
 }

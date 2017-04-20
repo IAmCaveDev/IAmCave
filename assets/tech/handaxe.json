@@ -4,11 +4,16 @@
     "iconPath": "assets/handaxetech.png",
 
     "requiredIntelligence": 4,
+    "intelligenceGain": 5,
 
     "statBoosts": {
-        "huntBonus": 5,
-        "gatheringBonus": 2,
-        "fitnessGain": 0.2,
-        "intelligenceGain": 2
+        "addends": {
+            "huntBonus": 5,
+            "gatheringBonus": 2,
+            "fitnessGain": 0.2
+        },
+        "multipliers": {
+
+        }
     }
 }

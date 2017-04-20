@@ -4,12 +4,16 @@
     "iconPath": "assets/pickaxetech.png",
 
     "requiredIntelligence": 35,
+    "intelligenceGain": 5,
 
     "statBoosts": {
-        "huntBonus": 0,
-        "gatheringBonus": 0,
-        "buildingBonus": 2,
-        "fitnessGain": 0.5,
-        "intelligenceGain": 5
+        "addends": {
+            "huntBonus": 0,
+            "gatheringBonus": 0,
+            "buildingBonus": 2
+        },
+        "multipliers": {
+
+        }
     }
 }

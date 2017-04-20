@@ -4,11 +4,16 @@
     "iconPath": "assets/woodenfencetech.png",
 
     "requiredIntelligence": 50,
+    "intelligenceGain": 5,
 
     "statBoosts": {
-        "huntBonus": 0,
-        "gatheringBonus": 0,
-        "fitnessGain": 0,
-        "intelligenceGain": 10
+        "addends": {
+            "huntBonus": 0,
+            "gatheringBonus": 0,
+            "fitnessGain": 0
+        },
+        "multipliers": {
+
+        }
     }
 }

@@ -64,9 +64,11 @@ public:
 
     /**
      * Constructs a new Tech.
-     * @param path The icon
+     * @param path The path to the tech JSON file
      * @param newLevel The level in the Techtree the Tech is in
      * @param newParents A list of parents
+     * @param newStraightLine The lines generated to this Tech's children will
+     * be straight if true.
      */
     Tech(std::string path, short newLevel, ParentsVector newParents,
          bool newStraightLine = false);

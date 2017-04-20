@@ -4,11 +4,16 @@
     "iconPath": "assets/baskettech.png",
 
     "requiredIntelligence": 30,
+    "intelligenceGain": 5,
 
     "statBoosts": {
-        "huntBonus": 20,
-        "gatheringBonus": 0,
-        "fitnessGain": 0.5,
-        "intelligenceGain": 5
+        "addends": {
+            "huntBonus": 20,
+            "gatheringBonus": 0,
+            "fitnessGain": 0.5
+        },
+        "multipliers": {
+
+        }
     }
 }
