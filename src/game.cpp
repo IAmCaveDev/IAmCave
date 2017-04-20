@@ -3,14 +3,33 @@
 #include "cavemanfactory.h"
 
 void Game::repositionTribe() {
-    int xPos = tribeXPos;
+    int totalTribeWidth = (normalCavemanWidth + tribePadding) * tribe.size() -
+                          tribePadding;
+    int availableTribeWidth = 1920 - tribeLeftPadding - tribeRightPadding;
+
+    if (totalTribeWidth >= availableTribeWidth) {
+        tribeScale = static_cast<float>(availableTribeWidth) /
+                     static_cast<float>(totalTribeWidth);
+    } else {
+        tribeScale = 1;
+    }
+
+    int xPos = tribeLeftPadding;
     for(auto& it : tribe){
-        it->setPosition(TransformedVector<>(xPos, tribeYPos));
-        xPos = xPos + 150;
+        int translationDueToSize = normalCavemanHeight - normalCavemanHeight *
+                                   tribeScale;
+
+        it->setPosition(TransformedVector<>(xPos, tribeYPos + translationDueToSize));
+        it->setSize({static_cast<int>(normalCavemanWidth * tribeScale),
+                     static_cast<int>(normalCavemanHeight * tribeScale)});
+        xPos += (normalCavemanWidth + tribePadding) * tribeScale;
     }
 }
 
-Game::Game() : techtree("assets/techtreebackground.png", "assets/tech/techtree.json", {1920, 1080}, 0) {
+Game::Game() : techtree("assets/background-techtree.png",
+                        "assets/tech/techtree.json", {1920, 1080}, 0,
+                        100, 280, 100) {
+
     CavemanFactory cavemanFactory;
     EventFactory eventFactory;
 

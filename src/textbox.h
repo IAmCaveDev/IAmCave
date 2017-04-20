@@ -44,7 +44,7 @@ public:
     Textbox(const TransformedVector<>& size,
             const TransformedVector<>& position, std::string texturePath,
             std::string newText, int padding = 5, int newTextSize = 20,
-            sf::Color newTextColor = sf::Color::Black,
+            sf::Color newTextColor = sf::Color::White,
             sf::Text::Style newTextStyle = sf::Text::Style::Regular);
 
     /**

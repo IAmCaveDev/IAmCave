@@ -4,11 +4,18 @@
     "iconPath": "assets/archerytech.png",
 
     "requiredIntelligence": 35,
+    "intelligenceGain": 5,
 
     "statBoosts": {
-        "huntBonus": 30,
-        "gatheringBonus": 0,
-        "fitnessGain": 0.8,
-        "intelligenceGain": 5
+        "addends": {
+            "huntBonus": 30,
+            "gatheringBonus": 0,
+            "fitnessGain": 0.8,
+            "buildingBonus": 0,
+            "birthGain": 0
+        },
+        "multipliers": {
+
+        }
     }
 }

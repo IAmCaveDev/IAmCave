@@ -21,13 +21,13 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newS
         iconPath = data["iconPath"];
 
         requiredIntelligence = data["requiredIntelligence"];
+        intelligenceGain = data["intelligenceGain"];
 
         statBoosts = {
             {
-                data["statBoosts"]["huntBonus"],
-                data["statBoosts"]["gatheringBonus"],
-                data["statBoosts"]["fitnessGain"],
-                data["statBoosts"]["intelligenceGain"],
+                data["statBoosts"]["addends"]["huntBonus"],
+                data["statBoosts"]["addends"]["gatheringBonus"],
+                data["statBoosts"]["addends"]["fitnessGain"],
             }
         };
 
@@ -60,8 +60,16 @@ void Tech::setLevel(short newLevel) {
     level = newLevel;
 }
 
+short Tech::getIntelligenceGain() {
+    return intelligenceGain;
+}
+
 Tech::StatBoosts Tech::getBonuses() {
     return statBoosts;
+}
+
+std::string Tech::getDescription() {
+    return description;
 }
 
 void Tech::createArrowsToParents() {
@@ -143,6 +151,10 @@ Tech::ArrowsToParents Tech::getArrowsToParents() {
 
 bool Tech::isResearched() {
     return researched;
+}
+
+int Tech::getRequiredIntelligence() {
+    return requiredIntelligence;
 }
 
 void Tech::setResearched(bool newResearched) {

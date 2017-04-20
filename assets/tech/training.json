@@ -1,10 +1,10 @@
 {
-    "name": "WoodenFence",
-    "description": "prevents animals from eating your stuff",
-    "iconPath": "assets/woodenfencetech.png",
+    "name": "Training",
+    "description": "basically school, nets a caveman +1 intelligence",
+    "iconPath": "assets/axetech.png",
 
-    "requiredIntelligence": 50,
-    "intelligenceGain": 5,
+    "requiredIntelligence": 0,
+    "intelligenceGain": 1,
 
     "statBoosts": {
         "addends": {
