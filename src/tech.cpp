@@ -25,9 +25,9 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newS
 
         statBoosts = {
             {
-                data["statBoosts"]["huntBonus"],
-                data["statBoosts"]["gatheringBonus"],
-                data["statBoosts"]["fitnessGain"],
+                data["statBoosts"]["addends"]["huntBonus"],
+                data["statBoosts"]["addends"]["gatheringBonus"],
+                data["statBoosts"]["addends"]["fitnessGain"],
             }
         };
 
