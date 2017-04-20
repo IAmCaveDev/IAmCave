@@ -110,10 +110,10 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
 
     training = std::shared_ptr<Tech>(new Tech("assets/tech/training.json", 0, { nullptr }));
     training->getButton().setVisibility(false);
-    trainingButton = new Button({ 200, 80 }, { -250, 530 }, "assets/think.png", nullptr);
+    trainingButton = new Button({ 200, 80 }, { -250, -300 }, "assets/think.png", nullptr);
 
-    properThinking = new Button({ 200, 80 }, { -250, -130 }, "assets/confirm.png", nullptr);
-    abortThinking = new Button({ 200, 80 }, { -250, -330 }, "assets/abort.png", nullptr);
+    properThinking = new Button({ 200, 80 }, { -250, -200 }, "assets/confirm.png", nullptr);
+    abortThinking = new Button({ 200, 80 }, { -250, -100 }, "assets/abort.png", nullptr);
 }
 
 void Techtree::setVisibility(bool newVisibility) {
