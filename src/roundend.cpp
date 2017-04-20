@@ -15,9 +15,14 @@ void RoundEnd::resolveActions() {
             if (result.isFinal) {
                 std::string name = result.techName;
                 std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-                std::shared_ptr<Tech> tech = game.getTechtree().getTree()
-                                                 .find(name)
-                                                 ->second;
+                std::shared_ptr<Tech> tech;
+                if (name == "training") {
+                    tech = game.getTechtree().getTraining();
+                } else {
+                    tech = game.getTechtree().getTree()
+                        .find(name)
+                        ->second;
+                }
                 game.setTechBonuses(game.getTechBonuses() + tech->getBonuses());
                 it->getActors().front()->addIntelligence(tech->getIntelligenceGain());
                 tech->setResearched(true);

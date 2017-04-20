@@ -126,6 +126,14 @@ namespace ButtonFunctions {
 
                 std::string name = stateRef.getActiveTech();
                 std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+                if (name == "training") {
+                    stateRef.setTextboxText("Select a caveman!");
+                    for (auto& it : stateRef.getIdlingTribe()) {
+                            it->getButton().setClickability(true);
+                    }
+                    General::actionStart(stateRef);
+                    return;
+                }
                 auto tech = techtreeRef.getTree().find(name)->second;
 
                 stateRef.setTextboxText("Select a caveman with " +
