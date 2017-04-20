@@ -1,0 +1,33 @@
+{
+    "id": 10,
+    "title": "New Heir!",
+    "description": "Chief! Congratulations for your new child! We didn't even know your woman was pregnant but here it is. Is it a boy or a girl?",
+
+    "trigger": {
+	},
+
+    "options": [
+    { 
+        "name": "A boy.",
+        "cavemen": [
+        {
+            "age": 0,
+            "fitness": 4,
+            "intelligence": 5,
+            "isMale": true
+        }
+        ]
+    }
+    {
+        "name": "A girl.",
+        "cavemen": [
+        {
+            "age": 0,
+            "fitness": 4,
+            "intelligence": 5,
+            "isMale": false
+        }
+        ]
+    }
+    ]
+}

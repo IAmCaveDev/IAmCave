@@ -1,0 +1,15 @@
+{
+    "id": 11,
+    "title": "Bad food!",
+    "description": "The meat suddenly became green overnight - is it a vegetable now?",
+
+    "trigger": {
+	},
+
+    "options": [
+    { 
+        "name": "Of course not, you fool!",
+        "foodGain": -30
+    }
+    ]
+}
