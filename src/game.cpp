@@ -3,10 +3,24 @@
 #include "cavemanfactory.h"
 
 void Game::repositionTribe() {
+    int totalTribeWidth = (tribe[0]->getButton().getTransformedSize().getRealX()
+                          + tribePadding) * tribe.size();
+    int availableTribeWidth = 1080 - tribeXPos * 2;
+
+    if (totalTribeWidth >= availableTribeWidth) {
+        tribeScale = static_cast<float>(availableTribeWidth) /
+                     static_cast<float>(totalTribeWidth);
+    }
+
     int xPos = tribeXPos;
     for(auto& it : tribe){
-        it->setPosition(TransformedVector<>(xPos, tribeYPos));
-        xPos = xPos + 150;
+        TransformedVector<> size = it->getButton().getTransformedSize();
+        int translationDueToSize = size.getRealY() - size.getRealY() * tribeScale;
+
+        it->setPosition(TransformedVector<>(xPos, tribeYPos + translationDueToSize));
+        it->setSize({static_cast<int>(size.getRealX() * tribeScale),
+                     static_cast<int>(size.getRealY() * tribeScale)});
+        xPos += tribePadding * tribeScale;
     }
 }
 
@@ -18,7 +32,7 @@ Game::Game() : techtree("assets/background-techtree.png",
     EventFactory eventFactory;
 
     // Starting population
-    for(int i = 0; i < 3; ++i){
+    for(int i = 0; i < 10; ++i){
         tribe.push_back(cavemanFactory.createMale(5, 5));
     }
     for(int i = 0; i < 2; ++i){

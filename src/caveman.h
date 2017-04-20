@@ -52,6 +52,7 @@ public:
     void initButton();
 
     void setPosition(TransformedVector<> newPosition);
+    void setSize(TransformedVector<> newSize);
 
     EActions getCurrentAction();
     void setCurrentAction(EActions newOccupation);

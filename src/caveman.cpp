@@ -68,7 +68,7 @@ void Caveman::initButton() {
             shared_from_this()));
 }
 
-void Caveman::setPosition(TransformedVector<> newPosition){
+void Caveman::setPosition(TransformedVector<> newPosition) {
     button->setTransformedPosition(newPosition);
     infobox->setTransformedPosition(
         {newPosition.getRealX() - button->getTransformedSize().getRealX()/2,
@@ -77,6 +77,12 @@ void Caveman::setPosition(TransformedVector<> newPosition){
         {newPosition.getRealX() + button->getTransformedSize().getRealX()/2 -
          actionbox->getTransformedSize().getRealX()/2,
          newPosition.getRealY() - actionbox->getTransformedSize().getRealY()/2});
+}
+
+void Caveman::setSize(TransformedVector<> newSize) {
+    button->setTransformedSize(newSize);
+
+    setPosition(button->getTransformedPosition());
 }
 
 EActions Caveman::getCurrentAction(){

@@ -41,6 +41,8 @@ private:
 
     const int tribeXPos = 150;
     const int tribeYPos = 650;
+    float tribeScale = 1;
+    int tribePadding = 150;
 
 public:
     /**
