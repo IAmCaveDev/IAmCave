@@ -39,12 +39,13 @@ private:
 
     void repositionTribe();
 
-    const int tribeXPos = 150;
+    const int tribeLeftPadding = 150;
+    const int tribeRightPadding = 750;
     const int tribeYPos = 650;
     float tribeScale = 1;
-    int tribePadding = 150;
+    int tribePadding = 50;
 
-    const int normalCavemanWidht = 100;
+    const int normalCavemanWidth = 100;
     const int normalCavemanHeight = 200;
 
 public:
