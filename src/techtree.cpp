@@ -108,6 +108,10 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
         throw std::runtime_error("Could not open file at " + path);
     }
 
+    training = new Tech("assets/tech/training.json", 0, { nullptr });
+    trainingButton = new Button({ 200, 80 }, { -250, -530 }, "assets/train.png", nullptr);
+    training->getButton().setVisibility(false);
+
     properThinking = new Button({ 200, 80 }, { -250, -130 }, "assets/confirm.png", nullptr);
     abortThinking = new Button({ 200, 80 }, { -250, -330 }, "assets/abort.png", nullptr);
 }

@@ -31,6 +31,9 @@ private:
 
     bool visibility;
 
+    Tech* training;
+    Button* trainingButton;
+
     Button* properThinking;
     Button* abortThinking;
 

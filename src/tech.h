@@ -19,7 +19,6 @@ public:
             float huntBonus;
             float gatheringBonus;
             float fitnessGain;
-            float intelligenceGain;
         } addends;
         struct {
             float example;
@@ -31,7 +30,6 @@ public:
                     addends.huntBonus + other.addends.huntBonus,
                     addends.gatheringBonus + other.addends.gatheringBonus,
                     addends.fitnessGain + other.addends.fitnessGain,
-                    addends.intelligenceGain + other.addends.intelligenceGain
                 },
                 {
                     multipliers.example + other.multipliers.example - 1
@@ -55,6 +53,7 @@ private:
     std::string iconPath;
     int requiredIntelligence;
     StatBoosts statBoosts;
+    float intelligenceGain;
 
     bool researched;
 

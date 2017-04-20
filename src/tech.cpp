@@ -21,13 +21,13 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newS
         iconPath = data["iconPath"];
 
         requiredIntelligence = data["requiredIntelligence"];
+        intelligenceGain = data["intelligenceGain"];
 
         statBoosts = {
             {
                 data["statBoosts"]["huntBonus"],
                 data["statBoosts"]["gatheringBonus"],
                 data["statBoosts"]["fitnessGain"],
-                data["statBoosts"]["intelligenceGain"],
             }
         };
 
