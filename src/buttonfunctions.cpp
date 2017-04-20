@@ -18,12 +18,14 @@ namespace ButtonFunctions {
                         it->getButton().setClickability(false);
                     }
                 }
+                stateRef.setTextboxText("Please select a difficulty! The 'Hard' Difficulty yields more food, but your Caveman are also more likely to die.");
             }
             void easyHunt(Management& stateRef) {
                 std::vector<Button*>& buttons = stateRef.getButtons();
                 buttons.pop_back();
                 buttons.pop_back();
                 stateRef.setCurrentAction(EActions::EasyHunt, 3);
+                stateRef.setTextboxText("Select one or more Cavemen to go on a relaxed hunting trip!");
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
             void hardHunt(Management& stateRef) {
@@ -31,6 +33,7 @@ namespace ButtonFunctions {
                 buttons.pop_back();
                 buttons.pop_back();
                 stateRef.setCurrentAction(EActions::HardHunt, 5);
+                stateRef.setTextboxText("Select one or more Cavemen to go on a thrilling hunting trip!");
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
         }
@@ -41,6 +44,7 @@ namespace ButtonFunctions {
                     it->setClickability(false);
                 }
                 stateRef.setCurrentAction(EActions::SexAction, 1);
+                stateRef.setTextboxText("Select two Cavemen to make love with each other! You can choose exactly one male and one female lover.");
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
         }
@@ -54,6 +58,7 @@ namespace ButtonFunctions {
                 }
                 stateRef.setCurrentAction(EActions::ImproveAction, 4 * improvement_mod);
                 //improvement_mod++;       //Not in use yet
+                stateRef.setTextboxText("Select one or more Cavemen to work on your cave! Increases the cave's capacity.");
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
         }
@@ -69,6 +74,7 @@ namespace ButtonFunctions {
                     }
                 }
                 stateRef.setCurrentAction(EActions::CollectAction, 3);
+                stateRef.setTextboxText("Select one or more Cavewomen to collect building material!");
                 ButtonFunctions::Managing::General::actionStart(stateRef);
             }
         }
@@ -81,6 +87,7 @@ namespace ButtonFunctions {
                     }
                 }
                 techtreeRef.setVisibility(true);
+                techtreeRef.setTextboxText("This is your techtree, click a technology to show information about it.");
                 std::vector<Button*>& buttons = stateRef.getButtons();
 
                 for (auto& it : buttons) {
@@ -159,6 +166,7 @@ namespace ButtonFunctions {
                 }
                 stateRef.deleteCurrentAction();
                 stateRef.deleteActiveTech();
+                stateRef.resetTextbox();
                 actionEnd(stateRef);
             }
 
@@ -172,10 +180,13 @@ namespace ButtonFunctions {
                 }
                 if (stateRef.getCurrentAction().getActors().size() < 1) {
                     stateRef.deleteCurrentAction();
+                    stateRef.setTextboxText("You didn't select enough cavemen, feel free to try again.");
                 } else if (stateRef.getCurrentAction().getType() == EActions::SexAction && stateRef.getCurrentAction().getActors().size() < 2) {
                     stateRef.deleteCurrentAction();
+                    stateRef.setTextboxText("You need exactly two cavemen with different genders for this action, pls try again.");
                 } else {
                     stateRef.pushCurrentAction();
+                    stateRef.setTextboxText("Action added to the queue! You can either select more actions or press 'Go' to go to the next Round!");
                 }
 
                 stateRef.deleteActiveTech();

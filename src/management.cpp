@@ -43,6 +43,7 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
                 std::bind(&ButtonFunctions::Managing::Collecting::collect, std::ref(*this))),
     };
 
+    resetTextbox();
 }
 
 void Management::setCurrentAction(EActions newaction, short duration) {
@@ -167,6 +168,10 @@ void Management::display(sf::RenderWindow& win) {
 
 void Management::setTextboxText(std::string str) {
     textbox->setText(str);
+}
+
+void Management::resetTextbox() {
+    textbox->setText("Select your actions for round number " + std::to_string(game.getRoundNumber()) + " !");
 }
 
 Techtree& Management::getTechtree() {

@@ -64,6 +64,11 @@ public:
      */
     void setTextboxText(std::string str);
 
+    /**
+     * Resets the state's textbox to display a standard message.
+     */
+    void resetTextbox();
+
     Techtree& getTechtree();
 
     void additionalResizes();
