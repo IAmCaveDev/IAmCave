@@ -1,0 +1,19 @@
+{
+    "name": "Training",
+    "description": "basically school, nets a caveman +1 intelligence",
+    "iconPath": "assets/axetech.png",
+
+    "requiredIntelligence": 0,
+    "intelligenceGain": 1,
+
+    "statBoosts": {
+        "addends": {
+            "huntBonus": 0,
+            "gatheringBonus": 0,
+            "fitnessGain": 0
+        },
+        "multipliers": {
+
+        }
+    }
+}

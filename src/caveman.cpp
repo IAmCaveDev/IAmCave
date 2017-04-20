@@ -55,6 +55,10 @@ short Caveman::getIntelligence(){
     return intelligence;
 }
 
+void Caveman::addIntelligence(short newInt) {
+    intelligence += newInt;
+}
+
 Button& Caveman::getButton() {
     return *button;
 }

@@ -60,6 +60,10 @@ void Tech::setLevel(short newLevel) {
     level = newLevel;
 }
 
+short Tech::getIntelligenceGain() {
+    return intelligenceGain;
+}
+
 Tech::StatBoosts Tech::getBonuses() {
     return statBoosts;
 }

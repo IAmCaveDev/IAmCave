@@ -19,6 +19,7 @@ void RoundEnd::resolveActions() {
                                                  .find(name)
                                                  ->second;
                 game.setTechBonuses(game.getTechBonuses() + tech->getBonuses());
+                it->getActors().front()->addIntelligence(tech->getIntelligenceGain());
                 tech->setResearched(true);
             }
 

@@ -53,7 +53,7 @@ private:
     std::string iconPath;
     int requiredIntelligence;
     StatBoosts statBoosts;
-    float intelligenceGain;
+    short intelligenceGain;
 
     bool researched;
 
@@ -92,6 +92,8 @@ public:
      * Sets the level of the Tech in the Techtree.
      */
     void setLevel(short newLevel);
+
+    short getIntelligenceGain();
 
     StatBoosts getBonuses();
 
