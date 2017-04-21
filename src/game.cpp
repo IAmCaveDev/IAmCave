@@ -34,10 +34,10 @@ Game::Game() : techtree("assets/background-techtree.png",
     EventFactory eventFactory;
 
     // Starting population
-    for(int i = 0; i < 3; ++i){
+    for(int i = 0; i < 4; ++i){
         tribe.push_back(cavemanFactory.createMale(5, 5));
     }
-    for(int i = 0; i < 2; ++i){
+    for(int i = 0; i < 4; ++i){
         tribe.push_back(cavemanFactory.createFemale(5, 5));
     }
 
@@ -55,6 +55,12 @@ void Game::addCaveman(int maxAge, int minAge) {
     CavemanFactory cavemanFactory;
     tribe.push_back(cavemanFactory.createRandom(maxAge, minAge));
 
+    repositionTribe();
+}
+
+void Game::addCaveman(int maxAge, int minAge, int newIntelligence, int newFitness, bool newIsMale) {
+    CavemanFactory cavemanfactory;
+    tribe.push_back(cavemanfactory.createSpecific(maxAge, minAge, newIntelligence, newFitness, newIsMale));
     repositionTribe();
 }
 

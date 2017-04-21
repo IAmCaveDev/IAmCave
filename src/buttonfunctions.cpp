@@ -308,7 +308,7 @@ namespace ButtonFunctions {
             stateRef.getGame().addToResources({ option->effects.foodGain, option->effects.materialGain, option->effects.capacityGain });
 
             if (option->effects.newCaveman) {
-                stateRef.getGame().addCaveman(50 , option->effects.new_age);
+                stateRef.getGame().addCaveman(50, option->effects.new_age, option->effects.new_intelligence, option->effects.new_fitness, option->effects.new_isMale);
             }
 
             for (int i = stateRef.getButtons().size() - 1; i > 0; i--) {

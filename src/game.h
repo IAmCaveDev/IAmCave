@@ -64,6 +64,16 @@ public:
      * @param minAge The minimum age allowed of the caveman.
      */
     void addCaveman(int maxAge = 50, int minAge = 0);
+
+    /**
+    * Adds a specific caveman to the tribe.
+    * @param maxAge The maximum age allowed of the caveman.
+    * @param minAge The minimum age allowed of the caveman.
+    * @param newIntelligence The intelligence level of the new caveman.
+    * @param newFitness The fitness level of the new caveman.
+    * @param newIsMale Decides the gender of the caveman.
+    */
+    void addCaveman(int maxAge, int minAge, int newIntelligence, int newFitness, bool newIsMale);
     /**
      * Removes a caveman from the tribe.
      * @param id The id of the caveman to be removed.
