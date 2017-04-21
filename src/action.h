@@ -30,6 +30,7 @@ struct ActionPackage {
 
 /**
  * An action performed by one or more cavemen over one or more rounds.
+ * Base class for all specific action classes.
  */
 
 class Action {

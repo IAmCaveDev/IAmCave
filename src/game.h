@@ -33,7 +33,9 @@ private:
     Techtree techtree;
 
     Resources resources;
-
+    /**
+     * Added up Bonuses from all researched Techs.
+     */
     Tech::StatBoosts techBonuses;
 
 
@@ -81,36 +83,49 @@ public:
      * @param id The id of the caveman to be removed.
      */
     void removeCaveman(short id);
-
+    /**
+     * Adds an Action to the actions vector
+     */
     void addAction(std::unique_ptr<Action> newAction);
-    void addEvent(std::shared_ptr<Event> newEvent);
+    /**
+     * Erases an action from actions vector, typically because its finished
+     * @param id The id of the action to be removed.
+     */
     void removeAction(int id);
-    void removeEvent(short id);
+    /**
+     * Returns a reference to the actions vector.
+     */
     std::vector<std::unique_ptr<Action>>& getActions();
+  
+    void addEvent(std::shared_ptr<Event> newEvent);
+    void removeEvent(short id);
+    /**
+     * Adds to Resources
+     * @param amount Amount to be added to each resource.
+     */
     void addToResources(Resources amount);
-    void stopResearch();
-
     /**
      * Returns a reference to the tribe.
      */
     std::vector<std::shared_ptr<Caveman>>& getTribe();
-
     /**
      * Returns a reference to the techtree.
      */
     Techtree& getTechtree();
-
     /**
      * Returns a reference to the tribe.
      */
     Resources& getResources();
-
-    Tech::StatBoosts getTechBonuses();
-
-    void setTechBonuses(Tech::StatBoosts newTechBonuses);
-
     /**
-     * Returns the curren round number.
+     * Returns current Tech Bonuses.
+     */
+    Tech::StatBoosts getTechBonuses();
+    /**
+     * Setter for Tech Bonuses, used in RoundEnd state.
+     */
+    void setTechBonuses(Tech::StatBoosts newTechBonuses);
+    /**
+     * Returns the current round number.
      */
     unsigned int getRoundNumber();
     /**

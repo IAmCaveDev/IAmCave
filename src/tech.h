@@ -92,27 +92,55 @@ public:
      * Sets the level of the Tech in the Techtree.
      */
     void setLevel(short newLevel);
-
+    /**
+     * @return Intelligence the researching caveman gains.
+     */
     short getIntelligenceGain();
-
+    /**
+     * @return Bonuses the Tech gives when it is researched.
+     */
     StatBoosts getBonuses();
-
+    /**
+     * @return The Tech description as written in the json file.
+     */
     std::string getDescription();
-
+    /**
+     * Creates Arrows as SFML VertexArrays to display between Techs in tree.
+     */
     void createArrowsToParents();
+    /**
+     * Clears all Arrows and calls createArrowsToParents() again. Needed on resize.
+     */
     void updateArrowsToParents();
-
+    /**
+     * Helper function for createArrowsToParents()
+     */
     TransformedVector<> getRightArrowNode();
+    /**
+     * Helper function for createArrowsToParents()
+     */
     TransformedVector<> getLeftArrowNode();
-
+    /**
+     * Returns a Reference to the Arrows to Parents in tree. Mainly needed to draw the arrows 
+     * in techtree.display() function.
+     */
     ArrowsToParents getArrowsToParents();
-
+    /**
+     * @return if Tech is already researched.
+     */
     bool isResearched();
-
-    int getRequiredIntelligence();
-
+    /**
+     * Sets if the Tech is researched or not.
+     */
     void setResearched(bool newResearched);
-
+    /**
+     * @return required intelligence to research Tech
+     */
+    int getRequiredIntelligence();
+    /**
+     * Enable or disable the Tech button, depending on wether the parents are researched and
+     * wether the Tech itself is already researched.
+     */
     void updateButtonState();
 };
 

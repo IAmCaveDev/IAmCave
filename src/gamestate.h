@@ -52,6 +52,10 @@ public:
      */
     void onResize();
 
+    /**
+     * Used to resize and reposition Gamestate specific stuff, which is not
+     * located in Rectangles or Buttons. Automatically called in onResize().
+     */
     virtual void additionalResizes() = 0;
 
     /**

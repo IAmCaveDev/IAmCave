@@ -5,6 +5,9 @@
 
 #include "caveman.h"
 
+/**
+* A Factory class for creating Caveman objects.
+*/
 class CavemanFactory {
 public:
 

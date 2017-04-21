@@ -53,7 +53,9 @@ public:
      * Sets the position. Should be used instead of SFML's setPosition.
      */
     void setTransformedPosition(TransformedVector<> newPosition);
-
+    /**
+     * Changes the Texture, calls SFML functions loadFromFile and setTexture
+     */
     void changeTexture(std::string texturePath);
 };
 
