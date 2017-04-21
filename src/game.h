@@ -73,7 +73,9 @@ public:
     * @param newFitness The fitness level of the new caveman.
     * @param newIsMale Decides the gender of the caveman.
     */
-    void addCaveman(int maxAge, int minAge, int newIntelligence, int newFitness, bool newIsMale);
+    void addCaveman(int maxAge, int minAge, int newIntelligence,
+                    int newFitness, bool newIsMale);
+
     /**
      * Removes a caveman from the tribe.
      * @param id The id of the caveman to be removed.

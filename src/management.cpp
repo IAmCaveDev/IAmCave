@@ -103,7 +103,7 @@ void Management::pushCurrentAction() {
                 "assets/collect-icon.png", nullptr), currentAction->getDuration());
             break;
     }
-    
+
     for (auto& it : currentAction->getActors()) {
         it->setCurrentAction(currentType);
     }
@@ -121,9 +121,7 @@ void Management::setActiveTech(std::string newTech) {
 }
 
 std::string Management::getActiveTech() {
-    return activeTech;
-}
-
+    return activeTech; } 
 void Management::deleteActiveTech() {
     activeTech = "";
 }

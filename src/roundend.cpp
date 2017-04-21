@@ -19,8 +19,7 @@ void RoundEnd::resolveActions() {
                 std::shared_ptr<Tech> tech;
                 if (name == "training") {
                     tech = game.getTechtree().getTraining();
-                }
-                else {
+                } else {
                     tech = game.getTechtree().getTree()
                         .find(name)
                         ->second;
@@ -30,19 +29,17 @@ void RoundEnd::resolveActions() {
                 tech->setResearched(true);
             }
 
-        }
-        else {
+        } else {
             Tech::StatBoosts bonuses = game.getTechBonuses();
             if (it->getType() == EActions::EasyHunt ||
                 it->getType() == EActions::HardHunt) {
                 result.food += bonuses.addends.huntBonus;
-            }
-            else if (it->getType() == EActions::CollectAction) {
+            } else if (it->getType() == EActions::CollectAction) {
                 result.food += bonuses.addends.gatheringBonus;
             }
             game.addToResources({ result.food,
-                result.buildingMaterial,
-                result.cavemanCapacity });
+                                  result.buildingMaterial,
+                                  result.cavemanCapacity });
             if (result.newborn) {
                 game.addCaveman(0, 0);
             }
@@ -104,8 +101,7 @@ void RoundEnd::doEvents(Resources resourcesBefore) {
                 buttons.at(0)->changeTexture(it->texturePath);
                 buttons.at(0)->setCallback(std::bind(&ButtonFunctions::Events::confirmOption, std::ref(*this), it, event->getID()));
                 buttons.at(0)->setPosition(it->button->getPosition());
-            }
-            else {
+            } else {
                 it->button->setCallback(std::bind(&ButtonFunctions::Events::confirmOption, std::ref(*this), it, event->getID()));
                 buttons.push_back(it->button);
             }
@@ -122,20 +118,20 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     std::random_device rd;
     rng = std::mt19937(rd());
 
-    infoColumn = new Textbox({ 450, 1080 }, { 0, 0 }, "assets/endround-column.png",
-        "", 5, 30);
+    infoColumn = new Textbox({ 450, 1080 }, { 0, 0 },
+                             "assets/endround-column.png", "", 5, 30);
     textbox = new Textbox({ 1580, 160 }, { 20, 1080 - 180 },
-        "assets/state-textbox.png", "", 15, 30);
+                          "assets/state-textbox.png", "", 15, 30);
 
     rectangles = {
-        new Rectangle({ 1920, 1080 },{ 0, 0 }, "assets/cave.png"),
+        new Rectangle({ 1920, 1080 }, { 0, 0 }, "assets/cave.png"),
         infoColumn,
         textbox
     };
 
     buttons = {
-        new Button({ 200, 80 },{ -250, -130 }, "assets/go.png", [&]() {
-        nextState = EGamestates::management; })
+        new Button({ 200, 80 }, { -250, -130 }, "assets/go.png", [&]() {
+            nextState = EGamestates::management; })
     };
 }
 
@@ -159,15 +155,15 @@ void RoundEnd::step() {
 
     std::ostringstream info;
     info << "Round " << game.getRoundNumber() << "\n"
-        << "Food: " << resourcesBefore.food << " " << std::showpos
-        << game.getResources().food - resourcesBefore.food
-        << std::noshowpos << "\n"
-        << "Building Material: " << resourcesBefore.buildingMaterial << " "
-        << std::showpos << game.getResources().buildingMaterial
-        - resourcesBefore.buildingMaterial << std::noshowpos << "\n"
-        << "Cave Capacity: " << resourcesBefore.cavemanCapacity << " "
-        << std::showpos << game.getResources().cavemanCapacity
-        - resourcesBefore.cavemanCapacity;
+         << "Food: " << resourcesBefore.food << " " << std::showpos
+         << game.getResources().food - resourcesBefore.food
+         << std::noshowpos << "\n"
+         << "Building Material: " << resourcesBefore.buildingMaterial << " "
+         << std::showpos << game.getResources().buildingMaterial
+         - resourcesBefore.buildingMaterial << std::noshowpos << "\n"
+         << "Cave Capacity: " << resourcesBefore.cavemanCapacity << " "
+         << std::showpos << game.getResources().cavemanCapacity
+         - resourcesBefore.cavemanCapacity;
 
     infoColumn->setText(info.str());
 }

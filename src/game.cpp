@@ -58,7 +58,8 @@ void Game::addCaveman(int maxAge, int minAge) {
     repositionTribe();
 }
 
-void Game::addCaveman(int maxAge, int minAge, int newIntelligence, int newFitness, bool newIsMale) {
+void Game::addCaveman(int maxAge, int minAge, int newIntelligence,
+                      int newFitness, bool newIsMale) {
     CavemanFactory cavemanfactory;
     tribe.push_back(cavemanfactory.createSpecific(maxAge, minAge, newIntelligence, newFitness, newIsMale));
     repositionTribe();

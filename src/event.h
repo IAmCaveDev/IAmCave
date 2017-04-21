@@ -22,10 +22,17 @@ private:
         float tribeFood;
         int tribeMaterial;
     };
+
+    short id;
+    std::string title;
+    std::string description;
+    Trigger trigger;
+    Textbox* textbox;
+
+public:
     /**
     * A list of possible effects created by the event
     */
-public:
     struct Effects {
         /**
         * General effects affecting the entire game
@@ -38,7 +45,7 @@ public:
         float foodGain;
         int materialGain;
 
-        /** 
+        /**
         * Stats for new caveman if created by the event
         */
         bool newCaveman;
@@ -57,16 +64,6 @@ public:
         Button* button;
         std::string texturePath;
     };
-private:
-
-    short id;
-    std::string title;
-    std::string description;
-    Trigger trigger;
-    std::vector<std::shared_ptr<Option>> options;
-    Textbox* textbox;
-
-public:
 
     Event(const std::string path);
     ~Event();
@@ -76,6 +73,10 @@ public:
     Textbox* getTextBox() const;
     short getID() const;
     std::string getDescription() const;
+
+private:
+    std::vector<std::shared_ptr<Option>> options;
+
 };
 
 #endif
