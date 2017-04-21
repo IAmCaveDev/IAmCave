@@ -16,8 +16,8 @@ private:
     * Requirements for the event to trigger
     */
     struct Trigger {
-        ETechs has_tech;
-        ETechs missing_tech;
+        std::string has_tech;
+        std::string missing_tech;
         int tribeSize;
         float tribeFood;
         int tribeMaterial;
@@ -41,6 +41,7 @@ public:
         /** 
         * Stats for new caveman if created by the event
         */
+        bool newCaveman;
         unsigned short new_age;
         short new_intelligence;
         short new_fitness;
@@ -54,6 +55,7 @@ public:
         std::string name;
         Effects effects;
         Button* button;
+        std::string texturePath;
     };
 private:
 

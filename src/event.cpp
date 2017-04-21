@@ -17,7 +17,7 @@ Event::Event(std::string path) {
         if (!data["trigger"]["tribeSize"].empty()) trigger.tribeSize = data["trigger"]["tribeSize"];
         if (!data["trigger"]["tribeMaterial"].empty()) trigger.tribeMaterial = data["trigger"]["tribeMaterial"];
 
-        int buttonY = -220;
+        int buttonY = -130;
         for (auto& it : data["options"]) {
         std::shared_ptr<Option> option(new Option{ it["name"], {0.0, 0.0, 0.0, 0.0, 0, 0.0, 0, 0, 0, 0, false } });
             if (!it["huntBonus"].empty()) option->effects.huntBonus = it["huntBonus"];
@@ -29,12 +29,15 @@ Event::Event(std::string path) {
             if (!it["materialGain"].empty()) option->effects.materialGain = it["materialGain"];
 
             for (auto& caveman : it["cavemen"]) {
+                option->effects.newCaveman = true;
                 option->effects.new_age = caveman["age"];
                 option->effects.new_fitness = caveman["fitness"];
                 option->effects.new_intelligence = caveman["intelligence"];
                 option->effects.new_isMale = caveman["isMale"];
             }
-            Button* button(new Button({ 200, 80 }, { -250, buttonY }, "assets/confirm.png", std::bind([&]() {}), nullptr));
+            if (!it["texturePath"].empty()) option->texturePath = it["texturePath"];
+            else option->texturePath = "assets/eventbuttons/ok.png";
+            Button* button(new Button({ 200, 80 }, { -250, buttonY }, option->texturePath, std::bind([&]() {}), nullptr));
             buttonY -= 100;
             option->button = button;
             options.push_back(option);

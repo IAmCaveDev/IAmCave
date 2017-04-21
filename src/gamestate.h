@@ -64,6 +64,11 @@ public:
      * Gets all the actions currently in game
      */
     std::vector<std::unique_ptr<Action>>& getActions();
+
+    /**
+    * Get a reference on the active game
+    */
+    Game& getGame();
     /**
      * Displays the game state.
      * @param win The window to draw on.

@@ -298,19 +298,32 @@ namespace ButtonFunctions {
         }
     }
     namespace Events {
-       void confirmOption(Game& game, std::shared_ptr<Event::Option> option, short id) {
-                Tech::StatBoosts newStats = game.getTechBonuses();
-                
-                newStats.addends.gatheringBonus += option->effects.gatheringBonus;
-                newStats.addends.huntBonus += option->effects.huntBonus;
-                game.setTechBonuses(newStats);
-                option->button->setPosition({ 2000, 2000 });
+        void confirmOption(GameState& stateRef, std::shared_ptr<Event::Option> option, short id) {
+            Tech::StatBoosts newStats = stateRef.getGame().getTechBonuses();
+
+            newStats.addends.gatheringBonus += option->effects.gatheringBonus;
+            newStats.addends.huntBonus += option->effects.huntBonus;
+            stateRef.getGame().setTechBonuses(newStats);
+
+            stateRef.getGame().addToResources({ option->effects.foodGain, option->effects.materialGain, option->effects.capacityGain });
+
+            if (option->effects.newCaveman) {
+                stateRef.getGame().addCaveman(50 , option->effects.new_age);
+            }
+
+            for (int i = stateRef.getButtons().size() - 1; i > 0; i--) {
+                stateRef.getButtons().at(i)->setPosition({ 2000, 2000 });
                 option->button->setVisibility(false);
-                game.addToResources({ option->effects.foodGain, option->effects.materialGain, option->effects.capacityGain });
-                game.removeEvent(id);
-                
+                stateRef.getButtons().pop_back();
+            }
+            stateRef.getButtons().at(0)->changeTexture("assets/go.png");
+            stateRef.getButtons().at(0)->setCallback(std::bind(&ButtonFunctions::Events::resetButton, std::ref(stateRef)));
+            stateRef.getButtons().at(0)->setPosition({ 450, -130 });
+            stateRef.getGame().removeEvent(id);
+            resetButton(stateRef);
         }
-
-
+       void resetButton(GameState& stateRef) {
+           stateRef.setNextState(EGamestates::management);
+       }
     }
 }
