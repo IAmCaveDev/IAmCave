@@ -1,7 +1,7 @@
 {
     "id": 1,
     "title": "Filthy Foxes!",
-    "description": "Chief!\n Foxes have invaded our storage! They already filled up their bellies with our finest meat before we could even notice anything!",
+    "description": "Chief!\nFoxes have invaded our storage!\nThey already filled up their bellies with our finest meat before we could even notice anything!",
 
     "trigger": {
 	},

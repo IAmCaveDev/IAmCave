@@ -1,7 +1,7 @@
 {
     "id": 5,
     "title": "New Ideas",
-    "description": "Chief, one of our hunters recently had a great idea to improve our hunting capabilities! By imitating animal noises we can attract certain creatures without having to search them before.",
+    "description": "Chief, one of our hunters recently had a great idea to improve our hunting capabilities!\nBy imitating animal noises we can attract certain creatures without having to search them before.",
 
     "trigger": {
     "tribeSize": 20
@@ -10,7 +10,7 @@
     "options": [
     {
         "name": "Great news!",
-        "huntBonus": "0.3"
+        "huntBonus": 0.3
     }
     ]
 }

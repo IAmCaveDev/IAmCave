@@ -10,7 +10,7 @@
     "options": [
     {
         "name": "I'm sick of eating the wrong shrooms!",
-        "gatheringBonus": "0.3"
+        "gatheringBonus": 0.3
     }
     ]
 }

@@ -1,7 +1,7 @@
 {
     "id": 4,
     "title": "Rat caught!",
-    "description": "Thanks to our new fences, we could prevent the rats from just sneaking into our storage. Stupid thing even waited in front of the fence until one of our men found and killed it.",
+    "description": "Thanks to our new fences, we could prevent the rats from just sneaking into our storage. Stupid thing even waited\nin front of the fence until one of our men found and killed it.",
 
     "trigger": {
     "tribeFood": 10,
@@ -12,9 +12,9 @@
     {
         "name": "Food attracting food.",
         "foodGain": 5
-    }
+    },
     {
-        "name": "Rats are disgusting!",
+        "name": "Rats are disgusting!"
     }
     ]
 }

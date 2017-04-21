@@ -1,16 +1,16 @@
 {
     "id": 3,
     "title": "Fire In The Storage Area!",
-    "description": "Chef, there has been an fire caused by some idiots who thought it would be alright to lighten up a campfire right next to our wood storage.",
+    "description": "Chief, there has been an fire caused by some idiots who thought it would be alright to lighten up a campfire right\nnext to our wood storage.",
 
     "trigger": {
 	},
 
     "options": [
     {
-    "name": "Sometimes I wish...",
+        "name": "Sometimes I wish...",
         "foodGain": -5,
-        "materialGain": -70,
+        "materialGain": -70
     }
     ]
 }
