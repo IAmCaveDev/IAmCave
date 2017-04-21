@@ -1,0 +1,22 @@
+{
+    "id": 7,
+    "title": "Big Creature Found!",
+    "description": "Great news! Our hunters have caught a big hairy animal resting among the bushes! Would you like to celebrate this with a big feast?",
+
+    "trigger": {
+	},
+
+    "options": [
+    {
+        "name": "To the eating corner!",
+        "texturePath": "assets/eventbuttons/absolutely.png",
+        "foodGain": 80
+    },
+    {
+        "name": "I'd rather not.",
+        "texturePath": "assets/eventbuttons/no.png",
+        "foodGain": 100
+    }
+    
+    ]
+}

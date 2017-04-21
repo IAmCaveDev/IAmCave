@@ -4,6 +4,7 @@
 #include <algorithm>
 
 #include "game.h"
+#include "buttonfunctions.h"
 
 void RoundEnd::resolveActions() {
     std::vector<int> toDelete = {};
@@ -36,9 +37,9 @@ void RoundEnd::resolveActions() {
             } else if (it->getType() == EActions::CollectAction) {
                 result.food += bonuses.addends.gatheringBonus;
             }
-            game.addToResources({result.food,
-                                 result.buildingMaterial,
-                                 result.cavemanCapacity});
+            game.addToResources({ result.food,
+                                  result.buildingMaterial,
+                                  result.cavemanCapacity });
             if (result.newborn) {
                 game.addCaveman(0, 0);
             }
@@ -85,6 +86,31 @@ void RoundEnd::doPassives() {
     }
 }
 
+void RoundEnd::doEvents(Resources resourcesBefore) {
+    EventFactory eventFactory;
+    std::shared_ptr<Event> event(eventFactory.createRandomEvent());
+    //TODO make sure ALL trigger requirements are met
+    if (resourcesBefore.food >= event->getTrigger().tribeFood
+        || resourcesBefore.buildingMaterial >= event->getTrigger().tribeMaterial
+        || resourcesBefore.cavemanCapacity >= event->getTrigger().tribeSize
+        || game.getTechtree().getTree().at(event->getTrigger().has_tech)->isResearched()
+        || !game.getTechtree().getTree().at(event->getTrigger().missing_tech)) {
+
+        for (auto& it : event->getOptions()) {
+            if (it == event->getOptions().at(0)) {
+                buttons.at(0)->changeTexture(it->texturePath);
+                buttons.at(0)->setCallback(std::bind(&ButtonFunctions::Events::confirmOption, std::ref(*this), it, event->getID()));
+                buttons.at(0)->setPosition(it->button->getPosition());
+            } else {
+                it->button->setCallback(std::bind(&ButtonFunctions::Events::confirmOption, std::ref(*this), it, event->getID()));
+                buttons.push_back(it->button);
+            }
+        }
+        setTextboxText(event->getDescription());
+        game.addEvent(event);
+    }
+}
+
 RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::roundEnd;
     nextState = type;
@@ -92,29 +118,31 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     std::random_device rd;
     rng = std::mt19937(rd());
 
-    infoColumn = new Textbox({450, 1080}, {0, 0}, "assets/endround-column.png",
-                             "", 5, 30);
-    textbox = new Textbox({1580, 160}, {20, 1080 - 180},
+    infoColumn = new Textbox({ 450, 1080 }, { 0, 0 },
+                             "assets/endround-column.png", "", 5, 30);
+    textbox = new Textbox({ 1580, 160 }, { 20, 1080 - 180 },
                           "assets/state-textbox.png", "", 15, 30);
 
     rectangles = {
-        new Rectangle({1920, 1080}, {0, 0}, "assets/cave.png"),
+        new Rectangle({ 1920, 1080 }, { 0, 0 }, "assets/cave.png"),
         infoColumn,
         textbox
     };
 
     buttons = {
-        new Button({200, 80}, {-250, -130}, "assets/go.png", [&]() {
-        nextState = EGamestates::management; })
+        new Button({ 200, 80 }, { -250, -130 }, "assets/go.png", [&]() {
+            nextState = EGamestates::management; })
     };
 }
 
-void RoundEnd::step(){
+void RoundEnd::step() {
     Resources resourcesBefore = game.getResources();
 
     resolveActions();
 
     doPassives();
+
+    doEvents(resourcesBefore);
 
     if (game.getResources().food < 0) {
         game.getResources().food = 0;
