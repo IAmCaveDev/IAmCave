@@ -1,7 +1,7 @@
 {
     "id": 10,
     "title": "New Heir!",
-    "description": "Chief! Congratulations for your new child! We didn't even know your woman was pregnant but here it is. Is it a boy or a girl?",
+    "description": "Chief!\nCongratulations for your new child! We didn't even know your woman was pregnant but here it is.\nIs it a girl?",
 
     "trigger": {
 	},
@@ -9,6 +9,7 @@
     "options": [
     { 
         "name": "A boy.",
+        "texturePath": "assets/eventbuttons/no.png",
         "cavemen": [
         {
             "age": 0,
@@ -17,9 +18,10 @@
             "isMale": true
         }
         ]
-    }
+    },
     {
         "name": "A girl.",
+        "texturePath": "assets/eventbuttons/absolutely.png",
         "cavemen": [
         {
             "age": 0,

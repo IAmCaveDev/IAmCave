@@ -10,6 +10,7 @@
     "options": [
     {
         "name": "Great news!",
+        "texturePath": "assets/eventbuttons/absolutely.png",
         "huntBonus": 0.3
     }
     ]

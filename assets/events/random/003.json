@@ -4,6 +4,7 @@
     "description": "Chief, there has been an fire caused by some idiots who thought it would be alright to lighten up a campfire right\nnext to our wood storage.",
 
     "trigger": {
+        "tribeMaterial": 50
 	},
 
     "options": [

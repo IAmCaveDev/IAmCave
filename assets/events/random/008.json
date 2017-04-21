@@ -9,6 +9,7 @@
     "options": [
     {
         "name": "By the gods!",
+        "texturePath": "assets/eventbuttons/never.png",
         "huntBonus": -0.5,
         "gatheringBonus": -0.5     
     }

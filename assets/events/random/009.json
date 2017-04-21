@@ -8,10 +8,12 @@
 
     "options": [
     { 
-        "name": "No, we don't know him."
-    }
+        "name": "No, we don't know him.",
+        "texturePath": "assets/eventbuttons/no.png"
+    },
     {
         "name": "We always need more men!",
+        "texturePath": "assets/eventbuttons/absolutely.png",
         "cavemen": [
             {
             "age": 18,

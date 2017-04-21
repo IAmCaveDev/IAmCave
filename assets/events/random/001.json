@@ -1,14 +1,14 @@
 {
     "id": 1,
     "title": "Filthy Foxes!",
-    "description": "Chief!\nFoxes have invaded our storage!\nThey already filled up their bellies with our finest meat before we could even notice anything!",
+    "description": "Chief!\nFoxes have invaded our storage and already filled up their bellies with our finest meat before we could even notice anything!",
 
     "trigger": {
 	},
 
     "options": [
     {
-    "name": "I wish we had something to protect our food...",
+        "name": "I wish we had something to protect our food...",
         "foodGain": -20
     }
     ]

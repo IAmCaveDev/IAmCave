@@ -9,6 +9,7 @@
     "options": [
     { 
         "name": "Of course not, you fool!",
+        "texturePath": "assets/eventbuttons/yes.png",
         "foodGain": -30
     }
     ]
