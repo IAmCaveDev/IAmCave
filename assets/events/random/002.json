@@ -1,0 +1,15 @@
+{
+    "id": 2,
+    "title": "Stonefall!",
+    "description": "Chief! The gods be blessed, a part of the big rock from above our cave suddenly cracked apart and splittered into many pieces which our women instantly collected.",
+
+    "trigger": {
+	},
+
+    "options": [
+    { 
+        "name": "Let us use them wisely.",
+        "materialGain": 40
+    }
+    ]
+}

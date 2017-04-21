@@ -34,10 +34,10 @@ Game::Game() : techtree("assets/background-techtree.png",
     EventFactory eventFactory;
 
     // Starting population
-    for(int i = 0; i < 3; ++i){
+    for(int i = 0; i < 4; ++i){
         tribe.push_back(cavemanFactory.createMale(5, 5));
     }
-    for(int i = 0; i < 2; ++i){
+    for(int i = 0; i < 4; ++i){
         tribe.push_back(cavemanFactory.createFemale(5, 5));
     }
 
@@ -48,13 +48,20 @@ Game::Game() : techtree("assets/background-techtree.png",
     resources.buildingMaterial = 50;
     resources.cavemanCapacity = 10;
 
-    eventStack.push_back(eventFactory.createEvent(0, Narrative));
+    //events.push_back(eventFactory.createEvent(0, Narrative));
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
     CavemanFactory cavemanFactory;
     tribe.push_back(cavemanFactory.createRandom(maxAge, minAge));
 
+    repositionTribe();
+}
+
+void Game::addCaveman(int maxAge, int minAge, int newIntelligence,
+                      int newFitness, bool newIsMale) {
+    CavemanFactory cavemanfactory;
+    tribe.push_back(cavemanfactory.createSpecific(maxAge, minAge, newIntelligence, newFitness, newIsMale));
     repositionTribe();
 }
 
@@ -79,11 +86,27 @@ void Game::addAction(std::unique_ptr<Action> newAction) {
     actions.push_back(std::move(newAction));
 }
 
+void Game::addEvent(std::shared_ptr<Event> newEvent) {
+    events.push_back(newEvent);
+}
+
 void Game::removeAction(int id) {
     for (int i = 0; i < actions.size(); ++i) {
         if (actions.at(i)->getID() == id) {
             actions.at(i).reset();
             actions.erase(actions.begin()+i);
+            return;
+        }
+    }
+}
+
+void Game::removeEvent(short id) {
+    for (int i = 0; i < events.size(); ++i) {
+        if (events.at(i)->getID() == id) {
+            events.at(i).reset();
+            //events.at(i)->getOptions().at(0)->button->setVisibility(false);
+            events.erase(events.begin() + i);
+
             return;
         }
     }

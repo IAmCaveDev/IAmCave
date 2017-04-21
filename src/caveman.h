@@ -45,6 +45,7 @@ public:
     short getFitness();
     void setFitness(short newFit);
     short getIntelligence();
+    void setIntelligence(short newInt);
     void addIntelligence(short newInt);
 
     Button& getButton();

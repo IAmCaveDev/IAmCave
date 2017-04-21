@@ -294,8 +294,36 @@ namespace ButtonFunctions {
         }
         void hideInfo(std::shared_ptr<Caveman> caveman){
             caveman->setInfoboxVisible(false);
-            caveman->getButton().setAltCallback(std::bind(&displayInfo,
-                                                          caveman));
+            caveman->getButton().setAltCallback(std::bind(&displayInfo, caveman));
         }
+    }
+    namespace Events {
+        void confirmOption(GameState& stateRef, std::shared_ptr<Event::Option> option, short id) {
+            Tech::StatBoosts newStats = stateRef.getGame().getTechBonuses();
+
+            newStats.addends.gatheringBonus += option->effects.gatheringBonus;
+            newStats.addends.huntBonus += option->effects.huntBonus;
+            stateRef.getGame().setTechBonuses(newStats);
+
+            stateRef.getGame().addToResources({ option->effects.foodGain, option->effects.materialGain, option->effects.capacityGain });
+
+            if (option->effects.newCaveman) {
+                stateRef.getGame().addCaveman(50, option->effects.new_age, option->effects.new_intelligence, option->effects.new_fitness, option->effects.new_isMale);
+            }
+
+            for (int i = stateRef.getButtons().size() - 1; i > 0; i--) {
+                stateRef.getButtons().at(i)->setPosition({ 2000, 2000 });
+                option->button->setVisibility(false);
+                stateRef.getButtons().pop_back();
+            }
+            stateRef.getButtons().at(0)->changeTexture("assets/go.png");
+            stateRef.getButtons().at(0)->setCallback(std::bind(&ButtonFunctions::Events::resetButton, std::ref(stateRef)));
+            stateRef.getButtons().at(0)->setPosition({ 450, -130 });
+            stateRef.getGame().removeEvent(id);
+            resetButton(stateRef);
+        }
+       void resetButton(GameState& stateRef) {
+           stateRef.setNextState(EGamestates::management);
+       }
     }
 }

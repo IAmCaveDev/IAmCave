@@ -1,0 +1,17 @@
+{
+    "id": 8,
+    "title": "Lightning Strike!",
+    "description": "A lightning strike just hit a tree in front of our cave. The animals are running wild and seem to be avoiding this particular area from now on.",
+
+    "trigger": {
+	},
+
+    "options": [
+    {
+        "name": "By the gods!",
+        "texturePath": "assets/eventbuttons/never.png",
+        "huntBonus": -0.5,
+        "gatheringBonus": -0.5     
+    }
+    ]
+}

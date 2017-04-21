@@ -1,0 +1,27 @@
+{
+    "id": 9,
+    "title": "Lonely Wanderer",
+    "description": "Some guy was randomly roaming the woods; it seemed like he was on the search for a new community to live in. Should we keep him?",
+
+    "trigger": {
+	},
+
+    "options": [
+    { 
+        "name": "No, we don't know him.",
+        "texturePath": "assets/eventbuttons/no.png"
+    },
+    {
+        "name": "We always need more men!",
+        "texturePath": "assets/eventbuttons/absolutely.png",
+        "cavemen": [
+            {
+            "age": 18,
+            "fitness": 5,
+            "intelligence": 3,
+            "isMale": true
+            }
+        ]      
+    }
+    ]
+}

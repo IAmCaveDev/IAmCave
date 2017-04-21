@@ -1,0 +1,22 @@
+{
+    "id": 4,
+    "title": "Rat caught!",
+    "description": "Thanks to our new fences, we could prevent the rats from just sneaking into our storage. Stupid thing even waited\nin front of the fence until one of our men found and killed it. Is it cool if we decide to eat it?",
+
+    "trigger": {
+    "tribeFood": 10,
+    "has_tech": "WoodenFence"
+	},
+
+    "options": [
+    {
+        "name": "Food attracting food.",
+        "texturePath": "assets/eventbuttons/absolutely.png",
+        "foodGain": 5
+    },
+    {
+        "name": "Rats are disgusting!",
+        "texturePath": "assets/eventbuttons/never.png"
+    }
+    ]
+}
