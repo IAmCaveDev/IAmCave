@@ -97,8 +97,9 @@ void Game::removeEvent(short id) {
     for (int i = 0; i < events.size(); ++i) {
         if (events.at(i)->getID() == id) {
             events.at(i).reset();
+            //events.at(i)->getOptions().at(0)->button->setVisibility(false);
             events.erase(events.begin() + i);
-            
+
             return;
         }
     }

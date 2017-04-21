@@ -47,7 +47,7 @@ namespace ButtonFunctions {
         void hideInfo(std::shared_ptr<Caveman> caveman);
     }
     namespace Events {
-        void confirmOption(Game& game, Event::Effects effects, short id);
+        void confirmOption(Game& game, std::shared_ptr<Event::Option> option, short id);
     }
 }
 

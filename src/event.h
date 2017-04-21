@@ -46,15 +46,16 @@ public:
         short new_fitness;
         bool new_isMale;
     };
-private:
+
     /**
     * Content and effects for choosable options by the player
     */
     struct Option {
         std::string name;
         Effects effects;
-        //std::shared_ptr<Button> button;
+        Button* button;
     };
+private:
 
     short id;
     std::string title;
@@ -72,6 +73,7 @@ public:
     std::vector<std::shared_ptr<Option>> getOptions() const;
     Textbox* getTextBox() const;
     short getID() const;
+    std::string getDescription() const;
 };
 
 #endif

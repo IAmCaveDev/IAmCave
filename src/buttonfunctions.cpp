@@ -294,19 +294,19 @@ namespace ButtonFunctions {
         }
         void hideInfo(std::shared_ptr<Caveman> caveman){
             caveman->setInfoboxVisible(false);
-            caveman->getButton().setAltCallback(std::bind(&displayInfo,
-                                                          caveman));
+            caveman->getButton().setAltCallback(std::bind(&displayInfo, caveman));
         }
     }
     namespace Events {
-       void confirmOption(Game& game, Event::Effects effects, short id) {
+       void confirmOption(Game& game, std::shared_ptr<Event::Option> option, short id) {
                 Tech::StatBoosts newStats = game.getTechBonuses();
                 
-                newStats.addends.gatheringBonus += effects.gatheringBonus;
-                newStats.addends.huntBonus += effects.huntBonus;
+                newStats.addends.gatheringBonus += option->effects.gatheringBonus;
+                newStats.addends.huntBonus += option->effects.huntBonus;
                 game.setTechBonuses(newStats);
-
-                game.addToResources({ effects.foodGain, effects.materialGain, effects.capacityGain });
+                option->button->setPosition({ 2000, 2000 });
+                option->button->setVisibility(false);
+                game.addToResources({ option->effects.foodGain, option->effects.materialGain, option->effects.capacityGain });
                 game.removeEvent(id);
                 
         }

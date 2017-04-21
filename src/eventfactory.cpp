@@ -32,7 +32,7 @@ std::shared_ptr<Event> EventFactory::createRandomEvent() {
 
     std::random_device rd;
     std::mt19937 rng(rd());
-    std::uniform_int_distribution<short> distribution(1, 1); //Change max event id later or make dynamic
+    std::uniform_int_distribution<short> distribution(1, 5); //Change max event id later or make dynamic
 
     short id = distribution(rng);
     if (id < 10) {

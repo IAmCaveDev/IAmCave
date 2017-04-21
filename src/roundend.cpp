@@ -96,16 +96,16 @@ void RoundEnd::doEvents(Resources resourcesBefore) {
     if (resourcesBefore.food >= event->getTrigger().tribeFood
         || resourcesBefore.buildingMaterial >= event->getTrigger().tribeMaterial
         || resourcesBefore.cavemanCapacity >= event->getTrigger().tribeSize) {
-        rectangles.push_back(event->getTextBox());
+        //rectangles.push_back(event->getTextBox());
         for (auto& it : event->getOptions()) {
-            Button* button = new Button({ 200, 100 }, { 850, 700 }, "assets/confirm.png", 
-                std::bind(&ButtonFunctions::Events::confirmOption, std::ref(game), it->effects, event->getID())
-                , nullptr);
-
-            buttons.push_back(button);
+            it->button->setCallback(std::bind(&ButtonFunctions::Events::confirmOption, std::ref(game), it, event->getID()));
+            //buttons.at(0) = new Button({ 200, 80 }, { -250, -130 }, "assets/confirm.png", [&]() {});
+            buttons.push_back(it->button);
         }
     }
+    setTextboxText(event->getDescription());
     game.addEvent(event);
+
 }
 
 RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {

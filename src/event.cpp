@@ -17,6 +17,7 @@ Event::Event(std::string path) {
         if (!data["trigger"]["tribeSize"].empty()) trigger.tribeSize = data["trigger"]["tribeSize"];
         if (!data["trigger"]["tribeMaterial"].empty()) trigger.tribeMaterial = data["trigger"]["tribeMaterial"];
 
+        int buttonY = -220;
         for (auto& it : data["options"]) {
         std::shared_ptr<Option> option(new Option{ it["name"], {0.0, 0.0, 0.0, 0.0, 0, 0.0, 0, 0, 0, 0, false } });
             if (!it["huntBonus"].empty()) option->effects.huntBonus = it["huntBonus"];
@@ -33,9 +34,10 @@ Event::Event(std::string path) {
                 option->effects.new_intelligence = caveman["intelligence"];
                 option->effects.new_isMale = caveman["isMale"];
             }
-            //std::shared_ptr<Button> button(new Button({ 200, 100 }, { 850, 700 }, "assets/confirm.png", std::bind([&]() {}), nullptr));
-            //option->button = button;
-            options.push_back(std::move(option));
+            Button* button(new Button({ 200, 80 }, { -250, buttonY }, "assets/confirm.png", std::bind([&]() {}), nullptr));
+            buttonY -= 100;
+            option->button = button;
+            options.push_back(option);
         }
     }
     else {
@@ -46,6 +48,10 @@ Event::Event(std::string path) {
 }
 
 Event::~Event() {
+    for (auto& it : options) {
+        //delete it->button;
+    }
+    //delete textbox;
 }
 
 Event::Trigger Event::getTrigger() const {
@@ -62,4 +68,8 @@ Textbox* Event::getTextBox() const {
 
 short Event::getID() const {
     return id;
+}
+
+std::string Event::getDescription() const {
+    return description;
 }
