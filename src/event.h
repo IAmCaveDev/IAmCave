@@ -10,7 +10,7 @@
 #include "cavemanfactory.h"
 using json = nlohmann::json;
 
-class Event : std::enable_shared_from_this<Event> {
+class Event {
 private:
     /**
     * Requirements for the event to trigger

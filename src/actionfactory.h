@@ -13,12 +13,12 @@
 
 class ActionFactory {
 public:
-    std::shared_ptr<Action> createEasyHuntingAction(short duration);
-    std::shared_ptr<Action> createHardHuntingAction(short duration);
-    std::shared_ptr<Action> createCollectAction(short duration);
-    std::shared_ptr<Action> createSexAction();
-    std::shared_ptr<Action> createImproveAction(short duration);
-    std::shared_ptr<Action> createThinkingAction(std::string techName, short duration);
+    std::unique_ptr<Action> createEasyHuntingAction(short duration);
+    std::unique_ptr<Action> createHardHuntingAction(short duration);
+    std::unique_ptr<Action> createCollectAction(short duration);
+    std::unique_ptr<Action> createSexAction();
+    std::unique_ptr<Action> createImproveAction(short duration);
+    std::unique_ptr<Action> createThinkingAction(std::string techName, short duration);
     //TODO: more methods for creating other actions
 
 };

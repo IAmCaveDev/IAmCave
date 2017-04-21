@@ -75,12 +75,12 @@ std::vector<std::shared_ptr<Caveman>>& Game::getTribe() {
     return tribe;
 }
 
-void Game::addAction(std::shared_ptr<Action> newAction) {
+void Game::addAction(std::unique_ptr<Action> newAction) {
     actions.push_back(std::move(newAction));
 }
 
 void Game::addEvent(std::shared_ptr<Event> newEvent) {
-    events.push_back(std::move(newEvent));
+    events.push_back(newEvent);
 }
 
 void Game::removeAction(int id) {
@@ -98,12 +98,13 @@ void Game::removeEvent(short id) {
         if (events.at(i)->getID() == id) {
             events.at(i).reset();
             events.erase(events.begin() + i);
+            
             return;
         }
     }
 }
 
-std::vector<std::shared_ptr<Action>>& Game::getActions() {
+std::vector<std::unique_ptr<Action>>& Game::getActions() {
     return actions;
 }
 

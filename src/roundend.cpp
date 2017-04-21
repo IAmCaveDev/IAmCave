@@ -98,7 +98,10 @@ void RoundEnd::doEvents(Resources resourcesBefore) {
         || resourcesBefore.cavemanCapacity >= event->getTrigger().tribeSize) {
         rectangles.push_back(event->getTextBox());
         for (auto& it : event->getOptions()) {
-            Button* button = new Button({ 200, 100 }, { 850, 700 }, "assets/confirm.png", std::bind(&ButtonFunctions::Events::confirmOption, game, it->effects, event->getID()), nullptr);
+            Button* button = new Button({ 200, 100 }, { 850, 700 }, "assets/confirm.png", 
+                std::bind(&ButtonFunctions::Events::confirmOption, std::ref(game), it->effects, event->getID())
+                , nullptr);
+
             buttons.push_back(button);
         }
     }

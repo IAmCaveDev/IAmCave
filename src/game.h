@@ -28,7 +28,7 @@ private:
     unsigned int roundNumber = 0;
 
     std::vector<std::shared_ptr<Caveman>> tribe;
-    std::vector<std::shared_ptr<Action>> actions;
+    std::vector<std::unique_ptr<Action>> actions;
     std::vector<std::shared_ptr<Event>> events;
     Techtree techtree;
 
@@ -70,11 +70,11 @@ public:
      */
     void removeCaveman(short id);
 
-    void addAction(std::shared_ptr<Action> newAction);
+    void addAction(std::unique_ptr<Action> newAction);
     void addEvent(std::shared_ptr<Event> newEvent);
     void removeAction(int id);
     void removeEvent(short id);
-    std::vector<std::shared_ptr<Action>>& getActions();
+    std::vector<std::unique_ptr<Action>>& getActions();
     void addToResources(Resources amount);
     void stopResearch();
 

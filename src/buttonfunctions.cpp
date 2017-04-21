@@ -301,14 +301,14 @@ namespace ButtonFunctions {
     namespace Events {
        void confirmOption(Game& game, Event::Effects effects, short id) {
                 Tech::StatBoosts newStats = game.getTechBonuses();
-
+                
                 newStats.addends.gatheringBonus += effects.gatheringBonus;
                 newStats.addends.huntBonus += effects.huntBonus;
-                newStats.addends.intelligenceGain += effects.intelligenceGain;
                 game.setTechBonuses(newStats);
 
                 game.addToResources({ effects.foodGain, effects.materialGain, effects.capacityGain });
                 game.removeEvent(id);
+                
         }
 
 
