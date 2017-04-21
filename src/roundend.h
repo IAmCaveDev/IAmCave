@@ -12,6 +12,7 @@
 /**
  * The end of a round.
  * Displays information about the round.
+ * Resolves all actions in the Game's Actionqueue.
  */
 class RoundEnd : public GameState {
 private:
@@ -22,7 +23,7 @@ private:
     Textbox* textbox;
 
     /**
-    * Calls the resolve function of nextAction and adds to Gameresources
+    * Calls the resolve function of all active Actions and adds to Gameresources
     */
     void resolveActions();
 

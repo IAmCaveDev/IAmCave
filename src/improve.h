@@ -10,7 +10,6 @@ public:
     Improve(short time);
 
     void addActor(std::shared_ptr<Caveman> actor);
-    ActionPackage resolve();
     ActionPackage resolve(Tech::StatBoosts bonuses);
 };
 

@@ -11,6 +11,9 @@
 #include "sex.h"
 #include "think.h"
 
+/**
+ * A Factory class for creating Action objects. 
+ */
 class ActionFactory {
 public:
     std::unique_ptr<Action> createEasyHuntingAction(short duration);
@@ -19,7 +22,5 @@ public:
     std::unique_ptr<Action> createSexAction();
     std::unique_ptr<Action> createImproveAction(short duration);
     std::unique_ptr<Action> createThinkingAction(std::string techName, short duration);
-    //TODO: more methods for creating other actions
-
 };
 #endif

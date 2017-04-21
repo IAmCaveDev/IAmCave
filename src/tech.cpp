@@ -153,17 +153,21 @@ bool Tech::isResearched() {
     return researched;
 }
 
-int Tech::getRequiredIntelligence() {
-    return requiredIntelligence;
-}
-
 void Tech::setResearched(bool newResearched) {
     researched = newResearched;
+}
+
+int Tech::getRequiredIntelligence() {
+    return requiredIntelligence;
 }
 
 void Tech::updateButtonState() {
     if (!researched) {
         button->setClickability(true);
+    }
+    else {
+        button->setClickability(false);
+        //TODO: change Texture from disabled to green highlighted
     }
 
     for (auto& it : parents) {

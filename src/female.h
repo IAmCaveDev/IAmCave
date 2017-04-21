@@ -3,6 +3,9 @@
 
 #include "caveman.h"
 
+/**
+ * A female Caveman.
+ */
 class Female : public Caveman {
 private:
     bool pregnant;
@@ -10,6 +13,9 @@ private:
     Female(int maxAge, int minAge);
 
 public:
+    /**
+     * @return false
+     */
     bool isMale();
     bool isPregnant();
     void setPregnant(bool preggo);

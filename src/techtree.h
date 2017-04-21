@@ -67,9 +67,13 @@ public:
      * Sets the visiblity of the Techtree.
      */
     void setVisibility(bool newVisibility);
-
+    /**
+     * @return the current visibility of the Techtree.
+     */
     bool getVisibility();
-
+    /**
+    * Sets the text of the Techtree's textbox.
+    */
     void setTextboxText(std::string str);
 
     /**
