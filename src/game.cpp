@@ -52,6 +52,7 @@ Game::Game() : techtree("assets/background-techtree.png",
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
+    if (resources.cavemanCapacity <= tribe.size()) return;
     CavemanFactory cavemanFactory;
     tribe.push_back(cavemanFactory.createRandom(maxAge, minAge));
 
@@ -60,6 +61,7 @@ void Game::addCaveman(int maxAge, int minAge) {
 
 void Game::addCaveman(int maxAge, int minAge, int newIntelligence,
                       int newFitness, bool newIsMale) {
+    if (resources.cavemanCapacity <= tribe.size()) return;
     CavemanFactory cavemanfactory;
     tribe.push_back(cavemanfactory.createSpecific(maxAge, minAge, newIntelligence, newFitness, newIsMale));
     repositionTribe();
