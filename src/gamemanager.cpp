@@ -4,19 +4,14 @@ GameManager::GameManager(std::string savePath, sf::RenderWindow& win)
                          : window(win),
                            mainMenu(game),
                            management(game),
-                           roundEnd(game) {
+                           roundEnd(game),
+                           winScreen(game),
+                           loseScreen(game) {
     if (savePath.empty()) {
         currentGameState = &mainMenu;
     } else {
         currentGameState = &management;
     }
-
-    roundEnd.setTextboxText("Lorem ipsum dolor sit amet, consetetur\
-sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore\
-et dolore magna aliquyam erat, sed diam voluptua. At vero eos et\
-accusam et justo duo dolores et ea rebum. Stet clita kasd\
-gubergren, no sea takimata sanctus est Lorem ipsum dolor sit\
-amet.");
 }
 
 void GameManager::display(){
@@ -39,6 +34,14 @@ void GameManager::update() {
             currentGameState->setNextState(currentState);
             currentGameState = &roundEnd;
             roundEnd.step();
+        } else if (nextState == EGamestates::winScreen) {
+            currentGameState->setNextState(currentState);
+            currentGameState = &winScreen;
+            management.resetTextbox();
+        } else if (nextState == EGamestates::loseScreen) {
+            currentGameState->setNextState(currentState);
+            currentGameState = &loseScreen;
+            management.resetTextbox();
         } else if (nextState == EGamestates::quit) {
             window.close();
         }
