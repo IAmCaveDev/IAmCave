@@ -39,6 +39,12 @@ namespace ButtonFunctions {
         }
         namespace Sex {
             void sex(Management& stateRef) {
+                for (auto& it : stateRef.getActions()) {
+                    if (it->getType() == EActions::SexAction) {
+                        stateRef.setTextboxText("It is only possible to have one sex Action at a time!");
+                        return;
+                    }
+                }
                 std::vector<Button*>& buttons = stateRef.getButtons();
                 for (auto& it : buttons) {
                     it->setClickability(false);
