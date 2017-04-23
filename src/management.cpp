@@ -118,11 +118,12 @@ void Management::deleteCurrentAction() {
 
 void Management::setActiveTech(std::string newTech) {
     activeTech = newTech;
-    int i = 0;
 }
 
 std::string Management::getActiveTech() {
-    return activeTech; } 
+    return activeTech;
+}
+
 void Management::deleteActiveTech() {
     activeTech = "";
 }
@@ -148,17 +149,17 @@ void Management::display(sf::RenderWindow& win) {
 
     actionDisplay->display(win);
 
-    for (auto const& it : getIdlingTribe()) {
+    for (auto const& it : buttons) {
         it->display(win);
     }
 
     resourceDisplay->display(win);
 
-    grass->display(win);
-
-    for (auto const& it : buttons) {
+    for (auto const& it : getIdlingTribe()) {
         it->display(win);
     }
+
+    grass->display(win);
 
     game.getTechtree().display(win);
 
