@@ -5,6 +5,7 @@
 
     "requiredIntelligence": 10,
     "intelligenceGain": 5,
+    "duration": 5,
 
     "statBoosts": {
         "addends": {

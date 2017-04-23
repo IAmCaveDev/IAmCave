@@ -54,6 +54,7 @@ private:
     int requiredIntelligence;
     StatBoosts statBoosts;
     short intelligenceGain;
+    short duration;
 
     bool researched;
 
@@ -121,7 +122,7 @@ public:
      */
     TransformedVector<> getLeftArrowNode();
     /**
-     * Returns a Reference to the Arrows to Parents in tree. Mainly needed to draw the arrows 
+     * Returns a Reference to the Arrows to Parents in tree. Mainly needed to draw the arrows
      * in techtree.display() function.
      */
     ArrowsToParents getArrowsToParents();
@@ -137,6 +138,10 @@ public:
      * @return required intelligence to research Tech
      */
     int getRequiredIntelligence();
+    /**
+     * @return the duration of the Tech.
+     */
+    short getDuration();
     /**
      * Enable or disable the Tech button, depending on wether the parents are researched and
      * wether the Tech itself is already researched.

@@ -22,6 +22,7 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newS
 
         requiredIntelligence = data["requiredIntelligence"];
         intelligenceGain = data["intelligenceGain"];
+        duration = data["duration"];
 
         statBoosts = {
             {
@@ -159,6 +160,10 @@ void Tech::setResearched(bool newResearched) {
 
 int Tech::getRequiredIntelligence() {
     return requiredIntelligence;
+}
+
+short Tech::getDuration() {
+    return duration;
 }
 
 void Tech::updateButtonState() {

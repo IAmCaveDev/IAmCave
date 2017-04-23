@@ -117,7 +117,9 @@ namespace ButtonFunctions {
                 techtreeRef.getProperThinking().setClickability(true);
                 stateRef.getTechtree().setTextboxText(techRef->getName() + "\n"
                         + std::to_string(techRef->getRequiredIntelligence())
-                        + " int required\n" + techRef->getDescription());
+                        + " int required, "
+                        + std::to_string(techRef->getDuration()) + " rounds\n"
+                        + techRef->getDescription());
             }
             void thinkAbort(Management& stateRef, Techtree& techtreeRef) {
                 techtreeRef.setVisibility(false);
@@ -134,11 +136,13 @@ namespace ButtonFunctions {
 
             void thinkConfirm(Management& stateRef, Techtree& techtreeRef) {
                 techtreeRef.setVisibility(false);
-                //TODO: check for duration of specific Tech and use it instead of 1
-                stateRef.setCurrentAction(EActions::ThinkAction, 1);
 
                 std::string name = stateRef.getActiveTech();
                 std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+                auto tech = techtreeRef.getTree().find(name)->second;
+
+                stateRef.setCurrentAction(EActions::ThinkAction, tech->getDuration());
+
                 if (name == "training") {
                     stateRef.setTextboxText("Select a caveman!");
                     for (auto& it : stateRef.getIdlingTribe()) {
@@ -147,7 +151,6 @@ namespace ButtonFunctions {
                     General::actionStart(stateRef);
                     return;
                 }
-                auto tech = techtreeRef.getTree().find(name)->second;
 
                 stateRef.setTextboxText("Select a caveman with " +
                         std::to_string(tech->getRequiredIntelligence()) +
