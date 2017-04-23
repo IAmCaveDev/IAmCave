@@ -52,9 +52,9 @@ Event::Event(std::string path) {
 
 Event::~Event() {
     for (auto& it : options) {
-        //delete it->button;
+        delete it->button;
     }
-    //delete textbox;
+    delete textbox;
 }
 
 Event::Trigger Event::getTrigger() const {
