@@ -8,15 +8,7 @@
 #include "action.h"
 #include "techtree.h"
 #include "eventfactory.h"
-
-/**
- * Resource data.
- */
-struct Resources {
-    float food;
-    int buildingMaterial;
-    int cavemanCapacity;
-};
+#include "resources.h"
 
 /**
  * Stores data about a game.
@@ -104,6 +96,11 @@ public:
      * @param amount Amount to be added to each resource.
      */
     void addToResources(Resources amount);
+    /**
+     * Returns false if the amount if resources-amount < 0
+     * Also calls addToResources if true
+     */
+    bool checkAndAddResources(Resources amount);
     /**
      * Returns a reference to the tribe.
      */

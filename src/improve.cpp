@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-Improve::Improve(short time) : Action(time) {
+Improve::Improve(short time, Resources cost) : Action(time, cost) {
     type = EActions::ImproveAction;
 }
 
@@ -18,16 +18,9 @@ ActionPackage Improve::resolve(Tech::StatBoosts bonuses) {
         for (auto& it : actors) {
             it->setCurrentAction(Idle);
         }
-        return { true, 0.f, 0, 1, false };
-
-    } else if (currentDuration == 1) {
-        // Substract material costs once at start
-        return { false, 0.f, -materialCosts, 0, false };
+        return{ true, 0.f, 0, 1, false };
     }
-
-    return { false, 0.f, 0, 0, false };
+    return{ false, 0.f, 0, 0, false };
 }
 
-int Improve::getMaterialCosts() {
-    return materialCosts;
-}
+

@@ -194,10 +194,14 @@ namespace ButtonFunctions {
                     stateRef.deleteCurrentAction();
                     stateRef.setTextboxText("You need exactly two cavemen with different genders for this action, pls try again.");
                 } else {
-                    stateRef.pushCurrentAction();
-                    stateRef.setTextboxText("Action added to the queue! You can either select more actions or press 'Go' to go to the next Round!");
+                    if (stateRef.getGame().checkAndAddResources(stateRef.getCurrentAction().getCost())) {
+                        stateRef.pushCurrentAction();
+                        stateRef.setTextboxText("Action added to the queue! You can either select more actions or press 'Go' to go to the next Round!");
+                    } else {
+                        stateRef.deleteCurrentAction();
+                        stateRef.setTextboxText("Not enough resources to perform this Action");
+                    }
                 }
-
                 stateRef.deleteActiveTech();
                 actionEnd(stateRef);
             }

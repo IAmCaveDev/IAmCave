@@ -124,6 +124,16 @@ void Game::addToResources(Resources amount) {
     resources.cavemanCapacity += amount.cavemanCapacity;
 }
 
+bool Game::checkAndAddResources(Resources amount) {
+    if ((resources.food + amount.food < 0) ||
+        (resources.buildingMaterial + amount.buildingMaterial < 0)) {
+        return false;
+    } else {
+        addToResources(amount);
+        return true;
+    }
+}
+
 Techtree& Game::getTechtree(){
     return techtree;
 }

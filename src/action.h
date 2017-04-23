@@ -8,6 +8,7 @@
 #include "enum.h"
 #include "caveman.h"
 #include "tech.h"
+#include "resources.h"
 
 
  /**
@@ -32,13 +33,16 @@ struct ActionPackage {
  * An action performed by one or more cavemen over one or more rounds.
  * Base class for all specific action classes.
  */
-
 class Action {
 private:
     /**
      * Counter for generating unique IDs.
      */
     static int counter;
+    /*
+     * The cost of starting the action.
+     */
+    Resources cost;
 
 protected:
     std::vector<std::shared_ptr<Caveman>> actors;
@@ -49,8 +53,11 @@ protected:
 
 public:
     Action() = delete;
-    explicit Action(short time);
-
+    explicit Action(short time, Resources cost = { 0.0,0,0 });
+    /**
+     * Returns the Action's cost.
+     */
+    const Resources getCost();
     /**
      * Returns the Action's ID.
      */

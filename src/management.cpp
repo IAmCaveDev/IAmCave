@@ -81,23 +81,23 @@ void Management::pushCurrentAction() {
     switch (currentType) {
         case EActions::EasyHunt:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
-                                    "assets/hunt-icon.png", nullptr), currentAction->getDuration());
+                "assets/hunt-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::HardHunt:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
-                                    "assets/hunt-icon.png", nullptr), currentAction->getDuration());
+                "assets/hunt-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::SexAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
-                                    "assets/makelove-icon.png", nullptr), currentAction->getDuration());
+                "assets/makelove-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::ImproveAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
-                                    "assets/improve-icon.png", nullptr), currentAction->getDuration());
+                "assets/improve-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::ThinkAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
-                                    "assets/think-icon.png", nullptr), currentAction->getDuration());
+                "assets/think-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::CollectAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
