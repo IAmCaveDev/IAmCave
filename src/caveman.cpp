@@ -20,12 +20,16 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     intelligence = stats(rng);
 
     infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "");
+    actionbox = new Button({50, 50}, {0, 0}, "assets/idle.png", nullptr);
+    actionbox->setVisibility(false);
 
     counter += 1;
 }
 
 Caveman::~Caveman() {
     delete button;
+    delete infobox;
+    delete actionbox;
 }
 
 void Caveman::setInfoboxVisible(bool visible){
@@ -51,6 +55,14 @@ short Caveman::getIntelligence(){
     return intelligence;
 }
 
+void Caveman::setIntelligence(short newInt) {
+    intelligence = newInt;
+}
+
+void Caveman::addIntelligence(short newInt) {
+    intelligence += newInt;
+}
+
 Button& Caveman::getButton() {
     return *button;
 }
@@ -64,11 +76,21 @@ void Caveman::initButton() {
             shared_from_this()));
 }
 
-void Caveman::setPosition(TransformedVector<> newPosition){
+void Caveman::setPosition(TransformedVector<> newPosition) {
     button->setTransformedPosition(newPosition);
     infobox->setTransformedPosition(
         {newPosition.getRealX() - button->getTransformedSize().getRealX()/2,
          newPosition.getRealY() - infobox->getTransformedSize().getRealY()});
+    actionbox->setTransformedPosition(
+        {newPosition.getRealX() + button->getTransformedSize().getRealX()/2 -
+         actionbox->getTransformedSize().getRealX()/2,
+         newPosition.getRealY() - actionbox->getTransformedSize().getRealY()/2});
+}
+
+void Caveman::setSize(TransformedVector<> newSize) {
+    button->setTransformedSize(newSize);
+
+    setPosition(button->getTransformedPosition());
 }
 
 EActions Caveman::getCurrentAction(){
@@ -79,16 +101,30 @@ void Caveman::setCurrentAction(EActions newOccupation) {
     currentAction = newOccupation;
 }
 
+void Caveman::setActionBox(EActions displayedAction) {
+    if (displayedAction == EActions::Idle) {
+        actionbox->setVisibility(false);
+    } else {
+        actionbox->setVisibility(true);
+        actionbox->changeTexture("assets/arrow.png");
+    }
+}
+
 void Caveman::onResize(){
     button->setPosition(button->getTransformedPosition());
     button->setSize(button->getTransformedSize());
     infobox->setPosition(infobox->getTransformedPosition());
     infobox->setSize(infobox->getTransformedSize());
+    actionbox->setPosition(actionbox->getTransformedPosition());
+    actionbox->setSize(actionbox->getTransformedSize());
 }
 
 void Caveman::display(sf::RenderWindow& win) const {
     win.draw(*button);
     if(infoboxVisible){
         win.draw(*infobox);
+    }
+    if (actionbox->getVisibility()) {
+        win.draw(*actionbox);
     }
 }

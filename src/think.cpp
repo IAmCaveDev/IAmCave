@@ -11,14 +11,13 @@ void Think::addActor(std::shared_ptr<Caveman> newactor) {
     }
 }
 
-ActionPackage Think::resolve() {
+ActionPackage Think::resolve(Tech::StatBoosts bonuses) {
     currentDuration += 1;
 
     if (currentDuration == totalDuration) {
         actors.front()->setCurrentAction(Idle);
-        //do stuff depending on which tech is done + set is Final(?)
-        return{ true, 0.f, 0, false };
+        return { true, 0, 0, 0, false, name };
     }
 
-    return{ false, 0.f, 0, false };
+    return { false, 0, 0, 0, false };
 }

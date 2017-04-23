@@ -6,7 +6,8 @@
 using json = nlohmann::json;
 
 Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newStraightLine)
-          : parents(newParents), button(100, 0, "assets/techplaceholder.png", nullptr) {
+          : parents(newParents){
+    researched = false;
     level = newLevel;
     straightLine = newStraightLine;
 
@@ -20,17 +21,23 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newS
         iconPath = data["iconPath"];
 
         requiredIntelligence = data["requiredIntelligence"];
+        intelligenceGain = data["intelligenceGain"];
 
         statBoosts = {
-            data["statBoosts"]["huntBonus"],
-            data["statBoosts"]["gatheringBonus"],
-            data["statBoosts"]["fitnessGain"],
-            data["statBoosts"]["intelligenceGain"],
+            {
+                data["statBoosts"]["addends"]["huntBonus"],
+                data["statBoosts"]["addends"]["gatheringBonus"],
+                data["statBoosts"]["addends"]["fitnessGain"],
+            }
         };
 
     } else {
         throw std::runtime_error("Could not open file at " + path);
     }
+
+    std::string lowerName = name;
+    std::transform(lowerName.begin(), lowerName.end(), lowerName.begin(), ::tolower);
+    button = new Button(100, 0, "assets/techtree/res-"+lowerName+".png", nullptr);
 }
 
 std::string Tech::getName() {
@@ -42,7 +49,7 @@ Tech::ParentsVector& Tech::getParents() {
 }
 
 Button& Tech::getButton() {
-    return button;
+    return *button;
 }
 
 short Tech::getLevel() {
@@ -51,6 +58,18 @@ short Tech::getLevel() {
 
 void Tech::setLevel(short newLevel) {
     level = newLevel;
+}
+
+short Tech::getIntelligenceGain() {
+    return intelligenceGain;
+}
+
+Tech::StatBoosts Tech::getBonuses() {
+    return statBoosts;
+}
+
+std::string Tech::getDescription() {
+    return description;
 }
 
 void Tech::createArrowsToParents() {
@@ -111,19 +130,53 @@ void Tech::updateArrowsToParents() {
 }
 
 TransformedVector<> Tech::getRightArrowNode() {
-    TransformedVector<> buttonPos = button.getTransformedPosition();
-    TransformedVector<> buttonSize = button.getTransformedSize();
-    return {buttonPos.getRealX() + buttonSize.getRealX(),
+    TransformedVector<> buttonPos = button->getTransformedPosition();
+    TransformedVector<> buttonSize = button->getTransformedSize();
+    // 10: image padding, 280: image size
+    return {buttonPos.getRealX() + buttonSize.getRealX() - static_cast<int>(10.f/280.f * buttonSize.getRealX()),
             buttonPos.getRealY() + buttonSize.getRealY() / 2};
 }
 
 TransformedVector<> Tech::getLeftArrowNode() {
-    TransformedVector<> buttonPos = button.getTransformedPosition();
-    TransformedVector<> buttonSize = button.getTransformedSize();
-    return {buttonPos.getRealX(),
+    TransformedVector<> buttonPos = button->getTransformedPosition();
+    TransformedVector<> buttonSize = button->getTransformedSize();
+    // 10: image padding, 280: image size
+    return {buttonPos.getRealX() + static_cast<int>(10.f/280.f * buttonSize.getRealX()),
             buttonPos.getRealY() + buttonSize.getRealY() / 2};
 }
 
 Tech::ArrowsToParents Tech::getArrowsToParents() {
     return arrowsToParents;
+}
+
+bool Tech::isResearched() {
+    return researched;
+}
+
+void Tech::setResearched(bool newResearched) {
+    researched = newResearched;
+}
+
+int Tech::getRequiredIntelligence() {
+    return requiredIntelligence;
+}
+
+void Tech::updateButtonState() {
+    if (!researched) {
+        button->setClickability(true);
+    }
+    else {
+        button->setClickability(false);
+        //TODO: change Texture from disabled to green highlighted
+    }
+
+    for (auto& it : parents) {
+        if (it == nullptr) {
+            return;
+        }
+        if (!it->isResearched()) {
+            button->setClickability(false);
+            break;
+        }
+    }
 }

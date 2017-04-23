@@ -34,11 +34,13 @@ protected:
 
 public:
     GameState() = delete;
+
     /**
      * Constructs a GameState.
      * @param gameRef A reference to the game the GameState is associated with.
      */
     explicit GameState(Game& gameRef);
+
     /**
      * Deletes all Rectangles and Buttons.
      */
@@ -50,16 +52,31 @@ public:
      */
     void onResize();
 
+    /**
+     * Used to resize and reposition Gamestate specific stuff, which is not
+     * located in Rectangles or Buttons. Automatically called in onResize().
+     */
     virtual void additionalResizes() = 0;
 
     /**
      * Gets the list of Buttons in the GameState.
      */
     std::vector<Button*>& getButtons();
+
     /**
      * Gets the list of Rectangles in the GameState.
      */
     std::vector<Rectangle*>& getRectangles();
+
+    /**
+     * Gets all the actions currently in game
+     */
+    std::vector<std::unique_ptr<Action>>& getActions();
+
+    /**
+    * Get a reference on the active game
+    */
+    Game& getGame();
 
     /**
      * Displays the game state.
@@ -78,6 +95,7 @@ public:
      * not be changed.
      */
     EGamestates getNextState();
+
     /**
      * Sets the next state.
      */

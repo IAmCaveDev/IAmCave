@@ -4,6 +4,7 @@
 #include "game.h"
 #include "management.h"
 #include "hunt.h"
+//#include "event.h"
 
 namespace ButtonFunctions {
     namespace Managing {
@@ -17,7 +18,7 @@ namespace ButtonFunctions {
         }
         namespace Research {
             void think(Management& stateRef, Techtree& techtreeRef);
-            void techCallback(Management& stateRef, std::shared_ptr<Tech> techRef);
+            void techCallback(Management& stateRef, Techtree& techtreeRef, std::shared_ptr<Tech> techRef);
             void thinkAbort(Management& stateRef, Techtree& techtreeRef);
             void thinkConfirm(Management& stateRef, Techtree& techtreeRef);
         }
@@ -41,8 +42,13 @@ namespace ButtonFunctions {
     }
     namespace Tribe {
         void addAsActor(Management& stateRef, std::shared_ptr<Caveman> caveman);
+        void removeAsActor(Management& stateRef, std::shared_ptr<Caveman> caveman);
         void displayInfo(std::shared_ptr<Caveman> caveman);
         void hideInfo(std::shared_ptr<Caveman> caveman);
+    }
+    namespace Events {
+        void confirmOption(GameState& stateRef, std::shared_ptr<Event::Option> option, short id);
+        void resetButton(GameState& stateRef);
     }
 }
 

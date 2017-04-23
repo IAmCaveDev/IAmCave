@@ -11,7 +11,7 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::management;
     nextState = type;
 
-    textbox = new Textbox({1580, 140}, {20, 1080 - 160},
+    textbox = new Textbox({1580, 160}, {20, 1080 - 180},
                            "assets/state-textbox.png", "", 15, 30);
 
     rectangles = {
@@ -43,6 +43,7 @@ Management::Management(Game& gameRef) : GameState(gameRef) {
                 std::bind(&ButtonFunctions::Managing::Collecting::collect, std::ref(*this))),
     };
 
+    resetTextbox();
 }
 
 void Management::setCurrentAction(EActions newaction, short duration) {
@@ -121,9 +122,7 @@ void Management::setActiveTech(std::string newTech) {
 }
 
 std::string Management::getActiveTech() {
-    return activeTech;
-}
-
+    return activeTech; } 
 void Management::deleteActiveTech() {
     activeTech = "";
 }
@@ -167,6 +166,14 @@ void Management::display(sf::RenderWindow& win) {
 
 void Management::setTextboxText(std::string str) {
     textbox->setText(str);
+}
+
+void Management::resetTextbox() {
+    textbox->setText("Select your actions for round number " + std::to_string(game.getRoundNumber()) + " !");
+}
+
+Techtree& Management::getTechtree() {
+    return game.getTechtree();
 }
 
 void Management::additionalResizes() {

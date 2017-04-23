@@ -32,3 +32,19 @@ std::shared_ptr<Caveman> CavemanFactory::createFemale(int maxAge, int minAge) {
     female->initButton();
     return female;
 }
+
+std::shared_ptr<Caveman> CavemanFactory::createSpecific(int maxAge, int minAge, int newIntelligence, int newFitness, bool newIsMale) {
+    if (newIsMale) {
+        std::shared_ptr<Male> male(new Male(maxAge, minAge));
+        male->setFitness(newFitness);
+        male->setIntelligence(newFitness);
+        male->initButton();
+        return male;
+    } else {
+        std::shared_ptr<Female> female(new Female(maxAge, minAge));
+        female->setFitness(newFitness);
+        female->setIntelligence(newFitness);
+        female->initButton();
+        return female;
+    }
+}

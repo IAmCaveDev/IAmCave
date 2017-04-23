@@ -36,6 +36,14 @@ std::vector<Rectangle*>& GameState::getRectangles() {
     return rectangles;
 }
 
+std::vector<std::unique_ptr<Action>>& GameState::getActions() {
+    return game.getActions();
+}
+
+Game& GameState::getGame() {
+    return game;
+}
+
 EGamestates GameState::getType(){
     return type;
 }

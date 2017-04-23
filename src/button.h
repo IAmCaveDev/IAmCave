@@ -74,7 +74,7 @@ public:
            std::string texPath, std::function<void()> newCallback,
            std::function<void()> newAltCallback, std::string newText,
            int padding = 5, int newTextSize = 20,
-           sf::Color newTextColor = sf::Color::Black,
+           sf::Color newTextColor = sf::Color::White,
            sf::Text::Style newTextStyle = sf::Text::Style::Regular);
 
     /**

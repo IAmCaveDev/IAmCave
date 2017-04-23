@@ -7,6 +7,7 @@
 
 #include "enum.h"
 #include "caveman.h"
+#include "tech.h"
 
 
  /**
@@ -23,11 +24,13 @@ struct ActionPackage {
     int buildingMaterial;
     int cavemanCapacity;
     bool newborn;
-    //Tech ID
+
+    std::string techName;
 };
 
 /**
  * An action performed by one or more cavemen over one or more rounds.
+ * Base class for all specific action classes.
  */
 
 class Action {
@@ -65,6 +68,10 @@ public:
     */
     std::vector<std::shared_ptr<Caveman>>& getActors();
     /**
+    * Removes an Actor from the Action by ID.
+    */
+    void removeActor(std::shared_ptr<Caveman> caveman);
+    /**
     * Adds a Caveman as an Actor to the Action.
     */
     virtual void addActor(std::shared_ptr<Caveman> actor) = 0;
@@ -73,7 +80,7 @@ public:
      * Called every round in RoundEnd.
      * @return The changes caused by the Action.
      */
-    virtual ActionPackage resolve() = 0;
+    virtual ActionPackage resolve(Tech::StatBoosts bonuses) = 0;
 };
 
 #endif

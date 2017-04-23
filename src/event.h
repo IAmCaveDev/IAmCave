@@ -16,12 +16,20 @@ private:
     * Requirements for the event to trigger
     */
     struct Trigger {
-        ETechs has_tech;
-        ETechs missing_tech;
+        std::string has_tech;
+        std::string missing_tech;
         int tribeSize;
         float tribeFood;
         int tribeMaterial;
     };
+
+    short id;
+    std::string title;
+    std::string description;
+    Trigger trigger;
+    Textbox* textbox;
+
+public:
     /**
     * A list of possible effects created by the event
     */
@@ -37,9 +45,10 @@ private:
         float foodGain;
         int materialGain;
 
-        /** 
+        /**
         * Stats for new caveman if created by the event
         */
+        bool newCaveman;
         unsigned short new_age;
         short new_intelligence;
         short new_fitness;
@@ -52,17 +61,22 @@ private:
     struct Option {
         std::string name;
         Effects effects;
+        Button* button;
+        std::string texturePath;
     };
 
-    short id;
-    std::string title;
-    std::string description;
-    Trigger trigger;
-    std::vector<std::unique_ptr<Option>> options;
-
-public:
     Event(const std::string path);
     ~Event();
+
+    Trigger getTrigger() const;
+    std::vector<std::shared_ptr<Option>> getOptions() const;
+    Textbox* getTextBox() const;
+    short getID() const;
+    std::string getDescription() const;
+
+private:
+    std::vector<std::shared_ptr<Option>> options;
+
 };
 
 #endif

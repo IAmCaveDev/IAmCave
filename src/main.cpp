@@ -11,7 +11,7 @@ int main(int argc, char *argv[]){
     TransformedVector<>::updateWinSize(size.x, size.y);
 
     try {
-        Textbox::setFont("assets/pixel.ttf");
+        Textbox::setFont("assets/arial.ttf");
     }
     catch(std::runtime_error err){
         window.close();
@@ -40,6 +40,7 @@ int main(int argc, char *argv[]){
                         }
                         buttons.push_back(&techtree.getAbortThinking());
                         buttons.push_back(&techtree.getProperThinking());
+                        buttons.push_back(&techtree.getTrainingButton());
                     }
 
                     sf::Vector2i pos = sf::Mouse::getPosition(window);
@@ -78,6 +79,7 @@ int main(int argc, char *argv[]){
                         }
                         buttons.push_back(&techtree.getAbortThinking());
                         buttons.push_back(&techtree.getProperThinking());
+                        buttons.push_back(&techtree.getTrainingButton());
                     }
 
                     sf::Vector2i pos = sf::Mouse::getPosition(window);

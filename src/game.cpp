@@ -2,40 +2,80 @@
 
 #include "cavemanfactory.h"
 
-Game::Game() : techtree("assets/techtreebackground.png", "assets/tech/techtree.json", {1920, 1080}, 0) {
+void Game::repositionTribe() {
+    int totalTribeWidth = (normalCavemanWidth + tribePadding) * tribe.size() -
+                          tribePadding;
+    int availableTribeWidth = 1920 - tribeLeftPadding - tribeRightPadding;
+
+    if (totalTribeWidth >= availableTribeWidth) {
+        tribeScale = static_cast<float>(availableTribeWidth) /
+                     static_cast<float>(totalTribeWidth);
+    } else {
+        tribeScale = 1;
+    }
+
+    int xPos = tribeLeftPadding;
+    for(auto& it : tribe){
+        int translationDueToSize = normalCavemanHeight - normalCavemanHeight *
+                                   tribeScale;
+
+        it->setPosition(TransformedVector<>(xPos, tribeYPos + translationDueToSize));
+        it->setSize({static_cast<int>(normalCavemanWidth * tribeScale),
+                     static_cast<int>(normalCavemanHeight * tribeScale)});
+        xPos += (normalCavemanWidth + tribePadding) * tribeScale;
+    }
+}
+
+Game::Game() : techtree("assets/background-techtree.png",
+                        "assets/tech/techtree.json", {1920, 1080}, 0,
+                        100, 280, 100) {
+
     CavemanFactory cavemanFactory;
     EventFactory eventFactory;
 
     // Starting population
-    for(int i = 0; i < 3; ++i){
+    for(int i = 0; i < 4; ++i){
         tribe.push_back(cavemanFactory.createMale(5, 5));
     }
-    for(int i = 0; i < 2; ++i){
+    for(int i = 0; i < 4; ++i){
         tribe.push_back(cavemanFactory.createFemale(5, 5));
     }
 
-    int xPos = 150;
-    int yPos = 650;
-    for(auto& it : tribe){
-        it->setPosition(TransformedVector<>(xPos, yPos));
-        xPos = xPos + 150;
-    }
+    repositionTribe();
 
     // starting resources
     resources.food = 200;
     resources.buildingMaterial = 50;
     resources.cavemanCapacity = 10;
 
-    eventStack.push_back(eventFactory.createEvent(0, Narrative));
+    //events.push_back(eventFactory.createEvent(0, Narrative));
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
     CavemanFactory cavemanFactory;
     tribe.push_back(cavemanFactory.createRandom(maxAge, minAge));
+
+    repositionTribe();
+}
+
+void Game::addCaveman(int maxAge, int minAge, int newIntelligence,
+                      int newFitness, bool newIsMale) {
+    CavemanFactory cavemanfactory;
+    tribe.push_back(cavemanfactory.createSpecific(maxAge, minAge, newIntelligence, newFitness, newIsMale));
+    repositionTribe();
 }
 
 void Game::removeCaveman(short id) {
-    //TODO implement
+    auto result = std::find_if(tribe.begin(), tribe.end(),
+                               [&id](std::shared_ptr<Caveman> caveman) {
+            return caveman->getId() == id;
+    });
+
+    if (result != std::end(tribe)) {
+        tribe.erase(result);
+    }
+
+    repositionTribe();
 }
 
 std::vector<std::shared_ptr<Caveman>>& Game::getTribe() {
@@ -46,11 +86,27 @@ void Game::addAction(std::unique_ptr<Action> newAction) {
     actions.push_back(std::move(newAction));
 }
 
+void Game::addEvent(std::shared_ptr<Event> newEvent) {
+    events.push_back(newEvent);
+}
+
 void Game::removeAction(int id) {
     for (int i = 0; i < actions.size(); ++i) {
         if (actions.at(i)->getID() == id) {
             actions.at(i).reset();
             actions.erase(actions.begin()+i);
+            return;
+        }
+    }
+}
+
+void Game::removeEvent(short id) {
+    for (int i = 0; i < events.size(); ++i) {
+        if (events.at(i)->getID() == id) {
+            events.at(i).reset();
+            //events.at(i)->getOptions().at(0)->button->setVisibility(false);
+            events.erase(events.begin() + i);
+
             return;
         }
     }
@@ -72,6 +128,14 @@ Techtree& Game::getTechtree(){
 
 Resources& Game::getResources(){
     return resources;
+}
+
+Tech::StatBoosts Game::getTechBonuses() {
+    return techBonuses;
+}
+
+void Game::setTechBonuses(Tech::StatBoosts newTechBonuses) {
+    techBonuses = newTechBonuses;
 }
 
 unsigned int Game::getRoundNumber(){
