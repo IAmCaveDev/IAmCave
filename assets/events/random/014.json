@@ -1,0 +1,20 @@
+{
+    "id": 14,
+    "title": "Thought Lightning",
+    "description": "Chief! I've just got THE idea on how to properly store our wooden logs. What if we stack them together to what i call a pyramid form - That sounds simply mindblowing, don't you agree?",
+
+    "trigger": {
+	},
+
+    "options": [
+    { 
+        "name": "Erm, yes, of course.",
+        "texturePath": "assets/eventbuttons/absolutely.png",
+        "materialStorageGain": 200
+    },
+    {
+        "name": "We don't need no fancy pyramids!",
+        "texturePath": "assets/eventbuttons/never.png"
+    }
+    ]
+}

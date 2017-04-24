@@ -1,0 +1,18 @@
+{
+    "id": 12,
+    "title": "Missing!",
+    "description": "Chief, one of our guardsmen was reported missing from last nights watch! I'm sure the gods are mad at us for not sacrifying enough for them; we should change that right now!",
+
+    "trigger": {
+        "tribeFood": 300
+	},
+
+    "options": [
+    { 
+        "name": "That sounds rather stupid...",
+        "texturePath": "assets/eventbuttons/absolutely.png",
+        "foodGain": -50,
+        "lostCaveman": 1
+    }
+    ]
+}
