@@ -1,0 +1,21 @@
+{
+    "id": 16,
+    "title": "Bats!",
+    "description": "There are many bats flying around in the cave...\nthey even look delicious if you have an emtpy stomach. Hunt them?",
+
+    "trigger": {
+    "tribeFood": 5
+	},
+
+    "options": [
+    { 
+        "name": "Yes",
+        "texturePath": "assets/eventbuttons/yes.png",
+        "foodGain": 20
+    },
+    {
+        "name": "No",
+        "texturePath": "assets/eventbuttons/no.png"
+    }
+    ]
+}

@@ -23,7 +23,7 @@ Female::Female(int maxAge, int minAge) : Caveman(maxAge, minAge) {
     std::uniform_int_distribution<int> femaleName(0, femaleNames.size() - 1);
     name = femaleNames[femaleName(rng)];
 
-    std::uniform_int_distribution<int> femaleTex(1, 162);
+    std::uniform_int_distribution<int> femaleTex(1, 702);
     texPath = "assets/women/woman-" + std::to_string(femaleTex(rng)) + ".png";
 
 }
