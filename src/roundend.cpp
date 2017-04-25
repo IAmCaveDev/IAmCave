@@ -169,20 +169,24 @@ void RoundEnd::step() {
     }
 
     game.increaseRoundNumber();
+    std::ostringstream foodInfo;
+    foodInfo << resourcesBefore.food << " " << std::showpos
+             << game.getResources().food - resourcesBefore.food;
 
-    std::ostringstream info;
-    info << "Round " << game.getRoundNumber() << "\n"
-         << "Food: " << resourcesBefore.food << " " << std::showpos
-         << game.getResources().food - resourcesBefore.food
-         << std::noshowpos << "\n"
-         << "Building Material: " << resourcesBefore.buildingMaterial << " "
+    std::ostringstream materialInfo;
+    materialInfo << resourcesBefore.buildingMaterial << " "
          << std::showpos << game.getResources().buildingMaterial
-         - resourcesBefore.buildingMaterial << std::noshowpos << "\n"
-         << "Cave Capacity: " << resourcesBefore.cavemanCapacity << " "
+         - resourcesBefore.buildingMaterial;
+
+    std::ostringstream capacityInfo;
+    capacityInfo << resourcesBefore.cavemanCapacity << " "
          << std::showpos << game.getResources().cavemanCapacity
          - resourcesBefore.cavemanCapacity;
 
-    infoColumn->setText(info.str());
+    cavemanBox->setText("0");
+    foodBox->setText(foodInfo.str());
+    materialBox->setText(materialInfo.str());
+    capacityBox->setText(capacityInfo.str());
 }
 
 void RoundEnd::display(sf::RenderWindow& win) {
