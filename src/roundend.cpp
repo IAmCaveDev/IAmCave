@@ -118,15 +118,32 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
     std::random_device rd;
     rng = std::mt19937(rd());
 
-    infoColumn = new Textbox({ 450, 1080 }, { 0, 0 },
-                             "assets/endround-column.png", "", 5, 30);
     textbox = new Textbox({ 1580, 160 }, { 20, 1080 - 180 },
                           "assets/state-textbox.png", "", 15, 30);
 
+    cavemanBox = new Textbox({247, 350}, {115, 470},
+                             "assets/roundendbox.png", "moo", 5, 30,
+                             {215, 190, 152});
+
+    foodBox = new Textbox({247, 350}, {466, 470},
+                          "assets/roundendbox.png", "moo", 5, 30,
+                          {215, 190, 152});
+
+    materialBox = new Textbox({247, 350}, {895, 470},
+                              "assets/roundendbox.png", "moo", 5, 30,
+                              {215, 190, 152});
+
+    capacityBox = new Textbox({247, 350}, {1436, 470},
+                              "assets/roundendbox.png", "moo", 5, 30,
+                              {215, 190, 152});
+
     rectangles = {
-        new Rectangle({ 1920, 1080 }, { 0, 0 }, "assets/cave.png"),
-        infoColumn,
-        textbox
+        new Rectangle({ 1920, 1080 }, { 0, 0 }, "assets/roundend.png"),
+        textbox,
+        cavemanBox,
+        foodBox,
+        materialBox,
+        capacityBox
     };
 
     buttons = {

@@ -18,9 +18,12 @@ class RoundEnd : public GameState {
 private:
     std::mt19937 rng;
 
-    Textbox* infoColumn;
-
     Textbox* textbox;
+
+    Textbox* cavemanBox;
+    Textbox* foodBox;
+    Textbox* materialBox;
+    Textbox* capacityBox;
 
     /**
     * Calls the resolve function of all active Actions and adds to Gameresources
