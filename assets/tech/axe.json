@@ -7,6 +7,12 @@
     "intelligenceGain": 5,
     "duration": 5,
 
+    "cost": {
+      "food": 0,
+      "materials": 0,
+      "capacity": 0
+    },
+    
     "statBoosts": {
         "addends": {
             "huntBonus": 10,

@@ -31,7 +31,7 @@ private:
     void resolveActions();
 
     /**
-     * Passive resource consumption
+     * Passive resource consumption and aging
      */
     void doPassives();
 

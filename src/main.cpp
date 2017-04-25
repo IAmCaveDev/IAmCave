@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[]){
     sf::RenderWindow window(sf::VideoMode(1280, 720), "IAmCave");
-    window.setFramerateLimit(30);
+    window.setFramerateLimit(60);
     sf::View view(window.getDefaultView());
 
     sf::Vector2u size = window.getSize();

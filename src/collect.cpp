@@ -17,9 +17,10 @@ ActionPackage Collect::resolve(Tech::StatBoosts bonuses) {
 
         for (auto& it : actors) {
             totalFitness += it->getFitness();
+            it->setFitness(it->getFitness() + 1);
             it->setCurrentAction(Idle);
         }
-        int materials = totalFitness * totalDuration + bonuses.addends.gatheringBonus;
+        int materials = 10 + totalFitness * totalDuration + bonuses.addends.gatheringBonus;
 
         return{ true, 0.f, materials, 0, false };
     }

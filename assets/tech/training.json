@@ -5,7 +5,13 @@
 
     "requiredIntelligence": 0,
     "intelligenceGain": 1,
-    "duration": 5,
+    "duration": 1,
+
+    "cost": {
+      "food": 0,
+      "materials": 0,
+      "capacity": 0
+    },
 
     "statBoosts": {
         "addends": {

@@ -45,6 +45,11 @@ std::string Caveman::getName(){
 unsigned short Caveman::getAge(){
     return age;
 }
+
+void Caveman::aging() {
+    age++;
+}
+
 short Caveman::getFitness(){
     return fitness;
 }

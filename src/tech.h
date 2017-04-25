@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "button.h"
+#include "resources.h"
 
 /**
  * A researchable technology.
@@ -52,6 +53,7 @@ private:
     std::string description;
     std::string iconPath;
     int requiredIntelligence;
+    Resources cost;
     StatBoosts statBoosts;
     short intelligenceGain;
     short duration;
@@ -142,6 +144,10 @@ public:
      * @return the duration of the Tech.
      */
     short getDuration();
+    /*
+     * @return the cost of the Tech
+     */
+    Resources getCost();
     /**
      * Enable or disable the Tech button, depending on wether the parents are researched and
      * wether the Tech itself is already researched.

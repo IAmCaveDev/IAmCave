@@ -38,13 +38,18 @@ ActionPackage Hunt::resolve(Tech::StatBoosts bonuses) {
                 it->setCurrentAction(Dead);
             } else {
                 totalFitness += it->getFitness();
+                if (isEasy) {
+                    it->setFitness(it->getFitness() + 1);
+                } else {
+                    it->setFitness(it->getFitness() + 2);
+                }
                 it->setCurrentAction(Idle);
             }
 
             pos++;
         }
 
-        float food = totalFitness * totalDuration + bonuses.addends.huntBonus;
+        float food = 20 + totalFitness * totalDuration + bonuses.addends.huntBonus;
 
         return { true, food, 0, 0, false };
     }

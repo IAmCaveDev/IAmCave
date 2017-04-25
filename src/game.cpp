@@ -34,10 +34,10 @@ Game::Game() : techtree("assets/background-techtree.png",
     EventFactory eventFactory;
 
     // Starting population
-    for(int i = 0; i < 4; ++i){
+    for(int i = 0; i < 3; ++i){
         tribe.push_back(cavemanFactory.createMale(5, 5));
     }
-    for(int i = 0; i < 4; ++i){
+    for(int i = 0; i < 2; ++i){
         tribe.push_back(cavemanFactory.createFemale(5, 5));
     }
 
@@ -46,7 +46,7 @@ Game::Game() : techtree("assets/background-techtree.png",
     // starting resources
     resources.food = 200;
     resources.buildingMaterial = 50;
-    resources.cavemanCapacity = 10;
+    resources.cavemanCapacity = 5;
 
     //events.push_back(eventFactory.createEvent(0, Narrative));
 }

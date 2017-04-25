@@ -24,6 +24,8 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newS
         intelligenceGain = data["intelligenceGain"];
         duration = data["duration"];
 
+        cost = { data["cost"]["food"],data["cost"]["materials"],data["cost"]["capacity"] };
+
         statBoosts = {
             {
                 data["statBoosts"]["addends"]["huntBonus"],
@@ -164,6 +166,10 @@ int Tech::getRequiredIntelligence() {
 
 short Tech::getDuration() {
     return duration;
+}
+
+Resources Tech::getCost() {
+    return cost;
 }
 
 void Tech::updateButtonState() {

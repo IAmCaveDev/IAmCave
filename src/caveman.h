@@ -1,7 +1,7 @@
 #ifndef CAVEMAN_H
 #define CAVEMAN_H
 
-#define MIN_ADULT_AGE 3
+#define MIN_ADULT_AGE 0
 
 #include <string>
 #include <memory>
@@ -60,6 +60,7 @@ public:
     std::string getName();
     virtual bool isMale() = 0;
     unsigned short getAge();
+    void aging();
     short getFitness();
     void setFitness(short newFit);
     short getIntelligence();

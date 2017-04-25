@@ -139,7 +139,13 @@ namespace ButtonFunctions {
 
                 std::string name = stateRef.getActiveTech();
                 std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-                auto tech = techtreeRef.getTree().find(name)->second;
+                std::shared_ptr<Tech> tech;
+
+                if (name == "training") {
+                    tech = techtreeRef.getTraining();
+                } else {
+                    tech = techtreeRef.getTree().find(name)->second;
+                }
 
                 stateRef.setCurrentAction(EActions::ThinkAction, tech->getDuration());
 

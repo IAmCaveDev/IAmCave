@@ -65,24 +65,28 @@ void RoundEnd::doPassives() {
     for (auto& it : game.getTribe()) {
         if (it->getCurrentAction() != EActions::EasyHunt &&
             it->getCurrentAction() != EActions::HardHunt) {
-            float foodConsumption = 1;
+            float foodConsumption = 0;
 
             if (it->getAge() > MIN_ADULT_AGE) {
-                foodConsumption += 1;
-
-                if (it->isMale()) {
+                foodConsumption += 5;
+                //commented out temporary for balancing
+                /*if (it->isMale()) {
                     foodConsumption += 1;
-                }
+                }*/
                 for (int i = 0; i < it->getFitness(); ++i) {
-                    foodConsumption += 0.05;
+                    foodConsumption += 0.1;
                 }
             }
-
-            foodConsumption += normal(rng);
+            //commented out temporary for balancing
+            //foodConsumption += normal(rng);
 
             game.getResources().food -= foodConsumption;
         }
 
+    }
+    //aging
+    for (auto& it : game.getTribe()) {
+        it->aging();
     }
 }
 
@@ -159,7 +163,7 @@ void RoundEnd::step() {
 
     doPassives();
 
-    doEvents(resourcesBefore);
+    //doEvents(resourcesBefore);
 
     if (game.getResources().food < 0) {
         game.getResources().food = 0;

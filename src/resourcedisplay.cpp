@@ -1,11 +1,13 @@
 #include "resourcedisplay.h"
 
 ResourceDisplay::ResourceDisplay(Game& gameRef) : gameRef(gameRef),
-                    food({ 70, 30 }, {1270,65 }, "assets/testbox2.png", "", 5, 20,sf::Color::Black),
-                    buildingMaterial({ 70, 30 }, { 1500, 770 }, "assets/testbox2.png", "", 5, 20, sf::Color::Black),
-                    cavemanCapacity({ 70, 30 }, { 500, 400 }, "assets/testbox2.png", "", 5, 20, sf::Color::Black),
+                    food({ 80, 40 }, {1270,55 }, "assets/testbox2.png", "", 7, 20,sf::Color::White),
+                    buildingMaterial({ 80, 40 }, { 1500, 760 }, "assets/testbox2.png", "", 7, 20, sf::Color::White),
+                    cavemanCapacity({ 80, 40 }, { 630, 210 }, "assets/testbox2.png", "", 7, 20, sf::Color::White),
                     foodHeap({ 200,400 }, { 1200,100 }, "assets/heaps/meat-m.png"),
-                    materialHeap({ 300,600 }, { 1350,240}, "assets/heaps/stones-m.png") {
+                    materialHeap({ 300,600 }, { 1350,240}, "assets/heaps/stones-m.png"),
+                    caveHeap({ 400,400 }, { 400, 200 }, "assets/heaps/cave-painting-s.png") {
+
 }
 
 void ResourceDisplay::update() {
@@ -31,15 +33,25 @@ void ResourceDisplay::update() {
     else {
         materialHeap.changeTexture("assets/heaps/stones-s.png");
     }
+    if (newResources.cavemanCapacity >= 10) {
+        caveHeap.changeTexture("assets/heaps/cave-painting-l.png");
+    }
+    else if (newResources.cavemanCapacity >= 6) {
+        caveHeap.changeTexture("assets/heaps/cave-painting-m.png");
+    }
+    else {
+        caveHeap.changeTexture("assets/heaps/cave-painting-s.png");
+    }
 }
 
 void ResourceDisplay::display(sf::RenderWindow& win) {
     update();
     materialHeap.display(win);
-    cavemanCapacity.display(win);
+    caveHeap.display(win);
     food.display(win);
     foodHeap.display(win);
     buildingMaterial.display(win);
+    cavemanCapacity.display(win);
 }
 
 void ResourceDisplay::onResize() {
@@ -48,6 +60,9 @@ void ResourceDisplay::onResize() {
 
     materialHeap.setSize(materialHeap.getTransformedSize());
     materialHeap.setPosition(materialHeap.getTransformedPosition());
+
+    caveHeap.setSize(caveHeap.getTransformedSize());
+    caveHeap.setPosition(caveHeap.getTransformedPosition());
 
     food.setSize(food.getTransformedSize());
     food.setPosition(food.getTransformedPosition());
