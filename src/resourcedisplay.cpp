@@ -1,11 +1,11 @@
 #include "resourcedisplay.h"
 
-ResourceDisplay::ResourceDisplay(Game& gameRef) : gameRef(gameRef), 
-                    foodHeap({ 200,400 }, { 1200,100 }, "assets/heaps/meat-m.png"), 
-                    materialHeap({ 300,600 }, { 1350,240}, "assets/heaps/stones-m.png"),
-                    food({ 70, 30 }, {1270,65 }, "assets/testbox.png", "", 5, 20,sf::Color::Black), 
-                    buildingMaterial({ 70, 30 }, { 1500, 770 }, "assets/testbox.png", "", 5, 20, sf::Color::Black),
-                    cavemanCapacity({ 70, 30 }, { 500, 400 }, "assets/testbox.png", "", 5, 20, sf::Color::Black){
+ResourceDisplay::ResourceDisplay(Game& gameRef) : gameRef(gameRef),
+                    food({ 70, 30 }, {1270,65 }, "assets/testbox2.png", "", 5, 20,sf::Color::Black),
+                    buildingMaterial({ 70, 30 }, { 1500, 770 }, "assets/testbox2.png", "", 5, 20, sf::Color::Black),
+                    cavemanCapacity({ 70, 30 }, { 500, 400 }, "assets/testbox2.png", "", 5, 20, sf::Color::Black),
+                    foodHeap({ 200,400 }, { 1200,100 }, "assets/heaps/meat-m.png"),
+                    materialHeap({ 300,600 }, { 1350,240}, "assets/heaps/stones-m.png") {
 }
 
 void ResourceDisplay::update() {

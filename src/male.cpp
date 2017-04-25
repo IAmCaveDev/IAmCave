@@ -24,7 +24,7 @@ Male::Male(int maxAge, int minAge) : Caveman(maxAge, minAge) {
     std::uniform_int_distribution<int> maleName(0, maleNames.size() - 1);
     name = maleNames[maleName(rng)];
 
-    std::uniform_int_distribution<int> maleTex(1, 243);
+    std::uniform_int_distribution<int> maleTex(1, 702);
     texPath = "assets/men/man-" + std::to_string(maleTex(rng)) + ".png";
 }
 

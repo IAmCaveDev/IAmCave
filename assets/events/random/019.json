@@ -1,0 +1,28 @@
+{
+    "id": 19,
+    "title": "A lost one",
+    "description": "A filthy guy approaches the cave.\nHe seems to be harmless and asks for asylum and admits \nto have no special skills but to starve. \nInclude him to the tribe?",
+
+    "trigger": {
+    "has_tech": "WoodenFence"
+	},
+
+    "options": [
+    { 
+        "name": "Take him",
+        "texturePath": "assets/eventbuttons/asolutely.png",
+        "cavemen": [
+        {
+            "age": 18,
+            "fitness": 1,
+            "intelligence": 1,
+            "isMale": true
+        }
+        ]
+    },
+    {
+        "name": "Never",
+        "texturePath": "assets/eventbuttons/never.png"
+    }
+    ]
+}
