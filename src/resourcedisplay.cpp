@@ -33,7 +33,7 @@ void ResourceDisplay::update() {
     else {
         materialHeap.changeTexture("assets/heaps/stones-s.png");
     }
-    if (newResources.cavemanCapacity >= 10) {
+    if (newResources.cavemanCapacity >= 9) {
         caveHeap.changeTexture("assets/heaps/cave-painting-l.png");
     }
     else if (newResources.cavemanCapacity >= 6) {

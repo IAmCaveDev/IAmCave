@@ -4,20 +4,21 @@
     "iconPath": "assets/archerytech.png",
 
     "requiredIntelligence": 35,
-    "intelligenceGain": 5,
+    "intelligenceGain": 10,
     "duration": 5,
 
     "cost": {
-      "food": 0,
-      "materials": 0,
+      "food": -200,
+      "materials": -200,
       "capacity": 0
     },
 
     "statBoosts": {
         "addends": {
-            "huntBonus": 30,
+            "huntBonus": 50,
             "gatheringBonus": 0,
             "fitnessGain": 0.8,
+	    "passiveIntGain": 0,
             "buildingBonus": 0,
             "birthGain": 0
         },

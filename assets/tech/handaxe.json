@@ -18,6 +18,7 @@
             "huntBonus": 5,
             "gatheringBonus": 2,
             "fitnessGain": 0,
+	    "passiveIntGain": 0,
             "buildingBonus": 0,
             "birthGain": 0
         },

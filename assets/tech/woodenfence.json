@@ -5,11 +5,11 @@
 
     "requiredIntelligence": 50,
     "intelligenceGain": 5,
-    "duration": 5,
+    "duration": 4,
 
     "cost": {
-      "food": 0,
-      "materials": 0,
+      "food": -500,
+      "materials": -300,
       "capacity": 0
     },
     
@@ -17,8 +17,9 @@
         "addends": {
             "huntBonus": 0,
             "gatheringBonus": 0,
-            "fitnessGain": 0,
-            "buildingBonus": 0,
+            "fitnessGain": 0.5,
+	    "passiveIntGain": 0,
+            "buildingBonus": 1,
             "birthGain": 0
         },
         "multipliers": {

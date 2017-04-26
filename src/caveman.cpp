@@ -54,7 +54,11 @@ float Caveman::getFitness(){
     return fitness;
 }
 void Caveman::setFitness(float newFit) {
-    fitness = newFit;
+    if (newFit < 0) {
+        fitness = 0;
+    } else {
+        fitness = newFit;
+    }
 }
 short Caveman::getIntelligence(){
     return intelligence;

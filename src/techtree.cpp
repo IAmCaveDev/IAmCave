@@ -118,6 +118,7 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
     training = std::shared_ptr<Tech>(new Tech("assets/tech/training.json", 0, { nullptr }));
     training->getButton().setVisibility(false);
     trainingButton = new Button({ 200, 80 }, { -250, -300 }, "assets/techtree/ponder.png", nullptr);
+    trainingMode = false;
 
     properThinking = new Button({ 200, 80 }, { -250, -200 }, "assets/confirm.png", nullptr);
     abortThinking = new Button({ 200, 80 }, { -250, -100 }, "assets/abort.png", nullptr);
@@ -125,10 +126,13 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
 
 void Techtree::setVisibility(bool newVisibility) {
     visibility = newVisibility;
-    for (auto& it : tree) {
-        it.second->updateButtonState();
-        it.second->getButton().setVisibility(newVisibility);
+    if (!trainingMode) {
+        for (auto& it : tree) {
+            it.second->updateButtonState();
+            it.second->getButton().setVisibility(newVisibility);
+        }
     }
+    
 }
 
 bool Techtree::getVisibility() {
@@ -212,4 +216,12 @@ Button& Techtree::getProperThinking() {
 
 Button& Techtree::getAbortThinking() {
     return *abortThinking;
+}
+
+void Techtree::setTrainingMode(bool training) {
+    trainingMode = training;
+}
+
+bool Techtree::getTrainingMode() {
+    return trainingMode;
 }

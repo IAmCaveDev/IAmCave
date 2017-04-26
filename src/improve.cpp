@@ -18,7 +18,8 @@ ActionPackage Improve::resolve(Tech::StatBoosts bonuses) {
         for (auto& it : actors) {
             it->setCurrentAction(Idle);
         }
-        return{ true, 0.f, 0, 1, false };
+        int improvement = 1 + bonuses.addends.buildingBonus;
+        return{ true, 0.f, 0, improvement, false };
     }
     return{ false, 0.f, 0, 0, false };
 }

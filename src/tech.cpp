@@ -31,6 +31,9 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newS
                 data["statBoosts"]["addends"]["huntBonus"],
                 data["statBoosts"]["addends"]["gatheringBonus"],
                 data["statBoosts"]["addends"]["fitnessGain"],
+                data["statBoosts"]["addends"]["passiveIntGain"],
+                data["statBoosts"]["addends"]["buildingBonus"],
+                data["statBoosts"]["addends"]["birthGain"]
             }
         };
 

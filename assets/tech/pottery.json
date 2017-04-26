@@ -4,20 +4,21 @@
     "iconPath": "assets/potterytech.png",
 
     "requiredIntelligence": 25,
-    "intelligenceGain": 5,
-    "duration": 5,
+    "intelligenceGain": 4,
+    "duration": 4,
 
     "cost": {
-      "food": 0,
-      "materials": 0,
+      "food": -200,
+      "materials": -100,
       "capacity": 0
     },
     
     "statBoosts": {
         "addends": {
             "huntBonus": 0,
-            "gatheringBonus": 20,
-            "fitnessGain": 0.5,
+            "gatheringBonus": 40,
+            "fitnessGain": 0.3,
+	    "passiveIntGain": 0,
             "buildingBonus": 0,
             "birthGain": 0
         },

@@ -106,6 +106,9 @@ void Management::pushCurrentAction() {
         case EActions::ThinkAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
                 "assets/think-icon.png", nullptr), currentAction->getDuration());
+            if (activeTech != "training") {
+                game.getTechtree().setTrainingMode(true);
+            }
             break;
         case EActions::CollectAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },

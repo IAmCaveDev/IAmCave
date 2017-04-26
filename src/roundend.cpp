@@ -26,6 +26,7 @@ void RoundEnd::resolveActions() {
                     tech = game.getTechtree().getTree()
                         .find(name)
                         ->second;
+                    game.getTechtree().setTrainingMode(false);
                 }
                 game.setTechBonuses(game.getTechBonuses() + tech->getBonuses());
                 it->getActors().front()->addIntelligence(tech->getIntelligenceGain());
@@ -55,6 +56,8 @@ void RoundEnd::resolveActions() {
 }
 
 void RoundEnd::doPassives() {
+    std::vector<int> toDelete = {};
+
     // idle food consumption
     std::normal_distribution<float> normal(0, 0.33);
 
@@ -73,8 +76,12 @@ void RoundEnd::doPassives() {
                     foodConsumption += 0.1;
                 }
             }
-            //commented out temporary for balancing
-            //foodConsumption += normal(rng);
+            
+            foodConsumption += normal(rng);
+            
+            if (foodConsumption > game.getResources().food) {
+                it->setFitness(it->getFitness() - 1);
+            }
 
             game.getResources().food -= foodConsumption;
         }
@@ -83,6 +90,21 @@ void RoundEnd::doPassives() {
     //aging
     for (auto& it : game.getTribe()) {
         it->aging();
+        if (it->getAge() >= 50) {
+            it->setFitness(it->getFitness() - 5);
+        }
+        if (it->getFitness() == 0) {
+            it->setCurrentAction(EActions::Dead);
+            toDelete.push_back(it->getId());
+        }
+    }
+    //passive intelligence gain
+    for (auto& it : game.getTribe()) {
+        it->addIntelligence(game.getTechBonuses().addends.passiveIntGain);
+    }
+
+    for (auto& it : toDelete) {
+        game.removeCaveman(it);
     }
 }
 
@@ -174,8 +196,8 @@ void RoundEnd::step() {
         game.getResources().buildingMaterial = 0;
     }
 
-    //game over when reaching round 50 without revolution
-    if (game.getRoundNumber() == 50) {
+    //game over when reaching round 100 without revolution
+    if (game.getRoundNumber() == 100) {
         nextState = EGamestates::loseScreen;
         return;
     }

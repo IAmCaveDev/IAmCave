@@ -4,20 +4,21 @@
     "iconPath": "assets/speartech.png",
 
     "requiredIntelligence": 20,
-    "intelligenceGain": 5,
-    "duration": 5,
+    "intelligenceGain": 3,
+    "duration": 4,
 
     "cost": {
-      "food": 0,
-      "materials": 0,
+      "food": -250,
+      "materials": -100,
       "capacity": 0
     },
     
     "statBoosts": {
         "addends": {
-            "huntBonus": 10,
+            "huntBonus": 60,
             "gatheringBonus": 0,
-            "fitnessGain": 0.5,
+            "fitnessGain": 0.4,
+	    "passiveIntGain": 0,
             "buildingBonus": 0,
             "birthGain": 0
         },

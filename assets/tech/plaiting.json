@@ -4,20 +4,21 @@
     "iconPath": "assets/plaitingtech.png",
 
     "requiredIntelligence": 15,
-    "intelligenceGain": 5,
-    "duration": 5,
+    "intelligenceGain": 3,
+    "duration": 2,
 
     "cost": {
-      "food": 0,
-      "materials": 0,
+      "food": -150,
+      "materials": -80,
       "capacity": 0
     },
     
     "statBoosts": {
         "addends": {
-            "huntBonus": 2,
-            "gatheringBonus": 5,
+            "huntBonus": 10,
+            "gatheringBonus": 0,
             "fitnessGain": 0,
+	    "passiveIntGain": 1,
             "buildingBonus": 0,
             "birthGain": 0
         },

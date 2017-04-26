@@ -20,6 +20,9 @@ public:
             float huntBonus;
             float gatheringBonus;
             float fitnessGain;
+            float passiveIntGain;
+            float buildingBonus;
+            float birthGain;
         } addends;
         struct {
             float example;
@@ -31,6 +34,9 @@ public:
                     addends.huntBonus + other.addends.huntBonus,
                     addends.gatheringBonus + other.addends.gatheringBonus,
                     addends.fitnessGain + other.addends.fitnessGain,
+                    addends.passiveIntGain + other.addends.passiveIntGain,
+                    addends.buildingBonus + other.addends.buildingBonus,
+                    addends.birthGain + other.addends.birthGain
                 },
                 {
                     multipliers.example + other.multipliers.example - 1
