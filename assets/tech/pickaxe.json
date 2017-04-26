@@ -1,6 +1,6 @@
 {
     "name": "Pickaxe",
-    "description": "its like an axe, only more picky, good for improving cave",
+    "description": "its like an axe, only more picky, good for improving cave. big collecting bonus and more space per improve action",
     "iconPath": "assets/pickaxetech.png",
 
     "requiredIntelligence": 35,

@@ -38,7 +38,18 @@ void RoundEnd::resolveActions() {
                                   result.buildingMaterial,
                                   result.cavemanCapacity });
             if (result.newborn) {
-                game.addCaveman(0, 0);
+                int numberOfMales = 0;
+                for (auto& it : game.getTribe()) {
+                    if (it->isMale()) numberOfMales++;
+                }
+                if (numberOfMales <= 1) {
+                    game.addCaveman(0, 0, -1, -1, true);
+                } else if (game.getTribe().size() - numberOfMales <= 1) {
+                    game.addCaveman(0, 0, -1, -1, false);
+                } else {
+                    game.addCaveman(0, 0);
+                }
+                tribeChanges++;
             }
         }
 
@@ -46,7 +57,10 @@ void RoundEnd::resolveActions() {
             toDelete.push_back(it->getID());
 
             for (auto& actor : it->getActors()) {
-                if (actor->getCurrentAction() == Dead) game.removeCaveman(actor->getId());
+                if (actor->getCurrentAction() == Dead) {
+                    game.removeCaveman(actor->getId());
+                    tribeChanges--;
+                }
             }
         }
     }
@@ -87,7 +101,7 @@ void RoundEnd::doPassives() {
         }
 
     }
-    //aging
+    //aging & death when fitness = 0
     for (auto& it : game.getTribe()) {
         it->aging();
         if (it->getAge() >= 50) {
@@ -105,6 +119,7 @@ void RoundEnd::doPassives() {
 
     for (auto& it : toDelete) {
         game.removeCaveman(it);
+        tribeChanges--;
     }
 }
 
@@ -139,23 +154,24 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
 
     std::random_device rd;
     rng = std::mt19937(rd());
+    tribeChanges = 0;
 
     textbox = new Textbox({ 1580, 160 }, { 20, 1080 - 180 },
                           "assets/state-textbox.png", "", 15, 30);
 
-    cavemanBox = new Textbox({247, 350}, {115, 470},
+    cavemanBox = new Textbox({247, 350}, {205, 470},
                              "assets/roundendbox.png", "moo", 5, 30,
                              {215, 190, 152});
 
-    foodBox = new Textbox({247, 350}, {466, 470},
+    foodBox = new Textbox({247, 350}, {516, 470},
                           "assets/roundendbox.png", "moo", 5, 30,
                           {215, 190, 152});
 
-    materialBox = new Textbox({247, 350}, {895, 470},
+    materialBox = new Textbox({247, 350}, {995, 470},
                               "assets/roundendbox.png", "moo", 5, 30,
                               {215, 190, 152});
 
-    capacityBox = new Textbox({247, 350}, {1436, 470},
+    capacityBox = new Textbox({247, 350}, {1536, 470},
                               "assets/roundendbox.png", "moo", 5, 30,
                               {215, 190, 152});
 
@@ -180,6 +196,8 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
 
 void RoundEnd::step() {
     Resources resourcesBefore = game.getResources();
+    tribeChanges = 0;
+    int tribeBefore = game.getTribe().size();
 
     doPassives();
 
@@ -203,6 +221,9 @@ void RoundEnd::step() {
     }
 
     game.increaseRoundNumber();
+    std::ostringstream tribeInfo;
+    tribeInfo << tribeBefore << " " << std::showpos
+        << tribeChanges;
     std::ostringstream foodInfo;
     foodInfo << resourcesBefore.food << " " << std::showpos
              << game.getResources().food - resourcesBefore.food;
@@ -217,13 +238,12 @@ void RoundEnd::step() {
          << std::showpos << game.getResources().cavemanCapacity
          - resourcesBefore.cavemanCapacity;
 
-    // TODO
-    cavemanBox->setText("0");
+    cavemanBox->setText(tribeInfo.str());
     foodBox->setText(foodInfo.str());
     materialBox->setText(materialInfo.str());
     capacityBox->setText(capacityInfo.str());
 
-    roundBox->setText("Round " + std::to_string(game.getRoundNumber()));
+    roundBox->setText("Round " + std::to_string(game.getRoundNumber()-1));
 }
 
 void RoundEnd::display(sf::RenderWindow& win) {

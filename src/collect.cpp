@@ -23,7 +23,7 @@ ActionPackage Collect::resolve(Tech::StatBoosts bonuses) {
         for (auto& it : actors) {
             int deathChance = distribution(rng);
 
-            if (deathChance == 0) {
+            if (deathChance == 10) {
                 it->setCurrentAction(EActions::Dead);
             } else {
                 totalFitness += it->getFitness();
@@ -33,7 +33,7 @@ ActionPackage Collect::resolve(Tech::StatBoosts bonuses) {
                 it->setCurrentAction(Idle);
             }
         }
-        int materials = 10 + totalFitness * totalDuration + bonuses.addends.gatheringBonus;
+        int materials = totalFitness * totalDuration + bonuses.addends.gatheringBonus;
 
         return{ true, 0.f, materials, 0, false };
     }

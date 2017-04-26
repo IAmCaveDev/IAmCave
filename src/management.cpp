@@ -181,7 +181,21 @@ void Management::setTextboxText(std::string str) {
 }
 
 void Management::resetTextbox() {
-    textbox->setText("Select your actions for round number " + std::to_string(game.getRoundNumber()) + " !");
+    int roundNumber = game.getRoundNumber();
+    if (roundNumber == 0) {
+        textbox->setText("Welcome to I am Cave, try to have some fun! You have 100 rounds, your goal is to research the neolithic revolution\nin the techtree!");
+    } else if (roundNumber%10 == 0) {
+        textbox->setText("Time is running! Only " + std::to_string(100 - roundNumber) + " rounds to go! Select your actions!");
+    } else if ((roundNumber == 41) || (roundNumber == 42) || (roundNumber == 43)) {
+        textbox->setText("The oldest members of the tribe look tired, looks like they won't make it way past 50.\nMake sure a new generation can take over!");
+    } else if ((100 - roundNumber <= 10) && (100 - roundNumber > 1)) {
+        textbox->setText("Animals and Materials are getting sparse. Only " + std::to_string(100 - roundNumber) + " rounds left!");
+    } else if (100 - roundNumber <= 1) {
+        textbox->setText("Oh no...");
+    } else {
+        textbox->setText("Select your actions for round number " + std::to_string(game.getRoundNumber()) + " !");
+    }
+
 }
 
 Techtree& Management::getTechtree() {

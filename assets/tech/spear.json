@@ -1,6 +1,6 @@
 {
     "name": "Spear",
-    "description": "pointy spears to kill round animals",
+    "description": "pointy spears to kill round animals. adds a big hunting bonus and medium raise in fitnessgain",
     "iconPath": "assets/speartech.png",
 
     "requiredIntelligence": 20,

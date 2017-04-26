@@ -22,8 +22,8 @@ ActionPackage Hunt::resolve(Tech::StatBoosts bonuses) {
         float totalFitness = 0;
         std::random_device rd;
         std::mt19937 rng(rd());
-        std::uniform_int_distribution<int> distribEasy(0, 200);
-        std::uniform_int_distribution<int> distribHard(0, 50);
+        std::uniform_int_distribution<int> distribEasy(0, 100);
+        std::uniform_int_distribution<int> distribHard(0, 10);
 
         for (auto& it : actors) {
             int casualtyDice;
@@ -33,7 +33,7 @@ ActionPackage Hunt::resolve(Tech::StatBoosts bonuses) {
                 casualtyDice = distribHard(rng);
             }
 
-            if (casualtyDice == 0) {
+            if (casualtyDice == 5) {
                 it->setCurrentAction(Dead);
             } else {
                 totalFitness += it->getFitness();

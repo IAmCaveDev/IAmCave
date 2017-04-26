@@ -1,6 +1,6 @@
 {
     "name": "Handaxe",
-    "description": "the first tool ever, wow you are so smart",
+    "description": "the first tool ever, wow you are so smart! adds a small bonus to hunting and collecting",
     "iconPath": "assets/handaxetech.png",
 
     "requiredIntelligence": 4,

@@ -1,6 +1,6 @@
 {
     "name": "Revolution",
-    "description": "you win the game, was it really that hard?",
+    "description": "the cavepeople can build their own housing and farm crops. this wins the game",
     "iconPath": "assets/revolutiontech.png",
 
     "requiredIntelligence": 70,

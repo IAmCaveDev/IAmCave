@@ -1,6 +1,6 @@
 {
     "name": "Pottery",
-    "description": "pots for women to put materials and water in",
+    "description": "pots for women to put materials and water in. adds a big collecting bonus and a slightly higher fitnessgain",
     "iconPath": "assets/potterytech.png",
 
     "requiredIntelligence": 25,
@@ -8,15 +8,15 @@
     "duration": 4,
 
     "cost": {
-      "food": -200,
-      "materials": -100,
+      "food": -300,
+      "materials": 0,
       "capacity": 0
     },
     
     "statBoosts": {
         "addends": {
             "huntBonus": 0,
-            "gatheringBonus": 40,
+            "gatheringBonus": 30,
             "fitnessGain": 0.3,
 	    "passiveIntGain": 0,
             "buildingBonus": 0,

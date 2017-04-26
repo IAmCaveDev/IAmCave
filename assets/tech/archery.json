@@ -1,6 +1,6 @@
 {
     "name": "Archery",
-    "description": "running after rabbits with spears gets very tiring",
+    "description": "running after rabbits with spears gets very tiring. adds a big bonus to hunting and a huge fitnessgain",
     "iconPath": "assets/archerytech.png",
 
     "requiredIntelligence": 35,

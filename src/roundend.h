@@ -17,6 +17,7 @@
 class RoundEnd : public GameState {
 private:
     std::mt19937 rng;
+    int tribeChanges;
 
     Textbox* textbox;
 

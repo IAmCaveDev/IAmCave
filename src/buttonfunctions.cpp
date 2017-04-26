@@ -87,7 +87,7 @@ namespace ButtonFunctions {
         namespace Research {
             void think(Management& stateRef, Techtree& techtreeRef) {
                 if (techtreeRef.getTrainingMode()) {
-                    stateRef.setTextboxText("You can only research one Tech at a time, you can still ponder though!");
+                    techtreeRef.setTextboxText("You can only research one Tech at a time, you can still ponder though!");
                 }
                 else {
                     techtreeRef.setTextboxText("This is your techtree, click a technology to show information about it.");

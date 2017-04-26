@@ -1,6 +1,6 @@
 {
     "name": "Axe",
-    "description": "its like a handaxe, just less handy, used to kill",
+    "description": "its like a handaxe, just less handy. adds bonuses for hunting, collecting and a slightly higher fitnessgain",
     "iconPath": "assets/axetech.png",
 
     "requiredIntelligence": 10,

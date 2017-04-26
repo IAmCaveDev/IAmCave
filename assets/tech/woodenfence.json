@@ -1,6 +1,6 @@
 {
     "name": "WoodenFence",
-    "description": "prevents animals from eating your stuff",
+    "description": "prevents animals from eating your stuff, improves the improve action, fitness raises faster from building fences",
     "iconPath": "assets/woodenfencetech.png",
 
     "requiredIntelligence": 50,

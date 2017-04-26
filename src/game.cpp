@@ -63,7 +63,15 @@ void Game::addCaveman(int maxAge, int minAge, int newIntelligence,
                       int newFitness, bool newIsMale) {
     if (resources.cavemanCapacity <= tribe.size()) return;
     CavemanFactory cavemanfactory;
-    tribe.push_back(cavemanfactory.createSpecific(maxAge, minAge, newIntelligence, newFitness, newIsMale));
+    if ((newIntelligence == -1) && (newFitness == -1)) {
+        if (newIsMale) {
+            tribe.push_back(cavemanfactory.createMale(maxAge, minAge));
+        } else {
+            tribe.push_back(cavemanfactory.createFemale(maxAge, minAge));
+        }
+    } else {
+        tribe.push_back(cavemanfactory.createSpecific(maxAge, minAge, newIntelligence, newFitness, newIsMale));
+    }
     repositionTribe();
 }
 
