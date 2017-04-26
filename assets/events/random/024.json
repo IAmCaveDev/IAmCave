@@ -11,7 +11,7 @@
     {
         "name": "Yes",
         "texturePath": "assets/eventbuttons/yes.png",
-        "foodGain": -100,
+        "foodGain": -10,
         "huntBonus": 0.8,
         "gatheringBonus": 0.8
     },

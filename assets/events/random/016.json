@@ -11,7 +11,7 @@
     { 
         "name": "Yes",
         "texturePath": "assets/eventbuttons/yes.png",
-        "foodGain": 20
+        "foodGain": 10
     },
     {
         "name": "No",

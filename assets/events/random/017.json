@@ -11,12 +11,12 @@
     { 
         "name": "Yes",
         "texturePath": "assets/eventbuttons/yes.png",
-        "materialGain": -20
+        "materialGain": -10
     },
     {
         "name": "No",
         "texturePath": "assets/eventbuttons/no.png",
-        "materialGain": -60
+        "materialGain": -30
     }
     ]
 }

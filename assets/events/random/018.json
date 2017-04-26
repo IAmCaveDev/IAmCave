@@ -11,7 +11,7 @@
     { 
         "name": "Ok",
         "texturePath": "assets/eventbuttons/ok.png",
-        "materialGain": -60
+        "materialGain": -20
     }
     ]
 }
