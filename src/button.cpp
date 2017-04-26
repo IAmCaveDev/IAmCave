@@ -54,6 +54,7 @@ void Button::highlighted(const sf::Vector2i& mousePosition, bool useAlt){
            (!useAlt && callback != nullptr)){
             setTexture(&highlightedTex);
             isHighlighted = true;
+            Textbox::setText(buttonText);
         }
     }
     return;
@@ -75,6 +76,7 @@ void Button::executed(const sf::Vector2i& mousePosition, bool useAlt){
     if(isHighlighted){
         setTexture(&tex);
         isHighlighted = false;
+        Textbox::setText(buttonText);
     }
     return;
 }
@@ -106,4 +108,8 @@ void Button::setClickability(bool newclick) {
 
 bool Button::getClickability() {
     return clickable;
+}
+
+void Button::setText(std::string newText) {
+    buttonText = newText;
 }

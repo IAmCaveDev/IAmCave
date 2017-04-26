@@ -28,6 +28,8 @@ private:
     bool isHighlighted;
     bool visible;
 
+    std::string buttonText = "";
+
     /**
      * First function of the button. Used for left clicks in main.
      */
@@ -122,6 +124,8 @@ public:
      * Gets the clickability of the button.
      */
     bool getClickability();
+
+    void setText(std::string newText);
 };
 
 #endif
