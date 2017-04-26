@@ -29,7 +29,7 @@ Um die Zusammenarbeit zu vereinfachen wird Git als version control system
 benutzt. Die Git Repository befindet sich auf GitHub [#]_ .
 
 Es wird die Methodik der Continuous Integration [#]_ angewandt, d.h. dass jedes
-Teammmitglied bzw. jedes feature eine eigene branch hat auf die frei commitet
+Teammmitglied bzw. jedes feature eine eigene branch hat auf die frei committet
 werden kann.  Die master branch ist protected und pull requests müssen compilen
 und von jedem anderen Teammmitglied reviewed werden bevor sie in die master
 branch gemerged werden können.  Als CI Server wird Travis [#]_ benutzt.
@@ -49,7 +49,7 @@ Generierung der Dokumentation wird Doxygen [#]_ verwendet.
 Input & Plattform
 ^^^^^^^^^^^^^^^^^
 
-Die Ziel- und Testplattform der Entwicklung sind Windows Rechner.  Das Spiel
+Die Ziel- und Testplattform der Entwicklung sind Windowsrechner.  Das Spiel
 wird ausschließlich mit der Maus gesteuert; es wurden noch keine Tastaturbefehle
 implementiert. Basierend auf dieser Restriktion wird ebenfalls eine mögliche
 Umsetzung auf Touch-Geräten als Langzeit-Meilenstein angestrebt.
@@ -75,9 +75,9 @@ räumliche Darstellung auskommt. Alle Modelle und Effekte sind ausschließlich 2
 Mainscreen und Mockups
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Der 2D Mainscreen wird eine interaktive Höhlen Übersicht darstellen.  Zusätzlich
-zu einer externen Statistik Übersicht wird der Spieler die Möglichkeit haben,
-sämtliche Spieler-relevanten Informationen in Form von natürlich-grafischem
+Der 2D Mainscreen wird eine interaktive Höhlen Übersicht darstellen.  
+Der Spieler wird die Möglichkeit haben,
+sämtliche für ihn relevanten Informationen in Form von natürlich-grafischem
 Feedback zu erhalten (Details im folgenden Abschnitt). Sämtliche Interaktionen
 können ebenfalls von diesem Mainscreen aus ausgeführt werden.
 
@@ -98,8 +98,6 @@ können ebenfalls von diesem Mainscreen aus ausgeführt werden.
 - Aktionen ‘Hunt’, ‘Collect’, ‘Think’, ‘Make Love’, ‘Improve’
 - Button zum Beenden der Runde (‘Go’)
 - Balken zur Darstellung bereits ausgewählter und laufender Aktionen
-- Aufrufbare Spieloptionen (‘Options’-Button)
-- Beenden und automatisches Speichern des Spiels
 
 **Zusätzliche Darstellungsfeatures:**
 
@@ -107,18 +105,6 @@ können ebenfalls von diesem Mainscreen aus ausgeführt werden.
   Ressource)
 - Erwerbbare Einrichtungsobjekte
 - Umgebungsanimation/-shader (Feuer, Höhlenbewohnertätigkeiten)
-
-Sound
-^^^^^
-
-Geräusche sowie Musik befinden sich im .ogg Format. Alle Sounds werden freien
-Asset-Bibliotheken entnommen oder selbst mit entsprechender Software (Bsp.
-Audacity) kreiert.  Im Mainscreen spielt die Hintergrundmusik sowie ein leises
-Knacken des Lagerfeuers in der Mitte der Höhle. Wenn nur noch wenige Runden im
-Spiel verbleiben wird die Hintergrundmusik schneller und energischer. Erscheinen
-storyrelevante Textboxen sind ‘Höhlenmenschen-Gebrabbel’ Sounds zu hören. Jeder
-Buttonklick und das Ende einer Runde werden ebenfalls von Soundeffekten
-begleitet.
 
 
 Interaktion
@@ -179,9 +165,7 @@ Scripted Events
 Darstellung durch Textboxen; werden durch Aktionen oder zufällig getriggert.
 Können je nach Inhalt den aktuellen Gamestate beeinflussen; mindestens mit einem
 ‘Okay’-Button oder anderen anklickbaren Auswahlmöglichkeiten verbunden
-(Buttons).  Manche Events passieren spontan nach einer Runde, andere werden eine
-bis mehrere Runden vorher angekündigt in Form von Textboxen. (z.B. ‘Das Wetter
-ist unruhig, ein Sturm zieht auf.’)
+(Buttons). 
 
 Gameflow
 ^^^^^^^^

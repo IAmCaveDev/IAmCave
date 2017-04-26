@@ -52,9 +52,8 @@ Das Spiel versprüht durch seinen minimalistisch-liebevollen Stil Charme und
 fesselt den Spieler, dem es so gelingt, eine fast persönliche Bindung zu den
 Spielecharakteren aufzubauen. Damit der Spaß an dem Spiel nicht zu kurz kommt,
 gibt es überall humoristisch angehauchte Passagen zu entdecken, denn an
-Selbstironie wird nicht gespart. Obwohl die Grafiken hauptsächlich aus freien
-Bibliotheken stammen, werden sie so angepasst, dass sie sich perfekt in die
-Steinzeitwelt von I am Cave einfügen.
+Selbstironie wird nicht gespart. Die Grafik wird in liebevollem Pixel-Art-Stil entwickelt,
+der perfekt zum prähistorischen Setting des Spiels passt.
 
 Musik und Sounds
 ^^^^^^^^^^^^^^^^
@@ -148,7 +147,7 @@ Sammeln
     Zeiteinheit, die Gesamtzeit der Aktion kann der Spieler festlegen.
     Erfolgreiches Sammeln erhöht den Fitness-Skill.
 
-Höhle ausbauen
+Höhle ausbauen/verbessern
    Verwendet mindestens einen Höhlenbewohner und **verbraucht Materialien**. Das
    Ausbauen der Höhle ermöglicht eine höhere Einwohnerkapazität und ist somit
    essenziell, um den Stamm zu vergrößern. Die notwendige Anzahl der Runden
@@ -177,42 +176,37 @@ Ereignisse
 ~~~~~~~~~~
 
 Nach jeder Runde besteht die Chance, ein zufälliges Ereignis auszulösen. Im
-folgenden seien zwei Beispiele angeführt:
+folgenden sei ein Beispiel angeführt:
 
 Ein Mitglied eines anderen Stammes erscheint in der Höhle und bietet dem Spieler
 einen zufällig generierten Tauschhandel an (Ressource x gegen Ressource y). Der
 Spieler hat die Wahl, den Vorschlag anzunehmen oder abzulehnen.
-
-Der Spieler erhält die Meldung, dass das Wetter umschlägt; es sieht so aus, als
-würde es stürmischer werden. Dies bedeutet, dass in der übernächsten Runde die
-Höhle nicht verlassen werden kann (kein Sammeln oder Jagen möglich).
 
 Interface und Steuerung
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 Das Spiel wird ausschließlich mit der Maus bedient. Die meiste Zeit über
 befindet sich der Spieler in  der Auswahlübersicht zwischen den Runden. In
-dieser Ansicht werden am oberen Rand die aktuellen Ressourcen (Rundenzahl,
-Bewohner, Nahrung, Materialien) angezeigt. Aktionen können ausgewählt werden, in
-dem der Spieler mit der Maus auf die visualisierten Orte in der Höhle klickt.
-Ein Beispiel für diese Anwendung wäre es, auf den Eingang zu klicken, um in
-einem Pop-Up Fenster Höhlenbewohner zum Jagen und Sammeln während dieser Runde
-zu selektieren. Alle aktiven Aktionen werden durch ein passendes ‘Busy’-Icon
-über ihrem jeweiligen Referenzort in der Höhle angezeigt. Auf der rechten Seite
-des Bildschirms sieht man die Höhlenbewohner und kann sich die Attribute sowie
-den aktuellen Zustand durch Anklicken eines Bewohners anschauen.
+dieser Ansicht werden innerhalb der Höhle die aktuellen Ressourcen 
+(Bewohner, Nahrung, Materialien) angezeigt. Zusätzliche werden diese durch grafische
+Elemente (Bspw. Keulen für Nahrung) quantitativ visualisiert. Aktionen können ausgewählt werden, in
+dem der Spieler mit der Maus auf die jeweiligen Buttons in der Höhle klickt.
+Ein Beispiel für diese Anwendung wäre es, auf "Sammeln" oder "Jagen" zu klicken, um
+daraufhin Bewohner zu selektieren, die an der Aktion teilnehmen sollen.
+Alle aktiven Aktionen werden durch ein passendes ‘Busy’-Icon
+über ihrem jeweiligen Referenzort in der Höhle angezeigt. Durch Rechtsklicken
+auf einen Höhlenbewohner kann man sich seine Charakterwerte (Fitness, Intelligenz, Alter)
+und seinen Namen ansehen.
 
 Ist man mit allen Aktionen zufrieden, betätigt man den Button für den Übergang
 zur nächsten Runde und die nächste Runde wird gestartet. Zu Beginn der nächsten
 Runde werden dem Spieler die Ergebnisse der letzten Runde in einer Übersicht
-präsentiert. Zu guter Letzt befinden sich rechts unten zwei Buttons für Optionen
-und Statistiken, die angesehen werden können (z.B. Diagramm von eingelagerten
-Ressourcenmengen über alle bisherigen Runden hinweg).
+präsentiert. 
 
 Je nach Spielentwicklung und Ausbau der Höhle, wird die Höhle dem Spieler anders
-präsentiert. Ist die Forschung beispielsweise weit vorangeschritten, macht sich
-dies in Form  eines großen Forschungsplatzes und anderen ausgebauten
-Einrichtungen bemerkbar.
+präsentiert. Die in der Höhle vorhandenen Ressourcenhaufen skalieren mit der Anzahl der vorhandenen 
+Ressourcen (Steine für Materialien,  Keulen für Fleisch) und die Höhlenmalerei verändert sich
+je nach Größe des Stammes.
 
 Konflikte und Hindernisse
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -223,7 +217,7 @@ zum Beispiel in einer Runde nicht genug Nahrung für alle Höhlenbewohner bereit
 werden einige Menschen Hunger leiden und nach mehreren Runden sogar sterben.
 Sammelt man jedoch jede Runde nur Nahrung und vernachlässigt die Forschung oder
 die Fortpflanzung, wird man niemals rechtzeitig das vorgegebene Spielziel
-erreichen, bevor die verbleibenden Runden verbraucht sind. Zusätzlich sind die
+erreichen, bevor die maximale Rundenzahl erreicht ist. Zusätzlich sind die
 verschieden ausgeprägten Talente der Bewohner sowie Ereignisse zu beachten.
 
 
@@ -231,7 +225,7 @@ Optionen und Speichermöglichkeiten
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Für das Optionsmenü geplante Optionen sind:
-SOUND EIN/AUS, SPIEL NEUSTARTEN, SPIEL BEENDEN
+SPIEL STARTEN, SPIEL BEENDEN
 Das Spiel speichert selbstständig nach jeder Runde und bei jedem Start wird der
 letzte Stand automatisch geladen.
 
@@ -242,7 +236,7 @@ Story
 Hintergrundgeschichte
 ^^^^^^^^^^^^^^^^^^^^^
 
-Die Geschichte von ‘I am Cave’ wird von realen, historischen Begebenheiten
+Die Geschichte von ‘I am Cave’ wird von realistischen, historischen Begebenheiten
 getragen, welche sich durch das gesamte Spiel ziehen und dem Spieler die Urzeit
 sowie die zu dieser Zeit aktuellen Probleme und Herausforderungen näherbringen.
 
@@ -254,7 +248,7 @@ und sein Überleben zu sichern.
 Zeitlich gliedert sich das Spiel an das Ende der Altsteinzeit beziehungsweise
 dem Beginn der Jungsteinzeit während des Pleistozän an (wir sprechen von ~12.000
 v. Chr.), als die Menschheit im Rahmen der neolithischen Revolution sesshaft
-wurde und begann, von Ackerbau und Viehhaltung Gebrauch zu machen.
+wurde und begann, von Ackerbau und Viehzucht Gebrauch zu machen.
 
 Spielbegleitende Geschichte
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -263,10 +257,7 @@ Umgesetzt wird die Story mit Pop-Up Textboxen, welche dem Spieler zu Anfang
 einer jeden neuen Runde über Ereignisse und Auswertungen Bericht erstatten.
 
 Ein primärer Aspekt der zu erzählenden Geschichte ist ein spannender und
-sogleich humoristischer Stil.  Passende Soundeffekte wie gelegentliches Grunzen
-der Höhlenbewohner oder an die Situation angepasste Umgebungsgeräusche sollen
-mit der Erzählweise harmonieren und so Immersion und Feedback des Spiels
-fördern.  Da die Geschichte des Spiels ausschließlich in schriftlicher Form und
+sogleich humoristischer Stil. Da die Geschichte des Spiels ausschließlich in schriftlicher Form und
 ohne Sprecher erfolgt, wird ein großer Wert auf die textliche Ausgestaltung
 gelegt.
 
