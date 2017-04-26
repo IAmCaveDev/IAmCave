@@ -137,13 +137,17 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
                               "assets/roundendbox.png", "moo", 5, 30,
                               {215, 190, 152});
 
+    roundBox = new Textbox({540, 175}, {820, 35}, "assets/roundbox.png", "moo",
+                           5, 60, {215, 190, 152});
+
     rectangles = {
         new Rectangle({ 1920, 1080 }, { 0, 0 }, "assets/roundend.png"),
         textbox,
         cavemanBox,
         foodBox,
         materialBox,
-        capacityBox
+        capacityBox,
+        roundBox
     };
 
     buttons = {
@@ -191,10 +195,13 @@ void RoundEnd::step() {
          << std::showpos << game.getResources().cavemanCapacity
          - resourcesBefore.cavemanCapacity;
 
+    // TODO
     cavemanBox->setText("0");
     foodBox->setText(foodInfo.str());
     materialBox->setText(materialInfo.str());
     capacityBox->setText(capacityInfo.str());
+
+    roundBox->setText("Round " + std::to_string(game.getRoundNumber()));
 }
 
 void RoundEnd::display(sf::RenderWindow& win) {

@@ -24,6 +24,7 @@ private:
     Textbox* foodBox;
     Textbox* materialBox;
     Textbox* capacityBox;
+    Textbox* roundBox;
 
     /**
     * Calls the resolve function of all active Actions and adds to Gameresources
