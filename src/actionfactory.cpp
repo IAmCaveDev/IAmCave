@@ -16,10 +16,10 @@ std::unique_ptr<Action> ActionFactory::createSexAction() {
     return std::unique_ptr<Sex>(new Sex());
 }
 
-std::unique_ptr<Action> ActionFactory::createImproveAction(short duration) {
-    return std::unique_ptr<Improve>(new Improve(duration, { 0.0,-30,0 }));
+std::unique_ptr<Action> ActionFactory::createImproveAction(short duration, Resources cost) {
+    return std::unique_ptr<Improve>(new Improve(duration, cost));
 }
 
-std::unique_ptr<Action> ActionFactory::createThinkingAction(std::string techName,short duration) {
-    return std::unique_ptr<Think>(new Think(techName, duration));
+std::unique_ptr<Action> ActionFactory::createThinkingAction(std::string techName,short duration, Resources cost) {
+    return std::unique_ptr<Think>(new Think(techName, duration, cost));
 }

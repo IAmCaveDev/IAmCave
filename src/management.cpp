@@ -58,13 +58,21 @@ void Management::setCurrentAction(EActions newaction, short duration) {
             currentAction = std::move(actionFactory.createSexAction());
             break;
         case EActions::ImproveAction:
-            currentAction = std::move(actionFactory.createImproveAction(duration));
+            currentAction = std::move(actionFactory.createImproveAction(duration, { 0,-30,0 }));
             break;
         case EActions::CollectAction:
             currentAction = std::move(actionFactory.createCollectAction(duration));
             break;
         case EActions::ThinkAction:
-            currentAction = std::move(actionFactory.createThinkingAction(activeTech,duration));
+            std::transform(activeTech.begin(), activeTech.end(), activeTech.begin(), ::tolower);
+            Resources cost;
+            if (activeTech == "training") {
+                cost = game.getTechtree().getTraining()->getCost();
+            }
+            else {
+                cost = game.getTechtree().getTree().find(activeTech)->second->getCost();
+            }
+            currentAction = std::move(actionFactory.createThinkingAction(activeTech,duration,cost));
             break;
         // TODO: add more Actions here
     }

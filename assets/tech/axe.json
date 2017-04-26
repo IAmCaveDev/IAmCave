@@ -8,8 +8,8 @@
     "duration": 5,
 
     "cost": {
-      "food": 0,
-      "materials": 0,
+      "food": 200,
+      "materials": 80,
       "capacity": 0
     },
     

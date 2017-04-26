@@ -19,6 +19,9 @@ void RoundEnd::resolveActions() {
                 std::shared_ptr<Tech> tech;
                 if (name == "training") {
                     tech = game.getTechtree().getTraining();
+                } else if (name == "revolution") {
+                    nextState = EGamestates::winScreen;
+                    return;
                 } else {
                     tech = game.getTechtree().getTree()
                         .find(name)
@@ -30,13 +33,6 @@ void RoundEnd::resolveActions() {
             }
 
         } else {
-            Tech::StatBoosts bonuses = game.getTechBonuses();
-            if (it->getType() == EActions::EasyHunt ||
-                it->getType() == EActions::HardHunt) {
-                result.food += bonuses.addends.huntBonus;
-            } else if (it->getType() == EActions::CollectAction) {
-                result.food += bonuses.addends.gatheringBonus;
-            }
             game.addToResources({ result.food,
                                   result.buildingMaterial,
                                   result.cavemanCapacity });
@@ -159,9 +155,9 @@ RoundEnd::RoundEnd(Game& gameRef) : GameState(gameRef) {
 void RoundEnd::step() {
     Resources resourcesBefore = game.getResources();
 
-    resolveActions();
-
     doPassives();
+
+    resolveActions();
 
     //doEvents(resourcesBefore);
 
@@ -170,6 +166,12 @@ void RoundEnd::step() {
     }
     if (game.getResources().buildingMaterial < 0) {
         game.getResources().buildingMaterial = 0;
+    }
+
+    //game over when reaching round 50 without revolution
+    if (game.getRoundNumber() == 50) {
+        nextState = EGamestates::loseScreen;
+        return;
     }
 
     game.increaseRoundNumber();

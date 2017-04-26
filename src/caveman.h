@@ -25,7 +25,7 @@ private:
 
     EActions currentAction;
 
-    short fitness;
+    float fitness;
     short intelligence;
 
     bool infoboxVisible = false;
@@ -61,8 +61,8 @@ public:
     virtual bool isMale() = 0;
     unsigned short getAge();
     void aging();
-    short getFitness();
-    void setFitness(short newFit);
+    float getFitness();
+    void setFitness(float newFit);
     short getIntelligence();
     void setIntelligence(short newInt);
     void addIntelligence(short newInt);

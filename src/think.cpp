@@ -1,6 +1,6 @@
 #include "think.h"
 
-Think::Think(std::string techName, short time) : Action(time) {
+Think::Think(std::string techName, short time, Resources cost) : Action(time, cost) {
     name = techName;
     type = EActions::ThinkAction;
 }

@@ -4,20 +4,20 @@
     "iconPath": "assets/handaxetech.png",
 
     "requiredIntelligence": 4,
-    "intelligenceGain": 5,
-    "duration": 5,
+    "intelligenceGain": 4,
+    "duration": 3,
 
     "cost": {
-      "food": 0,
-      "materials": 0,
+      "food": -150,
+      "materials": -30,
       "capacity": 0
     },
-    
+
     "statBoosts": {
         "addends": {
             "huntBonus": 5,
             "gatheringBonus": 2,
-            "fitnessGain": 0.2,
+            "fitnessGain": 0,
             "buildingBonus": 0,
             "birthGain": 0
         },

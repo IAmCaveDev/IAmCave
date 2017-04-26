@@ -299,7 +299,14 @@ namespace ButtonFunctions {
             if (actionType == EActions::ThinkAction) {
                 std::string name = stateRef.getActiveTech();
                 std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-                auto tech = stateRef.getTechtree().getTree().find(name)->second;
+                std::shared_ptr<Tech> tech;
+
+                if (name == "training") {
+                    tech = stateRef.getTechtree().getTraining();
+                }
+                else {
+                    tech = stateRef.getTechtree().getTree().find(name)->second;
+                }
 
                 for (auto& it : stateRef.getIdlingTribe()) {
                     if(it->getIntelligence() >= tech->getRequiredIntelligence()){

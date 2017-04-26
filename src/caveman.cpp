@@ -50,10 +50,10 @@ void Caveman::aging() {
     age++;
 }
 
-short Caveman::getFitness(){
+float Caveman::getFitness(){
     return fitness;
 }
-void Caveman::setFitness(short newFit) {
+void Caveman::setFitness(float newFit) {
     fitness = newFit;
 }
 short Caveman::getIntelligence(){

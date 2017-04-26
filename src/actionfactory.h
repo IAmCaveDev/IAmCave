@@ -20,7 +20,7 @@ public:
     std::unique_ptr<Action> createHardHuntingAction(short duration);
     std::unique_ptr<Action> createCollectAction(short duration);
     std::unique_ptr<Action> createSexAction();
-    std::unique_ptr<Action> createImproveAction(short duration);
-    std::unique_ptr<Action> createThinkingAction(std::string techName, short duration);
+    std::unique_ptr<Action> createImproveAction(short duration, Resources cost);
+    std::unique_ptr<Action> createThinkingAction(std::string techName, short duration, Resources cost);
 };
 #endif

@@ -19,7 +19,7 @@ ActionPackage Hunt::resolve(Tech::StatBoosts bonuses) {
     currentDuration += 1;
 
     if (currentDuration == totalDuration) {
-        short totalFitness = 0;
+        float totalFitness = 0;
         std::random_device rd;
         std::mt19937 rng(rd());
         std::uniform_int_distribution<int> distribEasy(0, 20);
@@ -39,9 +39,9 @@ ActionPackage Hunt::resolve(Tech::StatBoosts bonuses) {
             } else {
                 totalFitness += it->getFitness();
                 if (isEasy) {
-                    it->setFitness(it->getFitness() + 1);
+                    it->setFitness(it->getFitness() + 1 + bonuses.addends.fitnessGain);
                 } else {
-                    it->setFitness(it->getFitness() + 2);
+                    it->setFitness(it->getFitness() + 2 + bonuses.addends.fitnessGain);
                 }
                 it->setCurrentAction(Idle);
             }
