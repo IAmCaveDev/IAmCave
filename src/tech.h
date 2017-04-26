@@ -61,6 +61,7 @@ private:
     bool researched;
 
     Button* button;
+    Rectangle* researchedBox;
 
 public:
     bool straightLine;
@@ -76,6 +77,8 @@ public:
     Tech(std::string path, short newLevel, ParentsVector newParents,
          bool newStraightLine = false);
 
+    ~Tech();
+
     std::string getName();
     /**
      * @return A reference to the list of parents.
@@ -86,6 +89,8 @@ public:
      * @return A reference to the Tech's button.
      */
     Button& getButton();
+
+    Rectangle& getResearchedBox();
 
     /**
      * @return The level of the Tech in the Techtree.

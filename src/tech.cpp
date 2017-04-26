@@ -41,6 +41,13 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newS
     std::string lowerName = name;
     std::transform(lowerName.begin(), lowerName.end(), lowerName.begin(), ::tolower);
     button = new Button(100, 0, "assets/techtree/res-"+lowerName+".png", nullptr);
+
+    researchedBox = new Rectangle(0, 0, "assets/researched.png");
+}
+
+Tech::~Tech() {
+    delete button;
+    delete researchedBox;
 }
 
 std::string Tech::getName() {
@@ -53,6 +60,10 @@ Tech::ParentsVector& Tech::getParents() {
 
 Button& Tech::getButton() {
     return *button;
+}
+
+Rectangle& Tech::getResearchedBox() {
+    return *researchedBox;
 }
 
 short Tech::getLevel() {
@@ -158,6 +169,11 @@ bool Tech::isResearched() {
 
 void Tech::setResearched(bool newResearched) {
     researched = newResearched;
+    if (researched) {
+        researchedBox->setTransformedSize({24, 24});
+    } else {
+        researchedBox->setTransformedSize({0, 0});
+    }
 }
 
 int Tech::getRequiredIntelligence() {

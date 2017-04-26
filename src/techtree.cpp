@@ -11,6 +11,13 @@ void Techtree::positionTree(json data, short level,
 
     if (level - 1 == p->getLevel()) {
         p->getButton().setTransformedPosition(lastPos);
+
+        TransformedVector<> size = p->getButton().getTransformedSize();
+        TransformedVector<> position = p->getButton().getTransformedPosition();
+        p->getResearchedBox().setTransformedPosition({position.getRealX()
+                                                     + size.getRealX()
+                                                     - 24 - 3 - static_cast<int>(10.f/280.f * size.getRealX()),
+                                                     position.getRealY() + 3 + static_cast<int>(10.f/280.f * size.getRealX())});
     }
 
     for (auto& it : p->getParents()) {
@@ -137,6 +144,7 @@ void Techtree::display(sf::RenderWindow& win) {
         this->Rectangle::display(win);
         for (auto& it : tree) {
             it.second->getButton().display(win);
+            it.second->getResearchedBox().display(win);
             win.draw(it.second->getArrowsToParents().tip);
             for(auto& line : it.second->getArrowsToParents().lines) {
                 win.draw(line);
@@ -167,6 +175,10 @@ void Techtree::onResize() {
         auto& button = it.second->getButton();
         button.setPosition(button.getTransformedPosition());
         button.setSize(button.getTransformedSize());
+
+        auto& researchedBox = it.second->getResearchedBox();
+        researchedBox.setPosition(researchedBox.getTransformedPosition());
+        researchedBox.setSize(researchedBox.getTransformedSize());
 
         it.second->updateArrowsToParents();
     }
