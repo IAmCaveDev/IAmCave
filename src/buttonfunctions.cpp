@@ -115,11 +115,28 @@ namespace ButtonFunctions {
             void techCallback(Management& stateRef, Techtree& techtreeRef, std::shared_ptr<Tech> techRef) {
                 stateRef.setActiveTech(techRef->getName());
                 techtreeRef.getProperThinking().setClickability(true);
-                stateRef.getTechtree().setTextboxText(techRef->getName() + "\n"
-                        + std::to_string(techRef->getRequiredIntelligence())
-                        + " int required, "
-                        + std::to_string(techRef->getDuration()) + " rounds\n"
-                        + techRef->getDescription());
+                std::stringstream text;
+                text << techRef->getName() << "\n"
+                     << std::to_string(techRef->getRequiredIntelligence())
+                     << " int";
+
+                auto costs = techRef->getCost();
+
+                if (costs.food < 0) {
+                    text << ", " << std::fixed << std::setprecision(0)
+                         << std::abs(costs.food)
+                         << " food";
+                }
+                if (costs.buildingMaterial < 0) {
+                    text << ", "
+                         << std::abs(costs.buildingMaterial)
+                         << " building material";
+                }
+
+                text << ", " << std::to_string(techRef->getDuration())
+                     <<" rounds\n" << techRef->getDescription();
+
+                stateRef.getTechtree().setTextboxText(text.str());
             }
             void thinkAbort(Management& stateRef, Techtree& techtreeRef) {
                 techtreeRef.setVisibility(false);
