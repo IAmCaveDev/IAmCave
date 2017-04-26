@@ -2,6 +2,8 @@
 #include "transformedvector.h"
 #include "textbox.h"
 
+#include <string>
+
 int main(int argc, char *argv[]){
     sf::RenderWindow window(sf::VideoMode(1280, 720), "IAmCave");
     window.setFramerateLimit(120);
@@ -19,6 +21,12 @@ int main(int argc, char *argv[]){
     }
 
     GameManager gameManager("", window);
+
+    if (argv[1]) {
+        if (std::string(argv[1]) == "-e") {
+            gameManager.getGame().enableEvents();
+        }
+    }
 
     while(window.isOpen()){
         sf::Event event;

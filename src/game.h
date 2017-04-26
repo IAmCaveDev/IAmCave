@@ -42,6 +42,8 @@ private:
     const int normalCavemanWidth = 100;
     const int normalCavemanHeight = 200;
 
+    bool eventsEnabled;
+
 public:
     /**
      * Default constructor for game.
@@ -88,9 +90,14 @@ public:
      * Returns a reference to the actions vector.
      */
     std::vector<std::unique_ptr<Action>>& getActions();
-  
+
     void addEvent(std::shared_ptr<Event> newEvent);
     void removeEvent(short id);
+
+    bool eventsAreEnabled();
+
+    void enableEvents(bool enable = true);
+
     /**
      * Adds to Resources
      * @param amount Amount to be added to each resource.

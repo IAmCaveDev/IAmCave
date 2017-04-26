@@ -159,7 +159,9 @@ void RoundEnd::step() {
 
     resolveActions();
 
-    //doEvents(resourcesBefore);
+    if (game.eventsAreEnabled()) {
+        doEvents(resourcesBefore);
+    }
 
     if (game.getResources().food < 0) {
         game.getResources().food = 0;

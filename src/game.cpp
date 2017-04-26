@@ -114,6 +114,14 @@ void Game::removeEvent(short id) {
     }
 }
 
+bool Game::eventsAreEnabled() {
+    return eventsEnabled;
+}
+
+void Game::enableEvents(bool enable) {
+    eventsEnabled = enable;
+}
+
 std::vector<std::unique_ptr<Action>>& Game::getActions() {
     return actions;
 }
