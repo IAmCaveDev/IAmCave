@@ -10,6 +10,8 @@
  */
 class MainMenu : public GameState {
 private:
+    bool eventSignEnabled;
+    Button* eventSign;
 
 public:
     MainMenu() = delete;
@@ -25,6 +27,8 @@ public:
     void display(sf::RenderWindow& win);
 
     void additionalResizes();
+
+    void toggleEventSign();
 };
 
 #endif
