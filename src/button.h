@@ -125,6 +125,8 @@ public:
      */
     bool getClickability();
 
+    bool isClicked(const sf::Vector2i& mousePosition);
+
     void setText(std::string newText);
 };
 
