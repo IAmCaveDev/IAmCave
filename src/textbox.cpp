@@ -64,11 +64,9 @@ void Textbox::setText(std::string newText){
     text.setString(newText);
     wrap();
 
-    // renderTex.clear(sf::Color::White);
-
     sf::Sprite texSprite(tex);
 
-    renderTex.clear(sf::Color(0, 0, 0, 0));
+    renderTex.clear(sf::Color::Transparent);
     renderTex.draw(texSprite);
     renderTex.draw(text);
     renderTex.display();

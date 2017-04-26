@@ -19,7 +19,7 @@ MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
 
     eventSign = new Button({230, 190}, {1620, 800}, "assets/eventsign.png",
                            std::bind(&MainMenu::toggleEventSign, this),
-                           nullptr, signText, 20);
+                           nullptr, signText, 20, 35);
 
     buttons = {
         new Button({845, 635}, {800, 180}, "assets/menu-start.png", [&](){
