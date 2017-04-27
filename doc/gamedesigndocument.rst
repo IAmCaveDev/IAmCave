@@ -219,7 +219,7 @@ Fortpflanzen
 Techtree
 ~~~~~~~~
 
-.. image:: img/techtree2.png
+.. figure:: img/techtree2.png
     :align: center
     :alt: Techtree
 
@@ -248,9 +248,7 @@ Pottery
 Hierarchy
     Voraussetzungen: 30 Intelligenz, 300 Nahrung, 100 Materialien
     Dauer: 4 Runden
-    Boni: +20 Jagdertrag, +20 Sammelertrag, +0,3 Fitnesszuwachs,
-          +1 passiver Intelligenzuwachs, keine Fehlgeburten mehr,
-          +1 Ausbauen Bonus, +6 Intelligenz
+    Boni: +20 Jagdertrag, +20 Sammelertrag, +0,3 Fitnesszuwachs, +1 passiver Intelligenzuwachs, keine Fehlgeburten mehr, +1 Ausbauen Bonus, +6 Intelligenz
 
 Axe
     Voraussetzungen: 10 Intelligenz, 200 Nahrung, 80 Materialien
@@ -327,7 +325,7 @@ angezeigt, aufsteigend geordnet nach verbleibender Dauer (von oben nach unten).
 Durch Rechtsklicken auf einen Höhlenbewohner kann man sich seine Charakterwerte
 (Fitness, Intelligenz, Alter) und seinen Namen ansehen.
 
-.. image:: img/management2.png
+.. figure:: img/management2.png
     :align: center
     :alt: Management Screen
 
@@ -338,11 +336,11 @@ zur nächsten Runde unten rechts. Zu Beginn der nächsten Runde werden dem Spiel
 die Ergebnisse der letzten Runde in einer Übersicht präsentiert. Weiterhin werden
 in dieser Ansicht zufällige Ereignisse präsentiert.
 
-.. image:: img/roundend.png
+.. figure:: img/roundend.png
     :align: center
     :alt: Roundend Screen
 
-    Screenshot des aktuellen Ingame-Rundenendscreens
+    Screenshot des aktuellen Ingame-Rundenendscreens mit Event in der Textbox
 
 Je nach Spielentwicklung und Ausbau der Höhle, wird die Höhle dem Spieler anders
 präsentiert. Die in der Höhle vorhandenen Ressourcenhaufen skalieren mit der Anzahl der vorhandenen
