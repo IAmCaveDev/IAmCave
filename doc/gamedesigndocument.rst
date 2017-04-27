@@ -236,65 +236,65 @@ und resultierenden Boni nach derzeitigem Entwicklungsstand aufgelistet.
 (Reihenfolge im Screenshot von links, nach rechts und oben nach unten):
 
 Handaxe
-|    Voraussetzungen: 4 Intelligenz, 150 Nahrung, 30 Materialien
-|    Dauer: 3 Runden
-|    Boni: +5 Jagdertrag, +2 Sammelertrag, +5 Intelligenz
+    | Voraussetzungen: 4 Intelligenz, 150 Nahrung, 30 Materialien
+    | Dauer: 3 Runden
+    | Boni: +5 Jagdertrag, +2 Sammelertrag, +5 Intelligenz
 
 Pottery
-|    Voraussetzungen: 25 Intelligenz, 300 Nahrung
-|    Dauer: 4 Runden
-|    Boni: +30 Sammelertrag, +0,3 Fitnesszuwachs, + 4 Intelligenz
+    | Voraussetzungen: 25 Intelligenz, 300 Nahrung
+    | Dauer: 4 Runden
+    | Boni: +30 Sammelertrag, +0,3 Fitnesszuwachs, + 4 Intelligenz
 
 Hierarchy
-    |Voraussetzungen: 30 Intelligenz, 300 Nahrung, 100 Materialien
-    |Dauer: 4 Runden
-    |Boni: +20 Jagdertrag, +20 Sammelertrag, +0,3 Fitnesszuwachs, +1 passiver Intelligenzuwachs,
-    |keine Fehlgeburten mehr, +1 Ausbauen Bonus, +6 Intelligenz
+    | Voraussetzungen: 30 Intelligenz, 300 Nahrung, 100 Materialien
+    | Dauer: 4 Runden
+    | Boni: +20 Jagdertrag, +20 Sammelertrag, +0,3 Fitnesszuwachs, +1 passiver Intelligenzuwachs,
+    | keine Fehlgeburten mehr, +1 Ausbauen Bonus, +6 Intelligenz
 
 Axe
-|    Voraussetzungen: 10 Intelligenz, 200 Nahrung, 80 Materialien
-|    Dauer: 3 Runden
-|    Boni: +10 Jagdertrag, +10 Sammelertrag, +0,3 Fitnesszuwachs, +3 Intelligenz
+    | Voraussetzungen: 10 Intelligenz, 200 Nahrung, 80 Materialien
+    | Dauer: 3 Runden
+    | Boni: +10 Jagdertrag, +10 Sammelertrag, +0,3 Fitnesszuwachs, +3 Intelligenz
 
 Pickaxe
-    Voraussetzungen: 35 Intelligenz, 100 Nahrung, 150 Materialien
-    Dauer: 3 Runden
-    Boni: +30 Jagdertrag, +2 Höhle ausbauen Bonus, +7 Intelligenz
+    | Voraussetzungen: 35 Intelligenz, 100 Nahrung, 150 Materialien
+    | Dauer: 3 Runden
+    | Boni: +30 Jagdertrag, +2 Höhle ausbauen Bonus, +7 Intelligenz
 
 Spear
-    Voraussetzungen: 20 Intelligenz, 250 Nahrung, 100 Materialien
-    Dauer: 4 Runden
-    Boni: +60 Jagdertrag, +0,4 Fitnesszuwachs, +3 Intelligenz
+    | Voraussetzungen: 20 Intelligenz, 250 Nahrung, 100 Materialien
+    | Dauer: 4 Runden
+    | Boni: +60 Jagdertrag, +0,4 Fitnesszuwachs, +3 Intelligenz
 
 Plaiting
-    Voraussetzungen: 15 Intelligenz, 150 Nahrung, 80 Materialien
-    Dauer: 2 Runden
-    Boni: +10 Jagdertrag, +1 passiver Intelligenzzuwachs, +3 Intelligenz
+    | Voraussetzungen: 15 Intelligenz, 150 Nahrung, 80 Materialien
+    | Dauer: 2 Runden
+    | Boni: +10 Jagdertrag, +1 passiver Intelligenzzuwachs, +3 Intelligenz
 
 Archery
-    Voraussetzungen: 35 Intelligenz, 200 Nahrung, 200 Materialien
-    Dauer: 5 Runden
-    Boni: +50 Jagdertrag, +0,8 Fitnesszuwachs, +10 Intelligenz
+    | Voraussetzungen: 35 Intelligenz, 200 Nahrung, 200 Materialien
+    | Dauer: 5 Runden
+    | Boni: +50 Jagdertrag, +0,8 Fitnesszuwachs, +10 Intelligenz
 
 Wooden Fence
-    Voraussetzungen: 50 Intelligenz, 500 Nahrung, 300 Materialien
-    Dauer: 4 Runden
-    Boni: +0,5 Fitnesszuwachs, +1 Höhle ausbauen Bonus, +5 Intelligenz
+    | Voraussetzungen: 50 Intelligenz, 500 Nahrung, 300 Materialien
+    | Dauer: 4 Runden
+    | Boni: +0,5 Fitnesszuwachs, +1 Höhle ausbauen Bonus, +5 Intelligenz
 
 Basket
-    Voraussetzungen: 30 Intelligenz, 300 Materialien
-    Dauer: 2 Runden
-    Boni: +40 Jagdertrag, +0,2 Fitnesszuwachs, +4 Intelligenz
+    | Voraussetzungen: 30 Intelligenz, 300 Materialien
+    | Dauer: 2 Runden
+    | Boni: +40 Jagdertrag, +0,2 Fitnesszuwachs, +4 Intelligenz
 
 Neolithic Revolution
-    Voraussetzungen: 70 Intelligenz, 1000 Nahrung, 500 Materialien
-    Dauer: 6 Runden
-    Boni: Gewinn des Spiels!
+    | Voraussetzungen: 70 Intelligenz, 1000 Nahrung, 500 Materialien
+    | Dauer: 6 Runden
+    | Boni: Gewinn des Spiels!
 
 Training/Ponder
-    Voraussetzungen: keine
-    Dauer : 1 Runde
-    Boni: +2 Intelligenz
+    | Voraussetzungen: keine
+    | Dauer : 1 Runde
+    | Boni: +2 Intelligenz
 
 Weiterhin können bereits erforschte Techs auch Auslöser und/oder Voraussetzung
 für zufällige Ereignisse sein, dazu mehr im nächsten Abschnitt.
