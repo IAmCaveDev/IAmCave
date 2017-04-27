@@ -236,24 +236,25 @@ und resultierenden Boni nach derzeitigem Entwicklungsstand aufgelistet.
 (Reihenfolge im Screenshot von links, nach rechts und oben nach unten):
 
 Handaxe
-    Voraussetzungen: 4 Intelligenz, 150 Nahrung, 30 Materialien
-    Dauer: 3 Runden
-    Boni: +5 Jagdertrag, +2 Sammelertrag, +5 Intelligenz
+|    Voraussetzungen: 4 Intelligenz, 150 Nahrung, 30 Materialien
+|    Dauer: 3 Runden
+|    Boni: +5 Jagdertrag, +2 Sammelertrag, +5 Intelligenz
 
 Pottery
-    Voraussetzungen: 25 Intelligenz, 300 Nahrung
-    Dauer: 4 Runden
-    Boni: +30 Sammelertrag, +0,3 Fitnesszuwachs, + 4 Intelligenz
+|    Voraussetzungen: 25 Intelligenz, 300 Nahrung
+|    Dauer: 4 Runden
+|    Boni: +30 Sammelertrag, +0,3 Fitnesszuwachs, + 4 Intelligenz
 
 Hierarchy
-    Voraussetzungen: 30 Intelligenz, 300 Nahrung, 100 Materialien
-    Dauer: 4 Runden
-    Boni: +20 Jagdertrag, +20 Sammelertrag, +0,3 Fitnesszuwachs, +1 passiver Intelligenzuwachs, keine Fehlgeburten mehr, +1 Ausbauen Bonus, +6 Intelligenz
+    |Voraussetzungen: 30 Intelligenz, 300 Nahrung, 100 Materialien
+    |Dauer: 4 Runden
+    |Boni: +20 Jagdertrag, +20 Sammelertrag, +0,3 Fitnesszuwachs, +1 passiver Intelligenzuwachs,
+    |keine Fehlgeburten mehr, +1 Ausbauen Bonus, +6 Intelligenz
 
 Axe
-    Voraussetzungen: 10 Intelligenz, 200 Nahrung, 80 Materialien
-    Dauer: 3 Runden
-    Boni: +10 Jagdertrag, +10 Sammelertrag, +0,3 Fitnesszuwachs, +3 Intelligenz
+|    Voraussetzungen: 10 Intelligenz, 200 Nahrung, 80 Materialien
+|    Dauer: 3 Runden
+|    Boni: +10 Jagdertrag, +10 Sammelertrag, +0,3 Fitnesszuwachs, +3 Intelligenz
 
 Pickaxe
     Voraussetzungen: 35 Intelligenz, 100 Nahrung, 150 Materialien
