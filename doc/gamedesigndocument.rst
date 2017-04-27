@@ -219,7 +219,7 @@ Fortpflanzen
 Techtree
 ~~~~~~~~
 
-.. image:: img/techtree.png
+.. image:: img/techtree2.png
     :align: center
     :alt: Techtree
 
@@ -327,7 +327,7 @@ angezeigt, aufsteigend geordnet nach verbleibender Dauer (von oben nach unten).
 Durch Rechtsklicken auf einen Höhlenbewohner kann man sich seine Charakterwerte
 (Fitness, Intelligenz, Alter) und seinen Namen ansehen.
 
-.. image:: img/techtree.png
+.. image:: img/management2.png
     :align: center
     :alt: Management Screen
 
@@ -338,7 +338,7 @@ zur nächsten Runde unten rechts. Zu Beginn der nächsten Runde werden dem Spiel
 die Ergebnisse der letzten Runde in einer Übersicht präsentiert. Weiterhin werden
 in dieser Ansicht zufällige Ereignisse präsentiert.
 
-.. image:: img/techtree.png
+.. image:: img/roundend.png
     :align: center
     :alt: Roundend Screen
 
@@ -424,11 +424,6 @@ Bodens auswählen und das Szenario der Höhlenmenschen zu diesem Zeitpunkt endet
 
 Anhang
 ------
-.. image:: img/techtree.png
-    :align: center
-    :alt: Balance
-
-    Einflüsse der Spielressourcen untereinander
 
 .. figure:: img/techtree.png
     :align: center
