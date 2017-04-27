@@ -1,0 +1,22 @@
+{
+    "id": 20,
+    "title": "Rebellion!",
+    "description": "The cavemen feel envy. Doing nothing might end in a rebellion. \nCalm them down by inventing a greater power with the strange name GOD?",
+
+    "trigger": {
+    "has_tech": "Hierarchy"
+	},
+
+    "options": [
+    {
+        "name": "Yes",
+        "texturePath": "assets/eventbuttons/yes.png"
+    },
+    {
+        "name": "Do nothing",
+        "texturePath": "assets/eventbuttons/do-nothing.png",
+        "huntBonus": -0.2,
+        "gatherBonus": -0.2
+    }
+    ]
+}

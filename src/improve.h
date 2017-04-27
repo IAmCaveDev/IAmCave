@@ -6,11 +6,14 @@
 #include "action.h"
 
 class Improve : public Action {
-public:
-    Improve(short time);
+private:
 
-    void addActor(std::shared_ptr<Caveman> actor);
+public:
+    Improve(short time, Resources cost);
+
+    void addActor(std::shared_ptr<Caveman> newActor);
     ActionPackage resolve(Tech::StatBoosts bonuses);
+
 };
 
 #endif

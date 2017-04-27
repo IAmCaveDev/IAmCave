@@ -51,10 +51,11 @@ Event::Event(std::string path) {
 }
 
 Event::~Event() {
-    for (auto& it : options) {
-        //delete it->button;
+    int optionSize = options.size();
+    for (int i = 0; i < optionSize; i++) {
+        options.pop_back();
     }
-    //delete textbox;
+    delete textbox;
 }
 
 Event::Trigger Event::getTrigger() const {

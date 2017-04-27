@@ -33,6 +33,7 @@ private:
 
     std::shared_ptr<Tech> training;
     Button* trainingButton;
+    bool trainingMode;
 
     Button* properThinking;
     Button* abortThinking;
@@ -92,6 +93,14 @@ public:
     Button& getTrainingButton();
     Button& getProperThinking();
     Button& getAbortThinking();
+    /**
+     * Enables/Disables all tech options except ponder/training
+     */
+    void setTrainingMode(bool training);
+    /**
+     * Get the state of trainingMode
+     */
+    bool getTrainingMode();
 };
 
 #endif

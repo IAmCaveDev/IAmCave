@@ -39,6 +39,12 @@ namespace ButtonFunctions {
         }
         namespace Sex {
             void sex(Management& stateRef) {
+                for (auto& it : stateRef.getActions()) {
+                    if (it->getType() == EActions::SexAction) {
+                        stateRef.setTextboxText("It is only possible to have one sex Action at a time!");
+                        return;
+                    }
+                }
                 std::vector<Button*>& buttons = stateRef.getButtons();
                 for (auto& it : buttons) {
                     it->setClickability(false);
@@ -80,14 +86,14 @@ namespace ButtonFunctions {
         }
         namespace Research {
             void think(Management& stateRef, Techtree& techtreeRef) {
-                for (auto& it : stateRef.getActions()) {
-                    if (it->getType() == EActions::ThinkAction) {
-                        stateRef.setTextboxText("It is only possible to have one think Action at a time!");
-                        return;
-                    }
+                if (techtreeRef.getTrainingMode()) {
+                    techtreeRef.setTextboxText("You can only research one Tech at a time, you can still ponder though!");
                 }
+                else {
+                    techtreeRef.setTextboxText("This is your techtree, click a technology to show information about it.");
+                }
+
                 techtreeRef.setVisibility(true);
-                techtreeRef.setTextboxText("This is your techtree, click a technology to show information about it.");
                 std::vector<Button*>& buttons = stateRef.getButtons();
 
                 for (auto& it : buttons) {
@@ -109,9 +115,28 @@ namespace ButtonFunctions {
             void techCallback(Management& stateRef, Techtree& techtreeRef, std::shared_ptr<Tech> techRef) {
                 stateRef.setActiveTech(techRef->getName());
                 techtreeRef.getProperThinking().setClickability(true);
-                stateRef.getTechtree().setTextboxText(techRef->getName() + "\n"
-                        + std::to_string(techRef->getRequiredIntelligence())
-                        + " int required\n" + techRef->getDescription());
+                std::stringstream text;
+                text << techRef->getName() << "\n"
+                     << std::to_string(techRef->getRequiredIntelligence())
+                     << " int";
+
+                auto costs = techRef->getCost();
+
+                if (costs.food < 0) {
+                    text << ", " << std::fixed << std::setprecision(0)
+                         << std::abs(costs.food)
+                         << " food";
+                }
+                if (costs.buildingMaterial < 0) {
+                    text << ", "
+                         << std::abs(costs.buildingMaterial)
+                         << " building material";
+                }
+
+                text << ", " << std::to_string(techRef->getDuration())
+                     <<" rounds\n" << techRef->getDescription();
+
+                stateRef.getTechtree().setTextboxText(text.str());
             }
             void thinkAbort(Management& stateRef, Techtree& techtreeRef) {
                 techtreeRef.setVisibility(false);
@@ -128,11 +153,19 @@ namespace ButtonFunctions {
 
             void thinkConfirm(Management& stateRef, Techtree& techtreeRef) {
                 techtreeRef.setVisibility(false);
-                //TODO: check for duration of specific Tech and use it instead of 1
-                stateRef.setCurrentAction(EActions::ThinkAction, 1);
 
                 std::string name = stateRef.getActiveTech();
                 std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+                std::shared_ptr<Tech> tech;
+
+                if (name == "training") {
+                    tech = techtreeRef.getTraining();
+                } else {
+                    tech = techtreeRef.getTree().find(name)->second;
+                }
+
+                stateRef.setCurrentAction(EActions::ThinkAction, tech->getDuration());
+
                 if (name == "training") {
                     stateRef.setTextboxText("Select a caveman!");
                     for (auto& it : stateRef.getIdlingTribe()) {
@@ -141,7 +174,6 @@ namespace ButtonFunctions {
                     General::actionStart(stateRef);
                     return;
                 }
-                auto tech = techtreeRef.getTree().find(name)->second;
 
                 stateRef.setTextboxText("Select a caveman with " +
                         std::to_string(tech->getRequiredIntelligence()) +
@@ -185,10 +217,14 @@ namespace ButtonFunctions {
                     stateRef.deleteCurrentAction();
                     stateRef.setTextboxText("You need exactly two cavemen with different genders for this action, pls try again.");
                 } else {
-                    stateRef.pushCurrentAction();
-                    stateRef.setTextboxText("Action added to the queue! You can either select more actions or press 'Go' to go to the next Round!");
+                    if (stateRef.getGame().checkAndAddResources(stateRef.getCurrentAction().getCost())) {
+                        stateRef.pushCurrentAction();
+                        stateRef.setTextboxText("Action added to the queue! You can either select more actions or press 'Go' to go to the next Round!");
+                    } else {
+                        stateRef.deleteCurrentAction();
+                        stateRef.setTextboxText("Not enough resources to perform this Action");
+                    }
                 }
-
                 stateRef.deleteActiveTech();
                 actionEnd(stateRef);
             }
@@ -280,7 +316,14 @@ namespace ButtonFunctions {
             if (actionType == EActions::ThinkAction) {
                 std::string name = stateRef.getActiveTech();
                 std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-                auto tech = stateRef.getTechtree().getTree().find(name)->second;
+                std::shared_ptr<Tech> tech;
+
+                if (name == "training") {
+                    tech = stateRef.getTechtree().getTraining();
+                }
+                else {
+                    tech = stateRef.getTechtree().getTree().find(name)->second;
+                }
 
                 for (auto& it : stateRef.getIdlingTribe()) {
                     if(it->getIntelligence() >= tech->getRequiredIntelligence()){

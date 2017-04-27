@@ -45,15 +45,14 @@ void Button::init(std::string texPath, std::function<void()> newCallback,
 
 void Button::highlighted(const sf::Vector2i& mousePosition, bool useAlt){
     if(!clickable || !visible) return;
-    sf::Vector2i myPosition = sf::Vector2i(getTransformedPosition());
-    if((mousePosition.x >= myPosition.x) &&
-       (mousePosition.x <= myPosition.x + getTransformedSize().getX()) &&
-       (mousePosition.y >= myPosition.y) &&
-       (mousePosition.y <= myPosition.y + getTransformedSize().getY())){
+    if(isClicked(mousePosition)){
         if((useAlt && altCallback != nullptr) ||
            (!useAlt && callback != nullptr)){
             setTexture(&highlightedTex);
             isHighlighted = true;
+            if (!buttonText.empty()) {
+                Textbox::setText(buttonText);
+            }
         }
     }
     return;
@@ -61,11 +60,7 @@ void Button::highlighted(const sf::Vector2i& mousePosition, bool useAlt){
 
 void Button::executed(const sf::Vector2i& mousePosition, bool useAlt){
     if(!clickable || !isHighlighted || !visible) return;
-    sf::Vector2i myPosition = sf::Vector2i(getTransformedPosition());
-    if((mousePosition.x >= myPosition.x) &&
-       (mousePosition.x <= myPosition.x + getTransformedSize().getX()) &&
-       (mousePosition.y >= myPosition.y) &&
-       (mousePosition.y <= myPosition.y + getTransformedSize().getY())){
+    if(isClicked(mousePosition)){
         if(useAlt && altCallback != nullptr){
             altCallback();
         }else if(callback != nullptr){
@@ -75,6 +70,9 @@ void Button::executed(const sf::Vector2i& mousePosition, bool useAlt){
     if(isHighlighted){
         setTexture(&tex);
         isHighlighted = false;
+        if (!buttonText.empty()) {
+            Textbox::setText(buttonText);
+        }
     }
     return;
 }
@@ -106,4 +104,20 @@ void Button::setClickability(bool newclick) {
 
 bool Button::getClickability() {
     return clickable;
+}
+
+bool Button::isClicked(const sf::Vector2i& mousePosition) {
+    sf::Vector2i myPosition = sf::Vector2i(getTransformedPosition());
+    if((mousePosition.x >= myPosition.x) &&
+       (mousePosition.x <= myPosition.x + getTransformedSize().getX()) &&
+       (mousePosition.y >= myPosition.y) &&
+       (mousePosition.y <= myPosition.y + getTransformedSize().getY())){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+void Button::setText(std::string newText) {
+    buttonText = newText;
 }

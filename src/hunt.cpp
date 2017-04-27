@@ -19,13 +19,12 @@ ActionPackage Hunt::resolve(Tech::StatBoosts bonuses) {
     currentDuration += 1;
 
     if (currentDuration == totalDuration) {
-        short totalFitness = 0;
+        float totalFitness = 0;
         std::random_device rd;
         std::mt19937 rng(rd());
-        std::uniform_int_distribution<int> distribEasy(0, 20);
+        std::uniform_int_distribution<int> distribEasy(0, 100);
         std::uniform_int_distribution<int> distribHard(0, 10);
 
-        int pos = 0;
         for (auto& it : actors) {
             int casualtyDice;
             if (isEasy) {
@@ -34,17 +33,20 @@ ActionPackage Hunt::resolve(Tech::StatBoosts bonuses) {
                 casualtyDice = distribHard(rng);
             }
 
-            if (!casualtyDice) {
+            if (casualtyDice == 5) {
                 it->setCurrentAction(Dead);
             } else {
                 totalFitness += it->getFitness();
+                if ((isEasy) && (it->getAge() < 50)) {
+                    it->setFitness(it->getFitness() + 1 + bonuses.addends.fitnessGain);
+                } else if (it->getAge() < 50) {
+                    it->setFitness(it->getFitness() + 2 + bonuses.addends.fitnessGain);
+                }
                 it->setCurrentAction(Idle);
             }
-
-            pos++;
         }
 
-        float food = totalFitness * totalDuration + bonuses.addends.huntBonus;
+        float food = 20 + totalFitness * totalDuration + bonuses.addends.huntBonus;
 
         return { true, food, 0, 0, false };
     }

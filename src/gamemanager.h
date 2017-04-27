@@ -8,6 +8,8 @@
 #include "mainmenu.h"
 #include "management.h"
 #include "roundend.h"
+#include "winscreen.h"
+#include "losescreen.h"
 
 /**
  * Manages information about the game and it's states.
@@ -22,6 +24,8 @@ private:
     MainMenu mainMenu;
     Management management;
     RoundEnd roundEnd;
+    WinScreen winScreen;
+    LoseScreen loseScreen;
 
 public:
     GameManager() = delete;

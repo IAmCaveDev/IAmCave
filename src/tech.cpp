@@ -22,12 +22,18 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newS
 
         requiredIntelligence = data["requiredIntelligence"];
         intelligenceGain = data["intelligenceGain"];
+        duration = data["duration"];
+
+        cost = { data["cost"]["food"],data["cost"]["materials"],data["cost"]["capacity"] };
 
         statBoosts = {
             {
                 data["statBoosts"]["addends"]["huntBonus"],
                 data["statBoosts"]["addends"]["gatheringBonus"],
                 data["statBoosts"]["addends"]["fitnessGain"],
+                data["statBoosts"]["addends"]["passiveIntGain"],
+                data["statBoosts"]["addends"]["buildingBonus"],
+                data["statBoosts"]["addends"]["birthGain"]
             }
         };
 
@@ -38,6 +44,13 @@ Tech::Tech(std::string path, short newLevel, ParentsVector newParents, bool newS
     std::string lowerName = name;
     std::transform(lowerName.begin(), lowerName.end(), lowerName.begin(), ::tolower);
     button = new Button(100, 0, "assets/techtree/res-"+lowerName+".png", nullptr);
+
+    researchedBox = new Rectangle(0, 0, "assets/researched.png");
+}
+
+Tech::~Tech() {
+    delete button;
+    delete researchedBox;
 }
 
 std::string Tech::getName() {
@@ -50,6 +63,10 @@ Tech::ParentsVector& Tech::getParents() {
 
 Button& Tech::getButton() {
     return *button;
+}
+
+Rectangle& Tech::getResearchedBox() {
+    return *researchedBox;
 }
 
 short Tech::getLevel() {
@@ -155,10 +172,23 @@ bool Tech::isResearched() {
 
 void Tech::setResearched(bool newResearched) {
     researched = newResearched;
+    if (researched) {
+        researchedBox->setTransformedSize({24, 24});
+    } else {
+        researchedBox->setTransformedSize({0, 0});
+    }
 }
 
 int Tech::getRequiredIntelligence() {
     return requiredIntelligence;
+}
+
+short Tech::getDuration() {
+    return duration;
+}
+
+Resources Tech::getCost() {
+    return cost;
 }
 
 void Tech::updateButtonState() {

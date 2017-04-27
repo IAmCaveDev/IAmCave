@@ -11,6 +11,13 @@ void Techtree::positionTree(json data, short level,
 
     if (level - 1 == p->getLevel()) {
         p->getButton().setTransformedPosition(lastPos);
+
+        TransformedVector<> size = p->getButton().getTransformedSize();
+        TransformedVector<> position = p->getButton().getTransformedPosition();
+        p->getResearchedBox().setTransformedPosition({position.getRealX()
+                                                     + size.getRealX()
+                                                     - 24 - 3 - static_cast<int>(10.f/280.f * size.getRealX()),
+                                                     position.getRealY() + 3 + static_cast<int>(10.f/280.f * size.getRealX())});
     }
 
     for (auto& it : p->getParents()) {
@@ -110,7 +117,8 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
 
     training = std::shared_ptr<Tech>(new Tech("assets/tech/training.json", 0, { nullptr }));
     training->getButton().setVisibility(false);
-    trainingButton = new Button({ 200, 80 }, { -250, -300 }, "assets/think.png", nullptr);
+    trainingButton = new Button({ 200, 80 }, { -250, -300 }, "assets/techtree/ponder.png", nullptr);
+    trainingMode = false;
 
     properThinking = new Button({ 200, 80 }, { -250, -200 }, "assets/confirm.png", nullptr);
     abortThinking = new Button({ 200, 80 }, { -250, -100 }, "assets/abort.png", nullptr);
@@ -118,10 +126,13 @@ Techtree::Techtree(std::string backgroundPath, std::string path,
 
 void Techtree::setVisibility(bool newVisibility) {
     visibility = newVisibility;
-    for (auto& it : tree) {
-        it.second->updateButtonState();
-        it.second->getButton().setVisibility(newVisibility);
+    if (!trainingMode) {
+        for (auto& it : tree) {
+            it.second->updateButtonState();
+            it.second->getButton().setVisibility(newVisibility);
+        }
     }
+    
 }
 
 bool Techtree::getVisibility() {
@@ -137,6 +148,7 @@ void Techtree::display(sf::RenderWindow& win) {
         this->Rectangle::display(win);
         for (auto& it : tree) {
             it.second->getButton().display(win);
+            it.second->getResearchedBox().display(win);
             win.draw(it.second->getArrowsToParents().tip);
             for(auto& line : it.second->getArrowsToParents().lines) {
                 win.draw(line);
@@ -167,6 +179,10 @@ void Techtree::onResize() {
         auto& button = it.second->getButton();
         button.setPosition(button.getTransformedPosition());
         button.setSize(button.getTransformedSize());
+
+        auto& researchedBox = it.second->getResearchedBox();
+        researchedBox.setPosition(researchedBox.getTransformedPosition());
+        researchedBox.setSize(researchedBox.getTransformedSize());
 
         it.second->updateArrowsToParents();
     }
@@ -200,4 +216,12 @@ Button& Techtree::getProperThinking() {
 
 Button& Techtree::getAbortThinking() {
     return *abortThinking;
+}
+
+void Techtree::setTrainingMode(bool training) {
+    trainingMode = training;
+}
+
+bool Techtree::getTrainingMode() {
+    return trainingMode;
 }

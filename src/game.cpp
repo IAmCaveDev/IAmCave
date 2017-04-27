@@ -34,10 +34,10 @@ Game::Game() : techtree("assets/background-techtree.png",
     EventFactory eventFactory;
 
     // Starting population
-    for(int i = 0; i < 4; ++i){
+    for(int i = 0; i < 3; ++i){
         tribe.push_back(cavemanFactory.createMale(5, 5));
     }
-    for(int i = 0; i < 4; ++i){
+    for(int i = 0; i < 2; ++i){
         tribe.push_back(cavemanFactory.createFemale(5, 5));
     }
 
@@ -46,12 +46,13 @@ Game::Game() : techtree("assets/background-techtree.png",
     // starting resources
     resources.food = 200;
     resources.buildingMaterial = 50;
-    resources.cavemanCapacity = 10;
+    resources.cavemanCapacity = 5;
 
     //events.push_back(eventFactory.createEvent(0, Narrative));
 }
 
 void Game::addCaveman(int maxAge, int minAge) {
+    if (resources.cavemanCapacity <= tribe.size()) return;
     CavemanFactory cavemanFactory;
     tribe.push_back(cavemanFactory.createRandom(maxAge, minAge));
 
@@ -60,8 +61,17 @@ void Game::addCaveman(int maxAge, int minAge) {
 
 void Game::addCaveman(int maxAge, int minAge, int newIntelligence,
                       int newFitness, bool newIsMale) {
+    if (resources.cavemanCapacity <= tribe.size()) return;
     CavemanFactory cavemanfactory;
-    tribe.push_back(cavemanfactory.createSpecific(maxAge, minAge, newIntelligence, newFitness, newIsMale));
+    if ((newIntelligence == -1) && (newFitness == -1)) {
+        if (newIsMale) {
+            tribe.push_back(cavemanfactory.createMale(maxAge, minAge));
+        } else {
+            tribe.push_back(cavemanfactory.createFemale(maxAge, minAge));
+        }
+    } else {
+        tribe.push_back(cavemanfactory.createSpecific(maxAge, minAge, newIntelligence, newFitness, newIsMale));
+    }
     repositionTribe();
 }
 
@@ -112,6 +122,14 @@ void Game::removeEvent(short id) {
     }
 }
 
+bool Game::eventsAreEnabled() {
+    return eventsEnabled;
+}
+
+void Game::enableEvents(bool enable) {
+    eventsEnabled = enable;
+}
+
 std::vector<std::unique_ptr<Action>>& Game::getActions() {
     return actions;
 }
@@ -120,6 +138,16 @@ void Game::addToResources(Resources amount) {
     resources.food += amount.food;
     resources.buildingMaterial += amount.buildingMaterial;
     resources.cavemanCapacity += amount.cavemanCapacity;
+}
+
+bool Game::checkAndAddResources(Resources amount) {
+    if ((resources.food + amount.food < 0) ||
+        (resources.buildingMaterial + amount.buildingMaterial < 0)) {
+        return false;
+    } else {
+        addToResources(amount);
+        return true;
+    }
 }
 
 Techtree& Game::getTechtree(){

@@ -1,7 +1,7 @@
 #ifndef CAVEMAN_H
 #define CAVEMAN_H
 
-#define MIN_ADULT_AGE 3
+#define MIN_ADULT_AGE 0
 
 #include <string>
 #include <memory>
@@ -25,7 +25,7 @@ private:
 
     EActions currentAction;
 
-    short fitness;
+    float fitness;
     short intelligence;
 
     bool infoboxVisible = false;
@@ -60,8 +60,9 @@ public:
     std::string getName();
     virtual bool isMale() = 0;
     unsigned short getAge();
-    short getFitness();
-    void setFitness(short newFit);
+    void aging();
+    float getFitness();
+    void setFitness(float newFit);
     short getIntelligence();
     void setIntelligence(short newInt);
     void addIntelligence(short newInt);
