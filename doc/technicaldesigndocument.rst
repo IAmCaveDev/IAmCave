@@ -155,7 +155,8 @@ Der Aufbau einer Techdatei gestaltet sich wie folgt:
 
   {
       "name": "Archery",
-      "description": "running after rabbits with spears gets very tiring. adds a big bonus to hunting and a huge fitnessgain",
+      "description": "running after rabbits with spears gets very tiring. adds a
+                      big bonus to hunting and a huge fitnessgain",
       "iconPath": "assets/archerytech.png",
 
       "requiredIntelligence": 35,
@@ -173,7 +174,7 @@ Der Aufbau einer Techdatei gestaltet sich wie folgt:
               "huntBonus": 50,
               "gatheringBonus": 0,
               "fitnessGain": 0.8,
-  	    "passiveIntGain": 0,
+        "passiveIntGain": 0,
               "buildingBonus": 0,
               "birthGain": 0
           },
@@ -272,7 +273,8 @@ Beispiel:
 
 .. code:: c++
 
-        Button({100, 50}, {0, 0}, “texture.png”, std::bind(&someFunction, std::ref(someReference)));
+        Button({100, 50}, {0, 0}, “texture.png”,
+               std::bind(&someFunction, std::ref(someReference)));
 
 Ein :cpp:`nullptr` kann übergeben werden um keinen Callback zu verwenden.
 
@@ -576,11 +578,7 @@ Action-Queue
 Textcontainer
 ~~~~~~~~~~~~~
 
-.. image:: img/state-textbox.png
-   :align: center
-   :alt: Textbox
-
-.. image:: img/infobox.png
+.. image:: img/info.png
    :align: center
    :alt: Infobox
 
