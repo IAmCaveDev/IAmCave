@@ -19,7 +19,7 @@ Caveman::Caveman(int maxAge, int minAge) : id(counter){
     fitness = stats(rng);
     intelligence = stats(rng);
 
-    infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "");
+    infobox = new Textbox({200, 200}, {450, 400}, "assets/info.png", "", 15);
     actionbox = new Button({50, 50}, {0, 0}, "assets/idle.png", nullptr);
     actionbox->setVisibility(false);
 
@@ -45,11 +45,20 @@ std::string Caveman::getName(){
 unsigned short Caveman::getAge(){
     return age;
 }
-short Caveman::getFitness(){
+
+void Caveman::aging() {
+    age++;
+}
+
+float Caveman::getFitness(){
     return fitness;
 }
-void Caveman::setFitness(short newFit) {
-    fitness = newFit;
+void Caveman::setFitness(float newFit) {
+    if (newFit < 0) {
+        fitness = 0;
+    } else {
+        fitness = newFit;
+    }
 }
 short Caveman::getIntelligence(){
     return intelligence;

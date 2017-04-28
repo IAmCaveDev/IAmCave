@@ -18,6 +18,7 @@ private:
     Textbox cavemanCapacity;
     Rectangle foodHeap;
     Rectangle materialHeap;
+    Rectangle caveHeap;
     /**
      * Update Textboxes and Graphics for food and material Heaps
      */

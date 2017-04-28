@@ -1,0 +1,22 @@
+{
+    "id": 17,
+    "title": "What a freak!",
+    "description": "A friend of you freaks out for no reason. \nHe tries to destroy the cave with anything he gets into his hands.\nUse violence to stop him?",
+
+    "trigger": {
+    "tribeSize": 15
+	},
+
+    "options": [
+    { 
+        "name": "Yes",
+        "texturePath": "assets/eventbuttons/yes.png",
+        "materialGain": -10
+    },
+    {
+        "name": "No",
+        "texturePath": "assets/eventbuttons/no.png",
+        "materialGain": -30
+    }
+    ]
+}

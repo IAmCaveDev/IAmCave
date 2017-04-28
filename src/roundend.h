@@ -17,10 +17,15 @@
 class RoundEnd : public GameState {
 private:
     std::mt19937 rng;
-
-    Textbox* infoColumn;
+    int tribeChanges;
 
     Textbox* textbox;
+
+    Textbox* cavemanBox;
+    Textbox* foodBox;
+    Textbox* materialBox;
+    Textbox* capacityBox;
+    Textbox* roundBox;
 
     /**
     * Calls the resolve function of all active Actions and adds to Gameresources
@@ -28,7 +33,7 @@ private:
     void resolveActions();
 
     /**
-     * Passive resource consumption
+     * Passive resource consumption and aging
      */
     void doPassives();
 

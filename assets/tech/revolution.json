@@ -1,16 +1,24 @@
 {
     "name": "Revolution",
-    "description": "you win the game, was it really that hard?",
+    "description": "the cavepeople can build their own housing and farm crops. this wins the game",
     "iconPath": "assets/revolutiontech.png",
 
-    "requiredIntelligence": 60,
+    "requiredIntelligence": 70,
     "intelligenceGain": 5,
+    "duration": 6,
 
+    "cost": {
+      "food": -1000,
+      "materials": -500,
+      "capacity": 0
+    },
+    
     "statBoosts": {
         "addends": {
             "huntBonus": 100,
             "gatheringBonus": 100,
             "fitnessGain": 1,
+	    "passiveIntGain": 0,
             "buildingBonus": 0,
             "birthGain": 0
         },

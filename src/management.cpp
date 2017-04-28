@@ -58,13 +58,21 @@ void Management::setCurrentAction(EActions newaction, short duration) {
             currentAction = std::move(actionFactory.createSexAction());
             break;
         case EActions::ImproveAction:
-            currentAction = std::move(actionFactory.createImproveAction(duration));
+            currentAction = std::move(actionFactory.createImproveAction(duration, { 0,-30,0 }));
             break;
         case EActions::CollectAction:
             currentAction = std::move(actionFactory.createCollectAction(duration));
             break;
         case EActions::ThinkAction:
-            currentAction = std::move(actionFactory.createThinkingAction(activeTech,duration));
+            std::transform(activeTech.begin(), activeTech.end(), activeTech.begin(), ::tolower);
+            Resources cost;
+            if (activeTech == "training") {
+                cost = game.getTechtree().getTraining()->getCost();
+            }
+            else {
+                cost = game.getTechtree().getTree().find(activeTech)->second->getCost();
+            }
+            currentAction = std::move(actionFactory.createThinkingAction(activeTech,duration,cost));
             break;
         // TODO: add more Actions here
     }
@@ -81,23 +89,26 @@ void Management::pushCurrentAction() {
     switch (currentType) {
         case EActions::EasyHunt:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
-                                    "assets/hunt-icon.png", nullptr), currentAction->getDuration());
+                "assets/hunt-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::HardHunt:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
-                                    "assets/hunt-icon.png", nullptr), currentAction->getDuration());
+                "assets/hunt-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::SexAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
-                                    "assets/makelove-icon.png", nullptr), currentAction->getDuration());
+                "assets/makelove-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::ImproveAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
-                                    "assets/improve-icon.png", nullptr), currentAction->getDuration());
+                "assets/improve-icon.png", nullptr), currentAction->getDuration());
             break;
         case EActions::ThinkAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
-                                    "assets/think-icon.png", nullptr), currentAction->getDuration());
+                "assets/think-icon.png", nullptr), currentAction->getDuration());
+            if (activeTech != "training") {
+                game.getTechtree().setTrainingMode(true);
+            }
             break;
         case EActions::CollectAction:
             actionDisplay->addButton(currentAction->getID(), new Button({ 200, 50 }, { 200, 300 },
@@ -118,11 +129,12 @@ void Management::deleteCurrentAction() {
 
 void Management::setActiveTech(std::string newTech) {
     activeTech = newTech;
-    int i = 0;
 }
 
 std::string Management::getActiveTech() {
-    return activeTech; } 
+    return activeTech;
+}
+
 void Management::deleteActiveTech() {
     activeTech = "";
 }
@@ -148,17 +160,17 @@ void Management::display(sf::RenderWindow& win) {
 
     actionDisplay->display(win);
 
-    for (auto const& it : getIdlingTribe()) {
+    for (auto const& it : buttons) {
         it->display(win);
     }
 
     resourceDisplay->display(win);
 
-    grass->display(win);
-
-    for (auto const& it : buttons) {
+    for (auto const& it : getIdlingTribe()) {
         it->display(win);
     }
+
+    grass->display(win);
 
     game.getTechtree().display(win);
 
@@ -169,7 +181,21 @@ void Management::setTextboxText(std::string str) {
 }
 
 void Management::resetTextbox() {
-    textbox->setText("Select your actions for round number " + std::to_string(game.getRoundNumber()) + " !");
+    int roundNumber = game.getRoundNumber();
+    if (roundNumber == 0) {
+        textbox->setText("Welcome to I am Cave, try to have some fun! You have 100 rounds, your goal is to research the neolithic revolution\nin the techtree!");
+    } else if (roundNumber%10 == 0) {
+        textbox->setText("Time is running! Only " + std::to_string(100 - roundNumber) + " rounds to go! Select your actions!");
+    } else if ((roundNumber == 41) || (roundNumber == 42) || (roundNumber == 43)) {
+        textbox->setText("The oldest members of the tribe look tired, looks like they won't make it way past 50.\nMake sure a new generation can take over!");
+    } else if ((100 - roundNumber <= 10) && (100 - roundNumber > 1)) {
+        textbox->setText("Animals and Materials are getting sparse. Only " + std::to_string(100 - roundNumber) + " rounds left!");
+    } else if (100 - roundNumber <= 1) {
+        textbox->setText("Oh no...");
+    } else {
+        textbox->setText("Select your actions for round number " + std::to_string(game.getRoundNumber()) + " !");
+    }
+
 }
 
 Techtree& Management::getTechtree() {

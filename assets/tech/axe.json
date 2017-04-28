@@ -1,16 +1,24 @@
 {
     "name": "Axe",
-    "description": "its like a handaxe, just less handy, used to kill",
+    "description": "its like a handaxe, just less handy. adds bonuses for hunting, collecting and a slightly higher fitnessgain",
     "iconPath": "assets/axetech.png",
 
     "requiredIntelligence": 10,
-    "intelligenceGain": 5,
+    "intelligenceGain": 3,
+    "duration": 3,
 
+    "cost": {
+      "food": -200,
+      "materials": -80,
+      "capacity": 0
+    },
+    
     "statBoosts": {
         "addends": {
             "huntBonus": 10,
             "gatheringBonus": 10,
             "fitnessGain": 0.3,
+	    "passiveIntGain": 0,
             "buildingBonus": 0,
             "birthGain": 0
         },

@@ -1,7 +1,6 @@
 #include "mainmenu.h"
 #include "button.h"
 #include "game.h"
-#include "buttonfunctions.h"
 
 MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
     type = EGamestates::mainMenu;
@@ -11,17 +10,26 @@ MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
         new Rectangle({1920, 1080}, {0, 0}, "assets/background.png")
     };
 
+    std::string signText;
+    if (game.eventsAreEnabled()) {
+        signText = "Events\nenabled";
+    } else {
+        signText = "Events\ndisabled";
+    }
+
+    eventSign = new Button({230, 190}, {1620, 800}, "assets/eventsign.png",
+                           std::bind(&MainMenu::toggleEventSign, this),
+                           nullptr, signText, 20, 35);
+
     buttons = {
-        new Button({200, 80}, {200, 100}, "assets/play.png", [&](){
+        new Button({760, 590}, {845, 185}, "assets/menu-start.png", [&](){
                     nextState = EGamestates::management;
                 }),
-        new Button({200, 80}, {200, 200}, "assets/options.png",
-                   ButtonFunctions::MainMenu::options),
-        new Button({200, 80}, {200, 300}, "assets/exit.png", [&](){
+        new Button({300, 255}, {685, 830}, "assets/menu-exit.png", [&](){
                     nextState = EGamestates::quit;
-                })
+                }),
+        eventSign
     };
-
 }
 
 void MainMenu::display(sf::RenderWindow& win) {
@@ -35,4 +43,14 @@ void MainMenu::display(sf::RenderWindow& win) {
 
 void MainMenu::additionalResizes() {
 
+}
+
+void MainMenu::toggleEventSign() {
+    if (game.eventsAreEnabled()) {
+        game.enableEvents(false);
+        eventSign->setText("Events\ndisabled");
+    } else {
+        game.enableEvents(true);
+        eventSign->setText("Events\nenabled");
+    }
 }

@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "button.h"
+#include "resources.h"
 
 /**
  * A researchable technology.
@@ -19,6 +20,9 @@ public:
             float huntBonus;
             float gatheringBonus;
             float fitnessGain;
+            float passiveIntGain;
+            float buildingBonus;
+            float birthGain;
         } addends;
         struct {
             float example;
@@ -30,6 +34,9 @@ public:
                     addends.huntBonus + other.addends.huntBonus,
                     addends.gatheringBonus + other.addends.gatheringBonus,
                     addends.fitnessGain + other.addends.fitnessGain,
+                    addends.passiveIntGain + other.addends.passiveIntGain,
+                    addends.buildingBonus + other.addends.buildingBonus,
+                    addends.birthGain + other.addends.birthGain
                 },
                 {
                     multipliers.example + other.multipliers.example - 1
@@ -52,12 +59,15 @@ private:
     std::string description;
     std::string iconPath;
     int requiredIntelligence;
+    Resources cost;
     StatBoosts statBoosts;
     short intelligenceGain;
+    short duration;
 
     bool researched;
 
     Button* button;
+    Rectangle* researchedBox;
 
 public:
     bool straightLine;
@@ -73,6 +83,8 @@ public:
     Tech(std::string path, short newLevel, ParentsVector newParents,
          bool newStraightLine = false);
 
+    ~Tech();
+
     std::string getName();
     /**
      * @return A reference to the list of parents.
@@ -83,6 +95,8 @@ public:
      * @return A reference to the Tech's button.
      */
     Button& getButton();
+
+    Rectangle& getResearchedBox();
 
     /**
      * @return The level of the Tech in the Techtree.
@@ -121,7 +135,7 @@ public:
      */
     TransformedVector<> getLeftArrowNode();
     /**
-     * Returns a Reference to the Arrows to Parents in tree. Mainly needed to draw the arrows 
+     * Returns a Reference to the Arrows to Parents in tree. Mainly needed to draw the arrows
      * in techtree.display() function.
      */
     ArrowsToParents getArrowsToParents();
@@ -137,6 +151,14 @@ public:
      * @return required intelligence to research Tech
      */
     int getRequiredIntelligence();
+    /**
+     * @return the duration of the Tech.
+     */
+    short getDuration();
+    /*
+     * @return the cost of the Tech
+     */
+    Resources getCost();
     /**
      * Enable or disable the Tech button, depending on wether the parents are researched and
      * wether the Tech itself is already researched.

@@ -1,17 +1,25 @@
 {
     "name": "WoodenFence",
-    "description": "prevents animals from eating your stuff",
+    "description": "prevents animals from eating your stuff, improves the improve action, fitness raises faster from building fences",
     "iconPath": "assets/woodenfencetech.png",
 
     "requiredIntelligence": 50,
     "intelligenceGain": 5,
+    "duration": 4,
 
+    "cost": {
+      "food": -500,
+      "materials": -300,
+      "capacity": 0
+    },
+    
     "statBoosts": {
         "addends": {
             "huntBonus": 0,
             "gatheringBonus": 0,
-            "fitnessGain": 0,
-            "buildingBonus": 0,
+            "fitnessGain": 0.5,
+	    "passiveIntGain": 0,
+            "buildingBonus": 1,
             "birthGain": 0
         },
         "multipliers": {

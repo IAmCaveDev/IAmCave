@@ -1,18 +1,26 @@
 {
     "name": "Hierarchy",
-    "description": "everything gets better when there is only one leader",
+    "description": "everything gets better when there is only one leader. bonuses to hunting, collecting, passive intelligence, improvement improvements and eliminates miscarriages",
     "iconPath": "assets/hierarchytech.png",
 
-    "requiredIntelligence": 40,
-    "intelligenceGain": 5,
+    "requiredIntelligence": 30,
+    "intelligenceGain": 6,
+    "duration": 4,
 
+    "cost": {
+      "food": -300,
+      "materials": -100,
+      "capacity": 0
+    },
+    
     "statBoosts": {
         "addends": {
             "huntBonus": 20,
             "gatheringBonus": 20,
-            "fitnessGain": 0.5,
-            "buildingBonus": 0,
-            "birthGain": 0.7
+            "fitnessGain": 0.3,
+	    "passiveIntGain": 1,
+            "buildingBonus": 1,
+            "birthGain": 0.1
         },
         "multipliers": {
 

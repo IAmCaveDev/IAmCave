@@ -1,0 +1,31 @@
+{
+    "id": 23,
+    "title": "Surprising meeting",
+    "description": "While some of our hunters try to get close to a deer, it's hit by a spear thrown from somewhere between the bushes. \nYou meet another tribe, that is starving. They offer their strongest man \nfor some meat and materials for their cave. Make the exchange?",
+
+    "trigger": {
+    "tribeMaterial": 300,
+    "tribeFood": 300 
+	},
+
+    "options": [
+    {
+        "name": "Yes",
+        "texturePath": "assets/eventbuttons/yes.png",
+        "materialGain": -20,
+        "foodGain": -20,
+        "cavemen": [
+        {
+            "age": 22,
+            "fitness": 34,
+            "intelligence": 12,
+            "isMale": true
+        }
+        ]
+    },
+    {
+        "name": "No",
+        "texturePath": "assets/eventbuttons/no.png"
+    }
+    ]
+}

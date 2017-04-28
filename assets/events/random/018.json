@@ -1,0 +1,17 @@
+{
+    "id": 18,
+    "title": "Deluge!",
+    "description": "Because of strong rain a river close to the cave bursts it banks.\nAlthough the cavemen try to save their belongings,\nsome of the materials are muddy and now useless.",
+
+    "trigger": {
+    "tribeMaterial": 150
+	},
+
+    "options": [
+    { 
+        "name": "Ok",
+        "texturePath": "assets/eventbuttons/ok.png",
+        "materialGain": -20
+    }
+    ]
+}

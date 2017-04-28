@@ -16,6 +16,8 @@ enum EGamestates {
     mainMenu,
     management,
     roundEnd,
+    winScreen,
+    loseScreen,
     quit
 };
 
