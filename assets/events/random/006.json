@@ -1,7 +1,7 @@
 {
     "id": 6,
     "title": "Fruit Knowledge",
-    "description": "Our woman have gotten pretty experienced with the local fruits. They can now take a guess on whether something\nis eatable from 100m!",
+    "description": "Our women have gotten pretty experienced with the local fruits. They can now take a guess on whether something\nis eatable from 100m!",
 
     "trigger": {
     "tribeSize": 20
