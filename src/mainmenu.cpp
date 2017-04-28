@@ -22,7 +22,7 @@ MainMenu::MainMenu(Game& gameRef) : GameState(gameRef) {
                            nullptr, signText, 20, 35);
 
     buttons = {
-        new Button({845, 635}, {800, 180}, "assets/menu-start.png", [&](){
+        new Button({760, 590}, {845, 185}, "assets/menu-start.png", [&](){
                     nextState = EGamestates::management;
                 }),
         new Button({300, 255}, {685, 830}, "assets/menu-exit.png", [&](){

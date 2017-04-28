@@ -29,7 +29,7 @@ Um die Zusammenarbeit zu vereinfachen wird Git als version control system
 benutzt. Die Git Repository befindet sich auf GitHub [#]_ .
 
 Es wird die Methodik der Continuous Integration [#]_ angewandt, d.h. dass jedes
-Teammmitglied bzw. jedes feature eine eigene branch hat auf die frei commitet
+Teammmitglied bzw. jedes feature eine eigene branch hat auf die frei committet
 werden kann.  Die master branch ist protected und pull requests müssen compilen
 und von jedem anderen Teammmitglied reviewed werden bevor sie in die master
 branch gemerged werden können.  Als CI Server wird Travis [#]_ benutzt.
@@ -38,7 +38,7 @@ Zur internen Organisation werden GitHub Funktionen wie Issues, Milestones und
 Projects benutzt.
 
 Ein einheitlicher Codingstil ist durch einen vorher verfassten Styleguide
-festgelegt.
+festgelegt. Die Aufgabenverteilung erfolgt durch einen Ablaufplan.
 
 Dokumentation
 ^^^^^^^^^^^^^
@@ -49,7 +49,7 @@ Generierung der Dokumentation wird Doxygen [#]_ verwendet.
 Input & Plattform
 ^^^^^^^^^^^^^^^^^
 
-Die Ziel- und Testplattform der Entwicklung sind Windows Rechner.  Das Spiel
+Die Ziel- und Testplattform der Entwicklung sind Windowsrechner.  Das Spiel
 wird ausschließlich mit der Maus gesteuert; es wurden noch keine Tastaturbefehle
 implementiert. Basierend auf dieser Restriktion wird ebenfalls eine mögliche
 Umsetzung auf Touch-Geräten als Langzeit-Meilenstein angestrebt.
@@ -63,43 +63,45 @@ Grafik
 
 Primär werden die Character-Sprites, Backgrounds sowie Texturen von Hand
 gezeichnet (Graphics Tablet). Weiteres dazu in der Art Bible.
+Für die Grafiken der Höhlenmenschen wurden zunächst verschiedene Gesichter,
+Haarstile und Kleidungen gezeichnet und dann mittels eines C# Skripts dynamisch
+zusammen gesetzt.
 
 Grafikformate
 ^^^^^^^^^^^^^
 
-Das Spiel wird im 16:9 Format dargestellt und besitzt einen optionalen
-Fullscreen-Modus. Die Grafiken werden im .png Format abgespeichert.  Es wird
-keine 3D-Modelle in der Anwendung geben, da das Spiel ohne simulierte Physik und
-räumliche Darstellung auskommt. Alle Modelle und Effekte sind ausschließlich 2D.
+Das Spiel wird im 16:9 Format dargestellt, die Auflösung und Fenstergröße ist
+über den Windows Fenstermanager beliebig durch den User veränderbar. Die Grafiken
+werden im .png Format abgespeichert. Es wird keine 3D-Modelle in der Anwendung geben,
+da das Spiel ohne simulierte Physik und räumliche Darstellung auskommt.
+Alle Modelle und Effekte sind ausschließlich 2D.
 
 Mainscreen und Mockups
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Der 2D Mainscreen wird eine interaktive Höhlen Übersicht darstellen.  Zusätzlich
-zu einer externen Statistik Übersicht wird der Spieler die Möglichkeit haben,
-sämtliche Spieler-relevanten Informationen in Form von natürlich-grafischem
+Der 2D Mainscreen wird eine interaktive Höhlen Übersicht darstellen.
+Der Spieler wird die Möglichkeit haben,
+sämtliche für ihn relevanten Informationen in Form von natürlich-grafischem
 Feedback zu erhalten (Details im folgenden Abschnitt). Sämtliche Interaktionen
 können ebenfalls von diesem Mainscreen aus ausgeführt werden.
 
-.. figure:: img/management.png
+.. figure:: img/management2.png
     :align: center
     :alt: management screenshot
 
-    Screenshots des Management Screens (nicht final)
+    Screenshot des Management Screens
 
 **Liste an sichtbaren Elementen und Informationen des Mainscreens:**
 
-- Rundenzahl
+- Rundenzahl (am Anfang jeder Runde in der Textbox)
 - Verfügbare Menge an Nahrung
 - Verfügbare Menge an Materialien
-- Gesamt- und Maximalzahl an Einwohnern
+- Maximalzahl an Einwohnern
 - Menge an nicht-zugewiesenen Höhlenbewohnern (Dargestellt durch Menge an
   interaktiven Höhlenbewohner-Grafiken in der Mitte des Screens)
 - Aktionen ‘Hunt’, ‘Collect’, ‘Think’, ‘Make Love’, ‘Improve’
 - Button zum Beenden der Runde (‘Go’)
 - Balken zur Darstellung bereits ausgewählter und laufender Aktionen
-- Aufrufbare Spieloptionen (‘Options’-Button)
-- Beenden und automatisches Speichern des Spiels
 
 **Zusätzliche Darstellungsfeatures:**
 
@@ -108,18 +110,6 @@ können ebenfalls von diesem Mainscreen aus ausgeführt werden.
 - Erwerbbare Einrichtungsobjekte
 - Umgebungsanimation/-shader (Feuer, Höhlenbewohnertätigkeiten)
 
-Sound
-^^^^^
-
-Geräusche sowie Musik befinden sich im .ogg Format. Alle Sounds werden freien
-Asset-Bibliotheken entnommen oder selbst mit entsprechender Software (Bsp.
-Audacity) kreiert.  Im Mainscreen spielt die Hintergrundmusik sowie ein leises
-Knacken des Lagerfeuers in der Mitte der Höhle. Wenn nur noch wenige Runden im
-Spiel verbleiben wird die Hintergrundmusik schneller und energischer. Erscheinen
-storyrelevante Textboxen sind ‘Höhlenmenschen-Gebrabbel’ Sounds zu hören. Jeder
-Buttonklick und das Ende einer Runde werden ebenfalls von Soundeffekten
-begleitet.
-
 
 Interaktion
 -----------
@@ -127,16 +117,15 @@ Interaktion
 Jagen und Sammeln
 ^^^^^^^^^^^^^^^^^
 
-Eine durch den Spieler anwählbare Aktion; Dauer der Aktion auswählbar; Liefert
-pro Höhlenbewohner eine höhere Anzahl des angeforderten Rohstoffes. Anzahl der
-Höhlenbewohner, Technologiestufe und durchschnittliches Fitnesslevel bestimmen
-Output. Der Hunting Faktor wird durch Forschung erhöht. Einfaches und
-schwieriges Jagen; in Notlagen führt schwieriges Jagen zu “High risk, high
-reward”; Abzuwägen durch den Spieler
+Eine durch den Spieler anwählbare Aktion; Liefert pro Höhlenbewohner eine höhere
+Anzahl des angeforderten Rohstoffes. Anzahl der Höhlenbewohner, Technologiestufe
+und durchschnittliches Fitnesslevel bestimmen Output. Der Hunting Bonus wird
+durch Forschung erhöht. Einfaches und schwieriges Jagen;
+in Notlagen führt schwieriges Jagen zu “High risk, high reward”; Abzuwägen durch den Spieler
 
 Beispiel:
 Nach beendeter Aktion
-Food=Food + SUM(Fitness aller beteiligten Caveman)*Hunting Faktor
+Food=Food + SUM(Fitness aller beteiligten Caveman)+Hunting Bonus
 Chance, das Caveman stirbt, berechnen
 Erhöhe Fitness der Beteiligten.
 
@@ -149,19 +138,51 @@ dieser Aufgabe beschäftigten Höhlenbewohner bestimmen den ‘Output’; Wenn
 erfolgreich wird der weibliche Höhlenbewohner schwanger und ist 3 Runden lang
 nicht verfügbar.
 
-Zu 70% erfolgreich bei heterosexuellem Verkehr.
-Bei gleichgeschlechtlichem Verkehr wird niemand schwanger, eine Textbox
-erscheint, ‘beide Bewohner fühlen sich erleichtert und schämen sich etwas’
-Easteregg: 1% Chance auf schwangere Person bei gleichgeschlechtlicher Aktion (??)
+Zu 90% erfolgreich bei heterosexuellem Verkehr.
 
 Forschungen
 ^^^^^^^^^^^
 
 Eine durch den Spieler anwählbare Aktion; Dauert mehrere Runden(abhängig von der
-gewählten Forschung und der Intelligenz des forschenden Höhlenbewohners); Aktion
-kann jederzeit abgebrochen werden; Erfolgreiches Forschen erhöht Intelligenz.
+gewählten Forschung); Erfolgreiches Forschen erhöht Intelligenz.
 Forschungen haben verschiedene Effekte auf Ressourcenanhäufung und Events (siehe
-Techtree im Game Design Document).
+Techtree im Game Design Document). Forschungen werden in Form von JSON Dateien
+gespeichert. Zum Einlesen der Dateien wird in den entsprechenden Klassen die
+externe Header Datei json.hpp, erstellt von Github User nlohmann [#]_ verwendet.
+Der Aufbau einer Techdatei gestaltet sich wie folgt:
+
+.. code:: javascript
+
+  {
+      "name": "Archery",
+      "description": "running after rabbits with spears gets very tiring. adds a
+                      big bonus to hunting and a huge fitnessgain",
+      "iconPath": "assets/archerytech.png",
+
+      "requiredIntelligence": 35,
+      "intelligenceGain": 10,
+      "duration": 5,
+
+      "cost": {
+        "food": -200,
+        "materials": -200,
+        "capacity": 0
+      },
+
+      "statBoosts": {
+          "addends": {
+              "huntBonus": 50,
+              "gatheringBonus": 0,
+              "fitnessGain": 0.8,
+        "passiveIntGain": 0,
+              "buildingBonus": 0,
+              "birthGain": 0
+          },
+          "multipliers": {
+
+          }
+      }
+  }
 
 Verbesserungen
 ^^^^^^^^^^^^^^
@@ -170,7 +191,7 @@ Höhle kann unter Aufwendung von Ressourcen erweitert werden; Dauert mehrere
 Runden (abhängig von Anzahl der Arbeiter); Verbraucht Baumaterialien; führt zu
 größerer Höhlenkapazität und mehr möglichen Einwohnern.
 
-Eine Improve Aktion erhöht die Kapazität um 3 Bewohner und dauert (6-Anzahl der
+Eine Improve Aktion erhöht die Kapazität um 1 Bewohner und dauert (10*0,5^Anzahl der
 beteiligten Bewohner) Runden.
 
 Scripted Events
@@ -179,9 +200,8 @@ Scripted Events
 Darstellung durch Textboxen; werden durch Aktionen oder zufällig getriggert.
 Können je nach Inhalt den aktuellen Gamestate beeinflussen; mindestens mit einem
 ‘Okay’-Button oder anderen anklickbaren Auswahlmöglichkeiten verbunden
-(Buttons).  Manche Events passieren spontan nach einer Runde, andere werden eine
-bis mehrere Runden vorher angekündigt in Form von Textboxen. (z.B. ‘Das Wetter
-ist unruhig, ein Sturm zieht auf.’)
+(Buttons). Scripted Events werden in der gleichen Weise wie Forschungen in JSON
+Dateien gespeichert und eingelesen.
 
 Gameflow
 ^^^^^^^^
@@ -208,17 +228,17 @@ permanent ein als wichtig wahrgenommener Faktor.
 Klassenverzeichnis & -beschreibungen
 ------------------------------------
 
-An dieser Stelle soll eine formelle Beschreibung der wichtigsten Klassen
+An dieser Stelle soll eine formelle Beschreibung der Klassen
 vorgenommen werden.  Die Implementierung soll so gestaltet werden, dass die
 Klassen möglichst unabhängig voneinander erstellt werden. Jede Klasse sollte
 einen möglichst kleinen Aufgabenbereich abdecken. Für eine genauere
-Dokumentation aller Variablen und Methoden werden Docstrings verwendet, wie
-unter Punkt 1 erwähnt.
+Dokumentation aller Variablen und Methoden werden Docstrings verwendet und
+es sei auf die Codedokumentation verwiesen.
 
 main
 ^^^^
 
-Erstellt und managed das SFML Renderwindow; Erstellt ein neues Game Objekt.
+Erstellt und managed das SFML Renderwindow; Erstellt neue Game und GameManager Objekte.
 Enthält die GameLoop und fängt alle benötigten SFML Events ab;
 
 TransformedVector
@@ -253,7 +273,8 @@ Beispiel:
 
 .. code:: c++
 
-        Button({100, 50}, {0, 0}, “texture.png”, std::bind(&someFunction, std::ref(someReference)));
+        Button({100, 50}, {0, 0}, “texture.png”,
+               std::bind(&someFunction, std::ref(someReference)));
 
 Ein :cpp:`nullptr` kann übergeben werden um keinen Callback zu verwenden.
 
@@ -270,12 +291,22 @@ laufenden Aktionen im Management State darzustellen.
 
     Darstellung der GUI Schicht
 
+ResourceDisplay
+^^^^^^^^^^^^^^^
+
+Enthält mehrere Buttons und Textboxen. Dient als HUD für den Management Gamestate.
+
+GameManager
+^^^^^^^^^^^
+
+Enthält jeweils ein Objekt jedes Gamestates und verwaltet den Wechsel zwischen diesen.
+Enthält weiterhin das Game Objekt.
+
 Game
 ^^^^
 
 Enthält Variablen für Ressourcen, einen Vektor aller Caveman im Stamm sowie die
-Liste der laufenden Aktionen; Enthält jeweils ein Objekt der Gamestates
-MainMenu, Management und RoundEnd und verwaltet den Wechsel zwischen diesen.
+Liste der laufenden Aktionen und Events.
 
 Gamestate
 ^^^^^^^^^
@@ -305,16 +336,26 @@ Aktionen um eins verringert wird. Erstellt weiterhin Textboxen mit allen
 Ressourcenänderungen seit der vorherigen Runde und ruft Events über EventFactory
 auf. Ruft update() Funktion des SaveContainers auf.
 
+WinScreen
+~~~~~~~~~
+
+Erbt von Gamestate; Enthält einen Winning Background und einen Button zum Neustart des Spiels.
+
+LoseScreen
+~~~~~~~~~~
+
+Erbt von Gamestate; Enthält einen Losing Background und einen Button zum Neustart des Spiels
+
 .. figure:: img/control-layer.png
     :align: center
     :alt: Control Layer
 
     Darstellung der Control Schicht
-	
+
 CavemanFactory
 ^^^^^^^^^^^^^^
 
-Factory Klasse zur Erstellung von den unterschiedlichen Caveman Typen. 
+Factory Klasse zur Erstellung von den unterschiedlichen Caveman Typen.
 createCaveman() Funktion ruft entsprechende Konstruktor auf.
 
 Caveman
@@ -358,7 +399,8 @@ der Teilnehmer.
 Collect
 ~~~~~~~
 
-Erbt von Action; resolve() Funktion berechnet Materialienzuwachs
+Erbt von Action; resolve() Funktion berechnet Materialienzuwachs und Todeschance
+der Teilnehmer.
 
 Sex/Reproduce
 ~~~~~~~~~~~~~
@@ -372,13 +414,12 @@ Improve
 Erbt von Action; resolve() Funktion erhöht Maximalkapazität an Höhlenbewohnern
 im Stamm. Improve Aktionen verbrauchen Materialien.
 
-Research
-~~~~~~~~
+Think
+~~~~~
 
-Erbt von Action; resolve() Funktion callt den Callback.
-Verschiedene Researches werden durch einen Namen unterschieden.
-Jede Research hat einen parent. Die erste tech hat “root” als parent.
-Jede Research erfordert eine mindest Intelligence und verbraucht Ressourcen.
+Erbt von Action; . Verschiedene Techs werden durch einen Namen unterschieden.
+Die entsprechende Tech ist mit gleichem Namen im Techtree Objekt zu finden.
+Kann nur einen Teilnehmer haben.
 
 .. figure:: img/action-relation.png
     :align: center
@@ -387,37 +428,33 @@ Jede Research erfordert eine mindest Intelligence und verbraucht Ressourcen.
 
     Darstellung der Beziehungen von Action
 
+Techtree
+^^^^^^^^
+
+Erbt von Rectangle; Besitzt eine Map von Techs um den Ingame Techtree zu speichern.
+Weiterhin eine Trainingstech, eine Textbox und Buttons zum Fortfahren und Abbrechen.
+Struktur der Map wird aus techtree.json geparsed.
+
+Tech
+^^^^
+
+Erforschbare Tech im Techtree.
+Konstruktor parsed techname.json und speichert Kosten, Boni, Dauer und Grafik.
+
 EventFactory
 ^^^^^^^^^^^^
 
-Factory Klasse zur Erstellung von Events; createEvent() liest aus der events
-File via EventContainer und gibt ein neues Event Objekt zurück.
-
-EventContainer
-^^^^^^^^^^^^^^
-
-Liest Events aus der events File. Beispiel für mögliche Notation in der File:
-
-.. code:: javascript
-
-    {
-        tags: [ “before_Holzzaun”,
-                “after_Toepfern” ],
-        name: “Ein wildes Tier hat einen Topf geklaut.”,
-        description: “Ein Zaun wäre gut gewesen. :c”,
-        resources: { food: -50, buildingMaterial: -20, capacity: 0 },
-        death: 0,
-        new: 0
-    }
+Factory Klasse zur Erstellung von Events; createEvent() gibt ein neues Event Objekt zurück.
 
 Event
 ^^^^^
 
-Bekommt Konstruktorparameter von EventFactory. Besitzt eine Textbox zur
-Darstellung des Events sowie einen Button zum Bestätigen.
+Bekommt Konstruktorparameter von EventFactory. Konstruktor parsed eine JSON File
+und liest Werte aus. Besitzt je nach Event Text zum Anzeigen,
+verschiedene Buttons als anklickbare Optionen und Ressourcenveränderungen.
 
-SaveContainer
-^^^^^^^^^^^^^
+SaveContainer (nicht implementiert)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Speichert Informationen über das aktuelle Game; Enthält Funktion SaveToFile()
 und LoadFromFile()
@@ -432,7 +469,7 @@ Hilfsfunktionen
 ^^^^^^^^^^^^^^^
 
 Weitere Dateien die keine instanzierbaren Klassen darstellen sondern zur
-besseren Übersicht ausgelagerte Funktionen enthalten.
+besseren Übersicht ausgelagerte Funktionen oder structs enthalten.
 
 Buttonfunctions
 ~~~~~~~~~~~~~~~
@@ -440,15 +477,15 @@ Buttonfunctions
 Enthält Callback Funktionen die den Buttons aus den Gamestates zugewiesen
 werden; unterteilt in sinnvolle namespaces.
 
-Techfunctions
-~~~~~~~~~~~~~
+Enums
+~~~~~
 
-Enthält Callback Funktionen für Forschungen.
+Enthält alle verwendeten Enums
 
-Eventfunctions
-~~~~~~~~~~~~~~
+Resources
+~~~~~~~~~
 
-Enthält Callback Funktionen für Events.
+Enthält ein Resources struct.
 
 
 Art Bible
@@ -459,23 +496,45 @@ Höhlenmenschen
 
 Männer
 ~~~~~~
-.. image:: img/caveman1.PNG
+.. image:: img/man-1.png
    :align: center
-   :alt: Kleidung 1, Gesicht 1, Kopf 1
+   :alt: caveman
 
-.. image:: img/caveman2.PNG
+.. image:: img/man-1-h.png
    :align: center
-   :alt: Kleidung 2, Gesicht 2, Kopf 2
+   :alt: caveman highlighted
 
-.. image:: img/caveman3.PNG
+.. image:: img/man-1-d.png
    :align: center
-   :alt: Kleidung 3, Gesicht 3, Kopf 3
+   :alt: caveman disabled
 
 Frauen
 ~~~~~~
+.. image:: img/woman-1.png
+   :align: center
+   :alt: cavewoman
+
+.. image:: img/woman-1-h.png
+   :align: center
+   :alt: cavewoman highlighted
+
+.. image:: img/woman-1-d.png
+   :align: center
+   :alt: cavewoman disabled
 
 Kinder
 ~~~~~~
+.. image:: img/child-1.png
+   :align: center
+   :alt: child
+
+.. image:: img/child-1-h.png
+   :align: center
+   :alt: child highlighted
+
+.. image:: img/child-1-d.png
+   :align: center
+   :alt: child disabled
 
 Interaktionselemente
 ^^^^^^^^^^^^^^^^^^^^^
@@ -519,11 +578,7 @@ Action-Queue
 Textcontainer
 ~~~~~~~~~~~~~
 
-.. image:: img/textbox.png
-   :align: center
-   :alt: Textbox
-
-.. image:: img/infobox.png
+.. image:: img/info.png
    :align: center
    :alt: Infobox
 
@@ -532,6 +587,9 @@ Höhlengrafiken
 
 Höhle
 ~~~~~~
+.. image:: img/cave.png
+   :align: center
+   :alt: cave
 
 Ressourcen
 ~~~~~~~~~~~
@@ -559,8 +617,33 @@ Ressourcen
    :align: center
    :alt: Stones small
 
-Feuer
+Techtree
+~~~~~~~~
+.. image:: img/res-archery.png
+   :align: center
+   :alt: Techtree item
+
+.. image:: img/res-archery-h.png
+   :align: center
+   :alt: Techtree item highlighted
+
+.. image:: img/res-archery-d.png
+   :align: center
+   :alt: Techtree item disabled
+
+.. image:: img/background-techtree.png
+   :align: center
+   :alt: Techtree background
+
+Menü
 ~~~~~
+.. image:: img/background.png
+   :align: center
+   :alt: Menu background
+
+.. image:: img/menu-start.png
+   :align: center
+   :alt: Menu button style
 
 --------------------
 
@@ -570,3 +653,4 @@ Feuer
 .. [#] Continuous Integration https://en.wikipedia.org/wiki/Continuous_integration
 .. [#] Travis CI https://travis-ci.org/
 .. [#] Doxygen http://doxygen.org/
+.. [#] nlohman json.hpp https://github.com/nlohmann/json

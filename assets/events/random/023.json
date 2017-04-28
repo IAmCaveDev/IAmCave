@@ -12,8 +12,8 @@
     {
         "name": "Yes",
         "texturePath": "assets/eventbuttons/yes.png",
-        "materialGain": -120,
-        "foodGain": -120,
+        "materialGain": -20,
+        "foodGain": -20,
         "cavemen": [
         {
             "age": 22,
