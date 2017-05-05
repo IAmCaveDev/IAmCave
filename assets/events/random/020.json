@@ -1,22 +1,22 @@
 {
     "id": 20,
-    "title": "Rebellion!",
-    "description": "The cavemen feel envy. Doing nothing might end in a rebellion. \nCalm them down by inventing a greater power with the strange name GOD?",
+    "title": "Merchant",
+    "description": "A merchant from another tribe appears at the cave.\nHis tribe needs materials, he offers 20 pieces of meat to get 30 stones. \n Accept the deal?",
 
     "trigger": {
-    "has_tech": "Hierarchy"
+    "tribeMaterial": 30 
 	},
 
     "options": [
     {
         "name": "Yes",
-        "texturePath": "assets/eventbuttons/yes.png"
+        "texturePath": "assets/eventbuttons/yes.png",
+        "materialGain": 30,
+        "foodGain": 20
     },
     {
-        "name": "Do nothing",
-        "texturePath": "assets/eventbuttons/do-nothing.png",
-        "huntBonus": -0.2,
-        "gatherBonus": -0.2
+        "name": "Never",
+        "texturePath": "assets/eventbuttons/never.png"
     }
     ]
 }

@@ -1,17 +1,28 @@
 {
     "id": 18,
-    "title": "Deluge!",
-    "description": "Because of strong rain a river close to the cave bursts it banks.\nAlthough the cavemen try to save their belongings,\nsome of the materials are muddy and now useless.",
+    "title": "A lost one",
+    "description": "A filthy guy approaches the cave.\nHe seems to be harmless and asks for asylum and admits \nto have no special skills but to starve. \nInclude him to the tribe?",
 
     "trigger": {
-    "tribeMaterial": 150
+    "has_tech": "WoodenFence"
 	},
 
     "options": [
     { 
-        "name": "Ok",
-        "texturePath": "assets/eventbuttons/ok.png",
-        "materialGain": -20
+        "name": "Take him",
+        "texturePath": "assets/eventbuttons/asolutely.png",
+        "cavemen": [
+        {
+            "age": 18,
+            "fitness": 1,
+            "intelligence": 1,
+            "isMale": true
+        }
+        ]
+    },
+    {
+        "name": "Never",
+        "texturePath": "assets/eventbuttons/never.png"
     }
     ]
 }

@@ -1,22 +1,25 @@
 {
     "id": 22,
-    "title": "Old woman in an old forest",
-    "description": "During an expedition to a close forest you meet an old wise woman in the deepest part of the forest. \nShe looks well-fed and offers her wisdom to your tribe if you are able \nto give her food and a place to sleep.",
+    "title": "Surprising meeting",
+    "description": "While some of our hunters try to get close to a deer, it's hit by a spear thrown from somewhere between the bushes. \nYou meet another tribe, that is starving. They offer their strongest man \nfor some meat and materials for their cave. Make the exchange?",
 
     "trigger": {
-    "tribeSize": 18
+    "tribeMaterial": 300,
+    "tribeFood": 300 
 	},
 
     "options": [
     {
         "name": "Yes",
         "texturePath": "assets/eventbuttons/yes.png",
+        "materialGain": -20,
+        "foodGain": -20,
         "cavemen": [
         {
-            "age": 45,
-            "fitness": 1,
-            "intelligence": 18,
-            "isMale": false
+            "age": 22,
+            "fitness": 34,
+            "intelligence": 12,
+            "isMale": true
         }
         ]
     },

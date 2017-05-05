@@ -1,22 +1,17 @@
 {
     "id": 17,
-    "title": "What a freak!",
-    "description": "A friend of you freaks out for no reason. \nHe tries to destroy the cave with anything he gets into his hands.\nUse violence to stop him?",
+    "title": "Deluge!",
+    "description": "Because of strong rain a river close to the cave bursts it banks.\nAlthough the cavemen try to save their belongings,\nsome of the materials are muddy and now useless.",
 
     "trigger": {
-    "tribeSize": 15
+    "tribeMaterial": 150
 	},
 
     "options": [
     { 
-        "name": "Yes",
-        "texturePath": "assets/eventbuttons/yes.png",
-        "materialGain": -10
-    },
-    {
-        "name": "No",
-        "texturePath": "assets/eventbuttons/no.png",
-        "materialGain": -30
+        "name": "Ok",
+        "texturePath": "assets/eventbuttons/ok.png",
+        "materialGain": -20
     }
     ]
 }

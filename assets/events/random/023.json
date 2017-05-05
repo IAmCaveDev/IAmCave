@@ -1,31 +1,25 @@
 {
     "id": 23,
-    "title": "Surprising meeting",
-    "description": "While some of our hunters try to get close to a deer, it's hit by a spear thrown from somewhere between the bushes. \nYou meet another tribe, that is starving. They offer their strongest man \nfor some meat and materials for their cave. Make the exchange?",
+    "title": "Binge",
+    "description": "The cavemen want to celebrate the successful huntings in the past. \nTherefore they suggest to hold a banquet. It should increase their mood.",
 
     "trigger": {
-    "tribeMaterial": 300,
-    "tribeFood": 300 
+    "tribeFood": 200 
 	},
 
     "options": [
     {
         "name": "Yes",
         "texturePath": "assets/eventbuttons/yes.png",
-        "materialGain": -20,
-        "foodGain": -20,
-        "cavemen": [
-        {
-            "age": 22,
-            "fitness": 34,
-            "intelligence": 12,
-            "isMale": true
-        }
-        ]
+        "foodGain": -10,
+        "huntBonus": 0.8,
+        "gatheringBonus": 0.8
     },
     {
         "name": "No",
-        "texturePath": "assets/eventbuttons/no.png"
+        "texturePath": "assets/eventbuttons/no.png",
+        "huntBonus": -0.2,
+        "gatheringBonus": -0.2
     }
     ]
 }
