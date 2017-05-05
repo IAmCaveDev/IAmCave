@@ -10,7 +10,7 @@
     { 
         "name": "Poor one.",
         "texturePath": "assets/eventbuttons/ok.png",
-        "lostCaveman": 1
+        "lostCavemen": 1
     }
     ]
 }

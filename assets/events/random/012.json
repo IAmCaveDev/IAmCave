@@ -12,7 +12,7 @@
         "name": "That sounds rather stupid...",
         "texturePath": "assets/eventbuttons/absolutely.png",
         "foodGain": -50,
-        "lostCaveman": 1
+        "lostCavemen": 1
     }
     ]
 }

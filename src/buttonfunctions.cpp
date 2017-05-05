@@ -364,6 +364,11 @@ namespace ButtonFunctions {
             if (option->effects.newCaveman) {
                 stateRef.getGame().addCaveman(50, option->effects.new_age, option->effects.new_intelligence, option->effects.new_fitness, option->effects.new_isMale);
             }
+            for (int i = 0; i < option->effects.lostCavemen; i++) {
+                std::random_device rd;
+                std::mt19937 rng(rd());
+                std::uniform_int_distribution<int> distribution(0, stateRef.getGame().getTribe().size());
+            }
 
             for (int i = stateRef.getButtons().size() - 1; i > 0; i--) {
                 stateRef.getButtons().at(i)->setPosition({ 2000, 2000 });

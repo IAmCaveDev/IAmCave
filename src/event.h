@@ -44,6 +44,7 @@ public:
         int capacityGain;
         float foodGain;
         int materialGain;
+        int lostCavemen;
 
         /**
         * Stats for new caveman if created by the event

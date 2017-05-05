@@ -27,6 +27,7 @@ Event::Event(std::string path) {
             if (!it["capacityGain"].empty()) option->effects.capacityGain = it["capacityGain"];
             if (!it["foodGain"].empty()) option->effects.foodGain = it["foodGain"];
             if (!it["materialGain"].empty()) option->effects.materialGain = it["materialGain"];
+            if (!it["lostCavemen"].empty()) option->effects.lostCavemen = it["lostCavemen"];
 
             for (auto& caveman : it["cavemen"]) {
                 option->effects.newCaveman = true;
