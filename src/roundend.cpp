@@ -125,26 +125,31 @@ void RoundEnd::doPassives() {
 
 void RoundEnd::doEvents(Resources resourcesBefore) {
     EventFactory eventFactory;
-    std::shared_ptr<Event> event(eventFactory.createRandomEvent());
-    //TODO make sure ALL trigger requirements are met
-    if (resourcesBefore.food >= event->getTrigger().tribeFood
-        || resourcesBefore.buildingMaterial >= event->getTrigger().tribeMaterial
-        || resourcesBefore.cavemanCapacity >= event->getTrigger().tribeSize
-        || game.getTechtree().getTree().at(event->getTrigger().has_tech)->isResearched()
-        || !game.getTechtree().getTree().at(event->getTrigger().missing_tech)) {
+    std::random_device rd;
+    std::mt19937 rng(rd());
 
-        for (auto& it : event->getOptions()) {
-            if (it == event->getOptions().at(0)) {
-                buttons.at(0)->changeTexture(it->texturePath);
-                buttons.at(0)->setCallback(std::bind(&ButtonFunctions::Events::confirmOption, std::ref(*this), it, event->getID()));
-                buttons.at(0)->setPosition(it->button->getPosition());
-            } else {
-                it->button->setCallback(std::bind(&ButtonFunctions::Events::confirmOption, std::ref(*this), it, event->getID()));
-                buttons.push_back(it->button);
+    if (!distribution(rng)) {
+        std::shared_ptr<Event> event(eventFactory.createRandomEvent());
+        //TODO make sure ALL trigger requirements are met
+        if (resourcesBefore.food >= event->getTrigger().tribeFood
+            || resourcesBefore.buildingMaterial >= event->getTrigger().tribeMaterial
+            || resourcesBefore.cavemanCapacity >= event->getTrigger().tribeSize
+            || game.getTechtree().getTree().at(event->getTrigger().has_tech)->isResearched()
+            || !game.getTechtree().getTree().at(event->getTrigger().missing_tech)) {
+
+            for (auto& it : event->getOptions()) {
+                if (it == event->getOptions().at(0)) {
+                    buttons.at(0)->changeTexture(it->texturePath);
+                    buttons.at(0)->setCallback(std::bind(&ButtonFunctions::Events::confirmOption, std::ref(*this), it, event->getID()));
+                    buttons.at(0)->setPosition(it->button->getPosition());
+                } else {
+                    it->button->setCallback(std::bind(&ButtonFunctions::Events::confirmOption, std::ref(*this), it, event->getID()));
+                    buttons.push_back(it->button);
+                }
             }
+            setTextboxText(event->getDescription());
+            game.addEvent(event);
         }
-        setTextboxText(event->getDescription());
-        game.addEvent(event);
     }
 }
 
