@@ -127,6 +127,8 @@ void RoundEnd::doEvents(Resources resourcesBefore) {
     EventFactory eventFactory;
     std::random_device rd;
     std::mt19937 rng(rd());
+    std::uniform_int_distribution<int> distribution(0, 7);
+    textbox->setText("");
 
     if (!distribution(rng)) {
         std::shared_ptr<Event> event(eventFactory.createRandomEvent());
