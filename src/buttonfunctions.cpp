@@ -368,6 +368,8 @@ namespace ButtonFunctions {
                 std::random_device rd;
                 std::mt19937 rng(rd());
                 std::uniform_int_distribution<int> distribution(0, stateRef.getGame().getTribe().size());
+                
+                stateRef.getGame().removeCaveman(stateRef.getGame().getTribe().at(distribution(rng))->getId());
             }
 
             for (int i = stateRef.getButtons().size() - 1; i > 0; i--) {
