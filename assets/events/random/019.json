@@ -1,7 +1,7 @@
 {
     "id": 19,
     "title": "Rebellion!",
-    "description": "The cavemen feel envy. Doing nothing might end in a rebellion. \nCalm them down by inventing a greater power with the strange name GOD?",
+    "description": "The cavemen feel envy. Doing nothing might end in a rebellion. \nCalm them down by inventing a greater power with the strange name GOD? This would decrease their efficiency.",
 
     "trigger": {
     "has_tech": "Hierarchy"

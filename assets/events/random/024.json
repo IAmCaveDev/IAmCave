@@ -1,7 +1,7 @@
 {
     "id": 24,
     "title": "It tastes gooBURP",
-    "description": "One of the caveman found a way how to use old food to make delicious drinks. \nHe called it Alc-uh-uh. Should we allow that?",
+    "description": "One of the caveman found a way how to use old food to make delicious drinks. \nHe called it Alc-uh-uh. This might have consequences; should we allow that?",
 
     "trigger": {
     "tribeFood": 20
@@ -11,15 +11,7 @@
     {
         "name": "Yes",
         "texturePath": "assets/eventbuttons/yes.png",
-        "foodGain": -20,
-        "cavemen": [
-        {
-            "age": 0,
-            "fitness": 4,
-            "intelligence": 0,
-            "isMale": true
-        }
-        ]
+        "foodGain": 10
     },
     {
         "name": "No",

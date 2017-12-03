@@ -11,7 +11,8 @@
     { 
         "name": "Yes",
         "texturePath": "assets/eventbuttons/yes.png",
-        "materialGain": -10
+        "lostCavemen": 1,
+        "materialGain": -5
     },
     {
         "name": "No",

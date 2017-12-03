@@ -1,7 +1,7 @@
 {
     "id": 20,
     "title": "Merchant",
-    "description": "A merchant from another tribe appears at the cave.\nHis tribe needs materials, he offers 20 pieces of meat to get 30 stones. \n Accept the deal?",
+    "description": "A merchant from another tribe appears at the cave.\nHis tribe needs materials, he offers 40 pieces of meat to get 30 stones. \n Accept the deal?",
 
     "trigger": {
     "tribeMaterial": 30 
@@ -11,8 +11,8 @@
     {
         "name": "Yes",
         "texturePath": "assets/eventbuttons/yes.png",
-        "materialGain": 30,
-        "foodGain": 20
+        "materialGain": -30,
+        "foodGain": 40
     },
     {
         "name": "Never",
